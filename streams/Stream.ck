@@ -54,15 +54,19 @@ public class Stream
     }
     
     fun float test() {
+        test(.1::second);
+    }
+    
+    fun float test(dur T) {
         while(1) {
-            chout <= next() <= IO.newline();
-            .1::second => now;
+            <<<next()>>>;
+            T => now;
         }
     }
     
     fun float testInt() {
         while(1) {
-            chout <= nextInt() <= IO.newline();
+            <<<nextInt()>>>;
             .1::second => now;
         }
     }
