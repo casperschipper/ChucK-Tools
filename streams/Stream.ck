@@ -16,6 +16,11 @@ public class Stream
         //
     }
     
+    fun Stream st() { 
+        // this can be useful when you want to use make in literal arrays
+        return this $ Stream;
+    }
+    
     fun float next() {
         return 0.;
     }

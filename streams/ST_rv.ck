@@ -15,20 +15,20 @@ public class ST_rv extends Stream
         return this;
     }
   
-  fun static Stream make() {
-        return (new ST_rv) $ Stream;
+  fun static ST_rv make() {
+        return new ST_rv;
     }
     
-    fun static Stream make(float _low,float _high) {
+    fun static ST_rv make(float _low,float _high) {
         ST_rv stream;
         stream.init(_low,_high);
-        return stream $ Stream;
+        return stream;
     }
     
-    fun static Stream make(Stream _low,Stream _high) {
+    fun static ST_rv make(Stream _low,Stream _high) {
         ST_rv stream;
         stream.init(_low,_high);
-        return stream $ Stream;
+        return stream;
     }
    
     fun ST_rv init(Stream _low,Stream _high) {

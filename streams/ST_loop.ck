@@ -48,14 +48,14 @@ public class ST_loop extends Stream {
         return this;
     }
     
-    fun Stream make() {
-        return (new ST_loop) $ Stream;
+    fun ST_loop make() {
+        return new ST_loop;
     }
     
-    fun Stream make(float values[]) {
+    fun ST_loop make(float values[]) {
         ST_loop stream;
         stream.init(values);
-        return stream $ Stream;
+        return stream;
     }
 }
    
