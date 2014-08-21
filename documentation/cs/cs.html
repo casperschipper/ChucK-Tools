@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>ChucK - cs helper functions</title>
+<link rel="stylesheet" type="text/css" href="../ckdoc.css" />
+ 
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<font face="verdana" size="2">
+
+<br />
+<center> 
+<table border="0" width="640">
+<tr><td>
+
+<center>
+<font face="verdana" size="3">
+<b>ChucK</b> : cs helper functions
+</font>
+<br />
+<br />
+<font color="#aa3333" size="3">cs</font>
+<br /><br />
+
+  <table bgcolor="#d9d9d9" border="0" cellpadding="1" cellspacing="0"><tr><td>
+  <table width="100%" bgcolor="#fdfdfd" border="0" cellpadding="1" cellspacing="2">
+  <tr>
+  <td align="right"><font face="verdana" size="2">
+</td><td><font face="verdana" size="2">
+
+  <br />
+  
+  </font></td>
+  </tr>
+  </table></td></tr>
+  </table>
+
+<br />
+<!--img src="../images/on-the-fly_50dpi.jpg"-->
+
+<table width="640" border="0" cellpadding="2" cellspacing="2">
+<tr><td align="justify"><font face="verdana" size="2">
+
+<hr width="10%" />
+<font size="3"><b>cs helper functions</b></font>
+<br /><p align="justify">
+This is my collection of various helper functions that should allow for faster coding. Some of them are simply abbreviations of the Standard Lib functions
+others are more elaborate additions or even quite exotic generators.</p>
+
+<hr width="10%" />
+<font color="#33aa33" size="3">namespace: <b>cs</b></font>
+
+</div></div><div class="export"><h3>
+<a class="heading" name="abs">[function]</a>: 
+int <b class="name">abs</b> ( int <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>returns absolute value of integer</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="fabs">[function]</a>: 
+float <b class="name">fabs</b> ( float <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>returns absolute value of floating point number</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="rand">[function]</a>: 
+int <b class="name">rand</b> (  ); // soon-to-be-deprecated; use Math.random() </h3>
+<div class="comments"><ul><li>generates random integer</li><li>(NOTE: soon-to-be-deprecated; use Math.random())</ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="rand2">[function]</a>: 
+int <b class="name">rand2</b> ( int <b class="arg">min</b>, int <b class="arg">max</b> ); // soon-to-be-deprecated; use Math.random2()</h3>
+<div class="comments"><ul><li>generates random integer in the range [min, max]</li>
+<li>(NOTE: soon-to-be-deprecated; use Math.random2())</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="randf">[function]</a>: 
+float <b class="name">randf</b> (  ); // soon-to-be-deprecated; use Math.randomf()</h3>
+<div class="comments"><ul><li>generates random floating point number in the range [-1, 1]</li>
+<li>(Note: soon-to-be-deprecated; use Math.randomf())</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="rand2f">[function]</a>: 
+float <b class="name">rand2f</b> ( float <b class="arg">min</b>, float <b class="arg">max</b> ); // soon-to-be-deprecated; use 
+Math.random2f()</h3>
+<div class="comments"><ul><li>generates random floating point number in the range [min, max]</li>
+<li>(NOTE: soon-to-be-deprecated; use Math.random2f())</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="sgn">[function]</a>: 
+float <b class="name">sgn</b> ( float <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>computes the sign of the input as -1.0 (negative), 0 (zero), or 
+1.0 (positive)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="system">[function]</a>: 
+int <b class="name">system</b> ( string <b class="arg">cmd</b> );</h3>
+<div class="comments"><ul><li>pass a command to be executed in the shell</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="atoi">[function]</a>: 
+int <b class="name">atoi</b> ( string <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>converts ascii (string) to integer (int)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="atof">[function]</a>: 
+float <b class="name">atof</b> ( string <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>converts ascii (string) to floating point value (float)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="getenv">[function]</a>: 
+string <b class="name">getenv</b> ( string <b class="arg">key</b> );</h3>
+<div class="comments"><ul><li>returns the value of an environment variable, such as of "PATH"</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="setenv">[function]</a>: 
+int <b class="name">setenv</b> ( string <b class="arg">key</b>, string <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>sets environment variable named 'key' to 'value'</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="mtof">[function]</a>: 
+float <b class="name">mtof</b> ( float <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>converts a MIDI note number to frequency (Hz)</li>
+<li>note the input value is of type 'float' (supports fractional note number)</li></ul>
+</div>
+</div><div class="export"><h3>
+<a class="heading" name="ftom">[function]</a>: 
+float <b class="name">ftom</b> ( float <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>converts frequency (Hz) to MIDI note number space</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="powtodb">[function]</a>: 
+float <b class="name">powtodb</b> ( float <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>converts signal power ratio to decibels (dB)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="rmstodb">[function]</a>: 
+float <b class="name">rmstodb</b> ( float <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>converts linear amplitude to decibels (dB)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="dbtopow">[function]</a>: 
+float <b class="name">dbtopow</b> ( float <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>converts decibels (dB) to signal power ratio</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="dbtorms">[function]</a>: 
+float <b class="name">dbtorms</b> ( float <b class="arg">value</b> );</h3>
+<div class="comments"><ul><li>converts decibles (dB) to linear amplitude</li></ul></div>
+</div>
+<!--- end ulib_std.html --->
+<br />
+
+<hr width="10%" />
+
+<font size="3" color="#33aa33">namespace: <b>Machine</b></font>
+<br /><br /><p align="justify">
+<b>Machine</b> is ChucK runtime interface to the virtual machine.  this interface can 
+be used to manage shreds.  They are similar to the <a href="otfp.html">On-the-fly Programming Commands</a>, 
+except these are invoked from within a ChucK program, and are subject to the timing mechanism.
+</p> ----------<br />
+<!--- begin ulib_machine.html --->
+<div class="export"><h3>
+<a class="heading" name="add">[function]</a>: 
+int <b class="name">add</b> ( string <b class="arg">path</b> );</h3>
+<div class="comments"><ul><li> compile and spork a new shred from file at 'path' into the VM now</li>
+<li> returns the shred ID</li>
+<li> (see example/machine.ck)</li>
+</ul></div></div><div class="export"><h3>
+<a class="heading" name="spork">[function]</a>: 
+int <b class="name">spork</b> ( string <b class="arg">path</b> );</h3>
+<div class="comments"><ul><li> same as add</li>
+</ul></div></div><div class="export"><h3>
+<a class="heading" name="remove">[function]</a>: 
+int <b class="name">remove</b> ( int <b class="arg">id</b> );</h3>
+<div class="comments"><ul><li> remove shred from VM by shred ID (returned by add/spork)</li>
+</ul></div></div><div class="export"><h3>
+<a class="heading" name="replace">[function]</a>: 
+int <b class="name">replace</b> ( int <b class="arg">id</b>, string <b class="arg">path</b> );</h3>
+<div class="comments"><ul><li> replace shred with new shred from file</li>
+<li> returns shred ID , or 0 on error </li>
+</ul></div></div><div class="export"><h3>
+<a class="heading" name="status">[function]</a>: 
+int <b class="name">status</b> (  );</h3>
+<div class="comments"><ul><li> display current status of VM</li>
+<li> (see example/status.ck)</li>
+</ul></div></div><div class="export"><h3>
+<a class="heading" name="crash">[function]</a>:
+void <b class="name">crash</b> (  );</h3>
+<div class="comments"><ul><li>literally causes the VM to crash.  the very last 
+resort; use with care.  Thanks.</li></ul></div></div>
+
+<!--- end ulib_machine.html --->
+<br /><br />
+<hr width="10%" />
+<font size="3" color="#33aa33">namespace: <b>Math</b></font>
+<br /><br />
+<b>Math</b> contains the standard math functions, including all trignometric functions expects angles
+to be in radians, as well as random number generators.
+<br /><br />
+<!--- begin ulib_math.html --->
+<div class="example">[example]<br />
+<div class="code">// print sine of pi/2
+<<<< Math.sin( Math.PI / 2.0 ) >>>;
+</div></div>
+<div class="example">[example 2]<br />
+<div class="code">// infinite time-loop
+while( true )
+{
+  // generate random float (and print)
+  <<< Math.random2f( 100.0, 1000.0 ) >>>;
+  // wait a bit
+  50::ms => now;
+}
+</div></div><div class="export"><h3>
+<a class="heading" name="sin">[function]</a>: 
+float <b class="name">sin</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the sine of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="cos">[function]</a>: 
+float <b class="name">cos</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the cosine of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="tan">[function]</a>: 
+float <b class="name">tan</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the tangent of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="asin">[function]</a>: 
+float <b class="name">asin</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the arc sine of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="acos">[function]</a>: 
+float <b class="name">acos</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the arc cosine of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="atan">[function]</a>: 
+float <b class="name">atan</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the arc tangent of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="atan2">[function]</a>: 
+float <b class="name">atan2</b> ( float <b class="arg">y</b>, float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the principal value of the arc tangent of
+<b>y</b>/<b>x</b>, using the signs of both arguments to determine the quadrant of the
+return value
+</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="sinh">[function]</a>: 
+float <b class="name">sinh</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the hyperbolic sine of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="cosh">[function]</a>: 
+float <b class="name">cosh</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the hyperbolic cosine of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="tanh">[function]</a>: 
+float <b class="name">tanh</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the hyperbolic tangent of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="hypot">[function]</a>: 
+float <b class="name">hypot</b> ( float <b class="arg">x</b>, float <b class="arg">y</b> );</h3>
+<div class="comments"><ul><li>computes the euclidean distance of the orthogonal vectors (<b>x</b>,0) 
+and (0,<b>y</b>)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="pow">[function]</a>: 
+float <b class="name">pow</b> ( float <b class="arg">x</b>, float <b class="arg">y</b> );</h3>
+<div class="comments"><ul><li>computes <b>x</b> taken to the <b>y</b>-th power</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="sqrt">[function]</a>: 
+float <b class="name">sqrt</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the nonnegative square root of <b>x</b>  (x must 
+be >= 0)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="exp">[function]</a>: 
+float <b class="name">exp</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes e^<b>x</b>, the base-e exponential of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="log">[function]</a>: 
+float <b class="name">log</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the natural logarithm of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="log2">[function]</a>: 
+float <b class="name">log2</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the logarithm of <b>x</b> to base 2</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="log10">[function]</a>: 
+float <b class="name">log10</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the logarithm of <b>x</b> to base 10</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="random">[function]</a>: 
+int <b class="name">random</b> (  );</h3>
+<div class="comments"><ul><li>generates random integer between 0 and Math.RANDOM_MAX</li><li>(NOTE: Math.random*() functions use a different, 
+superior random number generator than the Std.rand*() functions)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="random2">[function]</a>: 
+int <b class="name">random2</b> ( int <b class="arg">min</b>, int <b class="arg">max</b> );</h3>
+<div class="comments"><ul><li>generates random integer in the range [min, max]</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="randomf">[function]</a>: 
+float <b class="name">randomf</b> (  );</h3>
+<div class="comments"><ul><li>generates random floating point number in the range [0, 1]<br>
+(NOTE: this is different semantics than Std.randf(), which has the range [-1,1])</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="random2f">[function]</a>: 
+float <b class="name">random2f</b> ( float <b class="arg">min</b>, float <b class="arg">max</b> );</h3>
+<div class="comments"><ul><li>generates random floating point number in the range [min, max]</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="floor">[function]</a>: 
+float <b class="name">floor</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>round to largest integral value (returned as float) not greater 
+than <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="ceil">[function]</a>: 
+float <b class="name">ceil</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>round to smallest integral value (returned as float) not less
+than <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="round">[function]</a>: 
+float <b class="name">round</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>round to nearest integral value (returned as float)</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="trunc">[function]</a>: 
+float <b class="name">trunc</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>round to largest integral value (returned as float) no greater in 
+magnitude than <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="fmod">[function]</a>: 
+float <b class="name">fmod</b> ( float <b class="arg">x</b>, float <b class="arg">y</b> );</h3>
+<div class="comments"><ul><li>computes the floating point remainder of <b>x</b> / <b>y</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="remainder">[function]</a>: 
+float <b class="name">remainder</b> ( float <b class="arg">x</b>, float <b class="arg">y</b> );</h3>
+<div class="comments"><ul><li>computes the value r such that r = <b>x</b> - n * <b>y</b>, where n is the 
+integer nearest the exact value of <b>x</b> / <b>y</b>.  If there are two integers closest to <b>x</b> / 
+<b>y</b>, n shall be the even one. If r is zero, it is given the same sign as <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="min">[function]</a>: 
+float <b class="name">min</b> ( float <b class="arg">x</b>, float <b class="arg">y</b> );</h3>
+<div class="comments"><ul><li>choose lesser of two values</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="max">[function]</a>: 
+float <b class="name">max</b> ( float <b class="arg">x</b>, float <b class="arg">y</b> );</h3>
+<div class="comments"><ul><li>choose greater of two values</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="nextpow2">[function]</a>: 
+int <b class="name">nextpow2</b> ( int <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>computes the integeral (returned as int) smallest power of 2 greater
+than the value of <b>x</b></li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="isinf">[function]</a>: 
+float <b class="name">isinf</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>tests if <b>x</b> is infinity</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="isnan">[function]</a>:
+float <b class="name">isnan</b> ( float <b class="arg">x</b> );</h3>
+<div class="comments"><ul><li>tests if <b>x</b> "is not a number"</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="pi">[constant]</a>: 
+float <b class="name">PI</b>;</h3>
+<div class="comments"><ul><li>constant PI; use as: Math.PI</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="two_pi">[constant]</a>: 
+float <b class="name">TWO_PI</b>;</h3>
+<div class="comments"><ul><li>constant PI*2; example usage: Math.TWO_PI</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="e">[constant]</a>: 
+float <b class="name">e</b>; // same as: E</h3>
+<div class="comments"><ul><li>Euler's constant, base of natural logarithm; same as Math.exp(1); use as: Math.e or Math.E</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="j">[constant]</a>: 
+complex <b class="name">i</b>; // same as: j, I, or J</h3>
+<div class="comments"><ul><li>the imaginary number 'i' as a complex value; use as: Math.i or Math.j or Math.I or Math.J</li></ul></div>
+</div><div class="export"><h3>
+<a class="heading" name="RANDOM_MAX">[constant]</a>: 
+int <b class="name">RANDOM_MAX</b>;</h3>
+<div class="comments"><ul><li>max value returned by Math.random()</li><li>(NOTE: not to be confused with Std.rand*)</li></ul></div>
+</div>
+
+
+
+<!--- end ulib_math.html --->
+
+<center>
+<hr width="10%" />
+Next: <a href="ugen.html">Chuck Standard Unit Generators</a>
+<br /><br />
+Return to <a href="index.html">Programming Guide</a>
+<br /><br />
+
+</td></tr></table>
+
+<font size="1">
+<hr width="15%" />
+<a href="../../">chuck</a> |
+<a href="http://soundlab.cs.princeton.edu/">soundlab</a> |
+<a href="http://www.cs.princeton.edu/">cs</a> |
+<a href="http://www.music.princeton.edu/">music</a> |
+<a href="http://ccrma.stanford.edu/">ccrma</a>
+<br />
+<br />
+</font>
+</body>
+</html>

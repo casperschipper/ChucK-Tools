@@ -1,0 +1,113 @@
+body { 
+	background : white;
+	color : black;
+	font-size: 10pt;
+	font-family: sans-serif;
+}
+
+.container { 
+	padding : 10px;
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.centered { 
+	margin-left: auto;
+	margin-right: auto;
+	text-align : center; 
+}
+
+.a { 
+	text-decoration: none;
+}
+
+.sectiontitle { 
+	font-size: 130%;
+	font-weight: 300;
+}
+
+.pagetitle { 
+	font-size: 120%;
+	font-weight: 600;
+	color : #339933
+}
+
+.subtitle { 
+	border-top : 1px #808080;
+	font-size: 120%;
+	font-weight: 200;
+	color : #339933
+}
+
+.version { 
+	font-size: 100%;
+	font-weight : 200;
+	padding : 5px;
+	border: 1px solid #d9d9d9;
+	background: #fdfdfd;
+	width : 25em;
+	margin-left : auto;
+	margin-right : auto;
+}
+
+
+.sectionMain { 
+	color: #aa3333;
+	background : #ffffdd;
+	width : 484px;
+	font-size: 170%;
+	font-variant: small-caps;
+	font-weight: 600;
+	border: 1px solid #808080;
+	padding : 8px;
+	margin : 10px;	
+	margin-left: 5px;
+}
+
+
+.section { 
+	color: #aa3333;
+	width : 500px;
+	font-size: 130%;
+	border-bottom: 2px solid #808080;
+	margin : 5px;	
+	margin-bottom: 15px;
+}
+
+
+.ckexample { 
+	border: 1px solid gray;
+	background : #f0f0f0;
+	padding-left : 10px;
+	margin: 20px;
+}
+
+.code { 
+	margin: 20px;
+	width : 30em;
+	padding: 1em;
+	font-size: 90%;
+	//margin-left: 150px;
+	border: 1px solid grey;
+	background: white;
+	font-family: monospace;
+	white-space:pre;
+}
+
+.nav { 
+	width : 75%;
+	margin : 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align : center; 
+}
+
+.bottomnav { 
+
+	margin-top : 20px;
+	border-top: 1px solid grey;
+	padding-top : 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
