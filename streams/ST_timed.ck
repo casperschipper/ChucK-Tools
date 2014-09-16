@@ -1,5 +1,7 @@
 public class ST_timed extends Stream {
     //
+    "Stream_timed" @=> _type;
+    
     float _time;
     
     null @=> Stream @ _stvalue;

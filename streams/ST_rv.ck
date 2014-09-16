@@ -15,7 +15,7 @@ public class ST_rv extends Stream
         return this;
     }
   
-  fun static ST_rv make() {
+    fun static ST_rv make() {
         return new ST_rv;
     }
     

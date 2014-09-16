@@ -29,6 +29,10 @@ public class cs
         return choose(array);
     }
     
+    fun static float chf (float array [] ) {
+        return choosef(array);
+    }
+    
     fun static int min (int a, int b) {
         if (a<b) return a;
         else return b;
@@ -506,9 +510,9 @@ public class cs
         if (input >= b) return d;
         if (exp < 0) {
             <<<"negative exp">>>;
-            return 0;
+            return 0.0;
         }
-        return Math.pow((((input - Math.min(a,b)) / Std.fabs(a-b)),exp) * Std.fabs(c-d)) + Math.min(c,d);
+        return (Math.pow((((input - Math.min(a,b)) / Std.fabs(a-b))),exp) * Std.fabs(c-d)) + Math.min(c,d);
     }
 
     fun static int clip(int input,int low,int high) {

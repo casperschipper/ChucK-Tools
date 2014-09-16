@@ -1,4 +1,4 @@
-me.sourceDir() + "/" @=> string toolsPath;
+ me.sourceDir() + "/" @=> string toolsPath;
 
 Machine.add(toolsPath + "Index");
 Machine.add(toolsPath + "Mod.ck");
@@ -51,5 +51,7 @@ Machine.add(toolsPath + "Streams/ST_tri");
 Machine.add(toolsPath + "Streams/ST_loop");
 Machine.add(toolsPath + "Streams/ST_timed");
 Machine.add(toolsPath + "Streams/ST_scale");
+Machine.add(toolsPath + "Streams/ST_line");
+Machine.add(toolsPath + "Streams/ST_walk");
 Machine.add(toolsPath + "Streams/st");
 
