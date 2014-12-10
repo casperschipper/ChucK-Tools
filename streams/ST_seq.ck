@@ -77,6 +77,12 @@ public class ST_seq extends Stream
         return stream;
     }
     
+    fun static ST_seq make(int _sequence[]) {
+        ST_seq stream;
+        stream.init(_sequence);
+        return stream;
+    }
+    
     fun static ST_seq make(Stream _sequence[]) {
         ST_seq stream;
         stream.init(_sequence);
