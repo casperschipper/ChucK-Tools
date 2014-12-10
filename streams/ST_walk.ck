@@ -1,18 +1,19 @@
 public class ST_walk extends Stream {
     null @=> Stream @ st_step;
     
+    float initialValue;
     float value;
     float step;
     
     fun ST_walk init(float _value,float _step) {
-        _value => value;
+        _value => value => initialValue;
         _step => step;
         null @=> st_step;
         return this;
     }
     
     fun ST_walk init(float _value,Stream _step) {
-        _value => value;
+        _value => value => initialValue;
         _step @=> st_step;
         return this;
     }
@@ -35,11 +36,13 @@ public class ST_walk extends Stream {
             st_step.next() => step;
         }
         step + value => value;
-        return wrap();
+        wrap();
+        return value;
     }
     
     // here you can do advanced stuff with boundaries.
-    fun float wrap() {
-        return value;
+    fun void wrap() {
+        // initialValue => value;
+        // nothing;
     }
 }

@@ -2,19 +2,11 @@ public class Stream
 {    
     -1 => int size;
     0 => int index;
-    "Stream_base" @=> string _type;
+    "Stream" @=> string _type;
     
     fun string type() {
         return _type;
     } 
-    
-    fun void init() {
-        // nothing
-    }
-    
-    fun void init( float _initArray[] ) {
-        //
-    }
     
     fun Stream st() { 
         // this can be useful when you want to use make in literal arrays
@@ -26,7 +18,7 @@ public class Stream
     }
     
     fun int nextInt() {
-        return (Math.round(next()) $ int);
+        return (Math.floor(next()) $ int);
     }
     
     fun int running() {

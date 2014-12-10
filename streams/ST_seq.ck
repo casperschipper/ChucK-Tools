@@ -5,20 +5,41 @@ public class ST_seq extends Stream
     
     null @=> Stream @ st_sequence[];
     
+    0 => int _min;
+    0 => int _max;
+    
+    null @=> Stream @ st_min;
+    null @=> Stream @ st_max;
+    
     1 => int loop;
     
-    fun void init(float _sequence[]) {
+    fun ST_seq init(float _sequence[]) {
         _sequence @=> sequence;
-        _sequence.size() => size;
+        _sequence.size() => size => _max;
+        return this;
     }
     
-    fun void init(Stream _sequence[]) {
+    fun ST_seq init(int _sequence[]) {
+        cs.int2float(_sequence) @=> sequence;
+        _sequence.size() => size => _max;
+        return this;
+    }
+    
+    fun ST_seq init(Stream _sequence[]) {
         _sequence @=> st_sequence;
-        _sequence.size() => size;
+        _sequence.size() => size => _max;
+        return this;
     }
     
     fun float next() {
-        index % size => index;
+        if (st_min != null) st_min.nextInt() => _min;
+        if (st_max != null) st_max.nextInt() => _max;
+        
+        Math.min(_min,_max) $ int => int tmp;
+        Math.max(_min,_max) $ int => _max;
+        tmp => _min;
+
+        if ((index > _max) || (index >= size)) _min => index;      
         if (running() || loop) {
             if (st_sequence != null) {
                 return st_sequence[index++].next();
@@ -29,6 +50,26 @@ public class ST_seq extends Stream
             return 0.;
         }
     }
+    
+    fun ST_seq min(int arg) {
+        arg => _min;
+        return this;
+    }
+    
+    fun ST_seq max(int arg) {
+        arg => _max;
+        return this;
+    }
+    
+    fun ST_seq min(Stream arg) {
+        arg @=> st_min;
+        return this;
+    }
+    
+    fun ST_seq max(Stream arg) {
+        arg @=> st_max;
+        return this;
+    }   
     
     fun static ST_seq make(float _sequence[]) {
         ST_seq stream;

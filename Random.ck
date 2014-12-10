@@ -41,7 +41,12 @@ public class Random
     
     fun static int choice(int array[])
     {
-        return array[rv(0,array.size())];
+        return array[rv(0,array.size()-1)];
+    }
+    
+    fun static float choicef(float array[]) 
+    {
+        return array[rv(0,array.size()-1)];
     }
     
     fun static float gauss()

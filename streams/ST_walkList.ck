@@ -1,41 +1,37 @@
-public class ST_index extends Stream {
+public class ST_walkList extends Stream {
     float table[];
     null @=> Stream @ st_table[];
+    null @=> Stream @ stepper;
     
-    null @=> Stream @ indexer;
+    0 => index;
     
+    "ST_walkList" @=> _type;
     
-    "ST_index" @=> _type;
-    
-    fun static ST_index make(float _values[], Stream _indexer) {
-        ST_index stream;
-        stream.init(_values,_indexer);
-        return stream;
-    }
-    
-    fun static ST_index make(Stream _values[], Stream _indexer) {
-        ST_index stream;
-        stream.init(_values,_indexer);
-        return stream;
-    }    
-    
-    fun ST_index init(float _values[],Stream _indexer) {
+    fun ST_walkList init(float _values[],Stream _stepper) {
         _values @=> table;
         null @=> st_table;
-        table.size() => size;
-        _indexer @=> indexer;
+        <<<table.size()>>> => size;
+        _stepper @=> stepper;
         return this;
     }
     
-    fun ST_index init(Stream _values[],Stream _indexer) {
+    fun ST_walkList init(int _values[],Stream _stepper) {
+        cs.int2float(_values) @=> table;
+        null @=> st_table;
+        table.size() => size;
+        _stepper @=> stepper;
+        return this;
+    }
+    
+    fun ST_walkList init(Stream _values[],Stream _stepper) {
         _values @=> st_table;
+        _stepper @=> stepper;
         st_table.size() => size;
-        _indexer @=> indexer;
         return this;
     }
     
     fun int safeIndex() {
-        wrap(indexer.nextInt(),0,size-1) => int index;
+        wrap(stepper.nextInt() + index,0,size-1) => index;
         return index;
     }
     
@@ -55,4 +51,6 @@ public class ST_index extends Stream {
         
         return table[safeIndex()];
     }
-}  
+}      
+    
+        

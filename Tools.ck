@@ -1,4 +1,4 @@
- me.sourceDir() + "/" @=> string toolsPath;
+me.sourceDir() + "/" @=> string toolsPath;
 
 Machine.add(toolsPath + "Index");
 Machine.add(toolsPath + "Mod.ck");
@@ -28,6 +28,7 @@ Machine.add(toolsPath + "ShredCounter.ck");
 Machine.add(toolsPath + "TriOscTendencyMask.ck");
 Machine.add(toolsPath + "Expenv.ck");
 Machine.add(toolsPath + "LFOMup.ck");
+Machine.add(toolsPath + "FeedbackDelay.ck");
 
 Machine.add(toolsPath + "Synths/SuperSaw.ck");
 Machine.add(toolsPath + "PercEnv.ck");
@@ -53,5 +54,14 @@ Machine.add(toolsPath + "Streams/ST_timed");
 Machine.add(toolsPath + "Streams/ST_scale");
 Machine.add(toolsPath + "Streams/ST_line");
 Machine.add(toolsPath + "Streams/ST_walk");
+Machine.add(toolsPath + "Streams/ST_walkList");
+Machine.add(toolsPath + "Streams/ST_mupWalk");
+Machine.add(toolsPath + "Streams/ST_maskedChoice");
+Machine.add(toolsPath + "Streams/ST_BoundedMupWalk");
 Machine.add(toolsPath + "Streams/st");
+
+Machine.add(toolsPath + "Buses2.ck");
+Machine.add(toolsPath + "PanFourBus.ck");
+Machine.add(toolsPath + "ReadSSV.ck");
+
 

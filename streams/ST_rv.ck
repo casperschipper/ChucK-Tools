@@ -6,9 +6,7 @@ public class ST_rv extends Stream
     
     null @=> Stream @ st_low;
     null @=> Stream @ st_high;
-      
-    Math.srandom(0);
-    
+          
     fun ST_rv init(float _low,float _high) {
         _low => low;
         _high => high;

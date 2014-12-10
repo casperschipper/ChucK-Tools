@@ -22,6 +22,8 @@ public class PercEnv extends Chubgraph {
     
     fun dur duration(dur duration) {
         duration => _duration;
+        duration => l.duration;
+        trigger();
         return _duration;
     }
     

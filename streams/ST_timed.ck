@@ -19,6 +19,12 @@ public class ST_timed extends Stream {
         return stream;
     }
     
+    fun ST_timed init(Stream values,Stream times) {
+        values @=> _stvalue;
+        times @=> _sttime;
+        return this;
+    }
+    
     fun dur nextT() {
         if (_sttime != null) _sttime.next() => _time;
         return _time * second;

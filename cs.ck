@@ -51,6 +51,14 @@ public class cs
         return 1.0/x;
     }
     
+    fun static float [] mapInverse(float seq[]) {
+        float output[seq.cap()];
+        for (int i;i<seq.cap();++i) {
+            1.0 / seq[i] => output[i];
+        }
+        return output;
+    }
+    
     fun static dur makedur(float x) {
         return x::second;
     }
@@ -123,6 +131,18 @@ public class cs
         size + 1 => input.size;
         value => input[size];
         return input;
+    }
+    
+    fun static float [] appendf (float input[], float input2[] ) {
+        float result[input.size() + input2.size()];
+        for (int i;i<result.size();i++) {
+            if (i < input.size()) {
+                input[i] => result[i];
+            } else {
+                input2[i - input.size()] => result[i];
+            }
+        }
+        return result;
     }
     
     fun static int[] fillOne( int amount,int value)
@@ -279,6 +299,15 @@ public class cs
         return output;
     }
     
+    fun static int[] append(int a[],int b[]) {
+        return addArray(a,b);
+    }
+    
+    fun static float[] appendf(float a[],float b[]) {
+        return addArrayf(a,b);
+    }
+        
+    
     fun static float[] addArrayf( float a[], float b[])
     {
         a.size() + b.size() => int total;
@@ -403,6 +432,13 @@ public class cs
     
     fun static int rindex (int array[]) {
         return rv(0,array.cap()-1);
+    }
+    
+    fun static float [] rvfRange(float low,float high) {
+        float a,b;
+        rvf(low,high) => a;
+        rvf(low,high) => b;
+        return [Math.min(a,b),Math.max(a,b)];
     }
     
     fun static int chance(int p,int n) 
@@ -588,6 +624,26 @@ public class cs
         return x;
     }
     
+
+    
+    fun static int [] integrate(int seq[],int offset) {
+        int output[seq.cap()+1];
+        offset => int value;
+        for (int i;i<output.cap();i++) {
+            value => output[i];
+            if (i < seq.cap()) {
+                seq[i] + value => value;
+                <<<value>>>;
+            }
+        }
+        return output;
+    }
+    
+    fun static int [] integrate(int seq[])
+    {
+        return integrate(seq,0);
+    }
+    
     fun static float sumf(float seq[])
     {
         float x;
@@ -702,6 +758,15 @@ public class cs
         }
     }
     
+    fun static int sort(int list[]) {
+        return quickSort(list,list.cap());
+    }
+    
+    fun static int sortf(float list[]) {
+        return quickSortF(list,list.cap());
+    }
+        
+    
    fun static float[] removeDoublesf(float list[]) {
        float output[list.size()];
        0 => int idx;
@@ -764,6 +829,21 @@ public class cs
         float output[array.size()];
         for (int i;i<array.size();i++)
             array[i] => output[i];
+        return output;
+    }
+    
+    fun static float[] splicef(float seq[],int a,int b) {
+        if (a < 0) {
+            <<<"wrong index">>>;
+        }
+        if (b > seq.cap() - 1) {
+            <<<"wrong index">>>;
+        }
+        float output[(b - a)+1];
+        int idx;
+        for (a => int i;i <= b;i++) {
+            seq[i] => output[idx++];
+        }
         return output;
     }
     
@@ -921,6 +1001,49 @@ public class cs
         }
         
         return result;
+    }
+    
+    fun static void monitorShred(UGen ugen,dur cr) {
+        while(1) {
+            <<<ugen.last()>>>;
+            cr => now;
+        }
+    }
+    
+    fun static void monitor(UGen ugen,dur cr) {
+        spork ~ monitorShred(ugen,cr);
+    }
+    
+    fun static void monitor(UGen ugen) {
+        spork ~ monitorShred(ugen,250::ms);
+    }
+    
+    fun static void spray(UGen ugen[]) {
+        Pan2 pan[ugen.cap()];
+        for (int i;i<ugen.cap();++i) {
+            ugen[i] => pan[i] => dac;
+            rvf() => pan[i].pan;
+        }
+    }
+    
+    fun static void spray(Chubgraph ugen[]) {
+        Pan2 pan[ugen.cap()];
+        for (int i;i<ugen.cap();++i) {
+            ugen[i] => pan[i] => dac;
+            rvf() => pan[i].pan;
+        }
+    }
+    
+    fun static void normalize(UGen ugen[]) {
+        ugen.cap() => int size;
+        1.0 / size => float gain;
+        for (int i;i<size;++i) gain => ugen[i].gain;
+    }
+    
+    fun static void normalize(Chubgraph ugen[]) {
+        ugen.cap() => int size;
+        1.0 / size => float gain;
+        for (int i;i<size;++i) gain => ugen[i].gain;
     }
 }
 
