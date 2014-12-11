@@ -43,6 +43,15 @@ public class st {
     fun static ST_rv rv(float min,float max) {
         return ST_rv.make(min,max);
     }
+    fun static ST_rv rv(Stream min,Stream max) {
+        return ST_rv.make(min,max);
+    }
+    fun static ST_rv rv(float min,Stream max) {
+        return ST_rv.make(min,max);
+    }
+    fun static ST_rv rv(Stream min,float max) {
+        return ST_rv.make(min,max);
+    }
     
     fun static ST_timed timed(Stream str,Stream timing) {
         return ST_timed.make(str,timing);
@@ -78,5 +87,11 @@ public class st {
     
     fun static ST_choice choice(int array[]) {
         return ST_choice.make(array);
+    }
+    
+    fun static ST_line line(Stream value,Stream timing) {
+        ST_line stream;
+        stream.init(value,timing);
+        return stream;
     }
 }

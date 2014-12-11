@@ -58,7 +58,10 @@ Machine.add(toolsPath + "Streams/ST_walkList");
 Machine.add(toolsPath + "Streams/ST_mupWalk");
 Machine.add(toolsPath + "Streams/ST_maskedChoice");
 Machine.add(toolsPath + "Streams/ST_BoundedMupWalk");
+//Machine.add(toolsPath + "StreamSynths/LineSynth");
+
 Machine.add(toolsPath + "Streams/st");
+
 
 Machine.add(toolsPath + "Buses2.ck");
 Machine.add(toolsPath + "PanFourBus.ck");

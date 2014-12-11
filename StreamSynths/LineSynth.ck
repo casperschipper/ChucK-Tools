@@ -1,8 +1,8 @@
 class LineSynth extends Chubgraph {
     Linseg l => outlet;
     
-    Stream @ _value;
-    Stream @ _dura;
+    null @=> Stream @ _value;
+    null @=> Stream @ _dura;
     
     0 => int loop;
     
@@ -39,8 +39,18 @@ class LineSynth extends Chubgraph {
     }       
 }
 
-LineSynth.make(st.seq([-1,1]),st.rv(100,50)) @=> LineSynth @ synth;
+LineSynth.make(
+st.seq([-1,1]),
+st.rv(
+st.line(st.seq([0,10000]),st.rv(0.01,.1))
+,1)) => Clip c1 => dac.left;
 
-synth => Clip c => dac;
+LineSynth.make(
+st.seq([-1,1]),
+st.rv(
+st.line(st.seq([0,10000]),st.rv(0.01,.1))
+,1)) => Clip c2 => dac.right;
+
+minute => now;
 
 

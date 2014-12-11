@@ -12,42 +12,40 @@ public class ST_rv extends Stream
         _high => high;
         return this;
     }
+    
+    fun ST_rv init(float _low,Stream _high) {
+        _low => low;
+        _high @=> st_high;
+        return this;
+    }
+    
+    fun ST_rv init(Stream _low,float _high) {
+        _low @=> st_low;
+        _high => high;
+        return this;
+    }
   
     fun static ST_rv make() {
         return new ST_rv;
     }
     
     fun static ST_rv make(float _low,float _high) {
-        ST_rv stream;
-        stream.init(_low,_high);
-        return stream;
+        return (new ST_rv).init(_low,_high);
     }
-    
+    fun static ST_rv make(float _low,Stream _high) {
+        return (new ST_rv).init(_low,_high);
+    } 
+    fun static ST_rv make(Stream _low,float _high) {
+        return (new ST_rv).init(_low,_high);
+    }
     fun static ST_rv make(Stream _low,Stream _high) {
-        ST_rv stream;
-        stream.init(_low,_high);
-        return stream;
+        return (new ST_rv).init(_low,_high);
     }
    
     fun ST_rv init(Stream _low,Stream _high) {
         seed(0);
         _low @=> st_low;
         _high @=> st_high;
-        return this;
-    }
-    
-    
-    fun ST_rv init(Stream _low,Stream _high,int _seed) {
-        seed(_seed);
-        _low @=> st_low;
-        _high @=> st_high;
-        return this;
-    }
-    
-    fun ST_rv init(float _low,float _high,int _seed) {
-        seed(_seed);
-        _low => low;
-        _high => high;
         return this;
     }
     
