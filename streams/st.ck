@@ -94,4 +94,28 @@ public class st {
         stream.init(value,timing);
         return stream;
     }
+    
+    fun static ST_boundedWalk boundedWalk(Stream minArg,Stream maxArg,Stream step) {
+        ST_boundedWalk walk;
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.setStep(step);
+        return walk;
+    }
+    
+    fun static ST_boundedWalk boundedWalk(Stream minArg,Stream maxArg) {
+        return boundedWalk(minArg,maxArg,rv(-0.01,0.01));
+    }
+    
+    fun static ST_boundedWalk boundedWalk(float minArg,float maxArg,Stream step) {
+        ST_boundedWalk walk;
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.setStep(step);
+        return walk;
+    }
+    
+    fun static ST_boundedWalk boundedWalk(float minArg,float maxArg) {
+        return boundedWalk(minArg,maxArg,rv(-0.01,0.01));
+    }
 }

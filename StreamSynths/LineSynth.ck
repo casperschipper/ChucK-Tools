@@ -1,4 +1,4 @@
-class LineSynth extends Chubgraph {
+public class LineSynth extends Chubgraph {
     Linseg l => outlet;
     
     null @=> Stream @ _value;
@@ -39,18 +39,6 @@ class LineSynth extends Chubgraph {
     }       
 }
 
-LineSynth.make(
-st.seq([-1,1]),
-st.rv(
-st.line(st.seq([0,10000]),st.rv(0.01,.1))
-,1)) => Clip c1 => dac.left;
 
-LineSynth.make(
-st.seq([-1,1]),
-st.rv(
-st.line(st.seq([0,10000]),st.rv(0.01,.1))
-,1)) => Clip c2 => dac.right;
-
-minute => now;
 
 

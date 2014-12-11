@@ -5,6 +5,16 @@ public class ST_walk extends Stream {
     float value;
     float step;
     
+    fun ST_walk setStep(Stream argStep) {
+        argStep @=> st_step;
+        return this;
+    }
+    
+    fun ST_walk setStep(float argStep) {
+        argStep @=> step;
+        return this;
+    }
+    
     fun ST_walk init(float _value,float _step) {
         _value => value => initialValue;
         _step => step;

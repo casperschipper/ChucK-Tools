@@ -1,4 +1,4 @@
-public class ST_BoundedMupWalk extends ST_mupWalk {
+public class ST_boundedMupWalk extends ST_mupWalk {
     "ST_boundedMupWalk" @=> _type;
     
     20 => float _min;
@@ -17,23 +17,23 @@ public class ST_BoundedMupWalk extends ST_mupWalk {
         if (value > Math.max(_min,_max)) mean => value;
     }
     
-    fun ST_BoundedMupWalk min(Stream arg) {
+    fun ST_boundedMupWalk min(Stream arg) {
         arg @=> st_min;
         return this;
     }
     
-    fun ST_BoundedMupWalk max(Stream arg) {
+    fun ST_boundedMupWalk max(Stream arg) {
         arg @=> st_max;
         return this;
     }
     
-    fun ST_BoundedMupWalk min(float arg) {
+    fun ST_boundedMupWalk min(float arg) {
         arg => _min;
         null @=> st_min;
         return this;
     }
     
-    fun ST_BoundedMupWalk max(float arg) {
+    fun ST_boundedMupWalk max(float arg) {
         arg => _max;
         null @=> st_min;
         return this;
