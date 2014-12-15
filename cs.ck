@@ -48,6 +48,7 @@ public class cs
     }
     
     fun static float inverse(float x) {
+        if (x == 0) {return 0.;<<<"divide by zero, a kitten is killed">>>;}
         return 1.0/x;
     }
     

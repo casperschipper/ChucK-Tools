@@ -1,17 +1,10 @@
-public class ST_sum extends Stream 
+public class ST_sum extends ST_operator 
 {
     "ST_sum" @=> _type;
     
-    Stream @ str1;
-    Stream @ str2;
-    
-    fun ST_sum init(Stream _str1,Stream _str2) {
-        _str1 @=> str1;
-        _str2 @=> str2;
-        return this;
-    }
-    
     fun float next() {
-        return str1.next() + str2.next();
+        if (st_v1 != null) st_v1.next() => v1;
+        if (st_v2 != null) st_v2.next() => v2;
+        return v1 + v2;
     }
 }

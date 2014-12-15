@@ -2,19 +2,19 @@ public class ST_loop extends Stream {
     int idx;
     float _values[];
     int int_min, int_max;
-    null @=> Stream @ _min;
-    null @=> Stream @ _max;
-    null @=> Stream @ _stvalues[];
+    null @=> Stream @ st_min;
+    null @=> Stream @ st_max;
+    null @=> Stream @ st_values[];
     
     fun float next() {
-        if (_min != null) Math.floor(_min.next()) $ int => int_min;
-        if (_max != null) Math.floor(_max.next()) $ int => int_max;
+        if (st_min != null) Math.floor(st_min.next()) $ int => int_min;
+        if (st_max != null) Math.floor(st_max.next()) $ int => int_max;
 
         if (idx >= int_max) int_min => idx;
         if (idx < int_min) int_min => idx;
         
-        if (_stvalues != null) {
-            return _stvalues[idx++].next();
+        if (st_values != null) {
+            return st_values[idx++].next();
         }
         else {
             return _values[idx++];
@@ -36,15 +36,25 @@ public class ST_loop extends Stream {
         valuesArg @=> _stvalues;
         valuesArg.cap() => int_max;
     }
+
+    fun ST_loop min(Stream arg) {
+        arg @=> st_min;
+    }
+
+    fun ST_loop max(Stream arg) {
+        arg @=> st_max;
+    }
         
     
     fun ST_loop min(int arg) {
         arg => int_min;
+        null @=> st_min;
         return this;
     }
     
     fun ST_loop max(int arg) {
         arg => int_max;
+        null @=> st_max;
         return this;
     }
     

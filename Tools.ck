@@ -40,16 +40,15 @@ Machine.add(toolsPath + "Streams/ST_count");
 Machine.add(toolsPath + "Streams/ST_delay");
 Machine.add(toolsPath + "Streams/ST_float");
 Machine.add(toolsPath + "Streams/ST_index");
-Machine.add(toolsPath + "Streams/ST_mup");
 Machine.add(toolsPath + "Streams/ST_repeat");
 Machine.add(toolsPath + "Streams/ST_rv");
 Machine.add(toolsPath + "Streams/ST_seq");
-Machine.add(toolsPath + "Streams/ST_sum");
 Machine.add(toolsPath + "Streams/ST_value");
 Machine.add(toolsPath + "Streams/ST_vase");
 Machine.add(toolsPath + "Streams/ST_weave");
 Machine.add(toolsPath + "Streams/ST_tri");
-Machine.add(toolsPath + "Streams/ST_loop");
+//Machine.add(toolsPath + "Streams/ST_loop");
+Machine.add(toolsPath + "Streams/ST_loop2");
 Machine.add(toolsPath + "Streams/ST_timed");
 Machine.add(toolsPath + "Streams/ST_scale");
 Machine.add(toolsPath + "Streams/ST_line");
@@ -59,7 +58,15 @@ Machine.add(toolsPath + "Streams/ST_mupWalk");
 Machine.add(toolsPath + "Streams/ST_maskedChoice");
 Machine.add(toolsPath + "Streams/ST_boundedMupWalk");
 Machine.add(toolsPath + "Streams/ST_boundedWalk");
+Machine.add(toolsPath + "Streams/ST_operator");
+Machine.add(toolsPath + "Streams/ST_sum");
+Machine.add(toolsPath + "Streams/ST_mup");
+Machine.add(toolsPath + "Streams/ST_div");
+Machine.add(toolsPath + "Streams/ST_sub");
+
 Machine.add(toolsPath + "StreamSynths/LineSynth");
+Machine.add(toolsPath + "StreamSynths/PulseSynth");
+Machine.add(toolsPath + "StreamSynths/StepSynth");
 
 Machine.add(toolsPath + "Streams/st");
 
