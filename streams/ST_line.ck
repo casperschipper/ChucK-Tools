@@ -1,4 +1,4 @@
-public class ST_line extends ST_timed {
+public class ST_line extends ST_timed {    
     second => dur _currentDur;
     now => time _previousTime;
     0 => float _previousValue;
@@ -13,7 +13,7 @@ public class ST_line extends ST_timed {
             _currentDur + now => nextTime;
             now => _previousTime;
             
-            return _value;
+            return _previousValue;
         } 
         
         // fetch current position in the dur       

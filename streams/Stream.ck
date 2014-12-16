@@ -45,21 +45,27 @@ public class Stream
         return output;
     }
     
-    fun float test() {
-        test(.1::second);
-    }
-    
-    fun float test(dur T) {
-        while(1) {
-            <<<next()>>>;
+    fun void test(dur T,dur testLength) {
+        now + testLength => time then;
+        while(now < then) {
+            chout <= "\t" <= next();
             T => now;
         }
-    }
+        chout <= "\n\n";
+    } 
+      
+    fun void test() { test(.1::second,day); }   
+    fun void test(dur T) { test(T,day); }
     
-    fun float testInt() {
-        while(1) {
-            <<<nextInt()>>>;
-            .1::second => now;
+    fun void testInt(dur T, dur testLength) {
+        now + testLength => time then;
+        while(now < then) {
+            chout <= "\t" <= nextInt();
+            T => now;
         }
-    }
+        chout <= "\n\n";    
+    }   
+    
+    fun void testInt() { testInt(.1*second,day); }
+    fun void testInt(dur T) { testInt(T,day); }
 }

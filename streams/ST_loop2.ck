@@ -45,8 +45,8 @@ public class ST_loop extends Stream {
         if (st_length != null) st_length.nextInt() => _length;
 
         // sanity check
-        Math.max(1,_length) => _length;
-        Math.max(1,_repeats) => _repeats;
+        Math.floor(Math.max(1.0,_length)) $ int => _length;
+        Math.floor(Math.max(1.0,_repeats)) $ int=> _repeats;
         
         _source.size(_length);
 

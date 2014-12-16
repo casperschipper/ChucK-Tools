@@ -46,9 +46,13 @@ public class ST_operator extends Stream
         return this;
     }
     
+    fun float operator(float a,float b) {
+        return v1;
+    }
+    
     fun float next() {
         if (st_v1 != null) st_v1.next() => v1;
         if (st_v2 != null) st_v2.next() => v2;
-        return v1 + v2;
+        return operator(v1,v2);
     }
 }
