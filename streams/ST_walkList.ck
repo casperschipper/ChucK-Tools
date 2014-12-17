@@ -30,7 +30,24 @@ public class ST_walkList extends Stream {
         return this;
     }
     
+    fun ST_walkList stepper(Stream arg) {
+        arg @=> stepper;
+        return this;
+    }
+    
+    fun ST_walkList list(float arg[]) {
+        arg @=> table;
+        null @=> st_table;
+        return this;
+    }
+    
+    fun ST_walkList list(Stream arg[]) {
+        arg @=> st_table;
+        return this;
+    }
+    
     fun int safeIndex() {
+        if (stepper == null) cherr <= "stepper is null"; return index;
         wrap(stepper.nextInt() + index,0,size-1) => index;
         return index;
     }

@@ -493,20 +493,22 @@ public class cs
         return output;
     }
     
-    fun static void print( int input[] )
+    fun static int [] print( int input[] )
     {
         for (int i;i<input.size();chout <= input[i++] <= " ") {
             // nothing
         }
         chout <= IO.newline();
+        return input;
     }
     
-    fun static void printf( float input[] )
+    fun static float [] printf( float input[] )
     {
         for (int i;i<input.size();chout <= input[i++] <= " ") {
             // nothing
         }
         chout <= IO.newline();
+        return input;
     }
     
     fun static void pr(int input) 

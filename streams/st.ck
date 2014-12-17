@@ -118,4 +118,27 @@ public class st {
     fun static ST_boundedWalk boundedWalk(float minArg,float maxArg) {
         return boundedWalk(minArg,maxArg,rv(-0.01,0.01));
     }
+    
+    fun static ST_boundedMupWalk boundedMupWalk(Stream minArg,Stream maxArg,Stream stepArg) {
+        ST_boundedMupWalk walk;
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.setStep(stepArg);
+        return walk;
+    }
+    
+    fun static ST_boundedMupWalk boundedMupWalk(float minArg,float maxArg,Stream stepArg) {
+        return boundedMupWalk(st(minArg),st(maxArg),stepArg);
+    }
+    
+    fun static ST_mup mup (Stream a,Stream b) {
+        return (new ST_mup).init(a,b) $ ST_mup;
+    }
+    
+    fun static ST_walkList walkList(Stream values[],Stream step) {
+        ST_walkList walk;
+        walk.list(values);
+        walk.stepper(step);
+        return walk;
+    }
 }
