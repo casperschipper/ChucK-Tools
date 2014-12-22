@@ -57,6 +57,14 @@ public class st {
         return ST_timed.make(str,timing);
     }
     
+    fun static ST_timed t(Stream str,Stream timing) {
+        return timed(str,timing);
+    }
+    
+    fun static ST_timed t(Stream str,float timing) {
+        return timed(str,st(timing));
+    }
+    
     fun static ST_timed timedSeq(Stream seq[],Stream timing) {
         return ST_timed.make(ST_seq.make(seq),timing);
     }
@@ -131,14 +139,23 @@ public class st {
         return boundedMupWalk(st(minArg),st(maxArg),stepArg);
     }
     
-    fun static ST_mup mup (Stream a,Stream b) {
-        return (new ST_mup).init(a,b) $ ST_mup;
-    }
-    
     fun static ST_walkList walkList(Stream values[],Stream step) {
         ST_walkList walk;
         walk.list(values);
-        walk.stepper(step);
+        walk.step(step);
         return walk;
+    }
+    
+    fun static ST_div div (Stream a,Stream b) {
+        return (new ST_div).init(a,b) $ ST_div;
+    }
+    fun static ST_sum sum(Stream a,Stream b) {
+        return (new ST_sum).init(a,b) $ ST_sum;
+    }
+    fun static ST_sub sub(Stream a,Stream b) {
+        return (new ST_sub).init(a,b) $ ST_sub;
+    }
+    fun static ST_mup mup (Stream a,Stream b) {
+        return (new ST_mup).init(a,b) $ ST_mup;
     }
 }

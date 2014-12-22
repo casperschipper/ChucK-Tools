@@ -52,11 +52,13 @@ public class ST_seq extends Stream
     }
     
     fun ST_seq min(int arg) {
+        null @=> st_min;
         arg => _min;
         return this;
     }
     
     fun ST_seq max(int arg) {
+        null @=> st_max;
         arg => _max;
         return this;
     }

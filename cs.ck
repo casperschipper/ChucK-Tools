@@ -244,6 +244,16 @@ public class cs
         return geometric(low,high,steps);
     }
     
+    fun static float[] warp(float low,float high,int steps,float warp) {
+        float output[steps];
+        Std.fabs(high - low) => float range;
+        Math.min(low,high) => float offset;
+        for (int i;i<steps;i++) {
+            (Math.pow((i $ float)/steps,warp) * range) + offset => output[i];
+        }
+        return output;
+    }
+    
     fun static int [] poly (int x[],int a,int b,int c) {
         int y[x.size()];
         for (int i;i<x.size();i++) {
@@ -495,7 +505,7 @@ public class cs
     
     fun static int [] print( int input[] )
     {
-        for (int i;i<input.size();chout <= input[i++] <= " ") {
+        for (int i;i<input.size();chout <= input[i++] <= "\t") {
             // nothing
         }
         chout <= IO.newline();
@@ -504,7 +514,7 @@ public class cs
     
     fun static float [] printf( float input[] )
     {
-        for (int i;i<input.size();chout <= input[i++] <= " ") {
+        for (int i;i<input.size();chout <= input[i++] <= "\t\t") {
             // nothing
         }
         chout <= IO.newline();

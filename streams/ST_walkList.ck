@@ -30,7 +30,7 @@ public class ST_walkList extends Stream {
         return this;
     }
     
-    fun ST_walkList stepper(Stream arg) {
+    fun ST_walkList step(Stream arg) {
         arg @=> stepper;
         return this;
     }
