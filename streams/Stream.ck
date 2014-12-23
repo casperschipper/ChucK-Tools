@@ -48,10 +48,11 @@ public class Stream
     fun void test(dur T,dur testLength) {
         now + testLength => time then;
         while(now < then) {
-            chout <= "\t" <= next();
+            chout <= next();
+            chout <= IO.newline();
             T => now;
         }
-        chout <= "\n\n";
+        chout <= IO.newline();
     } 
       
     fun void test() { test(.1::second,day); }   
@@ -60,10 +61,11 @@ public class Stream
     fun void testInt(dur T, dur testLength) {
         now + testLength => time then;
         while(now < then) {
-            chout <= "\t" <= nextInt();
+            chout <= nextInt();
+            chout <= IO.newline();
             T => now;
         }
-        chout <= "\n\n";    
+        chout <= IO.newline();   
     }   
     
     fun void testInt() { testInt(.1*second,day); }

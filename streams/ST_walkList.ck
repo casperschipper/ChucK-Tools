@@ -10,7 +10,7 @@ public class ST_walkList extends Stream {
     fun ST_walkList init(float _values[],Stream _stepper) {
         _values @=> table;
         null @=> st_table;
-        <<<table.size()>>> => size;
+        table.size() => size;
         _stepper @=> stepper;
         return this;
     }
@@ -47,7 +47,9 @@ public class ST_walkList extends Stream {
     }
     
     fun int safeIndex() {
-        if (stepper == null) cherr <= "stepper is null"; return index;
+        if (stepper == null) {
+            chout <= "stepper is null" <= IO.newline(); return index;
+        }
         wrap(stepper.nextInt() + index,0,size-1) => index;
         return index;
     }

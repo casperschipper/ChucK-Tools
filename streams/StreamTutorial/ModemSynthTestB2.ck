@@ -5,8 +5,8 @@ class ModemSynth {
     int amount;
     float freqs[];
     
-    500 => float lowFreq;
-    5000 => float highFreq;
+    4000 => float lowFreq;
+    15000 => float highFreq;
     
     0 => int play;
     
@@ -83,14 +83,14 @@ st.timed(st.choice([0,1]),st.line(st.choice([0.001,.10]),st.rv(0,3))),
 st.timed(st.choice([0,1]),st.line(st.choice([0.001,.10]),st.rv(0,3)))
 ] @=> Stream @ streams[];
 
-[st.div( st.timed(st.rv(1,10),st.rv(0,1)), st.timed(st.rv(1,10),st.rv(0,1)) ).st(),
-st.div( st.timed(st.rv(1,10),st.rv(0,1)), st.timed(st.rv(1,10),st.rv(0,1)) ),
-st.div( st.timed(st.rv(1,10),st.rv(0,1)), st.timed(st.rv(1,10),st.rv(0,1)) ),
-st.div( st.timed(st.rv(1,10),st.rv(0,1)), st.timed(st.rv(1,10),st.rv(0,1)) ),
-st.div( st.timed(st.rv(1,10),st.rv(0,1)), st.timed(st.rv(1,10),st.rv(0,1)) ),
-st.div( st.timed(st.rv(1,10),st.rv(0,1)), st.timed(st.rv(1,10),st.rv(0,1)) ),
-st.div( st.timed(st.rv(1,10),st.rv(0,1)), st.timed(st.rv(1,10),st.rv(0,1)) ),
-st.div( st.timed(st.rv(1,10),st.rv(0,1)), st.timed(st.rv(1,10),st.rv(0,1)) )
+[st.div( st.timed(st.rv(5,10),st.rv(0,1)), st.timed(st.rv(5,10),st.rv(0,1)) ).st(),
+st.div( st.timed(st.rv(5,10),st.rv(0,1)), st.timed(st.rv(5,10),st.rv(0,1)) ),
+st.div( st.timed(st.rv(5,10),st.rv(0,1)), st.timed(st.rv(5,10),st.rv(0,1)) ),
+st.div( st.timed(st.rv(5,10),st.rv(0,1)), st.timed(st.rv(5,10),st.rv(0,1)) ),
+st.div( st.timed(st.rv(5,10),st.rv(0,1)), st.timed(st.rv(5,10),st.rv(0,1)) ),
+st.div( st.timed(st.rv(5,10),st.rv(0,1)), st.timed(st.rv(5,10),st.rv(0,1)) ),
+st.div( st.timed(st.rv(5,10),st.rv(0,1)), st.timed(st.rv(5,10),st.rv(0,1)) ),
+st.div( st.timed(st.rv(5,10),st.rv(0,1)), st.timed(st.rv(5,10),st.rv(0,1)) )
 ]
  @=> Stream @ arg2[];
 

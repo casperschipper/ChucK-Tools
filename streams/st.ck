@@ -14,6 +14,8 @@ minute => now;
 */
 
 public class st {
+    static float globals[];
+    
     fun static Stream st(float value) {
         ST_value stream;
         stream.init(value);
@@ -159,3 +161,5 @@ public class st {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
 }
+
+[0.] @=> st.globals;
