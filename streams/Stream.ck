@@ -4,6 +4,13 @@ public class Stream
     0 => int index;
     "Stream" @=> string _type;
     
+    fun Stream supercopy() {
+        Stream clone;
+        size => clone.size;
+        index => clone.index;
+        return clone;
+    }
+    
     fun string type() {
         return _type;
     } 
@@ -21,8 +28,8 @@ public class Stream
         return (Math.floor(next()) $ int);
     }
     
-    fun int running() {
-        return ((index < size) || (size == -1));
+    fun int more() {
+        return false;
     }
     
     fun void reset() {

@@ -160,6 +160,18 @@ public class st {
     fun static ST_mup mup (Stream a,Stream b) {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
+    
+    fun static ST_walkList lemming(Stream list[],Stream holdTimes) {
+        ST_walkList walk;
+        walk.init(list,hold(seq([0,1]),holdTimes));
+        return walk;
+    }
+    
+    fun static ST_walkList lemming(float list[],Stream holdTimes) {
+        ST_walkList walk;
+        walk.init(list,hold(seq([0,1]),holdTimes));
+        return walk;
+    }
 }
 
 [0.] @=> st.globals;

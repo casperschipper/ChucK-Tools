@@ -6,6 +6,16 @@ public class ST_rv extends Stream
     
     null @=> Stream @ st_low;
     null @=> Stream @ st_high;
+    
+    fun ST_rv copy() {
+        ST_rv clone;
+        supercopy();
+        low => clone.low;
+        high => clone.high;
+        st_low @=> clone.st_low;
+        st_high @=> clone.st_high;
+        return clone;
+    }
           
     fun ST_rv init(float _low,float _high) {
         _low => low;

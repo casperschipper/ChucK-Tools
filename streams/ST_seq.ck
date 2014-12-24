@@ -11,7 +11,8 @@ public class ST_seq extends Stream
     null @=> Stream @ st_min;
     null @=> Stream @ st_max;
     
-    1 => int loop;
+    1 => int _loop;
+    1 => int _repeats;
     
     fun ST_seq init(float _sequence[]) {
         _sequence @=> sequence;
@@ -40,7 +41,8 @@ public class ST_seq extends Stream
         tmp => _min;
 
         if ((index > _max) || (index >= size)) _min => index;      
-        if (running() || loop) {
+        if (running() || _loop)
+        {
             if (st_sequence != null) {
                 return st_sequence[index++].next();
             }

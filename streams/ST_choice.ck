@@ -34,19 +34,19 @@ public class ST_choice extends Stream
     
     fun static ST_choice make(float _userList[]) {
         ST_choice stream;
-        _userList @=> stream.userList;
+        stream.init(_userList);
         return stream;
     }
     
     fun static ST_choice make(int _userList[]) {
         ST_choice stream;
-        cs.int2float(_userList) @=> stream.userList;
+        stream.init(cs.int2float(_userList));
         return stream;
     }
     
     fun static ST_choice make(Stream _userList[]) {
         ST_choice stream;
-        _userList @=> stream.st_userList;
+        stream.init(_userList);
         return stream;
     }   
 }
