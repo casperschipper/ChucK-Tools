@@ -4,6 +4,8 @@ public class ST_choice extends Stream
     
     float userList[];
     null @=> Stream @ st_userList[];
+    
+    int last;
        
     fun ST_choice init(float _userList[]) {
         _userList @=> userList;
@@ -27,26 +29,24 @@ public class ST_choice extends Stream
     
     fun float next() {
         if (st_userList != null) {
-            return (st_userList[Math.random2(0,size-1)]).next();
+            if (st_userList[last].more()) {
+                return st_userList[last].next();
+            }
+            Math.random2(0,size-1) => last;
+            return (st_userList[last]).next();
         } 
-        return cs.choosef(userList);
+        return userList[Math.random2(0,size-1)];
     }
     
     fun static ST_choice make(float _userList[]) {
-        ST_choice stream;
-        stream.init(_userList);
-        return stream;
+        return (new ST_choice).init(_userList);
     }
     
     fun static ST_choice make(int _userList[]) {
-        ST_choice stream;
-        stream.init(cs.int2float(_userList));
-        return stream;
+        return (new ST_choice).init(cs.int2float(_userList));
     }
     
     fun static ST_choice make(Stream _userList[]) {
-        ST_choice stream;
-        stream.init(_userList);
-        return stream;
+        return (new ST_choice).init(_userList);
     }   
 }

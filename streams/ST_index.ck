@@ -50,6 +50,9 @@ public class ST_index extends Stream {
     
     fun float next() {
         if (st_table != null) {
+            if (st_table[index].more()) {
+                return st_table[index].next();
+            }
             return st_table[safeIndex()].next();
         }
         

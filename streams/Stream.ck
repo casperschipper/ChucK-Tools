@@ -29,7 +29,7 @@ public class Stream
     }
     
     fun int more() {
-        return false;
+        return false; // don't hold a sequence by default.
     }
     
     fun void reset() {
@@ -44,12 +44,20 @@ public class Stream
         return output;
     }
     
+    fun float [] collect(int chunkSize) {
+        return nextChunk(chunkSize);
+    }
+    
     fun int [] nextIntChunk(int chunkSize) {
         int output[chunkSize];
         for (int i;i<chunkSize;i++) {
             nextInt() => output[i];
         }
         return output;
+    }
+    
+    fun int [] collectInt(int chunkSize) {
+        return nextIntChunk(chunkSize);
     }
     
     fun void test(dur T,dur testLength) {

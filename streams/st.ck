@@ -42,6 +42,19 @@ public class st {
         return ST_seq.make(seq);
     }
     
+    fun static ST_seq seq(Stream seq[],int holdMode) {
+        return ST_seq.make(seq).holdMode(holdMode);
+    }
+    
+    fun static ST_seq seq(float seq[],int holdMode) {
+        return ST_seq.make(seq).holdMode(holdMode);
+    }
+    
+    fun static ST_seq seq(int seq[],int holdMode) {
+        return ST_seq.make(seq).holdMode(holdMode);
+    }
+        
+    
     fun static ST_rv rv(float min,float max) {
         return ST_rv.make(min,max);
     }

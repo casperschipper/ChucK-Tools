@@ -12,7 +12,9 @@ public class ST_seq extends Stream
     null @=> Stream @ st_max;
     
     1 => int _loop;
-    1 => int _repeats;
+
+    false => int _holdMode;
+    true => int _more;
     
     fun ST_seq init(float _sequence[]) {
         _sequence @=> sequence;
@@ -31,26 +33,60 @@ public class ST_seq extends Stream
         _sequence.size() => size => _max;
         return this;
     }
+
+    fun ST_seq holdMode(int arg) {
+        arg => _holdMode;
+        return this;
+    }
     
     fun float next() {
+        float result;
+        
+        if (st_sequence != null) {
+            st_sequence[index].next() => result;
+        } else {
+            sequence[index] => result;
+        }
+        
+        updateIndex();
+        
+        return result;
+    }
+    
+    fun int more() {
+        if (_holdMode) {
+            if (_more) {
+                return true;
+            } else {
+                true => _more;
+                return false;
+            }
+        } 
+        return false;
+    }
+    
+    fun void updateIndex() {
+        if (st_sequence != null) {
+            if (st_sequence[index].more()) {
+                index;
+            } else {
+                index++;
+            }
+        } else {
+            index++;
+        }
+        
         if (st_min != null) st_min.nextInt() => _min;
         if (st_max != null) st_max.nextInt() => _max;
         
         Math.min(_min,_max) $ int => int tmp;
         Math.max(_min,_max) $ int => _max;
         tmp => _min;
-
-        if ((index > _max) || (index >= size)) _min => index;      
-        if (running() || _loop)
-        {
-            if (st_sequence != null) {
-                return st_sequence[index++].next();
-            }
-            return sequence[index++];
-        }
-        else {
-            return 0.;
-        }
+        
+        if (index >= _max || index >= size) {
+            _min => index;
+            false => _more;
+        } 
     }
     
     fun ST_seq min(int arg) {

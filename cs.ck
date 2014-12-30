@@ -280,6 +280,7 @@ public class cs
             array[max] => array[pos];
             tmp => array[max]; 
         }
+        return array;
     }
     
     fun static float[] shufflef(float array[]) {
@@ -292,6 +293,7 @@ public class cs
             array[max] => array[pos];
             tmp => array[max]; 
         }
+        return array;
     }
 
 
