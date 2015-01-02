@@ -1,4 +1,4 @@
-class ST_series extends Stream 
+public class ST_series extends Stream 
 {
     "ST_series" @=> _type;
     
@@ -61,6 +61,7 @@ class ST_series extends Stream
     }
     
     fun float next() {
+        indexer.more();
         if (st_userList != null) {
             if (st_userList[last].more()) {
                 return st_userList[last].next();
@@ -99,6 +100,7 @@ class ST_seriesIndex extends Stream {
             i => list[i];
         }
         shuffle();
+        cs.print(list);
     }
 
     fun int more() {
@@ -127,8 +129,3 @@ class ST_seriesIndex extends Stream {
         return list[current++];
     }
 } 
-
-ST_series series;
-
-
-st.seq([series.init([40,41,42],true),st.rv(100,101),st.seq([1,2,3],true)]).test();

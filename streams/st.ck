@@ -34,6 +34,40 @@ public class st {
         return ST_seq.make(seq);
     } 
     
+    fun static ST_series series(float seq[]) {
+        ST_series stream;
+        stream.init(seq);
+        return stream;
+    }
+    
+    fun static ST_series series(Stream seq[]) {
+        ST_series stream;
+        stream.init(seq);
+        return stream;
+    }
+    
+    fun static ST_series series(int seq[]) {
+        return series(cs.int2float(seq));
+    }
+    
+    fun static ST_series series(float seq[],int holdmode) {
+        ST_series stream;
+        stream.init(seq,holdmode);
+        return stream;
+    }
+    
+    fun static ST_series series(int seq[],int holdmode) {
+        ST_series stream;
+        stream.init(cs.int2float(seq),holdmode);
+        return stream;
+    }
+    
+    fun static ST_series series(Stream seq[],int holdmode) {
+        ST_series stream;
+        stream.init(seq,holdmode);
+        return stream;
+    }
+    
     fun static ST_seq seq(Stream seq[]) {
         return ST_seq.make(seq);
     }
