@@ -1,4 +1,4 @@
-class FMSynth extends Chubgraph {
+public class FMSynth extends Chubgraph {
     SinOsc c => outlet;
     SinOsc m => c;
     
@@ -49,12 +49,6 @@ class FMSynth extends Chubgraph {
         0 => loop;
     }       
 }
-
-FMSynth synth => Clip c => dac;
-
-synth.init(st.st(440),st.st(1000),st.st(1.0),st.st(4));
-
-minute => now;
 
 
 

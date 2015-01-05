@@ -12,11 +12,11 @@ public class ST_boundedWalk extends ST_walk {
         if (st_max != null) st_max.next() => _max;
         
         if (value < _min) {
-            _min => value;
+            _max => value;
         }
         
         if (value > _max) {
-            _max => value;
+            _min => value;
         }
     }
             

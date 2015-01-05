@@ -66,6 +66,7 @@ Machine.add(toolsPath + "Streams/ST_sub");
 Machine.add(toolsPath + "Streams/ST_max");
 Machine.add(toolsPath + "Streams/ST_min");
 Machine.add(toolsPath + "Streams/ST_series");
+Machine.add(toolsPath + "Streams/ST_bus");
 
 Machine.add(toolsPath + "StreamSynths/LineSynth");
 Machine.add(toolsPath + "StreamSynths/PulseSynth");

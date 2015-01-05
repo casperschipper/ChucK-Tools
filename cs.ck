@@ -1060,6 +1060,30 @@ public class cs
         1.0 / size => float gain;
         for (int i;i<size;++i) gain => ugen[i].gain;
     }
+
+    fun static int [] fibbo(int size) {
+        if (size < 1) {
+            <<<"size is too small">>>;
+            return null;
+        }
+        int output[size]; 1 => output[0];
+        if (size > 1) {
+            1 => output[1];
+            for (2 => int i;i<size;++i) {
+                output[i-2] + output[i-1] => output[i];
+            }
+        }
+        return output;
+    }     
+    
+    fun static float [] grow(float low,float ratio,int steps) {
+        float output[steps];
+        low => output[0];
+        for (1 => int i;i<steps;i++) {
+            output[i-1] * ratio => output[i];
+        }
+        return output;
+    }
 }
 
 

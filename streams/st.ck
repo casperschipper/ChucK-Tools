@@ -14,7 +14,7 @@ minute => now;
 */
 
 public class st {
-    static float globals[];
+    static Stream globals[];
     
     fun static Stream st(float value) {
         ST_value stream;
@@ -198,6 +198,12 @@ public class st {
     fun static ST_div div (Stream a,Stream b) {
         return (new ST_div).init(a,b) $ ST_div;
     }
+    fun static ST_div div (Stream a,float b) {
+        return (new ST_div).init(a,b) $ ST_div;
+    }
+    fun static ST_div div (Stream a,int b) {
+        return (new ST_div).init(a,b) $ ST_div;
+    }
     fun static ST_sum sum(Stream a,Stream b) {
         return (new ST_sum).init(a,b) $ ST_sum;
     }
@@ -219,6 +225,30 @@ public class st {
         walk.init(list,hold(seq([0,1]),holdTimes));
         return walk;
     }
+    
+    fun static ST_bus bus(Stream stream,string name) {
+        return (new ST_bus).init(stream,name);
+    }
+    
+    fun static ST_bus bus(string name) {
+        return (new ST_bus).init(name);
+    }
+    
+    fun static ST_timed tchoice(float list[],Stream timer) {
+        return (new ST_timed).init(choice(list),timer);
+    }
+    
+    fun static ST_timed tchoice(Stream list[],Stream timer) {
+        return (new ST_timed).init(choice(list),timer);
+    }
+    
+    fun static ST_timed tchoice(Stream list[],float timer) {
+        return (new ST_timed).init(choice(list),st(timer));
+    }
+    
+    fun static ST_loop loop (Stream src,Stream repeats,Stream length) {
+        return (new ST_loop).init(src,repeats,length);
+    }   
 }
 
-[0.] @=> st.globals;
+[st.st(1)] @=> st.globals;
