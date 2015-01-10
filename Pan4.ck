@@ -1,41 +1,52 @@
-public class Pan4 extends Chubgraph 
+public class Pan4 extends Chubgraph
 {
-    int mode;
-    int panint;
-    float panTable[512];
-    
-    for (int i; i<512 ; i++) {
-        sqsin(i/512.0) => panTable[i];
-    }
-    
+    Gain fl,fr,bl,br;
     if (dac.channels() == 4) {
-        Gain outs[4];
-        for (int i;i<4;i++) { inlet => outs[i] => dac.chan[i]; }
-        1 => mode;
-    } else {
-        inlet => Pan2 p => dac;
-        0 => mode;
+        inlet => fl => dac.chan(0);
+        inlet => fr => dac.chan(1);
+        inlet => bl => dac.chan(2);
+        inlet => br => dac.chan(3);
     }
     
-    fun float sqsin ( float x ) {
-        return (Math.sin ( 2. * pi * x ) + 1. ) * .5 ; 
+    else {
+        inlet => fl => Pan2 p1 => dac;
+        inlet => fr => Pan2 p2 => dac;
+        inlet => bl => Pan2 p3 => dac;
+        inlet => br => Pan2 p4 => dac;
+        -1 => p1.pan;
+        -.33 => p2.pan;
+        .33 => p3.pan;
+        1 => p4.pan;
+    }
+
+    4096 => int size;
+    size / 2 => int halfSize;
+    float panTable[size];
+    for (int i;i<size;i++) {
+        cub(sqsin((i $ float) / size )) => panTable[i];
+    }   
+    
+    fun float sqsin( float x ) { 
+        return (Math.sin( 2 * pi * x ) + 1) * .5 ; 
     }
     
-    fun void pan ( float panArg ) {
-        if (mode) {
-            (panArg * 511) $ int => panint;
-            panTable[panint] => outs[0].gain;
-            panTable[(panint+384) % 512] => outs[1].gain;
-            panTable[(panint+256) % 512] => outs[2].gain;
-            panTable[(panint+128) % 512] => outs[3].gain;
-        } else { 
-            (panArg * 2.) - 1. => p.pan;
-        }
+    fun float cub(float x) {
+        return x * x * x;
     }
-}
-        
-        
     
-    
-    
-    
+    fun void pan( float pan ) {
+        Math.floor((pan * halfSize) + halfSize) $ int => int index;
+        panTable[index%size] => fl.gain;
+        panTable[(index+3096)%size] => fr.gain;
+        panTable[(index+1024)%size] => bl.gain;
+        panTable[(index+2048)%size] => br.gain;
+    }
+
+    fun void connect( UGen ugen )
+    {
+        ugen => fl;
+        ugen => fr;
+        ugen => bl;
+        ugen => br;
+    }
+} 

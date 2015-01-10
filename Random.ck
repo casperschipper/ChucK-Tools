@@ -1,29 +1,56 @@
-public class Random
-{
-    523225901 => static int m_z;
-    46053668 => static int m_w;
-    Math.pow(2,31) => static float magic;
+public class Random {
+    int x, y, z, w;
+    1298371 => x;
+    3847281093 => y;
+    1237471731 => z;
+    128732111 => w;
+    
+    fun Random seed(int arg) {
+        3847281093 => y;
+        1237471731 => z;
+        128732111 => w;
+        arg => x;
+        return this;
+    }
+    
+    fun Random seed() {
+        3847281093 => y;
+        1237471731 => z;
+        128732111 => w;
+        Math.random() => x;
+    }
+    
+    fun int next() {
+        x ^ (x << 11) => int t;
+        y => x; z => y; w => z;
+        w ^ (w >> 19) ^ t ^ ( t >> 8) => w;
+        return w;
+    }
+    
+    fun float rand() {
+        return Std.fabs((next() $ float) / ((1 << 63) - 1));
+    }
   
     int vaseArray[];
     int vaseMax;
     
-    fun static int rv(int low, int high)
+    fun int rv(int low, int high)
     { 
         return (rand() * Std.abs(high-low+1) + Math.min(low,high)) $ int;
     }
     
-    fun static int rv(int high)
+    fun int rv(int high)
     { return rv(0,high); }
 
-    fun static float rvf(float low, float high)
+    fun float rvf(float low, float high)
     { 
         return (rand() * Std.fabs(high-low) + Math.min(low,high));
     }   
     
-    fun static float rvf(float high)
+    fun float rvf(float high)
     { return rvf(0,high); }
 
-    fun static int[] rvArray(int low,int high,int number)
+    fun int[] rvArray(int low,int high,int number)
     { 
         int output[number];
         for (int i;i<number;i++)
@@ -31,7 +58,7 @@ public class Random
         return output;
     }
     
-    fun static float[] rvfArray(float low,float high, int number)
+    fun float[] rvfArray(float low,float high, int number)
     {
         float output[number];
         for (int i;i<number;i++)
@@ -39,17 +66,17 @@ public class Random
         return output;
     }
     
-    fun static int choice(int array[])
+    fun int choice(int array[])
     {
         return array[rv(0,array.size()-1)];
     }
     
-    fun static float choicef(float array[]) 
+    fun float choicef(float array[]) 
     {
         return array[rv(0,array.size()-1)];
     }
     
-    fun static float gauss()
+    fun float gauss()
     {
         float x1,x2,w,y1,y2;
         do
@@ -63,37 +90,6 @@ public class Random
         x1 * w => y1;
         x2 * w => y2;
         return y1;
-    }
-    
-    fun static int getInt()
-    {
-        36969 * (m_z & 65535) + (m_z >> 16) => m_z;
-        18000 * (m_w & 65535) + (m_w >> 16) => m_w;
-        return ((m_z) << 16) + (m_w & 65535);
-    }
-    
-    fun static float rand()
-    {
-        return (((getInt()+1) * (1.0 / magic)) + 1) * .5;
-    }
-    
-    fun static void seed(int seed1)
-    { seed1 => m_z; }
-    
-    fun static void seed(int seed1,int seed2)
-    { 
-        seed1 => m_z;
-        seed2 => m_w;
-    }   
-    
-    fun static void seed()
-    {
-        Std.rand() => m_z;
-        Std.rand() => m_w;
-    }
-    
-    fun int[] returnSeed() {
-        return [m_z,m_w];
     }
     
     fun int w_choice(int list[][])
@@ -177,4 +173,4 @@ public class Random
         vaseArray[vaseMax--] => vaseArray[idx];
         return value;
     }
-}            
+}      

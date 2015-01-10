@@ -2,6 +2,8 @@ public class Cflist
 {
     float array[0];
     
+    Random random;
+    
     fun void print()
     {
         <<<"printing array">>>;
@@ -150,12 +152,12 @@ public class Cflist
     // Random methods
     fun float choose()
     {
-        return array[Random.rv(0,size()-1)];
+        return array[random.rv(0,size()-1)];
     }
     
     fun float takeRand()
     {
-        return take(Random.rv(0,size()-1));
+        return take(random.rv(0,size()-1));
     }
     
     fun void fillRand(int amount,float low,float high)
@@ -163,7 +165,7 @@ public class Cflist
         array.size(amount);
         for (int i;i<amount;i++)
         {
-            Random.rvf(low,high) => array[i];
+            random.rvf(low,high) => array[i];
         }
     }
     

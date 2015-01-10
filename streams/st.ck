@@ -172,6 +172,10 @@ public class st {
         return walk;
     }
     
+    fun static ST_boundedWalk boundedWalk(int minArg,int maxArg,Stream step) {
+        return boundedWalk(minArg,maxArg,step);
+    }
+    
     fun static ST_boundedWalk boundedWalk(float minArg,float maxArg) {
         return boundedWalk(minArg,maxArg,rv(-0.01,0.01));
     }
@@ -204,6 +208,12 @@ public class st {
     fun static ST_div div (Stream a,int b) {
         return (new ST_div).init(a,b) $ ST_div;
     }
+    fun static ST_div div (float a,Stream b) {
+        return (new ST_div).init(a,b) $ ST_div;
+    }
+    fun static ST_div div (int a,Stream b) {
+        return (new ST_div).init(a,b) $ ST_div;
+    }
     fun static ST_sum sum(Stream a,Stream b) {
         return (new ST_sum).init(a,b) $ ST_sum;
     }
@@ -211,6 +221,18 @@ public class st {
         return (new ST_sub).init(a,b) $ ST_sub;
     }
     fun static ST_mup mup (Stream a,Stream b) {
+        return (new ST_mup).init(a,b) $ ST_mup;
+    }
+    fun static ST_mup mup (int a,Stream b) {
+        return (new ST_mup).init(a,b) $ ST_mup;
+    }
+    fun static ST_mup mup (float a,Stream b) {
+        return (new ST_mup).init(a,b) $ ST_mup;
+    }
+    fun static ST_mup mup (Stream a,int b) {
+        return (new ST_mup).init(a,b) $ ST_mup;
+    }
+    fun static ST_mup mup (Stream a,float b) {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
     

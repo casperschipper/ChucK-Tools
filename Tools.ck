@@ -11,6 +11,7 @@ Machine.add(toolsPath + "Walk.ck");
 Machine.add(toolsPath + "PanFour.ck");
 Machine.add(toolsPath + "PanBin.ck");
 Machine.add(toolsPath + "PanBin8.ck");
+Machine.add(toolsPath + "Pan4.ck");
 Machine.add(toolsPath + "Scalerf.ck");
 Machine.add(toolsPath + "List.ck");
 Machine.add(toolsPath + "Clist.ck");
@@ -72,6 +73,7 @@ Machine.add(toolsPath + "StreamSynths/LineSynth");
 Machine.add(toolsPath + "StreamSynths/PulseSynth");
 Machine.add(toolsPath + "StreamSynths/StepSynth");
 Machine.add(toolsPath + "StreamSynths/FMSynth");
+Machine.add(toolsPath + "StreamSynths/PulsePanSynth");
 
 Machine.add(toolsPath + "Streams/st");
 

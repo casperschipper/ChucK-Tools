@@ -1,6 +1,6 @@
 public class FeedbackDelay extends Chubgraph 
 {
-    inlet => LPF _lf => HPF _hf => DelayL _del;
+    inlet => LPF _lf => HPF _hf => DelayC _del;
     _del => Gain _fb => Clip _clip => _del;
     _del => outlet;
     
@@ -16,29 +16,34 @@ public class FeedbackDelay extends Chubgraph
     _del.max(5*second);
     _del.delay(1*second);
     
-    fun dur delay(dur arg) {
+    fun FeedbackDelay delay(dur arg) {
         arg => _del.delay;
-        return arg;
+        return this;
     }
     
-    fun float lf(float arg) {
+    fun FeedbackDelay maxDelay(dur arg) {
+        arg => _del.max;
+        return this;
+    }
+    
+    fun FeedbackDelay lf(float arg) {
         arg => _lf.freq;
-        return arg;
+        return this;
     }
     
-    fun float hf(float arg) {
+    fun FeedbackDelay hf(float arg) {
         arg => _hf.freq;
-        return arg;
+        return this;
     }
     
-    fun float freq(float arg) {
+    fun FeedbackDelay freq(float arg) {
         second / arg => _del.delay;
-        return arg;
+        return this;
     }
     
-    fun float fb(float arg) {
+    fun FeedbackDelay fb(float arg) {
         arg => _fb.gain;
-        return arg;
+        return this;
     }
     
     fun void delayTarget(dur delTarget,dur slopeDur) {

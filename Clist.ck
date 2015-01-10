@@ -247,15 +247,9 @@ public class Clist
     
     fun void shuffle()
     {
-        random.returnSeed() @=> int seed[];
-        Clist dupl;
-        dupl.random.seed(seed[0],seed[1]);
-        dupl.set(toArray());
-        int i;
-        until(dupl.size()==0) {
-            sv(i++,dupl.takeRand());
-        }
+        cs.shuffle(array);
     }
+   
             
     
     fun int takeRand()
