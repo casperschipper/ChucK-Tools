@@ -171,11 +171,7 @@ public class st {
         walk.setStep(step);
         return walk;
     }
-    
-    fun static ST_boundedWalk boundedWalk(int minArg,int maxArg,Stream step) {
-        return boundedWalk(minArg,maxArg,step);
-    }
-    
+   
     fun static ST_boundedWalk boundedWalk(float minArg,float maxArg) {
         return boundedWalk(minArg,maxArg,rv(-0.01,0.01));
     }
@@ -270,7 +266,15 @@ public class st {
     
     fun static ST_loop loop (Stream src,Stream repeats,Stream length) {
         return (new ST_loop).init(src,repeats,length);
-    }   
+    }  
+
+    fun static ST_weights weights(float valueWeights[][]) {
+        return (new ST_weights).weights(valueWeights);
+    }
+
+    fun static ST_weights weights(int valueWeights[][]) {
+        return (new ST_weights).weights(valueWeights);
+    }
 }
 
 [st.st(1)] @=> st.globals;

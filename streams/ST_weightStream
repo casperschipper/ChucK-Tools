@@ -1,0 +1,98 @@
+public class ST_weightStream extends Stream {
+    // a weighted choice stream with streams as parameters (either as the choice stockpile, or as weights)
+
+    ST_weights indexer;
+
+    null @=> Stream @ st_sequence[];
+    null @=> Stream @ st_weights[];
+    float _sequence[];
+
+    fun ST_weightStream init(Stream arg[],int weights[]) {
+        if (arg.cap() != weights.cap()) {
+            <<<"weighted stream error: size of arguments is not the same",this>>>;
+            return this;
+        }
+        values(arg);
+        weights(weights);        
+        return this;
+    }
+
+    fun ST_weightStream init(Stream arg[],Stream weights[]) {
+        if (arg.cap() != weights.cap()) {
+            <<<"weighted stream error: size of arguments is not the same",this>>>;
+            return this;
+        }
+        values(arg);
+        weights(weights);        
+        return this;
+    }
+
+    fun ST_weightStream init(int arg[],Stream weights[]) {
+        if (arg.cap() != weights.cap()) {
+            <<<"weighted stream error: size of arguments is not the same",this>>>;
+            return this;
+        }
+        values(arg);
+        weights(weights);        
+        return this;
+    }
+
+    fun ST_weightStream values(Stream arg[]) {
+        arg @=> st_sequence;
+        return this;
+    }
+
+    fun ST_weigthStream values(float arg[]) {
+        null @=> st_sequence;
+        arg @=> _sequence;
+        return this;
+    }
+
+    fun ST_weightStream weights(float weights[]) {
+        indexer._weights.size(weights.cap());
+        for (int i;i<argSize;i++) {
+            i => indexer._weights[i][0];
+            weights[i] => indexer._weights[i][1];
+        }
+    }
+
+    fun ST_weightStream weights(Stream weights[]) {
+        // initial setting, need to call all the streams:
+        indexer._weights.size(weights.cap());
+        for (int i;i<argSize;i++) {
+            i => indexer._weights[i][0];
+            weights[i].next() => indexer._weights[i][1];
+        }
+    }
+
+    fun float next() {
+        float result;
+        
+        if (st_sequence != null) {
+            st_sequence[index].next() => result;
+        } 
+        _sequence[index] => result;
+
+        updateIndex();
+        
+        return result;
+    }
+
+    fun void updateIndex() {
+        if (st_weights != null) {
+            for (int i;i<st_weights.cap();i++) {
+                st_weights[i].next() => indexer._weights[i][1];
+            }
+        }
+        if (st_sequence != null) {
+            if (st_sequence[index].more()) {
+                index;
+            } else {
+                indexer.next() => index;
+            }
+        } else {
+            indexer.next() => index;
+        }
+    }
+}
+

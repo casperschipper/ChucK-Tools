@@ -1,8 +1,8 @@
 public class ST_boundedWalk extends ST_walk {
     "ST_boundedWalk" @=> _type;
     
-    20 => float _min;
-    20000 => float _max;
+    20.0 => float _min;
+    20000.0 => float _max;
     
     null @=> Stream @ st_min;
     null @=> Stream @ st_max;
@@ -10,6 +10,12 @@ public class ST_boundedWalk extends ST_walk {
     fun void wrap() {
         if (st_min != null) st_min.next() => _min;
         if (st_max != null) st_max.next() => _max;
+        
+        if (_min > _max) {
+            _max => float tmp;
+            _min => _max;
+            tmp => _min;
+        }
         
         if (value < _min) {
             _max => value;
@@ -19,18 +25,34 @@ public class ST_boundedWalk extends ST_walk {
             _min => value;
         }
     }
-            
+    
+    fun ST_boundedWalk min(int arg) {
+        arg => _min;
+        null @=> st_min;
+        return this;
+    }
+    fun ST_boundedWalk max(int arg) {
+        arg => _max;
+        null @=> st_max;
+        return this;
+    }
     
     fun ST_boundedWalk min(float arg) {
-        arg => _min; return this;
+        arg => _min; 
+        null @=> st_min;
+        return this;
     }
     fun ST_boundedWalk max(float arg) {
-        arg => _max; return this;
+        arg => _max;
+        null @=> st_max;
+        return this;
     }
     fun ST_boundedWalk min(Stream arg) {
-        arg @=> st_min; return this;
+        arg @=> st_min; 
+        return this;
     }
     fun ST_boundedWalk max(Stream arg) {
-        arg @=> st_max; return this;
+        arg @=> st_max; 
+        return this;
     }
 }
