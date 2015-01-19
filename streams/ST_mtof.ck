@@ -4,7 +4,7 @@ public class ST_mtof extends Stream
     null @=> Stream @ inputStream;
     
     fun ST_mtof init(Stream arg) {
-        arg @=> Stream;
+        arg @=> inputStream;
         return this;
     }
     

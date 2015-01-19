@@ -68,7 +68,7 @@ public class ST_seq extends Stream
     fun void updateIndex() {
         if (st_sequence != null) {
             if (st_sequence[index].more()) {
-                index;
+                // do nothing;
             } else {
                 index++;
             }

@@ -1,23 +1,39 @@
 public class Random {
     int x, y, z, w;
-    1298371 => x;
-    3847281093 => y;
-    1237471731 => z;
-    128732111 => w;
+    // note: numbers are not what they seem !!!, literals can never be fully 64 bit...
+    0x1B185FF2F709282F => x;
+    0x1B182122F709282F => y;
+    0x12AAAB82834FD993 => z;
+    0x1AF892839423A891 => w;
+    wash();
+
+
     
     fun Random seed(int arg) {
-        3847281093 => y;
-        1237471731 => z;
-        128732111 => w;
-        arg => x;
+        0x1B185FF2F709282F => x;
+        0x1B182122F709282F => y;
+        0x12AAAB82834FD993 => z;
+
+        arg => w;
+        wash();
         return this;
     }
     
     fun Random seed() {
-        3847281093 => y;
-        1237471731 => z;
-        128732111 => w;
-        Math.random() => x;
+        0x1B185FF2F709282F => x;
+        0x1B182122F709282F => y;
+        0x12AAAB82834FD993 => z;
+        Math.random() => w;
+        wash();
+        return this;
+
+    }
+
+    fun void wash() {
+        32 => int n;
+        while(n--) {
+            next();
+        }
     }
     
     fun int next() {
@@ -25,6 +41,13 @@ public class Random {
         y => x; z => y; w => z;
         w ^ (w >> 19) ^ t ^ ( t >> 8) => w;
         return w;
+    }
+
+    fun void printState() {
+        <<<x>>>;
+        <<<y>>>;
+        <<<z>>>;
+        <<<w>>>;
     }
     
     fun float rand() {
@@ -95,8 +118,9 @@ public class Random {
     fun int w_choice(int list[][])
     {
         int sum;
-        for (int i;i<list.size();i++)
+        for (int i;i<list.size();i++) {
             list[i][1] +=> sum;
+        }
         rv(sum) => int n;
         for (int i;i<list.size();i++)
         {

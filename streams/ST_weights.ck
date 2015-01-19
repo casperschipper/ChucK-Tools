@@ -1,6 +1,5 @@
 public class ST_weights extends Stream {
     Random random;
-    random.seed(Math.random());
 
     float _weights[][];
         

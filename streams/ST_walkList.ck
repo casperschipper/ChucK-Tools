@@ -37,21 +37,28 @@ public class ST_walkList extends Stream {
     
     fun ST_walkList list(float arg[]) {
         arg @=> table;
+        arg.size() => size;
         null @=> st_table;
         return this;
     }
     
     fun ST_walkList list(Stream arg[]) {
         arg @=> st_table;
+        st_table.size() => size;
         return this;
     }
     
-    fun int safeIndex() {
+    fun void safeIndex() {
+        if (st_table != null) {
+            if (st_table[index].more()) {
+                return;
+            }
+        }
+        
         if (stepper == null) {
-            chout <= "stepper is null" <= IO.newline(); return index;
+            chout <= "stepper is null" <= IO.newline(); return;
         }
         wrap(stepper.nextInt() + index,0,size-1) => index;
-        return index;
     }
     
     fun int wrap(int x,int low, int high) {
@@ -64,11 +71,13 @@ public class ST_walkList extends Stream {
     }
     
     fun float next() {
+        safeIndex();
+        
         if (st_table != null) {
-            return st_table[safeIndex()].next();
+            return st_table[index].next();
         }
         
-        return table[safeIndex()];
+        return table[index];
     }
 }      
     

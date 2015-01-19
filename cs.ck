@@ -32,6 +32,43 @@ public class cs
     fun static float chf (float array [] ) {
         return choosef(array);
     }
+
+    fun int w_choice(int list[][])
+    {
+        int sum;
+        for (int i;i<list.size();i++) {
+            list[i][1] +=> sum;
+        }
+        Math.random2(0,sum) => int n;
+        for (int i;i<list.size();i++)
+        {
+            if (n < list[i][1])
+            { return list[i][0]; }
+            else
+            { list[i][1] -=> n; }
+        }
+        return list[list.size()-1][0];
+    }
+
+    fun float w_choicef(float list[][]) {
+        float sum;
+        for (int i;i<list.size();i++) {
+            list[i][1] +=> sum;
+        }
+        Math.random2f(0,sum) => float n;
+        for (int i;i<list.size();i++)
+        {
+            if (n < list[i][1])
+            { 
+                return list[i][0]; 
+            }
+            else
+            { 
+                list[i][1] -=> n; 
+            }
+        }
+        return list[list.size()-1][0];
+    }
     
     fun static int min (int a, int b) {
         if (a<b) return a;

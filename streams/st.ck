@@ -102,6 +102,13 @@ public class st {
         return ST_rv.make(min,max);
     }
     
+    fun static ST_latch latch(Stream valueArg,Stream repeatArg) {
+        return (new ST_latch).init(valueArg,repeatArg);
+    }
+    fun static ST_timedLatch tLatch(Stream valueArg,Stream timerArg) {
+        return (new ST_timedLatch).init(valueArg,timerArg);
+    }  
+    
     fun static ST_timed timed(Stream str,Stream timing) {
         return ST_timed.make(str,timing);
     }
@@ -114,13 +121,25 @@ public class st {
         return timed(str,st(timing));
     }
     
-    fun static ST_timed timedSeq(Stream seq[],Stream timing) {
-        return ST_timed.make(ST_seq.make(seq),timing);
+    fun static ST_timed timedSeq(Stream seqArg[],Stream timing) {
+        return t(seq(seqArg),timing);
+    }
+    fun static ST_timed timedSeq(float seqArg[],Stream timing) {
+        return t(seq(seqArg),timing);
+    }
+    fun static ST_timed timedSeq(float seqArg[],float timing) {
+        return t(seq(seqArg),timing);
+    }
+    fun static ST_timed tSeq(Stream seq[],Stream timing) {
+        return timedSeq(seq,timing);
+    }
+    fun static ST_timed tSeq(float seq[],Stream timing) {
+        return timedSeq(seq,timing);
+    }
+    fun static ST_timed tSeq(Stream seq[],float timing) {
+        return timedSeq(seq,st(timing));
     }
     
-    fun static ST_timed timedSeq(float seq[],Stream timing) {
-        return ST_timed.make(ST_seq.make(seq),timing);
-    }
     
     fun static ST_timed rvSeq(float min,float max,Stream timing) {
         return ST_timed.make(rv(min,max),timing);
@@ -253,15 +272,16 @@ public class st {
     }
     
     fun static ST_timed tchoice(float list[],Stream timer) {
-        return (new ST_timed).init(choice(list),timer);
-    }
-    
+        return t(choice(list),timer);
+    }   
     fun static ST_timed tchoice(Stream list[],Stream timer) {
-        return (new ST_timed).init(choice(list),timer);
-    }
-    
+        return t(choice(list),timer);
+    } 
     fun static ST_timed tchoice(Stream list[],float timer) {
-        return (new ST_timed).init(choice(list),st(timer));
+        return t(choice(list),timer);
+    }
+    fun static ST_timed tchoice(int list[],Stream timer) {
+        return t(choice(list),timer);
     }
     
     fun static ST_loop loop (Stream src,Stream repeats,Stream length) {
@@ -274,6 +294,14 @@ public class st {
 
     fun static ST_weights weights(int valueWeights[][]) {
         return (new ST_weights).weights(valueWeights);
+    }
+    
+    fun static ST_trigger trigger(Stream arg) {
+        return (new ST_trigger).init(arg);
+    }
+    
+    fun static ST_mtof mtof(Stream arg) {
+        return (new ST_mtof).init(arg);
     }
 }
 
