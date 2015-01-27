@@ -100,7 +100,6 @@ class ST_seriesIndex extends Stream {
             i => list[i];
         }
         shuffle();
-        cs.print(list);
     }
 
     fun int more() {

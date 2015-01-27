@@ -82,6 +82,8 @@ Machine.add(toolsPath + "StreamSynths/StepSynth");
 Machine.add(toolsPath + "StreamSynths/FMSynth");
 Machine.add(toolsPath + "StreamSynths/PulsePanSynth");
 Machine.add(toolsPath + "StreamSynths/SinSynth");
+Machine.add(toolsPath + "StreamSynths/StreamPan");
+Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
 
 Machine.add(toolsPath + "Streams/st");
 

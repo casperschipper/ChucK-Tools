@@ -30,6 +30,10 @@ public class st {
         return ST_index.make(seq,index);
     }
     
+    fun static ST_index index(int seq[],Stream index) {
+        return ST_index.make(seq,index);
+    }
+    
     fun static ST_seq seq(float seq[]) {
         return ST_seq.make(seq);
     } 
@@ -238,6 +242,11 @@ public class st {
     fun static ST_mup mup (Stream a,Stream b) {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
+    fun static ST_mup mup (Stream a,Stream b,Stream c) {
+        return (new ST_mup).init( 
+                   (new ST_mup).init(a,b) , c 
+               ) $ ST_mup;
+    }
     fun static ST_mup mup (int a,Stream b) {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
@@ -294,6 +303,18 @@ public class st {
 
     fun static ST_weights weights(int valueWeights[][]) {
         return (new ST_weights).weights(valueWeights);
+    }
+    
+    fun static ST_weightStream weightStream(Stream values[],int weights[]) {
+        return (new ST_weightStream).init(values,weights);
+    }
+    
+    fun static ST_weightStream weightStream(Stream values[],float weights[]) {
+        return (new ST_weightStream).init(values,weights);
+    }
+    
+    fun static ST_weightStream weightStream(float values[],Stream weights[]) {
+        return (new ST_weightStream).init(values,weights);
     }
     
     fun static ST_trigger trigger(Stream arg) {

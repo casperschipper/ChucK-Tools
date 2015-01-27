@@ -16,6 +16,16 @@ public class ST_weightStream extends Stream {
         weights(warg);        
         return this;
     }
+    
+    fun ST_weightStream init(Stream arg[],float warg[]) {
+        if (arg.cap() != warg.cap()) {
+            <<<"weighted stream error: size of arguments is not the same",this>>>;
+            return this;
+        }
+        values(arg);
+        weights(warg);        
+        return this;
+    }
 
     fun ST_weightStream init(Stream arg[],Stream warg[]) {
         if (arg.cap() != warg.cap()) {
@@ -28,6 +38,16 @@ public class ST_weightStream extends Stream {
     }
 
     fun ST_weightStream init(int arg[],Stream warg[]) {
+        if (arg.cap() != warg.cap()) {
+            <<<"weighted stream error: size of arguments is not the same",this>>>;
+            return this;
+        }
+        values(arg);
+        weights(warg);        
+        return this;
+    }
+    
+    fun ST_weightStream init(float arg[],Stream warg[]) {
         if (arg.cap() != warg.cap()) {
             <<<"weighted stream error: size of arguments is not the same",this>>>;
             return this;

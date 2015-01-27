@@ -1,26 +1,26 @@
-public class PanBin8
+public class PanBin8 extends Chubgraph
 {
     Gain fl,fr,bl,br,F,R,L,B;
     if (dac.channels() == 8) {
-        fl => dac.chan(0);
-        fr => dac.chan(1);
-        bl => dac.chan(2);
-        br => dac.chan(3);
-        F => dac.chan(4);
-        R => dac.chan(5);
-        L => dac.chan(6);
-        B => dac.chan(7);
+        inlet => fl => dac.chan(0);
+        inlet => fr => dac.chan(1);
+        inlet => bl => dac.chan(2);
+        inlet => br => dac.chan(3);
+        inlet => F => dac.chan(4);
+        inlet => R => dac.chan(5);
+        inlet => L => dac.chan(6);
+        inlet => B => dac.chan(7);
     }
     
     else {
-        fl => Pan2 p1 => dac;
-        fr => Pan2 p2 => dac;
-        bl => Pan2 p3 => dac;
-        br => Pan2 p4 => dac;
-        F => Pan2 p5 => dac;
-        R => Pan2 p6 => dac;
-        L => Pan2 p7 => dac;
-        B => Pan2 p8 => dac;
+        inlet => fl => Pan2 p1 => dac;
+        inlet => fr => Pan2 p2 => dac;
+        inlet => bl => Pan2 p3 => dac;
+        inlet => br => Pan2 p4 => dac;
+        inlet => F => Pan2 p5 => dac;
+        inlet => R => Pan2 p6 => dac;
+        inlet => L => Pan2 p7 => dac;
+        inlet => B => Pan2 p8 => dac;
         -1 => p1.pan;
         -.8 => p2.pan;
         -.4 => p3.pan;
@@ -31,7 +31,7 @@ public class PanBin8
         1 => p8.pan;
     }
     
-    public void pan ( float pan )
+    fun void pan ( float pan )
     {                          //  l r L R f relib
         if (pan < .125)       mup([1,0,0,0,0,0,0,0]);
         else if (pan < .250)  mup([0,0,0,0,1,0,0,0]);
@@ -53,7 +53,7 @@ public class PanBin8
         else mup([1,1,1,1,1,1,1,1]);
     }
     
-    public void mup (int mupper[]) {
+    fun void mup (int mupper[]) {
         mupper[0] => fl.gain;
         mupper[1] => fr.gain;
         mupper[2] => bl.gain;
@@ -67,7 +67,7 @@ public class PanBin8
         
 
 
-    public void connect( UGen ugen )
+    fun void connect( UGen ugen )
     {
         ugen => fl;
         ugen => fr;

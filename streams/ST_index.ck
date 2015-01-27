@@ -13,6 +13,13 @@ public class ST_index extends Stream {
         return stream;
     }
     
+    fun static ST_index make(int _values[], Stream _indexer) {
+        ST_index stream;
+        stream.init(_values,_indexer);
+        return stream;
+    }
+    
+    
     fun static ST_index make(Stream _values[], Stream _indexer) {
         ST_index stream;
         stream.init(_values,_indexer);
@@ -33,6 +40,16 @@ public class ST_index extends Stream {
         _indexer @=> indexer;
         return this;
     }
+    
+    
+    fun ST_index init(int _values[],Stream _indexer) {
+        cs.int2float(_values) @=> table;
+        null @=> st_table;
+        table.size() => size;
+        _indexer @=> indexer;
+        return this;
+    }
+
     
     fun int safeIndex() {
         wrap(indexer.nextInt(),0,size-1) => int index;

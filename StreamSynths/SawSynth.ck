@@ -1,5 +1,5 @@
-public class SinSynth extends Chubgraph {
-    SinOsc c => outlet;
+public class SawSynth extends Chubgraph {
+    SawOsc c => outlet;
     
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
@@ -8,20 +8,20 @@ public class SinSynth extends Chubgraph {
     
     samp => dur _timeStep;
     
-    fun static SinSynth make(Stream value,Stream dura) {
-        SinSynth synth;
+    fun static SawSynth make(Stream value,Stream dura) {
+        SawSynth synth;
         synth.init(value,dura);
         return synth;
     }
     
-    fun SinSynth init(Stream value,Stream dura) {
+    fun SawSynth init(Stream value,Stream dura) {
         value @=> _value;
         dura @=> _dura;
         spork ~ play();
         return this;
     }
     
-    fun SinSynth timeStep(dur timeStep) {
+    fun SawSynth timeStep(dur timeStep) {
         timeStep => _timeStep;
         return this;
     }
