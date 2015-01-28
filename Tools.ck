@@ -38,6 +38,7 @@ Machine.add(toolsPath + "Ping.ck");
 Machine.add(toolsPath + "Streams/Stream");
 Machine.add(toolsPath + "Streams/ST_choice");
 Machine.add(toolsPath + "Streams/ST_count");
+Machine.add(toolsPath + "Streams/ST_count2"); // this can also hold...
 Machine.add(toolsPath + "Streams/ST_delay");
 Machine.add(toolsPath + "Streams/ST_float");
 Machine.add(toolsPath + "Streams/ST_index");
@@ -71,6 +72,7 @@ Machine.add(toolsPath + "Streams/ST_min");
 Machine.add(toolsPath + "Streams/ST_series");
 Machine.add(toolsPath + "Streams/ST_bus");
 Machine.add(toolsPath + "Streams/ST_weights");
+Machine.add(toolsPath + "Streams/ST_wchoice");// optimized version
 Machine.add(toolsPath + "Streams/ST_weightStream");
 Machine.add(toolsPath + "Streams/ST_trigger");
 Machine.add(toolsPath + "Streams/ST_triggerSend");
@@ -84,6 +86,7 @@ Machine.add(toolsPath + "StreamSynths/PulsePanSynth");
 Machine.add(toolsPath + "StreamSynths/SinSynth");
 Machine.add(toolsPath + "StreamSynths/StreamPan");
 Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
+Machine.add(toolsPath + "StreamSynths/StreamNonLinFilter");
 
 Machine.add(toolsPath + "Streams/st");
 

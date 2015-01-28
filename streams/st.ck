@@ -93,17 +93,17 @@ public class st {
     }
         
     
-    fun static ST_rv rv(float min,float max) {
-        return ST_rv.make(min,max);
+    fun static ST_rv rv(float minArg,float maxArg) {
+        return ST_rv.make(minArg,maxArg);
     }
-    fun static ST_rv rv(Stream min,Stream max) {
-        return ST_rv.make(min,max);
+    fun static ST_rv rv(Stream minArg,Stream maxArg) {
+        return ST_rv.make(minArg,maxArg);
     }
-    fun static ST_rv rv(float min,Stream max) {
-        return ST_rv.make(min,max);
+    fun static ST_rv rv(float minArg,Stream maxArg) {
+        return ST_rv.make(minArg,maxArg);
     }
-    fun static ST_rv rv(Stream min,float max) {
-        return ST_rv.make(min,max);
+    fun static ST_rv rv(Stream minArg,float maxArg) {
+        return ST_rv.make(minArg,maxArg);
     }
     
     fun static ST_latch latch(Stream valueArg,Stream repeatArg) {
@@ -145,18 +145,38 @@ public class st {
     }
     
     
-    fun static ST_timed rvSeq(float min,float max,Stream timing) {
-        return ST_timed.make(rv(min,max),timing);
+    fun static ST_timed rvSeq(float minArg,float maxArg,Stream timing) {
+        return ST_timed.make(rv(minArg,maxArg),timing);
     }
     
     fun static ST_repeat hold(Stream value,Stream repetition) {
         return ST_repeat.make(value,repetition);
     }
     
-    fun static ST_count count(int max) {
-        return ST_count.make(max);
+    fun static ST_count count(int maxArg) {
+        return ST_count.make(maxArg);
     }
     
+    fun static ST_count2 count2(int maxArg) {
+        return (new ST_count2).init(maxArg,true);
+    }
+    
+    fun static ST_count2 count2(Stream maxArg) {
+        return (new ST_count2).init(maxArg,true);
+    }
+    
+    fun static ST_count2 count2(Stream maxArg,int holdArg) {
+        return (new ST_count2).init(maxArg,holdArg);
+    }
+    
+    fun static ST_count2 count2(int maxArg,int holdArg) {
+        return (new ST_count2).init(maxArg,holdArg);
+    }
+    
+    fun static ST_timed tcount(int maxArg,Stream timing) {
+        return t(count(maxArg),timing);
+    }
+
     fun static ST_choice choice(float array[]) {
         return ST_choice.make(array);
     }
@@ -168,6 +188,18 @@ public class st {
     fun static ST_choice choice(int array[]) {
         return ST_choice.make(array);
     }
+    
+    // shorthands for choice, without [], can be handy.
+    fun static ST_choice choice(int a,int b) {
+        return ST_choice.make([a,b]);
+    }
+    fun static ST_choice choice(float a,float b) {
+        return ST_choice.make([a,b]);
+    }
+    fun static ST_choice choice(Stream a,Stream b) {
+        return ST_choice.make([a,b]);
+    }
+        
     
     fun static ST_line line(Stream value,Stream timing) {
         ST_line stream;
@@ -259,6 +291,24 @@ public class st {
     fun static ST_mup mup (Stream a,float b) {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
+    fun static ST_max max (float a,Stream b) {
+        return (new ST_max).init(a,b) $ ST_max;
+    }
+    fun static ST_max max (Stream a,int b) {
+        return (new ST_max).init(a,b) $ ST_max;
+    }
+    fun static ST_max max (Stream a,Stream b) {
+        return (new ST_max).init(a,b) $ ST_max;
+    }
+    fun static ST_max max (Stream a,float b) {
+        return (new ST_max).init(a,b) $ ST_max;
+    }
+    fun static ST_min min (Stream a,Stream b) {
+        return (new ST_min).init(a,b) $ ST_min;
+    }
+    fun static ST_min min (Stream a,float b) {
+        return (new ST_min).init(a,b) $ ST_min;
+    }
     
     fun static ST_walkList lemming(Stream list[],Stream holdTimes) {
         ST_walkList walk;
@@ -297,12 +347,12 @@ public class st {
         return (new ST_loop).init(src,repeats,length);
     }  
 
-    fun static ST_weights weights(float valueWeights[][]) {
-        return (new ST_weights).weights(valueWeights);
+    fun static ST_wchoice wchoice(float valueWeights[][]) {
+        return (new ST_wchoice).init(valueWeights);
     }
-
-    fun static ST_weights weights(int valueWeights[][]) {
-        return (new ST_weights).weights(valueWeights);
+    
+    fun static ST_wchoice wchoice(int valueWeights[][]) {
+        return (new ST_wchoice).init(valueWeights);
     }
     
     fun static ST_weightStream weightStream(Stream values[],int weights[]) {

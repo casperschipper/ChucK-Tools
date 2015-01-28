@@ -1,5 +1,8 @@
-class ST_wchoice extends Stream {
-    Random random;
+public class ST_wchoice extends Stream {    
+    "ST_wchoice" @=> _type;
+    
+    // this is an optimized weighted choice class, only works for 
+    // static weights & values.
     
     float sum;
     float weights[][];
@@ -42,7 +45,4 @@ class ST_wchoice extends Stream {
        }
        return weights[size-1][0];
    }
-}
-
-(new ST_wchoice).init([[1.,10],[22.,1]]).test();
-   
+}   
