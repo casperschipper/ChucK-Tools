@@ -1,4 +1,4 @@
-public class ST_loop extends Stream {    
+class ST_loop extends Stream {    
     // ST_loop, generates a list of values using Source of Length, repeats that Repeats times.
     // After the list has been repeated, a new list of values gets generated using source etc...
     null @=> Stream @ st_source;

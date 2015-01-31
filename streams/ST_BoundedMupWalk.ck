@@ -10,11 +10,15 @@ public class ST_boundedMupWalk extends ST_mupWalk {
     fun void wrap() {
         if (st_min != null) st_min.next() => _min;
         if (st_max != null) st_max.next() => _max;
-        
-        (_max + _min) / 2 => float mean;
-           
-        if (value < Math.min(_min,_max)) mean => value;
-        if (value > Math.max(_min,_max)) mean => value;
+        if (value == 0) {
+            _min => value;
+        }
+        if (value < Math.min(_min,_max)) {
+            value * 2 => value;
+        }
+        if (value > Math.max(_min,_max)) {
+            value * 0.5 => value;
+        }
     }
     
     fun ST_boundedMupWalk min(Stream arg) {

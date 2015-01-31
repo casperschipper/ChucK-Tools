@@ -3,11 +3,11 @@
 // filter.init(freq,q,timing);
 // 
 
-public class StreamNonLinFilter extends Chubgraph {
-    inlet => NonLinFeedbackFilter f => Clip c => outlet;
+public class StreamBPFilter extends Chubgraph {
+    inlet => BPF f => Clip c => outlet;
     
     Stream @ st_freq;
-    Stream @ st_fb;
+    Stream @ st_q;
     Stream @ st_timer;
     
     0 => int loop;
@@ -41,38 +41,7 @@ public class StreamNonLinFilter extends Chubgraph {
     }
 }
 
-class NonLinFeebbackFilter extends Chubgraph {
-    DelayL del => HPF dc => Tanh h;
-    h => del;
-    h => MouthPiece mpiece => del;
-    
-    inlet => mpiece;
-    
-    // set dc cutting filter pars:
-    20 => dc.freq;
-    0.9 => dc.Q;
-    
-    fun float freq(float arg) {
-        second / arg => del.delay;
-        return arg;
-    }
-    
-    fun float fb(float arg) {
-        arg => dc.gain;
-        return arg;
-    }
-}
-
-// a class to model non linearity of mouthpiece. x - x ^ 3
-class MouthPiece extends Chugen {
-    fun float tick(float in) {
-        return in - (in * in * in);
-    }
-}    
-    
 
 
 
-            
-        
-        
+

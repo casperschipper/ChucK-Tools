@@ -268,6 +268,12 @@ public class st {
     fun static ST_sum sum(Stream a,Stream b) {
         return (new ST_sum).init(a,b) $ ST_sum;
     }
+    fun static ST_sum sum(float a,Stream b) {
+        return (new ST_sum).init(a,b) $ ST_sum;
+    }
+    fun static ST_sum sum(int a,Stream b) {
+        return (new ST_sum).init(a,b) $ ST_sum;
+    }
     fun static ST_sub sub(Stream a,Stream b) {
         return (new ST_sub).init(a,b) $ ST_sub;
     }

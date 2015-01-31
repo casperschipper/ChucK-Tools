@@ -30,6 +30,7 @@ Machine.add(toolsPath + "TriOscTendencyMask.ck");
 Machine.add(toolsPath + "Expenv.ck");
 Machine.add(toolsPath + "LFOMup.ck");
 Machine.add(toolsPath + "FeedbackDelay.ck");
+Machine.add(toolsPath + "Safe.ck");
 
 Machine.add(toolsPath + "Synths/SuperSaw.ck");
 Machine.add(toolsPath + "PercEnv.ck");
@@ -55,6 +56,7 @@ Machine.add(toolsPath + "Streams/ST_tri");
 Machine.add(toolsPath + "Streams/ST_loop2");
 Machine.add(toolsPath + "Streams/ST_timed");
 Machine.add(toolsPath + "Streams/ST_scale");
+Machine.add(toolsPath + "Streams/ST_scale2");
 Machine.add(toolsPath + "Streams/ST_line");
 Machine.add(toolsPath + "Streams/ST_walk");
 Machine.add(toolsPath + "Streams/ST_walkList");
@@ -86,7 +88,10 @@ Machine.add(toolsPath + "StreamSynths/PulsePanSynth");
 Machine.add(toolsPath + "StreamSynths/SinSynth");
 Machine.add(toolsPath + "StreamSynths/StreamPan");
 Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
+Machine.add(toolsPath + "StreamSynths/StreamBPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamNonLinFilter");
+
+Machine.add(toolsPath + "OSCTable");
 
 Machine.add(toolsPath + "Streams/st");
 
