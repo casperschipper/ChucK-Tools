@@ -34,9 +34,20 @@ public class st {
         return ST_index.make(seq,index);
     }
     
+    fun static ST_indexLin indexLin(float seq[],Stream indexer) {
+        return (new ST_indexLin).init(seq,indexer);
+    }
+    fun static ST_indexLin indexLin(int seq[],Stream indexer) {
+        return (new ST_indexLin).init(seq,indexer);
+    }
+    
     fun static ST_seq seq(float seq[]) {
         return ST_seq.make(seq);
     } 
+    
+    fun static ST_seq seq(float a,float b) {
+        return ST_seq.make([a,b]);
+    }
     
     fun static ST_series series(float seq[]) {
         ST_series stream;
@@ -91,6 +102,9 @@ public class st {
     fun static ST_seq seq(int seq[],int holdMode) {
         return ST_seq.make(seq).holdMode(holdMode);
     }
+    fun static ST_seq seq(Stream a,Stream b) {
+        return ST_seq.make([a,b]).holdMode(false);
+    }
         
     
     fun static ST_rv rv(float minArg,float maxArg) {
@@ -109,6 +123,16 @@ public class st {
     fun static ST_latch latch(Stream valueArg,Stream repeatArg) {
         return (new ST_latch).init(valueArg,repeatArg);
     }
+    fun static ST_latch latch(float valueArg,float repeatArg) {
+        return (new ST_latch).init(st(valueArg),st(repeatArg));
+    }
+    fun static ST_latch latch(Stream valueArg,int repeatArg) {
+        return (new ST_latch).init(valueArg,st(repeatArg));
+    }
+    fun static ST_latch latch(int valueArg,Stream repeatArg) {
+        return (new ST_latch).init(st(valueArg),repeatArg);
+    }
+
     fun static ST_timedLatch tLatch(Stream valueArg,Stream timerArg) {
         return (new ST_timedLatch).init(valueArg,timerArg);
     }  
@@ -316,15 +340,37 @@ public class st {
         return (new ST_min).init(a,b) $ ST_min;
     }
     
+    fun static ST_q q(Stream a,Stream b) {
+        return (new ST_q).init(a,b) $ ST_q;
+    }
+    fun static ST_q q(Stream a,int b) {
+        return (new ST_q).init(a,b) $ ST_q;
+    }
+    fun static ST_q q(Stream a,float b) {
+        return (new ST_q).init(a,b) $ ST_q;
+    }
+    
     fun static ST_walkList lemming(Stream list[],Stream holdTimes) {
         ST_walkList walk;
-        walk.init(list,hold(seq([0,1]),holdTimes));
+        walk.init(list,hold(seq([-1,1]),holdTimes));
         return walk;
     }
     
     fun static ST_walkList lemming(float list[],Stream holdTimes) {
         ST_walkList walk;
-        walk.init(list,hold(seq([0,1]),holdTimes));
+        walk.init(list,hold(seq([-1,1]),holdTimes));
+        return walk;
+    }
+    
+    fun static ST_walkList walkList(float list[]) {
+        ST_walkList walk;
+        walk.init(list,choice(-1,1));
+        return walk;
+    }
+    
+    fun static ST_walkList walkList(float list[],Stream stepper) {
+        ST_walkList walk;
+        walk.init(list,stepper);
         return walk;
     }
     
@@ -361,6 +407,14 @@ public class st {
         return (new ST_wchoice).init(valueWeights);
     }
     
+    fun static ST_wchoice weights(float valueWeights[][]) {
+        return wchoice(valueWeights);
+    }
+    
+    fun static ST_wchoice weights(int valueWeights[][]) {
+        return (new ST_wchoice).init(valueWeights);
+    }
+    
     fun static ST_weightStream weightStream(Stream values[],int weights[]) {
         return (new ST_weightStream).init(values,weights);
     }
@@ -379,6 +433,14 @@ public class st {
     
     fun static ST_mtof mtof(Stream arg) {
         return (new ST_mtof).init(arg);
+    }
+    
+    fun static ST_floor floor(Stream arg) {
+        return (new ST_floor).init(arg);
+    }
+    
+    fun static ST_indexLin scan(float arrayArg[],Stream sizeArg,Stream offsetArg) {
+        return (new ST_indexLin).init(arrayArg,sum(count2(sizeArg),offsetArg));
     }
 }
 

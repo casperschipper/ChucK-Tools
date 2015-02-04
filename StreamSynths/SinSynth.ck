@@ -29,7 +29,6 @@ public class SinSynth extends Chubgraph {
     fun void play() {
         1 => loop;
         while(loop) {
-            0 => c.phase;
             _value.next() => c.freq;
             _dura.next() * _timeStep => now;
         }

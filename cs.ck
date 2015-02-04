@@ -8,6 +8,14 @@ public class cs
         }
     }
     
+    fun static void loadBuffer(Buffer buf,float array[]) {
+        array.cap() => int size;
+        size * samp => buf.max;
+        for (int i;i<size;i++) {
+            buf.valueAt(i,array[i]);
+        }
+    }
+    
     fun static float[] int2float (int array[]) {
         float output[array.cap()];
         for (int i;i<array.cap();array[i] $ float @=> output[i++]) {;}

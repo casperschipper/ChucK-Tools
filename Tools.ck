@@ -43,6 +43,7 @@ Machine.add(toolsPath + "Streams/ST_count2"); // this can also hold...
 Machine.add(toolsPath + "Streams/ST_delay");
 Machine.add(toolsPath + "Streams/ST_float");
 Machine.add(toolsPath + "Streams/ST_index");
+Machine.add(toolsPath + "Streams/ST_indexLin");
 Machine.add(toolsPath + "Streams/ST_repeat");
 Machine.add(toolsPath + "Streams/ST_latch");
 Machine.add(toolsPath + "Streams/ST_timedLatch");
@@ -71,6 +72,8 @@ Machine.add(toolsPath + "Streams/ST_div");
 Machine.add(toolsPath + "Streams/ST_sub");
 Machine.add(toolsPath + "Streams/ST_max");
 Machine.add(toolsPath + "Streams/ST_min");
+Machine.add(toolsPath + "Streams/ST_floor");
+Machine.add(toolsPath + "Streams/ST_q");
 Machine.add(toolsPath + "Streams/ST_series");
 Machine.add(toolsPath + "Streams/ST_bus");
 Machine.add(toolsPath + "Streams/ST_weights");
@@ -85,10 +88,13 @@ Machine.add(toolsPath + "StreamSynths/PulseSynth");
 Machine.add(toolsPath + "StreamSynths/StepSynth");
 Machine.add(toolsPath + "StreamSynths/FMSynth");
 Machine.add(toolsPath + "StreamSynths/PulsePanSynth");
+Machine.add(toolsPath + "StreamSynths/StepPanSynth");
 Machine.add(toolsPath + "StreamSynths/SinSynth");
 Machine.add(toolsPath + "StreamSynths/StreamPan");
 Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamBPFilter");
+Machine.add(toolsPath + "StreamSynths/StreamLPFilter");
+
 Machine.add(toolsPath + "StreamSynths/StreamNonLinFilter");
 
 Machine.add(toolsPath + "OSCTable");

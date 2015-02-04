@@ -1,27 +1,30 @@
-public class SawSynth extends Chubgraph {
-    BlitSaw c => outlet;
-    
+public class StepPanSynth extends Chubgraph {
+    Step i => Safe safe; PanFour p;
+    p.connect(safe);
+        
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
+    null @=> Stream @ _pan;
     
     0 => int loop;
     
     samp => dur _timeStep;
     
-    fun static SawSynth make(Stream value,Stream dura) {
-        SawSynth synth;
-        synth.init(value,dura);
+    fun static StepPanSynth make(Stream value,Stream dura,Stream pan) {
+        StepPanSynth synth;
+        synth.init(value,dura,pan);
         return synth;
     }
     
-    fun SawSynth init(Stream value,Stream dura) {
+    fun StepPanSynth init(Stream value,Stream dura,Stream pan) {
         value @=> _value;
         dura @=> _dura;
+        pan @=> _pan;
         spork ~ play();
         return this;
     }
     
-    fun SawSynth timeStep(dur timeStep) {
+    fun StepPanSynth timeStep(dur timeStep) {
         timeStep => _timeStep;
         return this;
     }
@@ -29,7 +32,8 @@ public class SawSynth extends Chubgraph {
     fun void play() {
         1 => loop;
         while(loop) {
-            _value.next() => c.freq;
+            _value.next() => i.next;
+            _pan.next() => p.pan;
             _dura.next() * _timeStep => now;
         }
     }

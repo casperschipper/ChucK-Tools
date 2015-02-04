@@ -52,7 +52,6 @@ public class ST_walk extends Stream {
     
     // here you can do advanced stuff with boundaries.
     fun void wrap() {
-        initialValue => value;
         // nothing;
     }
 }

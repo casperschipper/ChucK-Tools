@@ -19,10 +19,12 @@ public class ST_boundedWalk extends ST_walk {
         
         if (value < _min) {
             _max => value;
+            return;
         }
         
         if (value > _max) {
             _min => value;
+            return;
         }
     }
     

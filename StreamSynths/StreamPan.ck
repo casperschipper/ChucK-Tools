@@ -1,5 +1,5 @@
 public class StreamPan extends Chubgraph {
-    inlet => PanBin8 p;
+    inlet => Pan8 p => dac;
 
     null @=> Stream @ stream;
     null @=> Stream @ timer;
