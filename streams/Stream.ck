@@ -3,13 +3,8 @@ public class Stream
     -1 => int size;
     0 => int index;
     "Stream" @=> string _type;
-    
-    fun Stream supercopy() {
-        Stream clone;
-        size => clone.size;
-        index => clone.index;
-        return clone;
-    }
+    false => int _latchMode;
+    Math.sqrt(-1) => static float nan; // use this for finished finite streams ?
     
     fun string type() {
         return _type;

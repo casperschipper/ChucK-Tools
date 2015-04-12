@@ -178,6 +178,9 @@ public class st {
     }
     
     fun static ST_count count(int maxArg) {
+        if (maxArg < 1) {
+            1 => maxArg;
+        }
         return ST_count.make(maxArg);
     }
     
@@ -274,6 +277,26 @@ public class st {
         return walk;
     }
     
+    fun static ST_walkList walkList(float list[]) {
+        ST_walkList walk;
+        walk.init(list,choice(-1,1));
+        return walk;
+    }
+    
+    fun static ST_walkList walkList(float list[],Stream stepper) {
+        ST_walkList walk;
+        walk.init(list,stepper);
+        return walk;
+    }
+
+    
+    fun static ST_walkList walkList(int values[],Stream step) {
+        ST_walkList walk;
+        walk.list(cs.int2float(values));
+        walk.step(step);
+        return walk;
+    }
+    
     fun static ST_div div (Stream a,Stream b) {
         return (new ST_div).init(a,b) $ ST_div;
     }
@@ -362,18 +385,7 @@ public class st {
         return walk;
     }
     
-    fun static ST_walkList walkList(float list[]) {
-        ST_walkList walk;
-        walk.init(list,choice(-1,1));
-        return walk;
-    }
-    
-    fun static ST_walkList walkList(float list[],Stream stepper) {
-        ST_walkList walk;
-        walk.init(list,stepper);
-        return walk;
-    }
-    
+
     fun static ST_bus bus(Stream stream,string name) {
         return (new ST_bus).init(stream,name);
     }

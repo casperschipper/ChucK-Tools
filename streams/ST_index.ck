@@ -70,7 +70,13 @@ public class ST_index extends Stream {
             if (st_table[index].more()) {
                 return st_table[index].next();
             }
-            return st_table[safeIndex()].next();
+            32768 => int tries;
+            safeIndex() => index;
+            while( !(st_table[index].more()) && tries ) {
+                safeIndex() => index;
+                tries--;
+            } 
+            return st_table[index].next();
         }
         
         return table[safeIndex()];

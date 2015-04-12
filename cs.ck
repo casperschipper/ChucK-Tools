@@ -1100,6 +1100,16 @@ public class cs
         for (int i;i<size;++i) gain => ugen[i].gain;
     }
     
+    fun static void normalize(float seq[]) {
+        float max;
+        for (int i;i<seq.cap();i++) {
+            Math.max(max,Std.fabs(seq[i])) => max;
+        }
+        for (int i;i<seq.cap();i++) {
+            seq[i] / max => seq[i];
+        }
+    }
+    
     fun static void normalize(Chubgraph ugen[]) {
         ugen.cap() => int size;
         1.0 / size => float gain;
@@ -1129,6 +1139,26 @@ public class cs
         }
         return output;
     }
+    
+    fun static float [] sine(int size,float sine_weights[]) {
+        sine_weights.cap() => int w_size;
+        float output[size];
+        float phase;
+        float sum;
+        
+        1.0 / size => float phase_incr;
+        
+        for (int i;i<size;i++) {
+            0.0 => sum;
+            for (int j;j<w_size;j++) {
+                sine_weights[j] * Math.sin((j+1)*phase*pi*2.0) +=> sum;
+            }
+            sum => output[i];
+            phase_incr +=> phase;
+        }
+        normalize(output);
+        return output;
+    }       
 }
 
 

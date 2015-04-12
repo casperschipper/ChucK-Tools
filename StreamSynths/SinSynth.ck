@@ -3,6 +3,7 @@ public class SinSynth extends Chubgraph {
     
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
+    null @=> Stream @ _amp;
     
     0 => int loop;
     
@@ -21,6 +22,14 @@ public class SinSynth extends Chubgraph {
         return this;
     }
     
+    fun SinSynth init(Stream value,Stream dura,Stream amp) {
+        value @=> _value;
+        dura @=> _dura;
+        amp @=> _amp;
+        spork ~ play();
+        return this;
+    }
+    
     fun SinSynth timeStep(dur timeStep) {
         timeStep => _timeStep;
         return this;
@@ -29,6 +38,9 @@ public class SinSynth extends Chubgraph {
     fun void play() {
         1 => loop;
         while(loop) {
+            if (_amp != null) {
+                _amp.next() => c.gain;
+            }
             _value.next() => c.freq;
             _dura.next() * _timeStep => now;
         }
