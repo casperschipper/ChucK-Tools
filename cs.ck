@@ -41,7 +41,7 @@ public class cs
         return choosef(array);
     }
 
-    fun int w_choice(int list[][])
+    fun static int w_choice(int list[][])
     {
         int sum;
         for (int i;i<list.size();i++) {
@@ -58,7 +58,7 @@ public class cs
         return list[list.size()-1][0];
     }
 
-    fun float w_choicef(float list[][]) {
+    fun static float w_choicef(float list[][]) {
         float sum;
         for (int i;i<list.size();i++) {
             list[i][1] +=> sum;

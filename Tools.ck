@@ -1,4 +1,4 @@
-me.sourceDir() + "/" @=> string toolsPath;
+<<<me.sourceDir()>>> + "/" @=> string toolsPath;
 
 Machine.add(toolsPath + "Index");
 Machine.add(toolsPath + "Mod.ck");
@@ -61,6 +61,7 @@ Machine.add(toolsPath + "Streams/ST_scale2");
 Machine.add(toolsPath + "Streams/ST_line");
 Machine.add(toolsPath + "Streams/ST_walk");
 Machine.add(toolsPath + "Streams/ST_walkList");
+Machine.add(toolsPath + "Streams/ST_smartWalkList");
 Machine.add(toolsPath + "Streams/ST_mupWalk");
 Machine.add(toolsPath + "Streams/ST_maskedChoice");
 Machine.add(toolsPath + "Streams/ST_boundedMupWalk");

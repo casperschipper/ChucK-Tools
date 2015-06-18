@@ -296,6 +296,14 @@ public class st {
         walk.step(step);
         return walk;
     }
+
+    fun static ST_smartWalkList smartWalkList(float values[],Stream step,Stream direction) {
+        return (new ST_smartWalkList).init(values,step,direction);
+    }
+
+    fun static ST_smartWalkList smartWalkList(int values[],Stream step,Stream direction) {
+        return (new ST_smartWalkList).init(values,step,direction);
+    }
     
     fun static ST_div div (Stream a,Stream b) {
         return (new ST_div).init(a,b) $ ST_div;
