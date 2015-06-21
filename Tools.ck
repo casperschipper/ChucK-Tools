@@ -83,6 +83,7 @@ Machine.add(toolsPath + "Streams/ST_weightStream");
 Machine.add(toolsPath + "Streams/ST_trigger");
 Machine.add(toolsPath + "Streams/ST_triggerSend");
 Machine.add(toolsPath + "Streams/ST_mtof");
+Machine.add(toolsPath + "Streams/ST_sine");
 
 Machine.add(toolsPath + "StreamSynths/LineSynth");
 Machine.add(toolsPath + "StreamSynths/PulseSynth");

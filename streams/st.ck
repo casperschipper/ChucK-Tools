@@ -462,6 +462,15 @@ public class st {
     fun static ST_indexLin scan(float arrayArg[],Stream sizeArg,Stream offsetArg) {
         return (new ST_indexLin).init(arrayArg,sum(count2(sizeArg),offsetArg));
     }
+    
+    fun static ST_sine sine(float freqArg) {
+        return (new ST_sine).init(freqArg);
+    }
+    
+    fun static ST_sine sine(int freqArg) {
+        return (new ST_sine).init(freqArg $ float);
+    }
+        
 }
 
 [st.st(1)] @=> st.globals;

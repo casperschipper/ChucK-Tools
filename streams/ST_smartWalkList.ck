@@ -69,7 +69,7 @@ public class ST_smartWalkList extends Stream {
 
         // boundary conditions
         if (st_direction != null) {
-            if (index < 0 || index > (size - 1)) {
+            if (index == 0 || index == (size - 1)) {
                 if (st_direction.nextInt() > 0) {
                     1 => direction;
                 } else {

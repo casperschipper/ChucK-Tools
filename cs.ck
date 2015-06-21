@@ -1158,7 +1158,63 @@ public class cs
         }
         normalize(output);
         return output;
-    }       
+    }      
+    
+    fun static float [] diffs( float seq[] ) {
+        seq.cap() => int amount;   
+        sumOfIntegers(amount-1) => int resultSize;
+        
+        if (resultSize > 65536) {
+            <<<"this is very big, don't bother">>>;
+            return [0.];
+        }
+        
+        float result[resultSize-1];
+        
+        0 => int idx;
+        
+        for (int i;i < amount;i++) {
+            for ((i+1) => int j;j < amount;j++) {
+                seq[j] - seq[i] => result[idx++];
+            }
+        }
+        return result;
+    }
+    
+    fun static float [] sums( float seq[] ) {
+        seq.cap() => int amount;   
+        sumOfIntegers(amount-1) => int resultSize;
+       
+        
+        float result[resultSize-1];
+        
+        0 => int idx;
+        
+        for (int i;i < amount;i++) {
+            for ((i+1) => int j;j < amount;j++) {
+                seq[j] + seq[i] => result[idx++];
+            }
+        }
+        return result;
+    }
+    
+    fun static int factorial ( int x ) {
+        1 => int result;
+        for (1 => int count;count <= x;count++) {
+            count *=> result;
+        }
+        return result;
+    }
+    
+    fun static int sumOfIntegers( int x ) {
+        1 => int result;
+        for (1 => int count;count <= x;count++) {
+            count +=> result;
+        }
+        return result;
+    }
+            
+            
 }
 
 
