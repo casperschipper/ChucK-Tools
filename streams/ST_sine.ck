@@ -1,16 +1,17 @@
-// draft !
-
-class ST_sine extends Stream {
-    Stream @ st_phase;
-    
+public class ST_sine extends Stream {    
     2.0 * pi => float twopi;
     
-    fun float next() {
-        return Math.sin(st_phase.next() * twopi);
-    }
+    float freq;
     
-    fun ST_sine init(Stream arg) {
-        arg @=> st_phase;
+    fun ST_sine init (float arg) {
+        arg => freq;
         return this;
     }
+    
+    fun float next() {
+        now / second => float phase;
+        return Math.sin(phase * freq * twopi);
+    }
 }
+
+    
