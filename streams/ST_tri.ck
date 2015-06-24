@@ -40,7 +40,4 @@ public class ST_tri extends Stream {
     }
 }
         
-        
-(new ST_tri).init(0.5).test();
-
-hour => now;
+    
