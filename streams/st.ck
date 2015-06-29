@@ -277,6 +277,22 @@ public class st {
         return walk;
     }
     
+    fun static ST_bouncyWalk bouncyWalk(float minArg,float maxArg,Stream stepArg) {
+        ST_bouncyWalk walk;
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.setStep(stepArg);
+        return walk;
+    }
+    
+    fun static ST_bouncyWalk bouncyWalk(int minArg,int maxArg,Stream stepArg) {
+        ST_bouncyWalk walk;
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.setStep(stepArg);
+        return walk;
+    }
+    
     fun static ST_walkList walkList(float list[]) {
         ST_walkList walk;
         walk.init(list,choice(-1,1));

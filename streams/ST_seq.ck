@@ -128,4 +128,15 @@ public class ST_seq extends Stream
         stream.init(_sequence);
         return stream;
     }
+    
+    fun ST_seq seq(float arg[]) {
+        arg @=> sequence;
+        null @=> st_sequence;
+        return this;
+    }
+    
+    fun ST_seq seq(Stream arg[]) {
+        arg @=> st_sequence;
+        return this;
+    }
 }
