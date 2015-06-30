@@ -113,6 +113,14 @@ public class cs
         T - (now % T) => now;
     }
     
+    fun static void sync(float t) {
+        sync(t*second);
+    }
+    
+    fun static void sync(int t) {
+        sync(t*second);
+    }
+    
     fun static float choosef( float array[] )
     {
         return array[Math.random()%array.size()];
@@ -1158,7 +1166,38 @@ public class cs
         }
         normalize(output);
         return output;
-    }      
+    }   
+    
+    fun static float [] perc( int size, float power ) {
+        float result[size];
+        if (power < 1) {
+            <<<"power < 1, using power = 1.0">>>;
+            1 => power;
+        }
+        1.0 / size => float delta;
+        for (0 => int i; i < size ; ++i) {
+            Math.pow( 1.0 - (delta * i) , power ) => result[i];
+        }
+        return result;
+    }
+    
+    fun static float [] perc( int size ) {
+        return perc( size, 2.7182818284 );
+    }
+    
+    fun static float [] mupArray(float array1[], float array2[]) {
+        float result[array1.cap()];
+        if (array1.cap() != array2.cap()) {
+            <<<"wrong sizes!">>>;
+            return result;
+        }
+        for (0 => int i; i<array1.cap() ; ++i) {
+            array1[i] * array2[i] => result[i];
+        }
+        return result;
+    }
+            
+            
     
     fun static float [] diffs( float seq[] ) {
         seq.cap() => int amount;   

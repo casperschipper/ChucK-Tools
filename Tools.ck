@@ -90,6 +90,7 @@ Machine.add(toolsPath + "StreamSynths/LineSynth");
 Machine.add(toolsPath + "StreamSynths/PulseSynth");
 Machine.add(toolsPath + "StreamSynths/StepSynth");
 Machine.add(toolsPath + "StreamSynths/FMSynth");
+Machine.add(toolsPath + "StreamSynths/PingSynth");
 Machine.add(toolsPath + "StreamSynths/PulsePanSynth");
 Machine.add(toolsPath + "StreamSynths/StepPanSynth");
 Machine.add(toolsPath + "StreamSynths/SinSynth");

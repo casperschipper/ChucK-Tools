@@ -184,6 +184,10 @@ public class st {
         return ST_count.make(maxArg);
     }
     
+    fun static ST_count count(Stream max) {
+        return (new ST_count).init(max);
+    }
+    
     fun static ST_count2 count2(int maxArg) {
         return (new ST_count2).init(maxArg,true);
     }

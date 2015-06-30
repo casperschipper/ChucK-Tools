@@ -2,52 +2,53 @@ public class ST_walk extends Stream {
     null @=> Stream @ st_step;
     
     0 => float initialValue;
-    float value;
-    float step;
+    float _value;
+    float _step;
     
-    fun ST_walk setStep(Stream argStep) {
-        argStep @=> st_step;
+    fun ST_walk step(Stream stepArg) {
+        stepArg @=> st_step;
         return this;
     }
     
-    fun ST_walk setStep(float argStep) {
-        argStep @=> step;
+    fun ST_walk setStep(float stepArg) {
+        null @=> st_step;
+        stepArg @=> _step;
         return this;
     }
     
-    fun ST_walk init(float _value,float _step) {
-        _value => value => initialValue;
-        _step => step;
+    fun ST_walk init(float valueArg,float stepArg) {
+        valueArg => _value => initialValue;
+        stepArg => _step;
         null @=> st_step;
         return this;
     }
     
-    fun ST_walk init(float _value,Stream _step) {
-        _value => value => initialValue;
-        _step @=> st_step;
+    fun ST_walk init(float valueArg,Stream stepArg) {
+        valueArg => value => initialValue;
+        stepArg @=> st_step;
         return this;
     }
     
-    fun static ST_walk make(float _value,float _step) {
+    fun static ST_walk make(float valueArg,float stepArg) {
         ST_walk stream;
-        stream.init(_value,_step);
+        stream.init(valueArg,stepArg);
         return stream;
     }
     
-    fun static ST_walk make(float _value,Stream _step) {
+    fun static ST_walk make(float valueArg,Stream stepArg) {
         ST_walk stream;
-        stream.init(_value,_step);
-        _step @=> stream.st_step;
+        stream.init(valueArg,stepArg);
+        stepArg @=> stream.st_step;
         return stream;    
     }
     
     fun float next() {
         if (st_step != null) {
-            st_step.next() => step;
+            st_step.next() => _step;
         }
-        step + value => value;
+        _step + _value => _value;
         wrap();
-        return value;
+        return _value;
     }
     
     // here you can do advanced stuff with boundaries.

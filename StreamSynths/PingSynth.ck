@@ -1,4 +1,4 @@
-class PingSynth extends Chubgraph {
+public class PingSynth extends Chubgraph {
     // a synth that plays a percussively enveloped sinewave.
     Ping ping => outlet;
     null @=> Stream @ _freq;
@@ -31,7 +31,7 @@ class PingSynth extends Chubgraph {
     }
 }
 
-
+/*
 public class SquareThing extends Chubgraph {
     fun void trigger(float frq,dur dura,float amp) {
         spork ~ ping(frq,dura,amp);
@@ -49,6 +49,7 @@ public class SquareThing extends Chubgraph {
 
 class SquareSynth extends PingSynth {
 }
+
     
     
 
@@ -71,4 +72,5 @@ st.st(0.3)
 );
 
 hour => now;
+*/
         
