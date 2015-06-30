@@ -242,7 +242,7 @@ public class st {
         ST_boundedWalk walk;
         walk.min(minArg);
         walk.max(maxArg);
-        walk.setStep(step);
+        walk.step(step);
         return walk;
     }
     
@@ -254,7 +254,7 @@ public class st {
         ST_boundedWalk walk;
         walk.min(minArg);
         walk.max(maxArg);
-        walk.setStep(step);
+        walk.step(step);
         return walk;
     }
    
@@ -266,7 +266,7 @@ public class st {
         ST_boundedMupWalk walk;
         walk.min(minArg);
         walk.max(maxArg);
-        walk.setStep(stepArg);
+        walk.step(stepArg);
         return walk;
     }
     
@@ -274,6 +274,15 @@ public class st {
         return boundedMupWalk(st(minArg),st(maxArg),stepArg);
     }
     
+    fun static ST_boundedMupResetWalk boundedMupResetWalk(float minArg,float maxArg,Stream stepArg,Stream resetArg) {
+        ST_boundedMupResetWalk walk;
+        walk.step(stepArg);
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.reset(resetArg);
+        return walk;
+    }
+         
     fun static ST_walkList walkList(Stream values[],Stream step) {
         ST_walkList walk;
         walk.list(values);
@@ -285,7 +294,7 @@ public class st {
         ST_bouncyWalk walk;
         walk.min(minArg);
         walk.max(maxArg);
-        walk.setStep(stepArg);
+        walk.step(stepArg);
         return walk;
     }
     
@@ -293,7 +302,7 @@ public class st {
         ST_bouncyWalk walk;
         walk.min(minArg);
         walk.max(maxArg);
-        walk.setStep(stepArg);
+        walk.step(stepArg);
         return walk;
     }
     

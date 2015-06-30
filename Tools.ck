@@ -65,6 +65,7 @@ Machine.add(toolsPath + "Streams/ST_smartWalkList");
 Machine.add(toolsPath + "Streams/ST_mupWalk");
 Machine.add(toolsPath + "Streams/ST_maskedChoice");
 Machine.add(toolsPath + "Streams/ST_boundedMupWalk");
+Machine.add(toolsPath + "Streams/ST_boundedMupResetWalk");
 Machine.add(toolsPath + "Streams/ST_boundedWalk");
 Machine.add(toolsPath + "Streams/ST_bouncyWalk");
 Machine.add(toolsPath + "Streams/ST_operator");

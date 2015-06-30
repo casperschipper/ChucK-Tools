@@ -12,10 +12,10 @@ public class ST_boundedMupResetWalk extends ST_boundedMupWalk {
     fun void wrap() {
         if (st_min != null) st_min.next() => _min;
         if (st_max != null) st_max.next() => _max;
-        if (value < Math.min(_min,_max)) {
+        if (_value < Math.min(_min,_max)) {
             1 => shouldReset;
         }
-        if (value > Math.max(_min,_max)) {
+        if (_value > Math.max(_min,_max)) {
             1 => shouldReset;
         }
         if (shouldReset) {
@@ -23,7 +23,7 @@ public class ST_boundedMupResetWalk extends ST_boundedMupWalk {
             if (st_reset != null) {
                 st_reset.next() => resetValue;
             }
-            resetValue => value;
+            resetValue => _value;
         }       
     }
     

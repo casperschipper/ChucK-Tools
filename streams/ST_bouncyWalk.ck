@@ -13,25 +13,25 @@ public class ST_bouncyWalk extends ST_boundedWalk {
             tmp => _min;
         }
         
-        if (value < _min) {
+        if (_value < _min) {
             1 => direction;
-            _min => value;
+            _min => _value;
             return;
         }
         
-        if (value > _max) {
+        if (_value > _max) {
             -1 => direction;
-            _max => value;
+            _max => _value;
             return;
         }
     }
     
     fun float next() {
         if (st_step != null) {
-            st_step.next() => step;
+            st_step.next() => _step;
         }
-        (step*direction) + value => value;
+        (_step*direction) + _value => _value;
         wrap();
-        return value;
+        return _value;
     }
 }

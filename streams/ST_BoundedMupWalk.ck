@@ -10,14 +10,14 @@ public class ST_boundedMupWalk extends ST_mupWalk {
     fun void wrap() {
         if (st_min != null) st_min.next() => _min;
         if (st_max != null) st_max.next() => _max;
-        if (value == 0) {
-            _min => value;
+        if (_value == 0) {
+            _min => _value;
         }
-        if (value < Math.min(_min,_max)) {
-            value * 2 => value;
+        if (_value < Math.min(_min,_max)) {
+            _value * 2 => _value;
         }
-        if (value > Math.max(_min,_max)) {
-            value * 0.5 => value;
+        if (_value > Math.max(_min,_max)) {
+            _value * 0.5 => _value;
         }
     }
     

@@ -10,7 +10,7 @@ public class ST_walk extends Stream {
         return this;
     }
     
-    fun ST_walk setStep(float stepArg) {
+    fun ST_walk step(float stepArg) {
         null @=> st_step;
         stepArg @=> _step;
         return this;
@@ -24,7 +24,7 @@ public class ST_walk extends Stream {
     }
     
     fun ST_walk init(float valueArg,Stream stepArg) {
-        valueArg => value => initialValue;
+        valueArg => _value => initialValue;
         stepArg @=> st_step;
         return this;
     }

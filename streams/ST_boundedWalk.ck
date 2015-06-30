@@ -17,13 +17,13 @@ public class ST_boundedWalk extends ST_walk {
             tmp => _min;
         }
         
-        if (value < _min) {
-            _max => value;
+        if (_value < _min) {
+            _max => _value;
             return;
         }
         
-        if (value > _max) {
-            _min => value;
+        if (_value > _max) {
+            _min => _value;
             return;
         }
     }

@@ -1,10 +1,10 @@
 public class ST_mupWalk extends ST_walk {  
     fun float next() {
         if (st_step != null) {
-            st_step.next() => step;
+            st_step.next() => _step;
         }
-        step * value => value;
+        _step * _value => _value;
         wrap();
-        return value;
+        return _value;
     }
 }
