@@ -76,6 +76,8 @@ Machine.add(toolsPath + "Streams/ST_sub");
 Machine.add(toolsPath + "Streams/ST_max");
 Machine.add(toolsPath + "Streams/ST_min");
 Machine.add(toolsPath + "Streams/ST_floor");
+Machine.add(toolsPath + "Streams/ST_greater");
+
 Machine.add(toolsPath + "Streams/ST_q");
 Machine.add(toolsPath + "Streams/ST_series");
 Machine.add(toolsPath + "Streams/ST_bus");
@@ -94,11 +96,15 @@ Machine.add(toolsPath + "StreamSynths/FMSynth");
 Machine.add(toolsPath + "StreamSynths/PingSynth");
 Machine.add(toolsPath + "StreamSynths/PulsePanSynth");
 Machine.add(toolsPath + "StreamSynths/StepPanSynth");
+Machine.add(toolsPath + "StreamSynths/LinePanSynth");
 Machine.add(toolsPath + "StreamSynths/SinSynth");
+Machine.add(toolsPath + "StreamSynths/SquareSynth");
 Machine.add(toolsPath + "StreamSynths/StreamPan");
 Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamBPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamLPFilter");
+
+Machine.add(toolsPath + "StreamSynths/MidiStream");
 
 Machine.add(toolsPath + "StreamSynths/StreamNonLinFilter");
 

@@ -944,7 +944,7 @@ public class cs
     
     fun static float mtof(float midi)
     {
-        return 440 * Math.pow(2,((midi-64)/12.0));
+        return 440 * Math.pow(2,((midi-69)/12.0));
     }
     
     fun static dur mtod(float midi) 
@@ -959,7 +959,7 @@ public class cs
     
     fun static float ftom(float freq) 
     { 
-        return (12 * Math.log2(freq/440.0)) + 69;
+        return (12 * Math.log2(freq/440.0)) + 69.0;
     }
     
     fun static float dtom(dur dura) 

@@ -1,7 +1,6 @@
-public class StepPanSynth extends Chubgraph {
-    Step i => Safe safe; PanFour p;
-    p.connect(safe);
-        
+public class LinePanSynth extends Chubgraph {
+    Step unit => Envelope i => Pan4 p;
+    1 => unit.next;
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
     null @=> Stream @ _pan;
@@ -10,13 +9,13 @@ public class StepPanSynth extends Chubgraph {
     
     samp => dur _timeStep;
     
-    fun static StepPanSynth make(Stream value,Stream dura,Stream pan) {
-        StepPanSynth synth;
+    fun static LinePanSynth make(Stream value,Stream dura,Stream pan) {
+        LinePanSynth synth;
         synth.init(value,dura,pan);
         return synth;
     }
     
-    fun StepPanSynth init(Stream value,Stream dura,Stream pan) {
+    fun LinePanSynth init(Stream value,Stream dura,Stream pan) {
         value @=> _value;
         dura @=> _dura;
         pan @=> _pan;
@@ -24,7 +23,7 @@ public class StepPanSynth extends Chubgraph {
         return this;
     }
     
-    fun StepPanSynth timeStep(dur timeStep) {
+    fun LinePanSynth timeStep(dur timeStep) {
         timeStep => _timeStep;
         return this;
     }
@@ -32,20 +31,15 @@ public class StepPanSynth extends Chubgraph {
     fun void play() {
         1 => loop;
         while(loop) {
-            _value.next() => i.next;
+            _value.next() => i.target;
             _pan.next() => p.pan;
-            _dura.next() * _timeStep => now;
+            _dura.next() * _timeStep => i.duration => now;
         }
     }
     
     fun void stop() {
         0 => loop;
-    }     
-    
-    fun float gain(float arg) {
-        arg => safe.gain;
-        return arg;
-    }      
+    }       
 }
 
 

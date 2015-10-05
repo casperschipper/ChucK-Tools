@@ -49,6 +49,10 @@ public class st {
         return ST_seq.make([a,b]);
     }
     
+    fun static ST_seq seq(Stream a,Stream b) {
+        return ST_seq.make([a,b]);
+    }
+    
     fun static ST_series series(float seq[]) {
         ST_series stream;
         stream.init(seq);
@@ -499,6 +503,19 @@ public class st {
     fun static ST_sine sine(int freqArg) {
         return (new ST_sine).init(freqArg $ float);
     }
+    
+    fun static ST_greater greater(Stream a,Stream b) {
+        return (new ST_greater).init(a,b) $ ST_greater;
+    }
+    
+    fun static ST_line phasor(float wavelength) {
+        return line(seq(-1,1),seq(wavelength,0));
+    }
+    
+    fun static ST_line phasor(Stream wavelength) {
+        return line(seq(-1,1),seq(wavelength,st(0)));
+    }
+    
         
 }
 

@@ -13,13 +13,13 @@ public class ST_bouncyWalk extends ST_boundedWalk {
             tmp => _min;
         }
         
-        if (_value < _min) {
+        if (_value <= _min) {
             1 => direction;
             _min => _value;
             return;
         }
         
-        if (_value > _max) {
+        if (_value >= _max) {
             -1 => direction;
             _max => _value;
             return;

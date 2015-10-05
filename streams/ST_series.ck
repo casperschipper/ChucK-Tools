@@ -57,7 +57,7 @@ public class ST_series extends Stream
         
 
     fun int more() {
-        return indexer.more();
+        return indexer.more() && _holdMode;
     }
     
     fun float next() {
