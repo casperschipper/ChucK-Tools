@@ -242,6 +242,12 @@ public class st {
         return stream;
     }
     
+    fun static ST_mupWalk mupWalk(float value,Stream step) {
+        ST_mupWalk walk;
+        walk.init(value,step);
+        return walk;
+    }
+    
     fun static ST_boundedWalk boundedWalk(Stream minArg,Stream maxArg,Stream step) {
         ST_boundedWalk walk;
         walk.min(minArg);
@@ -302,14 +308,6 @@ public class st {
         return walk;
     }
     
-    fun static ST_bouncyWalk bouncyWalk(int minArg,int maxArg,Stream stepArg) {
-        ST_bouncyWalk walk;
-        walk.min(minArg);
-        walk.max(maxArg);
-        walk.step(stepArg);
-        return walk;
-    }
-    
     fun static ST_walkList walkList(float list[]) {
         ST_walkList walk;
         walk.init(list,choice(-1,1));
@@ -362,6 +360,10 @@ public class st {
     fun static ST_sum sum(int a,Stream b) {
         return (new ST_sum).init(a,b) $ ST_sum;
     }
+    fun static ST_sum sum(Stream a,float b) {
+        return (new ST_sum).init(a,b) $ ST_sum;
+    } 
+   
     fun static ST_sub sub(Stream a,Stream b) {
         return (new ST_sub).init(a,b) $ ST_sub;
     }
@@ -412,6 +414,12 @@ public class st {
     }
     fun static ST_q q(Stream a,float b) {
         return (new ST_q).init(a,b) $ ST_q;
+    }
+    
+    fun static ST_walk walk(float start,Stream step) {
+        ST_walk stream;
+        stream.init(start,step);
+        return stream;
     }
     
     fun static ST_walkList lemming(Stream list[],Stream holdTimes) {
@@ -488,6 +496,10 @@ public class st {
         return (new ST_mtof).init(arg);
     }
     
+    fun static ST_mtosamps mtosamps(Stream arg) {
+        return (new ST_mtosamps).init(arg);
+    }
+    
     fun static ST_floor floor(Stream arg) {
         return (new ST_floor).init(arg);
     }
@@ -508,6 +520,47 @@ public class st {
         return (new ST_greater).init(a,b) $ ST_greater;
     }
     
+    fun static ST_bitAnd bitAnd(Stream a,Stream b) {
+        return (new ST_bitAnd).init(a,b) $ ST_bitAnd;
+    }
+    
+    fun static ST_bitAnd bitAnd(Stream a,int b) {
+        return (new ST_bitAnd).init(a,b) $ ST_bitAnd;
+    }
+    
+    fun static ST_bitOr bitOr(Stream a,Stream b) {
+        return (new ST_bitOr).init(a,b) $ ST_bitOr;
+    }
+    
+    fun static ST_bitOr bitOr(Stream a,int b) {
+        return (new ST_bitOr).init(a,b) $ ST_bitOr;
+    }
+    
+    fun static ST_bitXor bitXor(Stream a,Stream b) {
+        return (new ST_bitXor).init(a,b) $ ST_bitXor;
+    }
+    
+    fun static ST_bitXor bitXor(Stream a,int b) {
+        return (new ST_bitXor).init(a,b) $ ST_bitXor;
+    }
+    
+    fun static ST_equal equal(Stream a,Stream b) {
+        return (new ST_equal).init(a,b) $ ST_equal;
+    }
+    
+    fun static ST_equal equal(Stream a,int b) {
+        return (new ST_equal).init(a,b) $ ST_equal;
+    }
+        
+    fun static ST_equal bitMask(Stream a,int b) {
+        return equal(bitAnd(a,b),b) ;
+    }
+    
+    fun static ST_equal bitMask(Stream a,Stream b) {
+        return equal(bitAnd(a,b),b) ;
+    }
+    
+    
     fun static ST_line phasor(float wavelength) {
         return line(seq(-1,1),seq(wavelength,0));
     }
@@ -516,7 +569,40 @@ public class st {
         return line(seq(-1,1),seq(wavelength,st(0)));
     }
     
-        
+    fun static ST_divider divider(float dividend,float divisor) {
+        return (new ST_divider).dividend(dividend).divisor(divisor);
+    }
+    
+    fun static ST_divider divider(Stream dividend,float divisor) {
+        return (new ST_divider).dividend(dividend).divisor(divisor);
+    }
+    
+    fun static ST_divider divider(Stream dividend,Stream divisor) {
+        return (new ST_divider).dividend(dividend).divisor(divisor);
+    }
+    
+    fun static ST_divider divider(float dividend,Stream divisor) {
+        return (new ST_divider).dividend(dividend).divisor(divisor);
+    }  
+    
+    fun static ST_sum scale(Stream input,float range,float offset) {
+        return sum( mup(input,range), offset );
+    }
+    
+    fun static ST_sum scale(Stream input,Stream range,float offset) {
+        return sum( mup(input,range), offset );
+    }
+    
+    fun static ST_sum scale(Stream input,Stream range,Stream offset) {
+        return sum( mup(input,range), offset );
+    }
+    fun static ST_sum scale(Stream input,float range,Stream offset) {
+        return sum( mup(input,range), offset );
+    }
+    
+    fun static ST_ugen ugen(UGen arg) {
+        return (new ST_ugen).init(arg);
+    }
 }
 
 [st.st(1)] @=> st.globals;

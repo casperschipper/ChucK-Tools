@@ -1,15 +1,15 @@
-class ST_loop extends Stream {    
+public class ST_loop extends Stream {    
     // ST_loop, generates a list of values using Source of Length, repeats that Repeats times.
     // After the list has been repeated, a new list of values gets generated using source etc...
     null @=> Stream @ st_source;
     null @=> Stream @ st_repeats;
     null @=> Stream @ st_length;
 
-    float _source[0];
+    float _source[1024];
     0 => int _repeats;
     0 => int _length;
     
-    0 => int recordLeft;
+    0 => int _recordLeft;
     
     fun static ST_loop make(Stream sourceArg,Stream repeatsArg,Stream lengthArg) {
         return (new ST_loop).init(sourceArg,repeatsArg,lengthArg);
@@ -36,7 +36,8 @@ class ST_loop extends Stream {
             _repeats--;
             if (_repeats < 1) newLoop();
         }
-        if (recordLeft--) {
+        if (_recordLeft) {
+            _recordLeft--;
             if (st_source != null) st_source.next() => _source[index];
         }
         index => int tmpIdx;
@@ -55,9 +56,11 @@ class ST_loop extends Stream {
         
         _source.size(_length);
 
-        _length => recordLeft;
+        _length => _recordLeft;
     }
 }
+
+
 
 
 

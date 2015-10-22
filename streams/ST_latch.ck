@@ -22,15 +22,17 @@ public class ST_latch extends Stream
     }
 
     fun int more() {
+        if (!source.more()) {
+            repLeft--;
+        }
         if (repLeft > 0) {
             return true;
         } 
-        reps.nextInt() => repLeft;    
+        reps.nextInt() => repLeft;  
         return false;
     }
     
     fun float next() {
-        repLeft--;
         return source.next();
     }
 }

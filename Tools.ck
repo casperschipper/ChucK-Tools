@@ -1,4 +1,4 @@
-<<<me.sourceDir()>>> + "/" @=> string toolsPath;
+ <<<me.sourceDir()>>> + "/" @=> string toolsPath;
 
 Machine.add(toolsPath + "Index");
 Machine.add(toolsPath + "Mod.ck");
@@ -54,7 +54,7 @@ Machine.add(toolsPath + "Streams/ST_vase");
 Machine.add(toolsPath + "Streams/ST_weave");
 Machine.add(toolsPath + "Streams/ST_tri");
 //Machine.add(toolsPath + "Streams/ST_loop");
-Machine.add(toolsPath + "Streams/ST_loop2");
+Machine.add(toolsPath + "Streams/ST_loop3");
 Machine.add(toolsPath + "Streams/ST_timed");
 Machine.add(toolsPath + "Streams/ST_scale");
 Machine.add(toolsPath + "Streams/ST_scale2");
@@ -77,6 +77,15 @@ Machine.add(toolsPath + "Streams/ST_max");
 Machine.add(toolsPath + "Streams/ST_min");
 Machine.add(toolsPath + "Streams/ST_floor");
 Machine.add(toolsPath + "Streams/ST_greater");
+Machine.add(toolsPath + "Streams/ST_bitAnd");
+Machine.add(toolsPath + "Streams/ST_bitOr");
+Machine.add(toolsPath + "Streams/ST_bitXor");
+Machine.add(toolsPath + "Streams/ST_equal");
+
+Machine.add(toolsPath + "Streams/ST_bitShiftL");
+Machine.add(toolsPath + "Streams/ST_bitShiftR");
+
+Machine.add(toolsPath + "Streams/ST_divider");
 
 Machine.add(toolsPath + "Streams/ST_q");
 Machine.add(toolsPath + "Streams/ST_series");
@@ -87,7 +96,9 @@ Machine.add(toolsPath + "Streams/ST_weightStream");
 Machine.add(toolsPath + "Streams/ST_trigger");
 Machine.add(toolsPath + "Streams/ST_triggerSend");
 Machine.add(toolsPath + "Streams/ST_mtof");
+Machine.add(toolsPath + "Streams/ST_mtosamps");
 Machine.add(toolsPath + "Streams/ST_sine");
+Machine.add(toolsPath + "Streams/ST_ugen");
 
 Machine.add(toolsPath + "StreamSynths/LineSynth");
 Machine.add(toolsPath + "StreamSynths/PulseSynth");

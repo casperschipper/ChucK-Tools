@@ -8,6 +8,25 @@ public class cs
         }
     }
     
+    fun static float [] reversef(float seq[]) {
+        seq.cap() - 1 => int n => int size;
+        float result[seq.cap()];
+        while (n--) {
+            seq[size-n] => result[n];
+        }
+        return result;
+    }
+    
+    fun static int [] reverse(int seq[]) {
+        seq.cap() - 1 => int n => int size;
+        int result[seq.cap()];
+        while (n--) {
+            seq[size-n] => result[n];
+        }
+        return result;
+    }
+            
+    
     fun static void loadBuffer(Buffer buf,float array[]) {
         array.cap() => int size;
         size * samp => buf.max;
@@ -291,6 +310,10 @@ public class cs
             value + step => value => output[i];
         }
         return output;
+    }
+    
+    fun static float [] fillgeo(int steps,float low,float high) {
+        return geometric(low,high,steps);
     }
     
     fun static float[] geo (float low,float high,int steps) {
@@ -719,6 +742,15 @@ public class cs
             seq[i] +=> x;
         return x;
     }
+    
+    fun static float [] offsetArray(float arrayArg[],float offsetArg) {
+        float result[arrayArg.cap()];
+        for (int i;i<arrayArg.cap();i++) {
+            arrayArg[i] + offsetArg => result[i];
+        }
+        return result;
+    }
+            
     
     fun static int quickSort(int arr[], int elements)
     {    
@@ -1196,6 +1228,14 @@ public class cs
         }
         return result;
     }
+    
+    fun static float [] mupArray(float arrArg[],float mupArg) {
+        float result[arrArg.cap()];
+        for (int i;i<arrArg.cap();i++) {
+            arrArg[i] * mupArg => result[i];
+        }
+        return result;
+    }
             
             
     
@@ -1252,8 +1292,24 @@ public class cs
         }
         return result;
     }
-            
-            
+    
+    fun static int [] int2binary( int n ) {
+        int result[31];
+        int c,k;
+        for (0 => c;c<result.cap();c++) {
+            n >> c => k;
+            if (k & 1) {
+                1 => result[c];
+            } else {
+                0 => result[c];
+            }
+        }
+        return result;
+    }
+    
+    fun static int [] int2bin( int n ) {
+        return int2binary( n );
+    }           
 }
 
 

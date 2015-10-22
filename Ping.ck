@@ -5,6 +5,7 @@ public class Ping extends Chubgraph {
     
     fun void ping(float f,dur dura,float a) {
         SinOsc c => PercEnv env => outlet;
+        0 => c.phase;
         a => c.gain;
         dura => env.duration;
         f => c.freq;

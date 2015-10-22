@@ -26,6 +26,11 @@ public class FeedbackDelay extends Chubgraph
         return this;
     }
     
+    fun FeedbackDelay max(dur arg) {
+        arg => _del.max;
+        return this;
+    }
+    
     fun FeedbackDelay lf(float arg) {
         arg => _lf.freq;
         return this;

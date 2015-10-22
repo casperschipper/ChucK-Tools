@@ -9,6 +9,11 @@ public class LinePanSynth extends Chubgraph {
     
     samp => dur _timeStep;
     
+    fun float gain(float arg) {
+        arg => unit.gain;
+        return arg;
+    }
+    
     fun static LinePanSynth make(Stream value,Stream dura,Stream pan) {
         LinePanSynth synth;
         synth.init(value,dura,pan);

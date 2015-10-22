@@ -47,7 +47,6 @@ public class ST_seq extends Stream
         } else {
             sequence[index] => result;
         }
-        
         updateIndex();
         
         return result;
@@ -66,6 +65,7 @@ public class ST_seq extends Stream
     }
     
     fun void updateIndex() {
+        
         if (st_sequence != null) {
             if (st_sequence[index].more()) {
                 return;
@@ -87,6 +87,7 @@ public class ST_seq extends Stream
             _min => index;
             false => _more;
         } 
+        
     }
     
     fun ST_seq min(int arg) {
