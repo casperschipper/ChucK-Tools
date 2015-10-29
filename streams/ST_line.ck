@@ -18,9 +18,11 @@ public class ST_line extends ST_timed {
         
         // fetch current position in the dur       
         if (nextTime > now) { 
+            true => _more;
             now - _previousTime => dur currentDiff;
             return interpValue(_previousValue,_value,currentDiff);
         } else {
+            false => _more;
             do {
                 nextTime => _previousTime;
                 nextT() => _currentDur;

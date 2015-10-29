@@ -1,70 +1,13 @@
-public class ST_rv extends Stream
+public class ST_rv extends ST_operator
 {
     "ST_rv" @=> _type;
-    
-    float low,high;
-    
-    null @=> Stream @ st_low;
-    null @=> Stream @ st_high;
-    /*
-    fun ST_rv copy() {
-        ST_rv clone;
-        clone.init(st_low,st_high);
-        low => clone.low;
-        high => clone.high;
-        return clone;
-    }
-    */
-          
-    fun ST_rv init(float _low,float _high) {
-        _low => low;
-        _high => high;
-        return this;
-    }
-    
-    fun ST_rv init(float _low,Stream _high) {
-        _low => low;
-        _high @=> st_high;
-        return this;
-    }
-    
-    fun ST_rv init(Stream _low,float _high) {
-        _low @=> st_low;
-        _high => high;
-        return this;
-    }
-  
-    fun static ST_rv make() {
-        return new ST_rv;
-    }
-    
-    fun static ST_rv make(float _low,float _high) {
-        return (new ST_rv).init(_low,_high);
-    }
-    fun static ST_rv make(float _low,Stream _high) {
-        return (new ST_rv).init(_low,_high);
-    } 
-    fun static ST_rv make(Stream _low,float _high) {
-        return (new ST_rv).init(_low,_high);
-    }
-    fun static ST_rv make(Stream _low,Stream _high) {
-        return (new ST_rv).init(_low,_high);
-    }
-   
-    fun ST_rv init(Stream _low,Stream _high) {
-        _low @=> st_low;
-        _high @=> st_high;
-        return this;
-    }
-    
+        
     fun ST_rv seed(int _seed) {
         _seed => Math.srandom;
         return this;
     }
     
-    fun float next() {
-        if (st_low != null) st_low.next() => low;
-        if (st_high != null) st_high.next() => high;
-        return Math.random2f(low,high);
+    fun float operator(float a,float b) {
+        return Math.random2f(a,b);
     }
 }

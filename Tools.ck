@@ -47,7 +47,6 @@ Machine.add(toolsPath + "Streams/ST_indexLin");
 Machine.add(toolsPath + "Streams/ST_repeat");
 Machine.add(toolsPath + "Streams/ST_latch");
 Machine.add(toolsPath + "Streams/ST_timedLatch");
-Machine.add(toolsPath + "Streams/ST_rv");
 Machine.add(toolsPath + "Streams/ST_seq");
 Machine.add(toolsPath + "Streams/ST_value");
 Machine.add(toolsPath + "Streams/ST_vase");
@@ -75,6 +74,8 @@ Machine.add(toolsPath + "Streams/ST_div");
 Machine.add(toolsPath + "Streams/ST_sub");
 Machine.add(toolsPath + "Streams/ST_max");
 Machine.add(toolsPath + "Streams/ST_min");
+Machine.add(toolsPath + "Streams/ST_rv");
+
 Machine.add(toolsPath + "Streams/ST_floor");
 Machine.add(toolsPath + "Streams/ST_greater");
 Machine.add(toolsPath + "Streams/ST_bitAnd");

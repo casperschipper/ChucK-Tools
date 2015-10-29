@@ -112,16 +112,16 @@ public class st {
         
     
     fun static ST_rv rv(float minArg,float maxArg) {
-        return ST_rv.make(minArg,maxArg);
+        return (new ST_rv).init(minArg,maxArg) $ ST_rv;
     }
     fun static ST_rv rv(Stream minArg,Stream maxArg) {
-        return ST_rv.make(minArg,maxArg);
+        return (new ST_rv).init(minArg,maxArg) $ ST_rv;
     }
     fun static ST_rv rv(float minArg,Stream maxArg) {
-        return ST_rv.make(minArg,maxArg);
+        return (new ST_rv).init(minArg,maxArg) $ ST_rv;
     }
     fun static ST_rv rv(Stream minArg,float maxArg) {
-        return ST_rv.make(minArg,maxArg);
+        return (new ST_rv).init(minArg,maxArg) $ ST_rv;
     }
     
     fun static ST_latch latch(Stream valueArg,Stream repeatArg) {
@@ -145,8 +145,17 @@ public class st {
         return ST_timed.make(str,timing);
     }
     
+    fun static ST_timed timed(Stream str,Stream timing,int holdArg) {
+        return (new ST_timed).init(str,timing,holdArg);
+    }
+        
+    
     fun static ST_timed t(Stream str,Stream timing) {
         return timed(str,timing);
+    }
+    
+    fun static ST_timed t(Stream str,Stream timing,int holdArg) {
+        return timed(str,timing,holdArg);
     }
     
     fun static ST_timed t(Stream str,float timing) {
@@ -239,6 +248,12 @@ public class st {
     fun static ST_line line(Stream value,Stream timing) {
         ST_line stream;
         stream.init(value,timing);
+        return stream;
+    }
+    
+    fun static ST_line line(Stream value,Stream timing,int holdArg) {
+        ST_line stream;
+        stream.init(value,timing).holdMode(holdArg);
         return stream;
     }
     
