@@ -4,6 +4,8 @@ public class ST_index extends Stream {
     
     null @=> Stream @ indexer;
     
+    false => int _holdMode; 
+    false => int _more;   
     
     "ST_index" @=> _type;
     
@@ -52,6 +54,7 @@ public class ST_index extends Stream {
 
     
     fun int safeIndex() {
+        indexer.more() => _more;
         wrap(indexer.nextInt(),0,size-1) => int index;
         return index;
     }
@@ -75,5 +78,17 @@ public class ST_index extends Stream {
         }
         
         return table[safeIndex()];
+    }
+    
+    fun int more() {
+        if (_holdMode) {
+            if (_more) {
+                return true;
+            } else {
+                true => _more;
+                return false;
+            }
+        } 
+        return false;
     }
 }  
