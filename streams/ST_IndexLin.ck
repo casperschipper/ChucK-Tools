@@ -9,6 +9,13 @@ public class ST_indexLin extends Stream {
     
     float findex;
     
+        
+    false => int _holdMode; 
+    false => int _more;   
+    
+    "ST_index" @=> _type;
+    
+    
     
     "ST_indexLin" @=> _type;
     
@@ -68,7 +75,21 @@ public class ST_indexLin extends Stream {
         return v0 + t * ( v1 - v0 ); // fast but wrong, f(t = 1) != v1 
     }
     
+    fun int more() {
+        if (_holdMode) {
+            if (_more) {
+                return true;
+            } else {
+                true => _more;
+                return false;
+            }
+        } 
+        return false;
+    }
+    
     fun float interpSample() {
+        indexer.more() => _more;
+
         indexer.next() => float newFindex;
         if (newFindex == findex) {
             if (!areStreams) {
@@ -92,6 +113,11 @@ public class ST_indexLin extends Stream {
         }
                 
         return lerp(a,b,remainder);
+    }
+    
+    fun ST_indexLin holdMode(int arg) {
+        arg => _holdMode;
+        return this;
     }
     
     fun float next() {

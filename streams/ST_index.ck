@@ -9,6 +9,11 @@ public class ST_index extends Stream {
     
     "ST_index" @=> _type;
     
+    fun ST_index holdMode(int arg) {
+        arg => _holdMode;
+        return this;
+    }
+    
     fun static ST_index make(float _values[], Stream _indexer) {
         ST_index stream;
         stream.init(_values,_indexer);

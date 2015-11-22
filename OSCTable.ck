@@ -7,6 +7,7 @@ public class OSC {
     static float table6[];
     static float table7[];
     static float table8[];
+    static float table9[];
 }
     
 
@@ -63,7 +64,7 @@ class OSCTable {
     }
 }
 
-OSCTable osc1,osc2,osc3,osc4,osc5,osc6,osc7,osc8;
+OSCTable osc1,osc2,osc3,osc4,osc5,osc6,osc7,osc8,osc9;
 osc1.init("/shape1",128).table @=> OSC.table1;
 osc2.init("/shape2",128).table @=> OSC.table2;
 osc3.init("/shape3",128).table @=> OSC.table3;
@@ -72,6 +73,7 @@ osc5.init("/shape5",16).table @=> OSC.table5;
 osc6.init("/shape6",16).table @=> OSC.table6;
 osc7.init("/shape7",16).table @=> OSC.table7;
 osc8.init("/shape8",16).table @=> OSC.table8;
+osc9.init("/shape9",512).table @=> OSC.table9;
 
 
 

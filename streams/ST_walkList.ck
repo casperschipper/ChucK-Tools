@@ -4,13 +4,15 @@ public class ST_walkList extends Stream {
     null @=> Stream @ stepper;
     
     0 => index;
+    0 => int _max;
+    null @=> Stream @ st_max;
     
     "ST_walkList" @=> _type;
     
     fun ST_walkList init(float _values[],Stream _stepper) {
         _values @=> table;
         null @=> st_table;
-        table.size() => size;
+        table.size() => size => _max;
         _stepper @=> stepper;
         return this;
     }
@@ -18,7 +20,7 @@ public class ST_walkList extends Stream {
     fun ST_walkList init(int _values[],Stream _stepper) {
         cs.int2float(_values) @=> table;
         null @=> st_table;
-        table.size() => size;
+        table.size() => size => _max;
         _stepper @=> stepper;
         return this;
     }
@@ -26,7 +28,7 @@ public class ST_walkList extends Stream {
     fun ST_walkList init(Stream _values[],Stream _stepper) {
         _values @=> st_table;
         _stepper @=> stepper;
-        st_table.size() => size;
+        st_table.size() => size => _max;
         return this;
     }
     
@@ -37,14 +39,25 @@ public class ST_walkList extends Stream {
     
     fun ST_walkList list(float arg[]) {
         arg @=> table;
-        arg.size() => size;
+        arg.size() => size => _max;
         null @=> st_table;
         return this;
     }
     
     fun ST_walkList list(Stream arg[]) {
         arg @=> st_table;
-        st_table.size() => size;
+        st_table.size() => size => _max;
+        return this;
+    }
+    
+    fun ST_walkList max(int arg) {
+        Math.min(arg,size-1) $ int => _max;
+        null @=> st_max;
+        return this;
+    }
+    
+    fun ST_walkList max(Stream arg) {
+        arg @=> st_max;
         return this;
     }
     
@@ -55,10 +68,12 @@ public class ST_walkList extends Stream {
             }
         }
         
+        if (st_max != null) max(st_max.nextInt());
+        
         if (stepper == null) {
             chout <= "stepper is null" <= IO.newline(); return;
         }
-        wrap(stepper.nextInt() + index,0,size-1) => index;
+        wrap(stepper.nextInt() + index,0,_max-1) => index;
     }
     
     fun int wrap(int x,int low, int high) {

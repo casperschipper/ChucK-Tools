@@ -243,6 +243,40 @@ public class st {
     fun static ST_choice choice(Stream a,Stream b) {
         return ST_choice.make([a,b]);
     }
+    fun static ST_choice choice(float a,Stream b) {
+        return ST_choice.make([st(a),b]);
+    }
+    fun static ST_choice choice(Stream a,float b) {
+        return ST_choice.make([a,st(b)]);
+    }
+    
+    fun static ST_choice ch(float a,float b) {
+        return choice(a,b);
+    }
+    
+    fun static ST_choice ch(Stream a,Stream b) {
+        return choice(a,b);
+    }
+    
+    fun static ST_choice ch(Stream a,float b) {
+        return choice(a,b);
+    }
+    
+    fun static ST_choice ch(float a,Stream b) {
+        return choice(a,b);
+    }
+    
+    fun static ST_choice ch(float a[]) {
+        return choice(a);
+    }
+    
+    fun static ST_choice ch(Stream a[]) {
+        return choice(a);
+    }
+    
+    fun static ST_choice ch(int a[]) {
+        return choice(a);
+    }
         
     
     fun static ST_line line(Stream value,Stream timing) {
@@ -316,6 +350,14 @@ public class st {
     }
     
     fun static ST_bouncyWalk bouncyWalk(float minArg,float maxArg,Stream stepArg) {
+        ST_bouncyWalk walk;
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.step(stepArg);
+        return walk;
+    }
+    
+    fun static ST_bouncyWalk bouncyWalk(Stream minArg,Stream maxArg,Stream stepArg) {
         ST_bouncyWalk walk;
         walk.min(minArg);
         walk.max(maxArg);
@@ -503,12 +545,20 @@ public class st {
         return (new ST_weightStream).init(values,weights);
     }
     
+    fun static ST_weightStream weightStream(Stream values[],Stream weights[]) {
+        return (new ST_weightStream).init(values,weights);
+    }
+    
     fun static ST_trigger trigger(Stream arg) {
         return (new ST_trigger).init(arg);
     }
     
     fun static ST_mtof mtof(Stream arg) {
         return (new ST_mtof).init(arg);
+    }
+    
+    fun static ST_ftom ftom(Stream arg) {
+        return (new ST_ftom).init(arg);
     }
     
     fun static ST_mtosamps mtosamps(Stream arg) {
@@ -613,6 +663,10 @@ public class st {
     }
     fun static ST_sum scale(Stream input,float range,Stream offset) {
         return sum( mup(input,range), offset );
+    }
+    
+    fun static ST_scale2 scaler(Stream input,float outMin,float outMax) {
+        return (new ST_scale2).init(input,outMin,outMax);
     }
     
     fun static ST_ugen ugen(UGen arg) {

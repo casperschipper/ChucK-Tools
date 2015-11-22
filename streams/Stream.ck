@@ -56,10 +56,18 @@ public class Stream
     }
     
     fun void test(dur T,dur testLength) {
+        chout <= IO.newline();
         now + testLength => time then;
+        3 => int numberOfTabs;
         while(now < then) {
             chout <= next();
-            chout <= IO.newline();
+            if (numberOfTabs > 0) {
+                numberOfTabs--;
+                chout <= "\t\t\t";
+            } else {
+                chout <= IO.newline();
+                3 => numberOfTabs;
+            }
             T => now;
         }
         chout <= IO.newline();

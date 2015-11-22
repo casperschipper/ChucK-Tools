@@ -97,6 +97,7 @@ Machine.add(toolsPath + "Streams/ST_weightStream");
 Machine.add(toolsPath + "Streams/ST_trigger");
 Machine.add(toolsPath + "Streams/ST_triggerSend");
 Machine.add(toolsPath + "Streams/ST_mtof");
+Machine.add(toolsPath + "Streams/ST_ftom");
 Machine.add(toolsPath + "Streams/ST_mtosamps");
 Machine.add(toolsPath + "Streams/ST_sine");
 Machine.add(toolsPath + "Streams/ST_ugen");

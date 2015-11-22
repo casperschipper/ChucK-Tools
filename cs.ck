@@ -976,7 +976,7 @@ public class cs
     
     fun static float mtof(float midi)
     {
-        return 440 * Math.pow(2,((midi-69)/12.0));
+        return 440.0 * Math.pow(2,((midi-69.0)/12.0));
     }
     
     fun static dur mtod(float midi) 
@@ -1309,7 +1309,26 @@ public class cs
     
     fun static int [] int2bin( int n ) {
         return int2binary( n );
-    }           
+    }         
+    
+    fun static float [] pitchClassMap( float seq[] , float minArg, float maxArg ) {
+        float result[0];
+        seq.cap() => int size;
+        for (int i;i<size;i++) {
+            seq[i] => float value;
+            while( (value / 2.0) > minArg ) {
+                value / 2.0 => value;
+            }
+            while (value < minArg) {
+                value * 2.0 => value;
+            }
+            while( value < maxArg ) {
+                appendf(result,value) @=> result;
+                value * 2.0 => value;
+            }
+        }
+        return result;
+    }  
 }
 
 
