@@ -28,6 +28,10 @@ public class ST_operator extends Stream
         return (new ST_operator).init(arg1,arg2);
     }
     
+    fun ST_operator make(int arg1,Stream arg2) {
+        return (new ST_operator).init(arg1,arg2);
+    }
+        
     fun ST_operator v1(Stream arg) {
         arg @=> st_v1;
         st_v1.next() => _v1;
@@ -36,6 +40,13 @@ public class ST_operator extends Stream
     }
     
     fun ST_operator v1(float arg) {
+        arg => _v1;
+        0 => v1IsStream;
+        null @=> st_v1;
+        return this;
+    }
+    
+    fun ST_operator v1(int arg) {
         arg => _v1;
         0 => v1IsStream;
         null @=> st_v1;
@@ -53,6 +64,13 @@ public class ST_operator extends Stream
         arg => _v2;
         0 => v2IsStream;
         null @=> st_v2;
+        return this;
+    }
+    
+    fun ST_operator v2(int arg) {
+        arg => _v1;
+        0 => v2IsStream;
+        null @=> st_v1;
         return this;
     }
     
@@ -75,6 +93,12 @@ public class ST_operator extends Stream
     }
     
     fun ST_operator init(float arg1,float arg2) {
+        v1(arg1);
+        v2(arg2);
+        return this;
+    }
+    
+    fun ST_operator init(int arg1,Stream arg2) {
         v1(arg1);
         v2(arg2);
         return this;

@@ -20,7 +20,7 @@ class OSCTable {
     
     OscIn oin;
     
-    ["/shape1","/shape2","/shape3","/shape4"] @=> string standardNames[];
+    ["/shape1","/shape2","/shape3","/shape4","/shape5","/shape6","/shape7","/shape8","/shape9"] @=> string standardNames[];
     0 => static int index;
     
     fun OSCTable init() {

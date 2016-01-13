@@ -1,4 +1,4 @@
-class ST_linseg extends Stream {
+public class ST_linseg extends Stream {
     0 => int _current;
     0 => int _target;
     
@@ -12,17 +12,22 @@ class ST_linseg extends Stream {
     null @=> Stream @ st_numberOfSteps;
 
     false => int _holdMode;
+    false => int _more;
 
     fun ST_linseg holdMode (int arg) {
         (arg != 0) => _holdMode;
+        true => _more;
         return this;
     }
     
     fun int more() {
         if (_holdMode) {
-            if (_currentValue < _targetValue) {
+            if (_more) {
                 return true;
-            } 
+            } else {
+                true => _more;
+                return false;
+            }
         } 
         return false;
     }
@@ -32,6 +37,7 @@ class ST_linseg extends Stream {
         if(_current < _target) {
             _currentValue + _rate => _currentValue;
         } else {
+            false => _more;
             0 => _current;
             st_startValues.next() => _currentValue;
             st_endValues.next() => _targetValue;
@@ -64,12 +70,8 @@ class ST_linseg extends Stream {
         null @=> st_numberOfSteps;
         return this;
     }
+    
+    fun ST_linseg steps (float arg ) {
+        return steps( Math.floor( arg ));
+    }
 }
-
-ST_linseg test;
-
-test
-.start(st.st(1))
-.end(st.st(10))
-.steps(10)
-.test();

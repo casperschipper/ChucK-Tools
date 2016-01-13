@@ -28,9 +28,10 @@ public class ST_smartWalkList extends Stream {
         return this;
     }
     
-    fun ST_smartWalkList init(Stream _values[],Stream _stepper) {
+    fun ST_smartWalkList init(Stream _values[],Stream _stepper,Stream _direction) {
         _values @=> st_table;
         _stepper @=> stepper;
+        _direction @=> st_direction;
         st_table.size() => size;
         return this;
     }
@@ -73,7 +74,7 @@ public class ST_smartWalkList extends Stream {
                 if (st_direction.nextInt() > 0) {
                     1 => direction;
                 } else {
-                    -1 => direction;
+                    -1 * direction => direction;
                 }
             }
         }

@@ -8,6 +8,12 @@ public class cs
         }
     }
     
+    fun static float sec(dur arg) {
+        return arg / second;
+    }
+    
+    0.0002267573696 => static float samplet;
+    
     fun static float [] reversef(float seq[]) {
         seq.cap() - 1 => int n => int size;
         float result[seq.cap()];
@@ -735,6 +741,14 @@ public class cs
         return integrate(seq,0);
     }
     
+    fun static int sum(int seq[]) {
+        int x;
+        for (int i;i<seq.cap();i++) {
+            seq[i] +=> x;
+        }
+        return x;
+    }
+    
     fun static float sumf(float seq[])
     {
         float x;
@@ -1199,6 +1213,10 @@ public class cs
         normalize(output);
         return output;
     }   
+    
+    fun static float [] sine(int sizeArg)  {
+        return sine(sizeArg, [1.0]);
+    }
     
     fun static float [] perc( int size, float power ) {
         float result[size];

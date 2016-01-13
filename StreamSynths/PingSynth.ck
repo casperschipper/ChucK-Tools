@@ -1,19 +1,43 @@
 public class PingSynth extends Chubgraph {
     // a synth that plays a percussively enveloped sinewave.
     Ping ping => outlet;
-    null @=> Stream @ _freq;
-    null @=> Stream @ _dura;
-    null @=> Stream @ _delta;
+    null @=> Stream @ st_freq;
+    null @=> Stream @ st_dura;
+    null @=> Stream @ st_delta;
+    null @=> Stream @ st_amp;
+    
+    1.0 => float _amp => ping.gain;
     
     0 => int loop;
     
     second => dur _timeStep;
     
-    fun PingSynth init(Stream freq,Stream delta,Stream dura) {
-        delta @=> _delta;
-        freq @=> _freq;
-        dura @=> _dura;
+    fun float gain(float arg) {
+        arg => ping.gain;
+        return arg;
+    }
+    
+    fun PingSynth init(Stream freq,Stream delta,Stream dura,Stream ampArg) {
+        delta @=> st_delta;
+        freq @=> st_freq;
+        dura @=> st_dura;
+        ampArg @=> st_amp;
+        
         spork ~ play();
+        return this;
+    }
+    
+    fun PingSynth init(Stream freq,Stream delta,Stream dura) {
+        delta @=> st_delta;
+        freq @=> st_freq;
+        dura @=> st_dura;
+        
+        spork ~ play();
+        return this;
+    }
+    
+    fun PingSynth timeStep(dur arg) {
+        arg => _timeStep;
         return this;
     }
     
@@ -25,8 +49,10 @@ public class PingSynth extends Chubgraph {
     fun void play() {
         1 => loop;
         while(loop) {
-            _delta.next()*_timeStep => now;
-            ping.trigger(_freq.next(),_dura.next()*_timeStep,1.0);
+            if (st_amp != null) st_amp.next() => _amp;
+            ping.trigger(st_freq.next(),st_dura.next()*_timeStep,_amp);
+            st_delta.next()*_timeStep => now;
+                   
         }
     }
 }

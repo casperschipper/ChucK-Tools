@@ -32,6 +32,7 @@ Machine.add(toolsPath + "LFOMup.ck");
 Machine.add(toolsPath + "FeedbackDelay.ck");
 Machine.add(toolsPath + "Safe.ck");
 
+
 Machine.add(toolsPath + "Synths/SuperSaw.ck");
 Machine.add(toolsPath + "PercEnv.ck");
 Machine.add(toolsPath + "Ping.ck");
@@ -58,6 +59,7 @@ Machine.add(toolsPath + "Streams/ST_timed");
 Machine.add(toolsPath + "Streams/ST_scale");
 Machine.add(toolsPath + "Streams/ST_scale2");
 Machine.add(toolsPath + "Streams/ST_line");
+Machine.add(toolsPath + "Streams/ST_linseg");
 Machine.add(toolsPath + "Streams/ST_walk");
 Machine.add(toolsPath + "Streams/ST_walkList");
 Machine.add(toolsPath + "Streams/ST_smartWalkList");
@@ -66,6 +68,7 @@ Machine.add(toolsPath + "Streams/ST_maskedChoice");
 Machine.add(toolsPath + "Streams/ST_boundedMupWalk");
 Machine.add(toolsPath + "Streams/ST_boundedMupResetWalk");
 Machine.add(toolsPath + "Streams/ST_boundedWalk");
+Machine.add(toolsPath + "Streams/ST_bumpyWalk");
 Machine.add(toolsPath + "Streams/ST_bouncyWalk");
 Machine.add(toolsPath + "Streams/ST_operator");
 Machine.add(toolsPath + "Streams/ST_sum");
@@ -75,7 +78,7 @@ Machine.add(toolsPath + "Streams/ST_sub");
 Machine.add(toolsPath + "Streams/ST_max");
 Machine.add(toolsPath + "Streams/ST_min");
 Machine.add(toolsPath + "Streams/ST_rv");
-
+Machine.add(toolsPath + "Streams/ST_modulo");
 Machine.add(toolsPath + "Streams/ST_floor");
 Machine.add(toolsPath + "Streams/ST_greater");
 Machine.add(toolsPath + "Streams/ST_bitAnd");
@@ -102,6 +105,12 @@ Machine.add(toolsPath + "Streams/ST_mtosamps");
 Machine.add(toolsPath + "Streams/ST_sine");
 Machine.add(toolsPath + "Streams/ST_ugen");
 
+// funkstreams
+Machine.add(toolsPath + "Funk.ck");
+Machine.add(toolsPath + "TimedFunk.ck");
+Machine.add(toolsPath + "Streams/ST_funkStream");
+ 
+
 Machine.add(toolsPath + "StreamSynths/LineSynth");
 Machine.add(toolsPath + "StreamSynths/PulseSynth");
 Machine.add(toolsPath + "StreamSynths/StepSynth");
@@ -116,8 +125,10 @@ Machine.add(toolsPath + "StreamSynths/StreamPan");
 Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamBPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamLPFilter");
+Machine.add(toolsPath + "StreamSynths/StreamFeedbackDelay");
 
 Machine.add(toolsPath + "StreamSynths/MidiStream");
+Machine.add(toolsPath + "StreamSynths/MidiControlStream");
 
 Machine.add(toolsPath + "StreamSynths/StreamNonLinFilter");
 

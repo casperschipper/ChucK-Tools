@@ -5,7 +5,9 @@ public class ST_walkList extends Stream {
     
     0 => index;
     0 => int _max;
+    0 => int _min;
     null @=> Stream @ st_max;
+    null @=> Stream @ st_min;
     
     "ST_walkList" @=> _type;
     
@@ -61,6 +63,27 @@ public class ST_walkList extends Stream {
         return this;
     }
     
+    fun ST_walkList min(int arg) {
+        Math.min(arg,size-1) $ int => _max; 
+        null @=> st_min;     
+        return this;
+    }
+    
+    fun ST_walkList min(Stream arg) {
+        arg @=> st_min;
+        return this;
+    }
+    
+    fun void sortMinMax() {
+        Math.min(_min,_max) $ int => int tmp;
+        Math.max(_min,_max) $ int => _max;
+        tmp => _min;
+        
+        // make it save
+        Math.min(_min,size-1) $ int => _min;
+        Math.max(_max,size-1) $ int => _max;
+    }
+    
     fun void safeIndex() {
         if (st_table != null) {
             if (st_table[index].more()) {
@@ -68,17 +91,20 @@ public class ST_walkList extends Stream {
             }
         }
         
-        if (st_max != null) max(st_max.nextInt());
+        if (st_max != null) st_max.nextInt() => _max;
+        if (st_min != null) st_min.nextInt() => _min;
+        
+        sortMinMax();
         
         if (stepper == null) {
             chout <= "stepper is null" <= IO.newline(); return;
         }
-        wrap(stepper.nextInt() + index,0,_max-1) => index;
+        wrap(stepper.nextInt() + index,_min,_max-1) => index;
     }
     
     fun int wrap(int x,int low, int high) {
         Math.abs(high - low + 1) => int range;
-        ((x-low) % range) => x;
+        ((x-(Math.min(low,high)$int)) % range) => x;
         if (x<0)
             return high + 1 + x;
         else 

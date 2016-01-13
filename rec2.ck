@@ -5,7 +5,7 @@
 
 // get name
 me.arg(0) => string filename;
-if( filename.length() == 0 ) "foo.wav" => filename;
+if( filename.length() == 0 ) "FantasticTable9" => filename;
 
 // pull samples from the dac
 dac.chan(0) => Gain g1 => WvOut w1 => blackhole;

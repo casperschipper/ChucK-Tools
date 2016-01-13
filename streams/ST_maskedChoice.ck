@@ -36,6 +36,18 @@ public class ST_maskedChoice extends Stream
         return this;
     }
     
+    fun ST_maskedChoice min(float arg) {
+        Math.floor(arg) $ int => _min;
+        null @=> st_min;
+        return this;
+    }
+    
+    fun ST_maskedChoice max(float arg) {
+        Math.floor(arg) $ int => _max;
+        null @=> st_max;
+        return this;
+    }
+    
     fun ST_maskedChoice min(int arg){
         arg => _min;
         null @=> st_min;

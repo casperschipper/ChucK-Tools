@@ -2,7 +2,7 @@ public class MidiStream {
     MidiOut mout;
     MidiMsg msg;
     if (mout.open(0)) {
-        <<<"port 0 is open">>>;
+        chout <= "midi port: " <= 0 <= " is open" <= IO.newline();
     } else {
         <<<"port failed">>>;
     }
@@ -18,6 +18,15 @@ public class MidiStream {
     0x80 => int _noteOff;
     
     0 => int play;
+    
+    fun MidiStream port(int arg) {
+        if (mout.open(arg)) {
+            chout <= "midi port: " <= arg <= " is open" <= IO.newline();
+        } else {
+            <<<"else okay">>>;
+        }
+        return this;
+    }
     
     fun MidiStream channel(int arg) {
         arg => _channel;
