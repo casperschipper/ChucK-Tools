@@ -170,6 +170,17 @@ public class st {
     fun static ST_seq seq(Stream a,Stream b) {
         return ST_seq.make([a,b]).holdMode(false);
     }
+    
+    fun static ST_seq seq(float seq[],Stream low,Stream high) {
+        return (new ST_seq).init(seq).min(low).max(high);
+    }
+    fun static ST_seq seq(int seq[],Stream low,Stream high) {
+        return (new ST_seq).init(seq).min(low).max(high);
+    }
+    fun static ST_seq seq(Stream seq[],Stream low,Stream high) {
+        return (new ST_seq).init(seq).min(low).max(high);
+    }
+
         
     
     fun static ST_rv rv(float minArg,float maxArg) {

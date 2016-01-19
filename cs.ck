@@ -1385,6 +1385,36 @@ public class cs
         }
         return result;
     }  
+    
+    fun static void testSpeakerShred(int channel) {
+        [0.05,0.1,0.2,0.4,0.8,0.33,0.25,0.18,0.9,0.21] @=> float timings[];
+        if (channel > dac.channels()) {
+            <<<"no such channel:", channel>>>;
+            return;
+        }
+        Noise noise => dac.chan(channel);
+        noise.gain(0.1);
+        timings[channel] => float timing;
+        
+        while(1) {
+            timing * 0.1 * second => now;
+            noise.gain(0);
+            timing * second => now;
+            noise.gain(0.1);
+        }
+    }
+    
+    fun static void testSpeaker(int channel) {
+        spork ~ testSpeakerShred(channel);
+    }
+    
+    fun static void testSpeaker(int channels[]) {
+        int i;
+        for (0 => i;i<channels.cap();i++) {
+            .5::second => now;
+            spork ~ testSpeakerShred(channels[i]);
+        }
+    }
 }
 
 
