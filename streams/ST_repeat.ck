@@ -8,6 +8,23 @@ public class ST_repeat extends Stream
     int repLeft;
     float memValue;
     
+    0 => int _holdMode;
+        
+    fun ST_repeat holdMode(int arg) {
+        arg @=> _holdMode;
+        return this;
+    }
+    
+    fun int more() {
+        if (_holdMode) {
+            if (repLeft > 1) {
+                return true;
+            }
+        } 
+        return false;
+    }           
+            
+    
     fun static ST_repeat make(Stream _source,Stream _reps) {
         ST_repeat stream;
         stream.init(_source,_reps);
@@ -19,6 +36,7 @@ public class ST_repeat extends Stream
         _reps @=> reps;
         return this;
     }
+    
     
     fun float next() {
         if (repLeft-- > 0) {

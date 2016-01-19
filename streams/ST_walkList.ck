@@ -46,6 +46,13 @@ public class ST_walkList extends Stream {
         return this;
     }
     
+    fun ST_walkList list(int arg[]) {
+        cs.int2float(arg) @=> table;
+        arg.size() => size => _max;
+        null @=> st_table;
+        return this;
+    }
+    
     fun ST_walkList list(Stream arg[]) {
         arg @=> st_table;
         st_table.size() => size => _max;

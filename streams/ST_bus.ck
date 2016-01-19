@@ -34,6 +34,12 @@ public class ST_bus extends Stream {
     	arg @=> _name;
         return this;
     }
+    
+    fun int more() {
+        if (bus[_name] != null) {
+            return bus[_name].more();
+        }
+    }
 
     fun float next() {
         if (bus[_name] == null) {

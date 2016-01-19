@@ -198,6 +198,32 @@ public class st {
         return mtof(rv(minArg,maxArg));
     }
     
+    fun static ST_exprv exprv(float minArg,float maxArg,float expArg) {
+        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+    }
+    fun static ST_exprv exprv(Stream minArg,Stream maxArg,float expArg) {
+        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+    }
+    fun static ST_exprv exprv(Stream minArg,float maxArg,float expArg) {
+        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+    }
+    fun static ST_exprv exprv(float minArg,float maxArg,float expArg) {
+        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+    }
+    fun static ST_exprv exprv(float minArg,float maxArg,Stream expArg) {
+        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+    }
+    fun static ST_exprv exprv(float minArg,Stream maxArg,float expArg) {
+        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+    }
+    fun static ST_exprv exprv(float minArg,Stream maxArg,Stream expArg) {
+        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+    }
+    fun static ST_exprv exprv(Stream minArg,Stream maxArg,Stream expArg) {
+        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+    }
+    
+    
     fun static ST_div inv(Stream in) {
         return div(1.0,in);
     }
@@ -266,6 +292,14 @@ public class st {
     
     fun static ST_repeat hold(Stream value,Stream repetition) {
         return ST_repeat.make(value,repetition);
+    }
+    
+    fun static ST_repeat hold(Stream value,Stream repetition,int holdArg) {
+        return ST_repeat.make(value,repetition).holdMode(holdArg);
+    }
+    
+    fun static ST_repeat hold(Stream value,int rep,int holdArg) {
+        return ST_repeat.make(value,st(rep)).holdMode(holdArg);
     }
     
     fun static ST_repeat hold(Stream value,int rep) {
@@ -471,6 +505,15 @@ public class st {
         walk.reset(resetArg);
         return walk;
     }
+    
+    fun static ST_boundedMupResetWalk boundedMupResetWalk(Stream minArg,Stream maxArg,Stream stepArg,Stream resetArg) {
+        ST_boundedMupResetWalk walk;
+        walk.step(stepArg);
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.reset(resetArg);
+        return walk;
+    }
          
     fun static ST_walkList walkList(Stream values[],Stream step) {
         ST_walkList walk;
@@ -478,6 +521,20 @@ public class st {
         walk.step(step);
         return walk;
     }
+    
+    fun static ST_walkList walkList(int values[]) {
+        ST_walkList walk;
+        walk.list(values);
+        walk.step(ch(-1,1));
+        return walk;
+    }
+    
+    fun static ST_walkList walkList(int values[],Stream step) {
+        ST_walkList walk;
+        walk.list(values);
+        walk.step(step);
+        return walk;
+    } 
     
     fun static ST_bouncyWalk bouncyWalk(float minArg,float maxArg,Stream stepArg) {
         ST_bouncyWalk walk;
@@ -539,16 +596,10 @@ public class st {
     fun static ST_div div (float a,Stream b) {
         return (new ST_div).init(a,b) $ ST_div;
     }
-    fun static ST_div div (int a,Stream b) {
-        return (new ST_div).init(a,b) $ ST_div;
-    }
     fun static ST_sum sum(Stream a,Stream b) {
         return (new ST_sum).init(a,b) $ ST_sum;
     }
     fun static ST_sum sum(float a,Stream b) {
-        return (new ST_sum).init(a,b) $ ST_sum;
-    }
-    fun static ST_sum sum(int a,Stream b) {
         return (new ST_sum).init(a,b) $ ST_sum;
     }
     fun static ST_sum sum(Stream a,float b) {
@@ -565,9 +616,6 @@ public class st {
         return (new ST_mup).init( 
                    (new ST_mup).init(a,b) , c 
                ) $ ST_mup;
-    }
-    fun static ST_mup mup (int a,Stream b) {
-        return (new ST_mup).init(a,b) $ ST_mup;
     }
     fun static ST_mup mup (float a,Stream b) {
         return (new ST_mup).init(a,b) $ ST_mup;
@@ -705,6 +753,10 @@ public class st {
         return (new ST_ftom).init(arg);
     }
     
+    fun static ST_mtor mtor(Stream arg) {
+        return (new ST_mtor).init(arg);
+    }
+    
     fun static ST_mtosamps mtosamps(Stream arg) {
         return (new ST_mtosamps).init(arg);
     }
@@ -809,18 +861,103 @@ public class st {
         return sum( mup(input,range), offset );
     }
     
+    // optimized scaling
     fun static ST_scale2 scaler(Stream input,float outMin,float outMax) {
         return (new ST_scale2).init(input,outMin,outMax);
     }
     
+    fun static ST_scale2 scaler(Stream input,float inMin,float inMax,Stream outMin,Stream outMax) {
+        return (new ST_scale2).init(input,inMin,inMax,outMin,outMax);
+    }
+    
+    fun static ST_scale2 scaler(Stream input,float inMin,float inMax,float outMin,float outMax) {
+        return (new ST_scale2).init(input,inMin,inMax,st(outMin),st(outMax));
+    }
+    
+    fun static ST_scale2 scaler(Stream input,float outMin,float outMax) {
+        return (new ST_scale2).init(input,outMin,outMax);
+    }
+    
+    // scales (not optimized(.
+    fun static ST_scale linlin(Stream input,float minIn,float maxIn,Stream minOut,Stream maxOut) {
+        return (new ST_scale).init(input,st(minIn),st(maxIn),minOut,maxOut,st(1.0));
+    }
+    
+    fun static ST_scale linlin(Stream input,Stream minIn,Stream maxIn,Stream minOut,Stream maxOut) {
+        return (new ST_scale).init(input,minIn,maxIn,minOut,maxOut,st(1.0));
+    }
+    
+    fun static ST_scale linexp(Stream input,float minIn,float maxIn,Stream minOut,Stream maxOut,Stream expArg) {
+        return (new ST_scale).init(input,st(minIn),st(maxIn),minOut,maxOut,expArg);
+    }
+    
+    fun static ST_scale linexp(Stream input,Stream minIn,Stream maxIn,Stream minOut,Stream maxOut,float expArg) {
+        return (new ST_scale).init(input,minIn,maxIn,minOut,maxOut,st(expArg));
+    }
+    
+    fun static ST_scale linexp(Stream input,Stream minIn,Stream maxIn,Stream minOut,Stream maxOut,Stream expArg) {
+        return (new ST_scale).init(input,minIn,maxIn,minOut,maxOut,expArg);
+    }
+    
+    fun static ST_scale linexp(Stream input,float minIn,float maxIn,float minOut,float maxOut,float expArg) {
+        return (new ST_scale).init(input,st(minIn),st(maxIn),st(minOut),st(maxOut),st(expArg));
+    }
+        
     fun static ST_ugen ugen(UGen arg) {
         return (new ST_ugen).init(arg);
+    }
+    
+    fun static ST_clip clip(Stream inputArg,Stream minArg,Stream maxArg) {
+        return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
+    }
+    fun static ST_clip clip(Stream inputArg,float minArg,float maxArg) {
+        return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
+    }
+    fun static ST_clip clip(Stream inputArg,Stream minArg,float maxArg) {
+        return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
+    }
+    fun static ST_clip clip(Stream inputArg,float minArg,Stream maxArg) {
+        return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
+    }
+    
+    fun static ST_tanh tanh(Stream inputArg) {
+        return (new ST_tanh).input(inputArg);
+    }
+
+    
+    fun static ST_clip clip(Stream inputArg) {
+        return (new ST_clip).input(inputArg).min(-1).max(1);
     }
     
     fun static ST_funkStream funkStream(Funk funkArg,Stream xArg) {
         return (new ST_funkStream).funk(funkArg).x(xArg);
     }
     
+    fun static ST_timed fractRandTimer() {
+        cs.grow(0.0001,2,15) @=> float table[];
+        return t( ch(table) , 
+        t( ch(table), 
+        t( ch(table), ch(table)) ));
+    }
+    
+    fun static ST_timed fractRandTimer(float arg) {
+        cs.grow(arg,2,15) @=> float table[];
+        return t( ch(table) , 
+        t( ch(table), 
+        t( ch(table), ch(table)) ));
+    }
+    
+    fun static ST_index waveOsc( float table[], Stream freqArg ) {
+        table.cap() => int size;
+        line( seq(0,size-1),seq(div(1.0,freqArg),st(0)) ) @=> Stream @ idx;
+        return index( table, idx );
+    }
+    
+    fun static ST_indexLin waveOscL( float table[], Stream freqArg ) {
+        table.cap() => int size;
+        line( seq(0,size-1),seq(div(1.0,freqArg),st(0)) ) @=> Stream @ idx;
+        return indexLin( table, idx );
+    }
 }
 
 [st.st(1)] @=> st.globals;

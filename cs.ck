@@ -196,6 +196,40 @@ public class cs
         return outputf;
     }
     
+    fun static float[] fillexpf( int amount,float low, float high,float power )
+    {
+        float outputf[amount];
+        for (0 => int i;i<amount;i++)
+            randExp(low,high,power) => outputf[i];
+        return outputf;
+    }
+    
+    fun static float[] mirrorf ( float input[] ) {
+        input.cap() => int amount;
+        float output[amount*2];
+        for (0 => int i;i<amount*2;i++) {
+            if (i < amount) {
+                input[i] => output[i];
+            } else {
+                input[((2*amount) - i)-1] * -1 => output[i];
+            }
+        }
+        return output;
+    }
+    
+    fun static int[] mirror ( int input[] ) {
+        input.cap() => int amount;
+        int output[amount*2];
+        for (0 => int i;i<amount*2;i++) {
+            if (i < amount) {
+                input[i] => output[i];
+            } else {
+                input[((2*amount) - i)-1] * -1 => output[i];
+            }
+        }
+        return output;
+    }
+    
     fun static int[] append( int input[], int value )
     {
         input.size() => int size;
@@ -419,6 +453,10 @@ public class cs
     
     fun static float randExp (float low, float high, float power)
     { return (Math.pow(randomf(),power)) * Std.fabs(high - low) + Math.min(low,high); }
+    
+    fun static float exprv(float low,float high,float power) {
+        return randExp(low,high,power);
+    }
     
     // Fill an array with expo random floats
     fun static float[] fillExpF (int number,float low, float high,float power)

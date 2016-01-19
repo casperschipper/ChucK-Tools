@@ -85,6 +85,7 @@ Machine.add(toolsPath + "Streams/ST_bitAnd");
 Machine.add(toolsPath + "Streams/ST_bitOr");
 Machine.add(toolsPath + "Streams/ST_bitXor");
 Machine.add(toolsPath + "Streams/ST_equal");
+Machine.add(toolsPath + "Streams/ST_exprv");
 
 Machine.add(toolsPath + "Streams/ST_bitShiftL");
 Machine.add(toolsPath + "Streams/ST_bitShiftR");
@@ -101,9 +102,12 @@ Machine.add(toolsPath + "Streams/ST_trigger");
 Machine.add(toolsPath + "Streams/ST_triggerSend");
 Machine.add(toolsPath + "Streams/ST_mtof");
 Machine.add(toolsPath + "Streams/ST_ftom");
+Machine.add(toolsPath + "Streams/ST_mtor");
 Machine.add(toolsPath + "Streams/ST_mtosamps");
 Machine.add(toolsPath + "Streams/ST_sine");
 Machine.add(toolsPath + "Streams/ST_ugen");
+Machine.add(toolsPath + "Streams/ST_clip");
+Machine.add(toolsPath + "Streams/ST_tanh");
 
 // funkstreams
 Machine.add(toolsPath + "Funk.ck");

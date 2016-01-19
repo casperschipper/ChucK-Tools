@@ -9,16 +9,14 @@ public class ST_scale extends Stream
     null @=> Stream @ stOutLow;
     null @=> Stream @ stOutHigh;
     null @=> Stream @ stExp;
-    
-    float inputLow,inputHigh,outputLow,outputHigh,exp;
-    
+        
     fun ST_scale init(Stream input,Stream inLow,Stream inHigh,Stream outLow,Stream outHigh,Stream exp) {
         input @=> stInput;
         inLow @=> stInLow;
         inHigh @=> stInHigh;
         outLow @=> stOutLow;
-        outHigh @=> stOutLow;
-        stExp @=> stExp;
+        outHigh @=> stOutHigh;
+        exp @=> stExp;
         return this;
     }
     
