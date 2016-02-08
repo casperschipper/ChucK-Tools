@@ -1,5 +1,5 @@
 public class LinePanSynth extends Chubgraph {
-    Step unit => Envelope i => Pan4 p;
+    Step unit => Envelope i => Safe safe => Pan4 p;
     1 => unit.next;
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
@@ -44,7 +44,13 @@ public class LinePanSynth extends Chubgraph {
     
     fun void stop() {
         0 => loop;
-    }       
+    }    
+    
+    fun float gain(float arg) {
+        arg => safe.gain;
+        return arg;
+    }
+           
 }
 
 

@@ -108,6 +108,16 @@ public class cs
         else return b;
     }
     
+    fun static float [] minArray(float array[]) {
+        array.cap() => int size;
+        float result[size];
+        array[0] => float min;
+        for (int i;i<size;i++) {
+            Math.min( min, array[i] ) => result[i];
+        }
+        return result;
+    }
+    
     fun static int max (int a,int b) {
         if (a>b) return a;
         else return b;
@@ -233,27 +243,49 @@ public class cs
     fun static int[] append( int input[], int value )
     {
         input.size() => int size;
-        size + 1 => input.size;
-        value => input[size];
-        return input;
+        int result[size+1];
+        for (int i;i<size;i++) { input[i] => result[i]; }
+        value => result[size];
+        return result;
     }
+    
+    fun static int[] append(int input[],int input2[]) {
+        input.cap() => int size;
+        input2.cap() => int size2;
+        
+        int result[size+size2];
+        
+        for (int i;i<size;i++) { 
+            input[i] => result[i];
+        }
+        for (int i;i<size2;i++) {
+            input2[i] => result[i + size];
+        }
+        return result;
+    }
+        
+        
     
     fun static float[] appendf( float input[], float value )
     {
         input.size() => int size;
-        size + 1 => input.size;
-        value => input[size];
-        return input;
+        float result[size+1];
+        for (int i;i<size;i++) { input[i] => result[i]; }
+        value => result[size];
+        return result;
     }
     
-    fun static float [] appendf (float input[], float input2[] ) {
-        float result[input.size() + input2.size()];
-        for (int i;i<result.size();i++) {
-            if (i < input.size()) {
-                input[i] => result[i];
-            } else {
-                input2[i - input.size()] => result[i];
-            }
+    fun static float[] appendf(float input[],float input2[]) {
+        input.cap() => int size;
+        input2.cap() => int size2;
+        
+        float result[size+size2];
+        
+        for (int i;i<size;i++) { 
+            input[i] => result[i];
+        }
+        for (int i;i<size2;i++) {
+            input2[i] => result[i + size];
         }
         return result;
     }
@@ -1197,9 +1229,28 @@ public class cs
         for (int i;i<seq.cap();i++) {
             Math.max(max,Std.fabs(seq[i])) => max;
         }
+        1.0 / max => float scaleFactor;
         for (int i;i<seq.cap();i++) {
-            seq[i] / max => seq[i];
+            seq[i] * scaleFactor => seq[i];
         }
+    }
+    
+    fun static float[] mapArray(float seqArg[],float minArg,float maxArg) {
+        float min,max;
+        seqArg.cap() => int size;
+        float result[size];
+        // find peaks
+        seqArg[0] => min;
+        seqArg[1] => max;
+        for (int i;i<size;i++) {
+            Math.max(max,seqArg[i]) => max;
+            Math.min(min,seqArg[i]) => min;
+        }
+        // scale all the values, according to peaks.
+        for (int i;i<size;i++) {
+            scalef(seqArg[i],min,max,minArg,maxArg) => result[i];
+        }
+        return result;
     }
     
     fun static void normalize(Chubgraph ugen[]) {
@@ -1402,6 +1453,12 @@ public class cs
             timing * second => now;
             noise.gain(0.1);
         }
+    }
+    
+    fun static UGen RandPan() {
+        Pan4 pan => dac;
+        rvf() => pan.pan;
+        return pan;
     }
     
     fun static void testSpeaker(int channel) {

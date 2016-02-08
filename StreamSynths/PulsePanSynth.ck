@@ -1,5 +1,5 @@
 public class PulsePanSynth extends Chubgraph {
-    Impulse i => Pan4 p;
+    Impulse i => Safe safe => Pan4 p;
         
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
@@ -8,6 +8,11 @@ public class PulsePanSynth extends Chubgraph {
     0 => int loop;
     
     samp => dur _timeStep;
+    
+    fun float gain (float arg) {
+        arg => i.gain;
+        return arg;
+    }
     
     fun static PulsePanSynth make(Stream value,Stream dura,Stream pan) {
         PulsePanSynth synth;

@@ -816,6 +816,19 @@ public class st {
         return (new ST_bitXor).init(a,b) $ ST_bitXor;
     }
     
+    fun static ST_bitShiftL bitShiftL(Stream a, int b) {
+        return (new ST_bitShiftL).init(a,b) $ ST_bitShiftL;
+    }   
+    fun static ST_bitShiftL bitShiftL(Stream a, Stream b) {
+        return (new ST_bitShiftL).init(a,b) $ ST_bitShiftL;
+    }
+    fun static ST_bitShiftR bitShiftR(Stream a, int b) {
+        return (new ST_bitShiftR).init(a,b) $ ST_bitShiftR;
+    }
+    fun static ST_bitShiftR bitShiftR(Stream a, Stream b) {
+        return (new ST_bitShiftR).init(a,b) $ ST_bitShiftR;
+    }
+    
     fun static ST_equal equal(Stream a,Stream b) {
         return (new ST_equal).init(a,b) $ ST_equal;
     }
