@@ -17,7 +17,7 @@ public class ST_repeat extends Stream
     
     fun int more() {
         if (_holdMode) {
-            if (repLeft > 1) {
+            if (repLeft > 0) {
                 return true;
             }
         } 

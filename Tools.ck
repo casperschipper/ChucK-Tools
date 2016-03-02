@@ -86,6 +86,7 @@ Machine.add(toolsPath + "Streams/ST_bitOr");
 Machine.add(toolsPath + "Streams/ST_bitXor");
 Machine.add(toolsPath + "Streams/ST_equal");
 Machine.add(toolsPath + "Streams/ST_exprv");
+Machine.add(toolsPath + "Streams/ST_TimedReset");
 
 Machine.add(toolsPath + "Streams/ST_bitShiftL");
 Machine.add(toolsPath + "Streams/ST_bitShiftR");

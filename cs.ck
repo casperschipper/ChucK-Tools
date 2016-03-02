@@ -12,7 +12,7 @@ public class cs
         return arg / second;
     }
     
-    0.0002267573696 => static float samplet;
+    1.0 / 44100.0 => static float samplet;
     
     fun static float [] reversef(float seq[]) {
         seq.cap() - 1 => int n => int size;
@@ -1000,6 +1000,14 @@ public class cs
         return 0;
     }
     
+    fun static int[] copy(int array[]) {
+        return copyArray(array);
+    }
+    
+    fun static float[] copyf(float array[]) {
+        return copyArrayf(array);
+    }
+    
     fun static int[] copyArray(int array[])
     {
         int output[array.size()];
@@ -1156,9 +1164,22 @@ public class cs
     
     fun static float [] slice (float input[],int start, int end) {
         // not quite safe this one !
+        if (start > end) {
+            end => int tmp;
+            start => end;
+            tmp => start;
+        }
+        
+        if (end >= input.size()) {
+            <<<" Out of bounds !!! ">>>;
+            return [0.];
+        }
+            
+        
         float output[(end-start)+1];
+        int idx;
         for (start => int i;i<=end;i++) {
-            input[i] => output[i];
+            input[i] => output[idx++];
         }
         return output;
     }
@@ -1471,6 +1492,18 @@ public class cs
             .5::second => now;
             spork ~ testSpeakerShred(channels[i]);
         }
+    }
+    
+    fun float [] buffToArray(string path) {
+        SndBuf b;
+        b.read(path);
+        b.samples() => int size;
+        float array[size];
+        
+        for (int i;i<size;i++) {
+            b.valueAt(i) => array[i];
+        }
+        return array;
     }
 }
 

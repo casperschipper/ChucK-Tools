@@ -16,6 +16,16 @@ public class ST_walk extends Stream {
         return this;
     }
     
+    fun ST_walk value(float valueArg) {
+        valueArg => _value;
+        return this;
+    }
+    
+    fun ST_walk value(int valueArg) {
+        valueArg => _value;
+        return this;
+    }
+    
     fun ST_walk init(float valueArg,float stepArg) {
         valueArg => _value => initialValue;
         stepArg => _step;

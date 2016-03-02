@@ -7,6 +7,8 @@ public class MidiStream {
         <<<"port failed">>>;
     }
     
+    
+    
     1 => int _channel;
     
     null @=> Stream @ st_pitch;
@@ -16,6 +18,8 @@ public class MidiStream {
     
     0x90 => int _noteOn;
     0x80 => int _noteOff;
+    
+    0xB0 => int _allNoteOff;
     
     0 => int play;
     
@@ -47,6 +51,13 @@ public class MidiStream {
         
         0x90 + _channel => _noteOn;
         0x80 + _channel => _noteOff;
+        0xB0 + _channel => _allNoteOff;
+        
+        _allNoteOff => msg.data1;
+        123 => msg.data2;
+        0 => msg.data3;
+        
+        mout.send(msg);
         
         while(play) {
             spork ~ playNote();
