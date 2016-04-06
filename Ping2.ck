@@ -3,7 +3,7 @@ class CheapEnv extends Chugen {
     
     4096 => float phase;
     float rate;
-    
+            
     fun float tick(float in) {
         if (phase < 4096) {
             Math.floor(phase) $ int => int a;
@@ -13,12 +13,12 @@ class CheapEnv extends Chugen {
             return 0.0;
         }
     }
-    
+        
     fun dur duration(dur arg) {
         (4096 $ float) / (arg / samp) => rate;
         return arg;
     }
-    
+        
     fun void trigger() {
         0.0 => phase;
     }
@@ -29,7 +29,7 @@ for (int i;i<CheapEnv.lookup.cap();i++) {
     1.0 * Math.pow(0.0001,(i $ float)/4096) => CheapEnv.lookup[i];
 }
 
-public class Ping extends Chubgraph {
+class Ping2 extends Chubgraph {
     1.0 => float _gain;
     
     fun void trigger(float frq,dur dura,float amp) {
@@ -53,3 +53,12 @@ public class Ping extends Chubgraph {
 }
 
 
+
+Ping2 ping => Safe safe => dac;
+while(1) { 
+    ping.trigger(cs.rf(120,127),cs.rd(100::ms,1000*ms),0.1);
+    cs.rd(100*ms,1*ms) => now;
+}
+
+44100 * samp => now;
+        

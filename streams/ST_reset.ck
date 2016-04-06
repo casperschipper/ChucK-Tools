@@ -1,4 +1,4 @@
- class ST_reset extends Stream 
+public class ST_reset extends Stream 
 {
     "ST_reset" @=> _type;
     
@@ -61,14 +61,3 @@
     }
 }
 
-class Main extends st {
-    seq( [
-    (new ST_reset).init( walk(0,ch(1,1)),st(0),rv(3,6)).holdMode(true),
-    st(200)
-    ]).test();
-    
-}
-
-Main main;
-
-hour => now;

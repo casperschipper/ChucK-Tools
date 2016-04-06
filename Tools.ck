@@ -86,7 +86,8 @@ Machine.add(toolsPath + "Streams/ST_bitOr");
 Machine.add(toolsPath + "Streams/ST_bitXor");
 Machine.add(toolsPath + "Streams/ST_equal");
 Machine.add(toolsPath + "Streams/ST_exprv");
-Machine.add(toolsPath + "Streams/ST_TimedReset");
+Machine.add(toolsPath + "Streams/ST_timedReset");
+Machine.add(toolsPath + "Streams/ST_reset");
 
 Machine.add(toolsPath + "Streams/ST_bitShiftL");
 Machine.add(toolsPath + "Streams/ST_bitShiftR");
@@ -114,6 +115,12 @@ Machine.add(toolsPath + "Streams/ST_tanh");
 Machine.add(toolsPath + "Funk.ck");
 Machine.add(toolsPath + "TimedFunk.ck");
 Machine.add(toolsPath + "Streams/ST_funkStream");
+
+// Stream dict
+Machine.add(toolsPath + "Streams/StreamDict");
+// supercollider link
+Machine.add(toolsPath + "Streams/Superchuck");
+
  
 
 Machine.add(toolsPath + "StreamSynths/LineSynth");
@@ -126,6 +133,7 @@ Machine.add(toolsPath + "StreamSynths/StepPanSynth");
 Machine.add(toolsPath + "StreamSynths/LinePanSynth");
 Machine.add(toolsPath + "StreamSynths/SinSynth");
 Machine.add(toolsPath + "StreamSynths/SquareSynth");
+Machine.add(toolsPath + "StreamSynths/PwmSynth");
 Machine.add(toolsPath + "StreamSynths/StreamPan");
 Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamBPFilter");

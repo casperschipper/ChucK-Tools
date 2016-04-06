@@ -1422,15 +1422,11 @@ public class cs
     }
     
     fun static int [] int2binary( int n ) {
-        int result[31];
-        int c,k;
-        for (0 => c;c<result.cap();c++) {
-            n >> c => k;
-            if (k & 1) {
-                1 => result[c];
-            } else {
-                0 => result[c];
-            }
+        int result[63];
+        
+        for (result.cap()-1 => int i;i;i--) {
+            1 & n => result[i];
+            n >> 1 => n;
         }
         return result;
     }

@@ -982,6 +982,16 @@ public class st {
         line( seq(0,size-1),seq(div(1.0,freqArg),st(0)) ) @=> Stream @ idx;
         return indexLin( table, idx );
     }
+    
+    // resets a walk to source arg, every reps
+    fun static ST_reset reset( ST_walk walkArg , Stream sourceArg, Stream repsArg ) {
+        return (new ST_reset).init(walkArg,sourceArg,repsArg);
+    }
+    
+    // resets a walk to source every time 'timer' has passed
+    fun static ST_timedReset timedReset( ST_walk walkArg , Stream sourceArg, Stream timerArg ) {
+        return (new ST_timedReset).init(walkArg,sourceArg,timerArg);
+    }
 }
 
 [st.st(1)] @=> st.globals;
