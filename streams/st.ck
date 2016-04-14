@@ -533,6 +533,10 @@ public class st {
         return walk;
     }
     
+    fun static ST_walkList walkList(Stream values[]) {
+        return walkList(values,ch(-1,1));
+    }
+    
     fun static ST_walkList walkList(int values[]) {
         ST_walkList walk;
         walk.list(values);
@@ -593,6 +597,18 @@ public class st {
     
     fun static ST_smartWalkList smartWalkList(Stream values[],Stream step,Stream direction) {
         return (new ST_smartWalkList).init(values,step,direction);
+    }
+    
+    fun static Stream bouncyListWalk(Stream minArg,Stream maxArg,float list[],Stream step) {
+        return index( list , bouncyWalk(minArg,maxArg,step) );
+    }
+    
+    fun static Stream bouncyListWalk(Stream minArg,Stream maxArg,Stream list[],Stream step) {
+        return index( list , bouncyWalk(minArg,maxArg,step) );
+    }
+    
+    fun static Stream bouncyListWalk(int minArg,int maxArg,Stream list[],Stream step) {
+        return index( list , bouncyWalk(st(minArg),st(maxArg),step) );
     }
     
     fun static ST_div div (Stream a,Stream b) {
@@ -982,6 +998,16 @@ public class st {
         line( seq(0,size-1),seq(div(1.0,freqArg),st(0)) ) @=> Stream @ idx;
         return indexLin( table, idx );
     }
+    
+    // more efficient ?
+    fun static ST_wave wave(float tableArg[],Stream freqArg) {
+        return (new ST_wave).init(tableArg,freqArg);
+    }
+    
+    fun static ST_wave wave(float tableArg[],float freqArg) {
+        return (new ST_wave).init(tableArg,st(freqArg));
+    }
+    
     
     // resets a walk to source arg, every reps
     fun static ST_reset reset( ST_walk walkArg , Stream sourceArg, Stream repsArg ) {

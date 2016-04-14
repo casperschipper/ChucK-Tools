@@ -110,6 +110,7 @@ Machine.add(toolsPath + "Streams/ST_sine");
 Machine.add(toolsPath + "Streams/ST_ugen");
 Machine.add(toolsPath + "Streams/ST_clip");
 Machine.add(toolsPath + "Streams/ST_tanh");
+Machine.add(toolsPath + "Streams/ST_wave");
 
 // funkstreams
 Machine.add(toolsPath + "Funk.ck");
@@ -120,6 +121,9 @@ Machine.add(toolsPath + "Streams/ST_funkStream");
 Machine.add(toolsPath + "Streams/StreamDict");
 // supercollider link
 Machine.add(toolsPath + "Streams/Superchuck");
+
+// writing to array with streams
+Machine.add(toolsPath + "StreamSynths/WriteStream");
 
  
 

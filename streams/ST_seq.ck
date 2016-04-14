@@ -140,4 +140,9 @@ public class ST_seq extends Stream
         arg @=> st_sequence;
         return this;
     }
+    
+    fun ST_seq set(int arg) {
+        arg @=> index;
+        return this;
+    }
 }

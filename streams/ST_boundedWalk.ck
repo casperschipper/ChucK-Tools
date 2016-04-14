@@ -29,12 +29,12 @@ public class ST_boundedWalk extends ST_walk {
     }
     
     fun ST_boundedWalk min(int arg) {
-        <<<arg $ float>>> => _min;
+        arg $ float => _min;
         null @=> st_min;
         return this;
     }
     fun ST_boundedWalk max(int arg) {
-        <<<arg $ float>>> => _max;
+        arg $ float => _max;
         null @=> st_max;
         return this;
     }
