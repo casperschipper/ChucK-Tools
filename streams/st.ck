@@ -640,6 +640,15 @@ public class st {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
     fun static ST_mup mup (Stream a,Stream b,Stream c) {
+        return mup( mup( a, b ), c);
+    }
+    fun static ST_mup mup (Stream a,Stream b,int c) {
+        return mup( mup(a,b),c);
+    }
+    fun static ST_mup mup(Stream a,Stream b,float c) {
+        return mup( mup(a,b,),c);
+    }
+    fun static ST_mup mup (Stream a,Stream b,Stream c) {
         return (new ST_mup).init( 
                    (new ST_mup).init(a,b) , c 
                ) $ ST_mup;
