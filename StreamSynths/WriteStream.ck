@@ -12,6 +12,13 @@ public class WriteStream {
     
     second => dur _timeStep;
     
+    fun WriteStream init(Stream valueArg,Stream indexArg,Stream timeArg) {
+        value(valueArg);
+        index(indexArg);
+        timer(timeArg);
+        start();
+        return this;
+    }
     
     fun WriteStream table(float arg[]) {
         arg @=> _table;

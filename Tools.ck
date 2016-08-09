@@ -1,4 +1,4 @@
- <<<me.sourceDir()>>> + "/" @=> string toolsPath;
+<<<me.sourceDir()>>> + "/" @=> string toolsPath;
 
 Machine.add(toolsPath + "Index");
 Machine.add(toolsPath + "Mod.ck");
@@ -88,6 +88,7 @@ Machine.add(toolsPath + "Streams/ST_equal");
 Machine.add(toolsPath + "Streams/ST_exprv");
 Machine.add(toolsPath + "Streams/ST_timedReset");
 Machine.add(toolsPath + "Streams/ST_reset");
+Machine.add(toolsPath + "Streams/ST_write");
 
 Machine.add(toolsPath + "Streams/ST_bitShiftL");
 Machine.add(toolsPath + "Streams/ST_bitShiftR");
@@ -111,6 +112,7 @@ Machine.add(toolsPath + "Streams/ST_ugen");
 Machine.add(toolsPath + "Streams/ST_clip");
 Machine.add(toolsPath + "Streams/ST_tanh");
 Machine.add(toolsPath + "Streams/ST_wave");
+Machine.add(toolsPath + "Streams/ST_monitor");
 
 // funkstreams
 Machine.add(toolsPath + "Funk.ck");

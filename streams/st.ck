@@ -13,6 +13,8 @@ st.index(
 minute => now;
 */
 
+
+
 public class st {
     static Stream globals[];
     
@@ -640,13 +642,13 @@ public class st {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
     fun static ST_mup mup (Stream a,Stream b,Stream c) {
-        return mup( mup( a, b ), c);
+        return mup( mup(a,b) , c);
     }
     fun static ST_mup mup (Stream a,Stream b,int c) {
-        return mup( mup(a,b),c);
+        return mup( mup(a,b) , c);
     }
     fun static ST_mup mup(Stream a,Stream b,float c) {
-        return mup( mup(a,b,),c);
+        return mup( mup(a,b) , c);
     }
     fun static ST_mup mup (Stream a,Stream b,Stream c) {
         return (new ST_mup).init( 
@@ -811,6 +813,10 @@ public class st {
     
     fun static ST_sine sine(int freqArg) {
         return (new ST_sine).init(freqArg $ float);
+    }
+    
+    fun static ST_sine sine(Stream streamArg) {
+        return (new ST_sine).init(streamArg);
     }
     
     fun static ST_greater greater(Stream a,Stream b) {
@@ -996,12 +1002,23 @@ public class st {
         t( ch(table), ch(table)) ));
     }
     
+    fun static ST_timed fractRandTimer(float arg1, int arg2) {
+        cs.grow(arg1,2,arg2) @=> float table[];
+        return t( ch(table) , 
+        t( ch(table), 
+        t( ch(table), ch(table)) ));
+    }
+    
+    // make a tuner that uses two tendency masks, one for octave, one for pitch within octave
+    // then make a better value generator for tendency mask.
+    
     fun static ST_index waveOsc( float table[], Stream freqArg ) {
         table.cap() => int size;
         line( seq(0,size-1),seq(div(1.0,freqArg),st(0)) ) @=> Stream @ idx;
         return index( table, idx );
     }
     
+    /// linear
     fun static ST_indexLin waveOscL( float table[], Stream freqArg ) {
         table.cap() => int size;
         line( seq(0,size-1),seq(div(1.0,freqArg),st(0)) ) @=> Stream @ idx;
@@ -1013,6 +1030,7 @@ public class st {
         return (new ST_wave).init(tableArg,freqArg);
     }
     
+    // reads a table with a certain frequency
     fun static ST_wave wave(float tableArg[],float freqArg) {
         return (new ST_wave).init(tableArg,st(freqArg));
     }
@@ -1027,6 +1045,28 @@ public class st {
     fun static ST_timedReset timedReset( ST_walk walkArg , Stream sourceArg, Stream timerArg ) {
         return (new ST_timedReset).init(walkArg,sourceArg,timerArg);
     }
+    
+    /* writes to dac */
+    fun static ST_write write( Stream valueArg, Stream indexArg, float tableArg[] ) {
+        ST_write stream;
+        stream.value(valueArg);
+        stream.indexer(indexArg);
+        stream.table(tableArg);
+        return stream;
+    }
+    
+    /* prints the output to the dac */
+    fun static ST_monitor monitor( Stream arg ) {
+        return (new ST_monitor).init(arg);
+    }
+    
+    /* stream gets repeated weightone in weighttwo times */
+    fun static Stream skip (Stream arg,int weightone,int weighttwo) {
+        return hold( arg , weights([[1,weightone],[2,weighttwo]]) );
+    }
+        
 }
+
+
 
 [st.st(1)] @=> st.globals;

@@ -68,6 +68,7 @@ public class ST_seq extends Stream
         
         if (st_sequence != null) {
             if (st_sequence[index].more()) {
+                true => _more;
                 return;
             } else {
                 index++;

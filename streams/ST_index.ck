@@ -11,6 +11,7 @@ public class ST_index extends Stream {
     
     fun ST_index holdMode(int arg) {
         arg => _holdMode;
+        arg => _more;
         return this;
     }
     
@@ -60,24 +61,21 @@ public class ST_index extends Stream {
     
     fun int safeIndex() {
         indexer.more() => _more;
-        wrap(indexer.nextInt(),0,size-1) => int index;
-        return index;
-    }
-    
-    fun int wrap(int x,int low, int high) {
-        Math.abs(high - low + 1) => int range;
-        ((x-low) % range) => x;
-        if (x<0)
-            return high + 1 + x;
-        else 
-            return low + x;
+        indexer.nextInt() => int index;
+        if (index < 0) {
+            0 => index;
+            <<<"negative indexer">>>;
+        }
+        return index % size;
     }
     
     fun float next() {
         if (st_table != null) {
             if (st_table[index].more()) {
+                true => _more;
                 return st_table[index].next();
             }
+            false => _more;
             safeIndex() => index;
             return st_table[index].next();
         }

@@ -18,9 +18,7 @@ public class MidiStream {
     
     0x90 => int _noteOn;
     0x80 => int _noteOff;
-    
-    0xB0 => int _allNoteOff;
-    
+        
     0 => int play;
     
     fun MidiStream port(int arg) {
@@ -46,18 +44,25 @@ public class MidiStream {
         return this;
     }
     
+    fun void killAll() {
+        // killall
+        for (int chan;chan<16;chan++) {
+            for (int note;note<127;note++) {
+                _noteOff+chan => msg.data1;
+                note => msg.data2;
+                0 => msg.data3;
+                mout.send(msg);
+            }
+        }
+    }
+    
     fun void midiSpork() {
         1 => play;
         
+        killAll();
+        
         0x90 + _channel => _noteOn;
         0x80 + _channel => _noteOff;
-        0xB0 + _channel => _allNoteOff;
-        
-        _allNoteOff => msg.data1;
-        123 => msg.data2;
-        0 => msg.data3;
-        
-        mout.send(msg);
         
         while(play) {
             spork ~ playNote();

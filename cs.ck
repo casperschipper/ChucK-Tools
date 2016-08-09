@@ -305,6 +305,10 @@ public class cs
            value => output[i];
        return output;
    }
+   
+   fun static int[] range( int low, int high) {
+       return range(low,high,1);
+   }
     
     fun static int[] range( int low, int high, int step)
     {
@@ -717,6 +721,10 @@ public class cs
         }
         return (Math.pow((((input - Math.min(a,b)) / Std.fabs(a-b))),exp) * Std.fabs(c-d)) + Math.min(c,d);
     }
+    
+    fun static float mapf(float in,float a,float b,float c,float d) {
+        return scalef(in,a,b,c,d):
+    }
 
     fun static int clip(int input,int low,int high) {
         if (input<low) return low;
@@ -753,6 +761,14 @@ public class cs
         else 
             return low + x;
     }
+    
+    fun static int safeTableIndex(int x,int size) {
+        x % size => x;
+        if (x < 0) {
+            size + x + 1 => x;
+        }
+        return x;
+    }   
     
     fun static float scalefExp(float input,float a,float b,float c,float d,float p)
     {

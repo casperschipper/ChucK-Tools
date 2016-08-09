@@ -22,6 +22,14 @@ public class ST_count2 extends Stream {
     }
     
     fun ST_count2 holdMode(int arg) {
+        true => _more;
+        
+        if (value >= _max) {
+            false => _more;
+            if (st_max != null) st_max.nextInt() => _max;
+            0 => value;
+        }
+        
         (arg == true) => _holdMode;
         return this;
     }
