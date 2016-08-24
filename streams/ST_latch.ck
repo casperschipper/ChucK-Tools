@@ -2,37 +2,38 @@ public class ST_latch extends Stream
 {
     "ST_latch" @=> _type;
     
-    Stream @ source;
-    Stream @ reps;
+    Stream @ st_source;
+    Stream @ st_reps;
     
     int repLeft;
     float memValue;
     
-    fun static ST_latch make(Stream _source,Stream _reps) {
+    fun static ST_latch make(Stream sourceArg,Stream repsArg) {
         ST_latch stream;
-        stream.init(_source,_reps);
+        stream.init(sourceArg,repsArg);
         return stream;
     }
     
-    fun ST_latch init(Stream _source,Stream _reps) {
-        _source @=> source;
-        _reps @=> reps;
-        reps.nextInt() => repLeft;
+    fun ST_latch init(Stream sourceArg,Stream repsArg) {
+        sourceArg @=> st_source;
+        repsArg @=> st_reps;
+        st_reps.nextInt() => repLeft;
         return this;
     }
 
     fun int more() {
-        if (!source.more()) {
+        if (!st_source.more()) {
             repLeft--;
         }
         if (repLeft > 0) {
             return true;
         } 
-        reps.nextInt() => repLeft;  
+        st_reps.nextInt() => repLeft;  
+        if (repLeft < 0) 0 => repLeft;
         return false;
     }
     
     fun float next() {
-        return source.next();
+        return st_source.next();
     }
 }

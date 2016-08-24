@@ -17,8 +17,9 @@ public class cs
     fun static float [] reversef(float seq[]) {
         seq.cap() - 1 => int n => int size;
         float result[seq.cap()];
-        while (n--) {
+        while (n >= 0) {
             seq[size-n] => result[n];
+            n--;
         }
         return result;
     }
@@ -26,8 +27,9 @@ public class cs
     fun static int [] reverse(int seq[]) {
         seq.cap() - 1 => int n => int size;
         int result[seq.cap()];
-        while (n--) {
+        while (n >= 0) {
             seq[size-n] => result[n];
+            n--;
         }
         return result;
     }
@@ -289,6 +291,101 @@ public class cs
         }
         return result;
     }
+    
+    fun static float[] insertf (float input[],float value) {
+        input.cap() => int size;
+        float output[size+1]; // bigger array;
+        if (size == 0) { // if size is 0, array with value.
+            value => output[0];
+            return output;
+        }
+        
+        size - 1 => int i; // start at end;
+        // first check i > 0, otherwise error with zero size
+        while( (i >= 0) && (value < input[i]) ) { // continue while value is bigger than or end
+            input[i] => output[i+1]; // copy 1 cell shifted.
+            i--;
+        }
+        value => output[i+1]; // insert the value
+        
+        while( i >= 0 ) { // copy remainder to output
+            input[i] => output[i]; 
+            i--;
+        }
+        
+        return output; 
+    }
+    
+    fun static int[] insert (int input[],int value) {
+        input.cap() => int size;
+        int output[size+1]; // bigger array;
+        if (size == 0) { // if size is 0, array with value.
+            value => output[0];
+            return output;
+        }
+        
+        size - 1 => int i; // start at end;
+        // first check i > 0, otherwise error with zero size
+        while( (i >= 0) && (value < input[i]) ) { // continue while value is bigger than or end
+            input[i] => output[i+1]; // copy 1 cell shifted.
+            i--;
+        }
+        value => output[i+1]; // insert the value
+        
+        while( i >= 0 ) { // copy remainder to output
+            input[i] => output[i]; 
+            i--;
+        }
+        
+        cs.print(output);
+        return output; 
+    }
+    
+    fun static float[] splicef(float input[],int index,float value) {
+        input.cap() => int size;
+        
+        float output[size + 1];
+        
+        if (index > size) {
+            <<<"index is bigger than array">>>;
+            return input;
+        }
+        
+        for (int i;i<index;i++) {
+            input[i] => output[i];
+        }
+        value => output[index];
+        
+        for (index+1 => int i;i < (size + 1);i++) {
+            input[i-1] => output[i];
+        }
+        return output;
+    }
+    
+    fun static int[] splice(int input[],int index,int value) {
+        input.cap() => int size;
+        
+        int output[size + 1];
+        
+        if (index > size) {
+            <<<"index is bigger than array">>>;
+            return input;
+        }
+        
+        for (int i;i<index;i++) {
+            input[i] => output[i];
+        }
+        value => output[index];
+        
+        for (index+1 => int i;i < (size + 1);i++) {
+            input[i-1] => output[i];
+        }
+        return output;
+    }
+    
+
+          
+          
     
     fun static int[] fillOne( int amount,int value)
     {
@@ -723,7 +820,7 @@ public class cs
     }
     
     fun static float mapf(float in,float a,float b,float c,float d) {
-        return scalef(in,a,b,c,d):
+        return scalef(in,a,b,c,d);
     }
 
     fun static int clip(int input,int low,int high) {

@@ -253,6 +253,10 @@ public class st {
     fun static ST_latch latch(int valueArg,Stream repeatArg) {
         return (new ST_latch).init(st(valueArg),repeatArg);
     }
+    
+    fun static ST_latch latch(Stream valueArg, float repeatArg) {
+        return (new ST_latch).init(valueArg,st(repeatArg));
+    }
 
     fun static ST_timedLatch tLatch(Stream valueArg,Stream timerArg) {
         return (new ST_timedLatch).init(valueArg,timerArg);

@@ -5,7 +5,7 @@
 
 // get name
 me.arg(0) => string filename;
-if( filename.length() == 0 ) "Noise3cCoolOutput2.wav" => filename;
+if( filename.length() == 0 ) "SaxyRecording2.wav" => filename;
 
 // pull samples from the dac
 dac.chan(0) => Gain g1 => WvOut c1 => blackhole;
@@ -21,10 +21,10 @@ filename + "BR" => c4.wavFilename;
 
 <<<"writing to file:", "'" + c1.filename() + "'">>>;
 // any gain you want for the output
-.5 => g1.gain;
-.5 => g2.gain;
-.5 => g3.gain;
-.5 => g4.gain;
+1 => g1.gain;
+1 => g2.gain;
+1 => g3.gain;
+1 => g4.gain;
 
 // infinite time loop...
 // ctrl-c will stop it, or modify to desired duration
