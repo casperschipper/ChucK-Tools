@@ -1,70 +1,3 @@
-class StreamDict {
-    0 => int length;
-    string keys[0];
-    Stream values[0];
-    
-    0 => int index;
-    
-    fun StreamDict store(string keyArg,Stream streamArg) {
-        length++; // number of keys increased
-        keys.size(length); // change size of keys list
-        keyArg @=> keys[length-1]; // store key
-        streamArg @=> values[keyArg]; // store item
-        return this;
-    }
-    
-    fun StreamDict clear() {
-        keys.size(0);
-        values.size(0);
-        reset();
-        return this;
-    }
-    
-    fun StreamDict reset() {
-        0 => index;
-        return this;
-    }
-    
-    fun int more() {
-        if (index < length) {
-            return true;
-        }
-        return false;
-    }
-    
-    fun string nextKey() {
-        if (index < length) {
-            return keys[index];
-        } 
-        return null;
-    }
-    
-    fun Stream nextStream() {
-        if (index < length) {
-            return values[keys[index++]];
-        } 
-        return null;
-    }
-    
-    fun Stream next() {
-        return nextStream();
-    }
-    
-    fun string [] allKeys() {
-        return keys;
-    }
-    
-    fun Stream fetch(string keyArg) {
-        if (values[keyArg] != null) {
-            return values[keyArg];
-        } else {
-            <<<"stream not found, returning 0 stream">>>;
-            return (new Stream);
-        }
-    }
-}
-        
-
 public class SuperChuck {
     OscSend xmit;
     "localhost" => string _host;
@@ -85,7 +18,7 @@ public class SuperChuck {
     false => int loop;
     
     Stream st_timer;
-    dur _timeStep;
+    second => dur _timeStep;
     
     fun SuperChuck timeStep(dur arg) {
         arg => _timeStep;
@@ -113,18 +46,6 @@ public class SuperChuck {
         return this;
     }
     
-    fun SuperChuck freq(Stream streamArg) {
-        return addPar("freq",streamArg);
-    }
-    
-    fun SuperChuck duration(Stream streamArg) {
-        return addPar("duration",streamArg);
-    }
-    
-    fun SuperChuck gain(Stream streamArg) {
-        return addPar("gain",streamArg);
-    }
-    
     fun void updateMessage() { // private
         // this creates the SC string address for OSC
         streamDict.length => int n;
@@ -132,6 +53,18 @@ public class SuperChuck {
         while(n--) {
             "s, f" +=> formatString;
         }
+    }
+    
+    fun SuperChuck freq(Stream arg) {
+        return addPar("freq",arg);
+    }
+    
+    fun SuperChuck duration(Stream arg) {
+        return addPar("duration",arg);
+    }
+    
+    fun SuperChuck gain(Stream arg) {
+        return addPar("gain",arg);
     }
     
     fun void playShred() { // private
@@ -147,7 +80,7 @@ public class SuperChuck {
             streamDict.reset();
             while(streamDict.more()) {
                 streamDict.nextKey() => xmit.addString;
-                streamDict.next().next() => xmit.addFloat;
+                streamDict.nextStream().next() => xmit.addFloat;
             }
         }
     }
@@ -167,5 +100,3 @@ public class SuperChuck {
         return this;
     }
 }        
-       
-        
