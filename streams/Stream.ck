@@ -43,6 +43,10 @@ public class Stream
         return nextChunk(chunkSize);
     }
     
+    fun float [] cut(int size) {
+        return collect( size );
+    }
+    
     fun int [] nextIntChunk(int chunkSize) {
         int output[chunkSize];
         for (int i;i<chunkSize;i++) {
@@ -73,8 +77,8 @@ public class Stream
         chout <= IO.newline();
     } 
       
-    fun void test() { test(.1::second,day); }   
-    fun void test(dur T) { test(T,day); }
+    fun void test() { spork ~ test(.1::second,day); }   
+    fun void test(dur T) { spork ~ test(T,day); }
     
     fun void testInt(dur T, dur testLength) {
         now + testLength => time then;

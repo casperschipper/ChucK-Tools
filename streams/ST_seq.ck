@@ -146,4 +146,8 @@ public class ST_seq extends Stream
         arg @=> index;
         return this;
     }
+    
+    fun void reset() {
+        0 => index;
+    }
 }

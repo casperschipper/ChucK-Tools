@@ -1121,6 +1121,13 @@ public class cs
         return copyArrayf(array);
     }
     
+    fun static void replacef(float arg1[],float arg2[]) {
+        arg1.cap() => arg2.size;
+        for (int i;i<arg1.cap();i++) {
+            arg1[i] => arg2[i];
+        }
+    }
+    
     fun static int[] copyArray(int array[])
     {
         int output[array.size()];

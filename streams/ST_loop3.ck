@@ -1,6 +1,8 @@
 public class ST_loop extends Stream {    
     // ST_loop, generates a list of values using Source of Length, repeats that Repeats times.
     // After the list has been repeated, a new list of values gets generated using source etc...
+    
+    // TODO : implement correct more systems
     null @=> Stream @ st_source;
     null @=> Stream @ st_repeats;
     null @=> Stream @ st_length;
@@ -10,6 +12,9 @@ public class ST_loop extends Stream {
     0 => int _length;
     
     0 => int _recordLeft;
+    
+    int _holdMode;
+    true => int _more;
     
     fun static ST_loop make(Stream sourceArg,Stream repeatsArg,Stream lengthArg) {
         return (new ST_loop).init(sourceArg,repeatsArg,lengthArg);
@@ -29,6 +34,24 @@ public class ST_loop extends Stream {
     fun ST_loop source(float arg[]) { arg @=> _source; return this; }
     fun ST_loop length(float arg) { Math.floor(arg) $ int => _length; return this; }
     fun ST_loop repeats(float arg) { Math.floor(arg) $ int => _repeats; return this; }
+    
+    fun int more() {
+        if (_holdMode) {
+            if (_more) {
+                return true;
+            } else {
+                true => _more;
+                return false;
+            }
+        } 
+        return false;
+    }
+    
+    fun ST_loop holdMode(int arg) {
+        arg => _holdMode;
+        return this;
+    }
+
 
     fun float next() {
         if (index >= _length) {

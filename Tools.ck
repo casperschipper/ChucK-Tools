@@ -127,6 +127,8 @@ Machine.add(toolsPath + "Streams/Superchuck");
 // writing to array with streams
 Machine.add(toolsPath + "StreamSynths/WriteStream");
 
+Machine.add(toolsPath + "Streams/ST_normStream");
+
  
 
 Machine.add(toolsPath + "StreamSynths/LineSynth");

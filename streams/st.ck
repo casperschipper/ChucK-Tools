@@ -642,6 +642,12 @@ public class st {
     fun static ST_sub sub(Stream a,Stream b) {
         return (new ST_sub).init(a,b) $ ST_sub;
     }
+    fun static ST_sub sub(float a,Stream b) {
+        return (new ST_sub).init(a,b) $ ST_sub;
+    }
+    fun static ST_sub sub(Stream a,float b) {
+        return (new ST_sub).init(a,b) $ ST_sub;
+    }
     fun static ST_mup mup (Stream a,Stream b) {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
@@ -1050,7 +1056,7 @@ public class st {
         return (new ST_timedReset).init(walkArg,sourceArg,timerArg);
     }
     
-    /* writes to dac */
+    /* writes to table */
     fun static ST_write write( Stream valueArg, Stream indexArg, float tableArg[] ) {
         ST_write stream;
         stream.value(valueArg);
@@ -1059,7 +1065,7 @@ public class st {
         return stream;
     }
     
-    /* prints the output to the dac */
+    /* prints the output to the log */
     fun static ST_monitor monitor( Stream arg ) {
         return (new ST_monitor).init(arg);
     }
@@ -1067,6 +1073,10 @@ public class st {
     /* stream gets repeated weightone in weighttwo times */
     fun static Stream skip (Stream arg,int weightone,int weighttwo) {
         return hold( arg , weights([[1,weightone],[2,weighttwo]]) );
+    }
+    
+    fun static ST_normStream normStream (Stream arg[]) {
+        return (new ST_normStream).init(arg);
     }
         
 }
