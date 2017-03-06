@@ -21,7 +21,7 @@ public class ST_write extends Stream {
     }
     
     fun float next() {
-        st_value.nextInt() => int tmp;
+        st_value.next() => float tmp;
         st_index.nextInt() => int idx;
         cs.safeTableIndex(idx,size) => idx;
         tmp => _table[idx];

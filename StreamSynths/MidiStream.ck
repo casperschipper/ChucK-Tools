@@ -44,6 +44,71 @@ public class MidiStream {
         return this;
     }
     
+    fun MidiStream pitch(Stream arg) {
+        arg @=> st_pitch;
+        return this;
+    }
+    
+    fun MidiStream velo(Stream arg) {
+        arg @=> st_velo;
+        return this;
+    }
+    
+    fun MidiStream dura(Stream arg) {
+        arg @=> st_dura;
+        return this;
+    }
+    
+    fun MidiStream timer(Stream arg) {
+        arg @=> st_delta;
+        return this;
+    }
+    
+    fun MidiStream pitch(Stream arg) {
+        arg @=> st_pitch;
+        return this;
+    }
+    
+    fun MidiStream pitch(float arg) {
+        ST_value.make(arg) @=> st_pitch;
+        return this;
+    }
+    
+    fun MidiStream velo(float arg) {
+        ST_value.make(arg) @=> st_velo;
+        return this;
+    }
+    
+    fun MidiStream dura(float arg) {
+        ST_value.make(arg) @=> st_dura;
+        return this;
+    }
+    
+    fun MidiStream timer(float arg) {
+        ST_value.make(arg) @=> st_delta;
+        return this;
+    }
+    
+    fun MidiStream velo(int arg) {
+        ST_value.make(arg) @=> st_velo;
+        return this;
+    }
+    
+    fun MidiStream dura(int arg) {
+        ST_value.make(arg) @=> st_dura;
+        return this;
+    }
+    
+    fun MidiStream timer(int arg) {
+        ST_value.make(arg) @=> st_delta;
+        return this;
+    }
+    
+    fun MidiStream start() {
+        spork ~ midiSpork();
+        return this;
+    }
+    
     fun void killAll() {
         // killall
         for (int chan;chan<16;chan++) {

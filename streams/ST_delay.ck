@@ -1,26 +1,44 @@
 public class ST_delay extends Stream 
 {
-    Stream @ input;
-    float memory[256];
-    int phase,readPos,delay,maxRead;
+    Stream @ _input;
+    null @=> Stream @ st_delay;
+    
+    float _memory[256];
+    int _phase,_readPos,_delay,_maxRead;
     "ST_delay" @=> _type;
-    
-    
-    fun void init(Stream _input,int _maxRead,int _delay) {
-        if (_delay > maxRead) { maxRead-1  => delay; };
-        _maxRead => maxRead => memory.size;
-        _input @=> input;
-        _delay => delay;
+       
+    fun ST_delay input (Stream arg) {
+        arg @=> _input;
+        return this;
     }
     
+    fun ST_delay maxRead( int arg ) {
+        arg => _maxRead => _memory.size;
+        return this;
+    }
+    
+    fun ST_delay delay( int arg ) {
+       null @=> st_delay;
+       arg => _delay;
+       return this;
+   }
+   
+   fun ST_delay delay( Stream arg ) {
+       arg @=> st_delay;
+       return this;
+   }
+    
     fun float next() {
-        (phase+1) % maxRead => phase;
+        (_phase+1) % _maxRead => _phase;
         
-        input.next() => memory[phase];
-        phase - delay => readPos;
-        while (readPos < 0)  maxRead +=> readPos;
-        <<<phase,readPos,"phase/readpos">>>;
+        if (st_delay != null) {
+            st_delay.nextInt() => _delay;
+            cs.wrap(_delay,0,_maxRead) => _delay;
+        }
         
-        return memory[readPos];
+        _input.next() => _memory[_phase];
+        _phase - _delay => _readPos;
+        while (_readPos < 0)  _maxRead +=> _readPos;        
+        return _memory[_readPos];
     }        
 }

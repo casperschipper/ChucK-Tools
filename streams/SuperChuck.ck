@@ -1,3 +1,4 @@
+
 public class SuperChuck {
     OscSend xmit;
     "localhost" => string _host;
@@ -67,6 +68,39 @@ public class SuperChuck {
         return addPar("gain",arg);
     }
     
+    fun SuperChuck amp(Stream arg) {
+        return addPar("amp",arg);
+    }
+    
+    fun SuperChuck pan(Stream arg) {
+        return addPar("pan",arg);
+    }
+    
+    fun SuperChuck freq(float arg) {
+        return addPar("freq",ST_value.make(arg));
+    }
+    
+    fun SuperChuck duration(float arg) {
+        return addPar("duration",ST_value.make(arg));
+    }
+    
+    fun SuperChuck gain(float arg) {
+        return addPar("gain",ST_value.make(arg));
+    }
+    
+    fun SuperChuck amp(float arg) {
+        return addPar("amp",ST_value.make(arg));
+    }
+    
+    fun SuperChuck pan(float arg) {
+        return addPar("pan",ST_value.make(arg));
+    }
+    
+    fun SuperChuck timer(float arg) {
+        ST_value.make(arg) @=> st_timer;
+        return this;
+    }
+    
     fun void playShred() { // private
         1 => loop;
         while(loop) {
@@ -92,6 +126,11 @@ public class SuperChuck {
     
     fun SuperChuck stop() {
         0 => loop;
+        return this;
+    }
+    
+    fun SuperChuck start() {
+        spork ~ playShred();
         return this;
     }
     

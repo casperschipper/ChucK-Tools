@@ -16,8 +16,8 @@ public class ST_count2 extends Stream {
     }
     
     fun ST_count2 init(int arg,int holdArg) {
-        holdMode(holdArg);
         max(arg);
+        holdMode(holdArg);
         return this;
     }
     

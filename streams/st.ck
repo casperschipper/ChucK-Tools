@@ -2,21 +2,28 @@
 
 lot's of nice and juicy shortcuts, for example:
 
-st.index(
-	[st.rv(0,10),st.st(10)],
-	st.hold(
-		st.count(2),
-		st.seq([st.rv(1,10),st.st(1)])
-	)
-).test();
+class Foo extends st {
+    index(
+        [rv(0,10),st(10)],
+        hold(
+           count(2),
+           seq([rv(1,10),st(1)])
+        )
+    ).test();
 
 minute => now;
+
+
 */
 
 
 
 public class st {
     static Stream globals[];
+    
+    fun static float [] collect (Stream arg,int number) {
+        return arg.collect( number );
+    }
     
     fun static Stream st(float value) {
         ST_value stream;
@@ -152,6 +159,14 @@ public class st {
     
     fun static ST_seq seq(Stream seq[]) {
         return ST_seq.make(seq);
+    }
+    
+    fun static ST_seq seq(float arg) {
+        return ST_seq.make([arg]);
+    }
+    
+    fun static ST_seq seq(int arg) {
+        return ST_seq.make([arg]);
     }
     
     fun static ST_seq seq(int seq[]) {
@@ -617,6 +632,26 @@ public class st {
         return index( list , bouncyWalk(st(minArg),st(maxArg),step) );
     }
     
+    fun static Stream bouncyListWalk(Stream list[])  {
+        return index( list, bouncyWalk( st(0), st(list.cap()), st(1) ));
+    }
+    
+    fun static Stream bouncyListWalk(float list[]) {
+        return index( list, bouncyWalk(st(0),st(list.cap()), st(1) ));
+    }
+    
+    fun static Stream boundedListWalk(Stream min,Stream max,float list[], Stream stepper) {
+        return index( list, boundedWalk(min,max,stepper) );
+    }
+    
+    fun static Stream boundedListWalk(float list[],Stream stepper) {
+        return boundedListWalk(st(0),st(list.cap()),list,stepper);
+    }
+    
+    fun static Stream boundedListWalk(float list[]) {
+        return boundedListWalk(st(0),st(list.cap()),list,ch(-1,1));
+    }
+    
     fun static ST_div div (Stream a,Stream b) {
         return (new ST_div).init(a,b) $ ST_div;
     }
@@ -638,6 +673,88 @@ public class st {
     fun static ST_sum sum(Stream a,float b) {
         return (new ST_sum).init(a,b) $ ST_sum;
     } 
+    
+    fun static ST_sum sum(float a,float b) {
+        return (new ST_sum).init(a,b) $ ST_sum;
+    }
+    
+    fun static ST_div div(float a,float b) {
+        return (new ST_div).init(a,b) $ ST_div;
+    }
+    fun static ST_mup mup(float a,float b) {
+        return (new ST_mup).init(a,b) $ ST_mup;
+    }
+    fun static ST_sub sub(float a,float b) {
+        return (new ST_sub).init(a,b) $ ST_sub;
+    }
+    
+    fun static Stream [] cdr(Stream arg[]) {
+        Stream output[arg.cap()-1];
+        for (0 => int i;i < output.cap();i++) {
+            arg[i+1] @=> output[i];
+        }
+        return output;
+    }
+        
+    
+    fun static ST_sum sum(Stream arg[]) {
+        arg.cap () => int n;
+        
+        if (n == 0) {
+            return sum(st(0),0);
+        } else if (n == 1) {
+            return sum(arg[0],0);
+        } else if (n == 2) {
+            return sum(arg[0],arg[1]);
+        } else {
+            return sum(arg[0],sum(cdr(arg)));
+        }
+    }
+    
+    fun static ST_div div(Stream arg[]) {
+        arg.cap () => int n;
+        
+        if (n == 0) {
+            return div(st(0),1);
+        } else if (n == 1) {
+            return div(arg[0],1);
+        } else if (n == 2) {
+            return div(arg[0],arg[1]);
+        } else {
+            return div(arg[0],div(cdr(arg)));
+        }
+    }
+    
+    fun static ST_mup mup(Stream arg[]) {
+        arg.cap () => int n;
+        
+        if (n == 0) {
+            return mup(st(0),1);
+        } else if (n == 1) {
+            return mup(arg[0],1);
+        } else if (n == 2) {
+            return mup(arg[0],arg[1]);
+        } else {
+            return mup(arg[0],mup(cdr(arg)));
+        }
+    }
+    
+    fun static ST_sub sub(Stream arg[]) {
+        arg.cap () => int n;
+        
+        if (n == 0) {
+            return sub(st(0),1);
+        } else if (n == 1) {
+            return sub(arg[0],1);
+        } else if (n == 2) {
+            return sub(arg[0],arg[1]);
+        } else {
+            return sub(arg[0],sub(cdr(arg)));
+        }
+    }
+    
+        
+        
    
     fun static ST_sub sub(Stream a,Stream b) {
         return (new ST_sub).init(a,b) $ ST_sub;
@@ -819,6 +936,10 @@ public class st {
     
     fun static ST_sine sine(float freqArg) {
         return (new ST_sine).init(freqArg);
+    }
+    
+    fun static ST_sineseg sineseg( Stream arg ) {
+        return (new ST_sineseg).init( arg );
     }
     
     fun static ST_sine sine(int freqArg) {
@@ -1057,6 +1178,23 @@ public class st {
     }
     
     /* writes to table */
+    fun static void writerShred(ST_write arg,Stream timerArg) {
+        while(1) {
+            arg.next();
+            timerArg.next() * second => now;
+        }
+    }
+        
+
+    fun static ST_write write( Stream valueArg, Stream indexArg, float tableArg[], Stream timerArg ) {
+        ST_write stream;
+        stream.value(valueArg);
+        stream.indexer(indexArg);
+        stream.table(tableArg);
+        spork ~ writerShred( stream, timerArg);
+        return stream;
+    }
+    
     fun static ST_write write( Stream valueArg, Stream indexArg, float tableArg[] ) {
         ST_write stream;
         stream.value(valueArg);
@@ -1077,6 +1215,10 @@ public class st {
     
     fun static ST_normStream normStream (Stream arg[]) {
         return (new ST_normStream).init(arg);
+    }
+    
+    fun static void test (Stream arg) {
+        return arg.test();
     }
         
 }

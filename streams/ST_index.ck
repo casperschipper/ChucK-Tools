@@ -64,7 +64,7 @@ public class ST_index extends Stream {
         indexer.nextInt() => int index;
         if (index < 0) {
             0 => index;
-            <<<"negative indexer">>>;
+            <<<"negative index">>>;
         }
         return index % size;
     }
@@ -79,7 +79,6 @@ public class ST_index extends Stream {
             safeIndex() => index;
             return st_table[index].next();
         }
-        
         return table[safeIndex()];
     }
     

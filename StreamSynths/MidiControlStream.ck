@@ -43,10 +43,35 @@ public class MidiControlStream {
         spork ~ midiSpork();
         return this;
     }
+    
+    fun MidiControlStream value(Stream arg) {
+        arg @=> st_value;
+        return this;
+    }
+    
+    fun MidiControlStream timer(Stream arg) {
+        arg @=> st_delta;
+        return this;
+    }
+    
+    fun MidiControlStream delta(Stream arg) {
+        return timer(arg);
+    }
 
     fun MidiControlStream init(Stream valueArg,Stream deltaArg,int ctrlNumberArg) {
         valueArg @=> st_value;
         deltaArg @=> st_delta;
+        if ((ctrlNumberArg == 0) && firstrun) {
+            false => firstrun;
+            <<<"please note: ctrl 0, this might result in program change !">>>;
+        }
+        ctrlNumberArg => _controllerNumber;
+        null @=> st_ctrlNumber;
+        spork ~ midiSpork();
+        return this;
+    }
+    
+    fun MidiContrlStream start() {
         if ((ctrlNumberArg == 0) && firstrun) {
             false => firstrun;
             <<<"please note: ctrl 0, this might result in program change !">>>;
