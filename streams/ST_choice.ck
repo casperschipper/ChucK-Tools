@@ -48,5 +48,5 @@ public class ST_choice extends Stream
     
     fun static ST_choice make(Stream _userList[]) {
         return (new ST_choice).init(_userList);
-    }   
+    }  
 }

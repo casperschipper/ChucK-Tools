@@ -13,6 +13,10 @@ class Foo extends st {
 
 minute => now;
 
+TODO:
+make a stream that interperets a Nan as ending it.
+This way you could construct easily finite streams with weird logic.
+
 
 */
 
@@ -426,6 +430,14 @@ public class st {
         return choice(a);
     }
     
+    fun static ST_choice ch(int a) {
+        return ST_choice.make([a]);
+    }
+    
+    fun static ST_choice ch(float a) {
+        return ST_choice.make([a]);
+    }
+    
     fun static ST_maskedChoice maskedChoice(int arg[],Stream minArg,Stream maxArg) {
         return 
         (new ST_maskedChoice)
@@ -644,12 +656,24 @@ public class st {
         return index( list, boundedWalk(min,max,stepper) );
     }
     
+    fun static Stream boundedListWalk(Stream min,Stream max,Stream list[], Stream stepper) {
+        return index( list, boundedWalk(min,max,stepper) );
+    }
+    
     fun static Stream boundedListWalk(float list[],Stream stepper) {
         return boundedListWalk(st(0),st(list.cap()),list,stepper);
     }
     
     fun static Stream boundedListWalk(float list[]) {
         return boundedListWalk(st(0),st(list.cap()),list,ch(-1,1));
+    }
+    
+    fun static Stream boundedListWalk(Stream list[]) {
+        return boundedListWalk(st(0),st(list.cap()),list,ch(-1,1));
+    }
+    
+    fun static Stream boundedListWalk(Stream list[],Stream stepArg) {
+        return boundedListWalk(st(0),st(list.cap()),list,stepArg);
     }
     
     fun static ST_div div (Stream a,Stream b) {
@@ -1200,6 +1224,16 @@ public class st {
         stream.value(valueArg);
         stream.indexer(indexArg);
         stream.table(tableArg);
+        spork ~ writerShred( stream, st(1) );
+        return stream;
+    }
+    
+    fun static ST_write write( Stream valueArg, float tableArg[], Stream timerArg ) {
+        ST_write stream;
+        stream.value(valueArg);
+        stream.indexer(count( tableArg.cap() ));
+        stream.table(tableArg);
+        spork ~ writerShred( stream, timerArg );
         return stream;
     }
     

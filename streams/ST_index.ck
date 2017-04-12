@@ -63,8 +63,7 @@ public class ST_index extends Stream {
         indexer.more() => _more;
         indexer.nextInt() => int index;
         if (index < 0) {
-            0 => index;
-            <<<"negative index">>>;
+            -1 * index => index;
         }
         return index % size;
     }

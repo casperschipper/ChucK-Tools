@@ -16,6 +16,7 @@ public class MidiControlStream {
     null @=> Stream @ st_value;
     null @=> Stream @ st_delta;
     null @=> Stream @ st_ctrlNumber;
+    null @=> Stream @ st_channel;
     
     0xB0 => int _ctrlMsg;
 
@@ -34,6 +35,12 @@ public class MidiControlStream {
     
     fun MidiControlStream channel(int arg) {
         arg => _channel;
+        null @=> st_channel;
+        return this;
+    }
+    
+    fun MidiControlStream channel(Stream arg) {
+        arg.nextInt() => _channel;
         return this;
     }
     
@@ -49,15 +56,44 @@ public class MidiControlStream {
         return this;
     }
     
+    fun MidiControlStream value(float arg) {
+        (new ST_value).init( arg ) @=> st_value;
+        return this;
+    }
+    
     fun MidiControlStream timer(Stream arg) {
         arg @=> st_delta;
         return this;
     }
     
+    fun MidiControlStream timer(float arg) {
+        return timer( (new ST_value).init(arg) );
+    }
+
+    
     fun MidiControlStream delta(Stream arg) {
         return timer(arg);
     }
-
+    
+    fun MidiControlStream controller(Stream arg) {
+        arg @=> st_ctrlNumber;
+        return this;
+    }
+    
+    fun MidiControlStream controller(float arg) {
+        return controller(arg $ int);   
+    }
+    
+    fun MidiControlStream controller(int arg) {
+        arg => _controllerNumber;
+        null @=> st_ctrlNumber;
+        if ((arg == 0) && firstrun) {
+            false => firstrun;
+            <<<"please note: ctrl 0, this might result in program change !">>>;
+        }
+        return this;
+    }
+    // TODO fix start
     fun MidiControlStream init(Stream valueArg,Stream deltaArg,int ctrlNumberArg) {
         valueArg @=> st_value;
         deltaArg @=> st_delta;
@@ -71,13 +107,7 @@ public class MidiControlStream {
         return this;
     }
     
-    fun MidiContrlStream start() {
-        if ((ctrlNumberArg == 0) && firstrun) {
-            false => firstrun;
-            <<<"please note: ctrl 0, this might result in program change !">>>;
-        }
-        ctrlNumberArg => _controllerNumber;
-        null @=> st_ctrlNumber;
+    fun MidiControlStream start() {
         spork ~ midiSpork();
         return this;
     }
@@ -103,6 +133,9 @@ public class MidiControlStream {
                     <<<"please note: ctrl 0, this might result in program change !">>>;
             }
             
+            if (st_channel != null) {
+                st_channel.nextInt() => _channel;
+            }
             
             _ctrlMsg | _channel => msg.data1;
 

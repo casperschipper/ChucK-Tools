@@ -30,6 +30,7 @@ public class ST_latch extends Stream
         } 
         st_reps.nextInt() => repLeft;  
         if (repLeft < 0) 0 => repLeft;
+        st_source.reset();
         return false;
     }
     

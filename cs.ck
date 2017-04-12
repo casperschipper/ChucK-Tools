@@ -316,6 +316,25 @@ public class cs
         return output; 
     }
     
+    fun void replacef(float arg1[],float arg2[]) {
+        // only way to replace is copy one by one.
+        arg2.size() => int n;
+        arg2.size(n);
+        for (int i;i<n;++i) {
+            arg1[i] => arg2[i];
+        }
+    }
+    
+    fun void replace(int arg1[],int arg2[]) {
+        // only way to really replace is copy one by one.
+        arg2.size() => int n;
+        arg2.size(n);
+        for (int i;i<n;++i) {
+            arg1[i] => arg2[i];
+        }
+    }
+    
+    
     fun static int[] insert (int input[],int value) {
         input.cap() => int size;
         int output[size+1]; // bigger array;
@@ -1610,7 +1629,7 @@ public class cs
         }
     }
     
-    fun float [] buffToArray(string path) {
+    fun static float [] buffToArray(string path) {
         SndBuf b;
         b.read(path);
         b.samples() => int size;
@@ -1621,6 +1640,17 @@ public class cs
         }
         return array;
     }
+    
+    fun static float [] hanning(int size) {
+        float output[size];
+        1.0 / size => float mup;
+        2.0 * pi => float TAU;
+        for (int i;i<size;i++) {
+            (Math.sin(((i * mup) + 0.75) * TAU ) + 1.0) * 0.5 => output[i];
+        }
+        return output;
+    }
+            
 }
 
 
