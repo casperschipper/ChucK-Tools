@@ -5,7 +5,7 @@
 
 // get name
 me.arg(0) => string filename;
-if( filename.length() == 0 ) "SaxyRecording2.wav" => filename;
+if( filename.length() == 0 ) "brownLines5-rec2" => filename;
 
 // pull samples from the dac
 dac.chan(0) => Gain g1 => WvOut c1 => blackhole;
@@ -14,10 +14,10 @@ dac.chan(2) => Gain g3 => WvOut c3 => blackhole;
 dac.chan(3) => Gain g4 => WvOut c4 => blackhole;
 
 // this is the output file name
-filename + "FL" => c1.wavFilename;
-filename + "FR" => c2.wavFilename;
-filename + "BL" => c3.wavFilename;
-filename + "BR" => c4.wavFilename;
+filename + "-1.wav" => c1.wavFilename;
+filename + "-2.wav" => c2.wavFilename;
+filename + "-3.wav" => c3.wavFilename;
+filename + "-4.wav" => c4.wavFilename;
 
 <<<"writing to file:", "'" + c1.filename() + "'">>>;
 // any gain you want for the output

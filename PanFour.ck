@@ -1,6 +1,7 @@
 public class PanFour
 {
     Gain fl,fr,bl,br;
+
     if (dac.channels() == 4) {
         fl => dac.chan(0);
         fr => dac.chan(1);
@@ -39,3 +40,7 @@ public class PanFour
         ugen => br;
     }
 } 
+
+if (dac.channels() == 4) {
+    <<<"4 channels available">>>;
+}

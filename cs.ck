@@ -316,20 +316,20 @@ public class cs
         return output; 
     }
     
-    fun void replacef(float arg1[],float arg2[]) {
+    fun static void replacef(float arg1[],float arg2[]) {
         // only way to replace is copy one by one.
-        arg2.size() => int n;
+        arg1.size() => int n;
         arg2.size(n);
-        for (int i;i<n;++i) {
+        for (int i;i<n;i++) {
             arg1[i] => arg2[i];
         }
     }
     
-    fun void replace(int arg1[],int arg2[]) {
+    fun static void replace(int arg1[],int arg2[]) {
         // only way to really replace is copy one by one.
-        arg2.size() => int n;
+        arg1.size() => int n;
         arg2.size(n);
-        for (int i;i<n;++i) {
+        for (int i;i<n;i++) {
             arg1[i] => arg2[i];
         }
     }
@@ -1649,6 +1649,43 @@ public class cs
             (Math.sin(((i * mup) + 0.75) * TAU ) + 1.0) * 0.5 => output[i];
         }
         return output;
+    }
+    
+    fun static int Mathsign (float arg) {
+        if (arg == 0) {
+            return 0;
+        } else if (arg < 0) {
+            return -1;
+        }
+        else {
+            return 1;
+        }   
+    }
+    
+    fun static float [] ZToBiquad(float zeros[][],float poles[][]) {
+        float out[5];
+        1.0 => out[0];
+        if (zeros[0][1] == 0) {
+            -(zeros[0][0] + zeros[1][0]) => out[1];
+            zeros[0][0] * zeros[1][0] + zeros[0][1] * zeros[1][1] => out[2];
+        }
+        else {
+            Math.sqrt(zeros[0][0] * zeros[0][0] + zeros[0][1] * zeros[0][1]) => float r;
+            Mathsign(zeros[0][0]) * 1 / Math.sqrt((zeros[0][1] * zeros[0][1]) / (zeros[0][0] * zeros[0][0]) + 1) => float cosTheta;
+            -2 * r * cosTheta => out[1];
+            r * r => out[2];
+        }
+        if (poles[0][1] == 0) {
+            -(poles[0][0] + poles[1][0]) => out[3];
+            poles[0][0] * poles[1][0] + poles[0][1] * poles[1][1] => out[4];
+        }
+        else {
+            Math.sqrt(poles[0][0] * poles[0][0] + poles[0][1] * poles[0][1]) => float r;
+            Mathsign(poles[0][0]) * 1 / Math.sqrt((poles[0][1] * poles[0][1]) / (poles[0][0] * poles[0][0]) + 1) => float cosTheta;
+            -2 * r * cosTheta => out[3];
+            r * r => out[4];
+        }
+        return out;
     }
             
 }

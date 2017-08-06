@@ -8,12 +8,13 @@ public class ST_timedLatch extends Stream {
     
     float _value;
     
-    true => int isFirstRun;
+    int firstTime;
     time nextTime;
     
     fun ST_timedLatch init(Stream valueArg,Stream timeArg) {
         value(valueArg);
         times(timeArg);
+        true => firstTime;
         return this;
     }
     
@@ -33,14 +34,18 @@ public class ST_timedLatch extends Stream {
     }
     
     fun int more() {
-        if (nextTime > now) {
+        if (firstTime) { // first time it is run, so schedule a time.
+            now + nextT() => nextTime; 
+            false => firstTime;
+            return true;
+        }
+        if (nextTime > now) { // not yet, return true
             return true;
         } else { // create a new next that is in the future.
-            do {
-                nextTime + nextT() => nextTime;
-            } while ( nextTime < now );
-        }
+            true => firstTime;
+        }            
         return false;
+
     }
     
     fun float next() {

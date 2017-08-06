@@ -3,6 +3,13 @@ public class ST_write extends Stream {
 
     Stream st_index;
     Stream st_value;
+    
+    fun ST_write init(float arg[],Stream valueArg,Stream indexArg) {
+        table(arg);
+        value(valueArg);
+        indexer(indexArg);
+        return this;
+    }
   
     fun ST_write table(float arg[]) {
         arg @=> _table;

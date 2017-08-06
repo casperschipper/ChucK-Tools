@@ -11,6 +11,9 @@ Machine.add(toolsPath + "Global.ck");
 Machine.add(toolsPath + "OSC_Read.ck");
 Machine.add(toolsPath + "FeedbackDelay.ck");
 Machine.add(toolsPath + "Safe.ck");
+Machine.add(toolsPath + "List.ck");
+Machine.add(toolsPath + "CList.ck");
+Machine.add(toolsPath + "SeqUnit.ck");
 
 
 Machine.add(toolsPath + "Synths/SuperSaw.ck");
@@ -66,9 +69,15 @@ Machine.add(toolsPath + "Streams/ST_bitOr");
 Machine.add(toolsPath + "Streams/ST_bitXor");
 Machine.add(toolsPath + "Streams/ST_equal");
 Machine.add(toolsPath + "Streams/ST_exprv");
+Machine.add(toolsPath + "Streams/ST_pow");
 Machine.add(toolsPath + "Streams/ST_timedReset");
 Machine.add(toolsPath + "Streams/ST_reset");
 Machine.add(toolsPath + "Streams/ST_write");
+Machine.add(toolsPath + "Streams/ST_readWrite");
+Machine.add(toolsPath + "Streams/ST_diff");
+Machine.add(toolsPath + "Streams/ST_onePole");
+Machine.add(toolsPath + "Streams/ST_tableCap");
+Machine.add(toolsPath + "Streams/ST_hzPhasor");
 
 Machine.add(toolsPath + "Streams/ST_bitShiftL");
 Machine.add(toolsPath + "Streams/ST_bitShiftR");
@@ -94,16 +103,19 @@ Machine.add(toolsPath + "Streams/ST_clip");
 Machine.add(toolsPath + "Streams/ST_tanh");
 Machine.add(toolsPath + "Streams/ST_wave");
 Machine.add(toolsPath + "Streams/ST_monitor");
+Machine.add(toolsPath + "Streams/ST_replaceZero");
+
 
 // funkstreams
 Machine.add(toolsPath + "Funk.ck");
 Machine.add(toolsPath + "TimedFunk.ck");
 Machine.add(toolsPath + "Streams/ST_funkStream");
+Machine.add(toolsPath + "Schedule.ck");
 
 // Stream dict
 Machine.add(toolsPath + "Streams/StreamDict");
 // supercollider link
-Machine.add(toolsPath + "Streams/Superchuck");
+Machine.add(toolsPath + "Streams/Superchuck2");
 
 // writing to array with streams
 Machine.add(toolsPath + "StreamSynths/WriteStream");
@@ -128,6 +140,7 @@ Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamBPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamLPFilter");
 Machine.add(toolsPath + "StreamSynths/StreamFeedbackDelay");
+Machine.add(toolsPath + "StreamSynths/WriteSchedule");
 
 Machine.add(toolsPath + "StreamSynths/MidiStream");
 Machine.add(toolsPath + "StreamSynths/MidiControlStream");

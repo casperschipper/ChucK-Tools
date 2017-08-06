@@ -76,6 +76,5 @@ osc8.init("/shape8",16).table @=> OSC.table8;
 osc9.init("/shape9",512).table @=> OSC.table9;
 
 
-
 day * 7 => now;
 

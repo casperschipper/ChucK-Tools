@@ -35,6 +35,14 @@ public class st {
         return stream $ Stream;
     }
     
+    fun static Stream st(Stream arg) {
+        return arg;
+    }
+    
+    fun static float take(Stream arg) {
+        return arg.next();
+    }
+    
     fun static ST_linseg linseg(Stream startArg,Stream endArg,Stream stepsArg,int holdArg) {
         return (new ST_linseg)
         .start(startArg)
@@ -644,6 +652,14 @@ public class st {
         return index( list , bouncyWalk(st(minArg),st(maxArg),step) );
     }
     
+    fun static Stream bouncyListWalk(Stream listArg[],Stream stepperArg) {
+        return index( listArg, bouncyWalk(0,listArg.cap(),stepperArg) );
+    }
+    
+    fun static Stream bouncyListWalk(float listArg[],Stream stepperArg) {
+        return index( listArg, bouncyWalk(0,listArg.cap(),stepperArg) );
+    }
+    
     fun static Stream bouncyListWalk(Stream list[])  {
         return index( list, bouncyWalk( st(0), st(list.cap()), st(1) ));
     }
@@ -674,6 +690,14 @@ public class st {
     
     fun static Stream boundedListWalk(Stream list[],Stream stepArg) {
         return boundedListWalk(st(0),st(list.cap()),list,stepArg);
+    }
+    
+    fun static Stream listWalkLin(Stream list[],Stream stepArg) {
+        return indexLin( list, boundedWalk(0,list.cap(),stepArg));
+    }
+    
+    fun static Stream listWalkLin(float list[],Stream stepArg) {
+        return indexLin( list, boundedWalk(0,list.cap(),stepArg));
     }
     
     fun static ST_div div (Stream a,Stream b) {
@@ -710,6 +734,22 @@ public class st {
     }
     fun static ST_sub sub(float a,float b) {
         return (new ST_sub).init(a,b) $ ST_sub;
+    }
+    
+    fun static ST_pow pow(float a,float b) {
+        return (new ST_pow).init(a,b) $ ST_pow;
+    }
+    
+    fun static ST_pow pow(Stream a,Stream b) {
+        return (new ST_pow).init(a,b) $ ST_pow;
+    }
+    
+    fun static ST_pow pow(Stream a, float b) {
+        return (new ST_pow).init(a,b) $ ST_pow;
+    }
+    
+    fun static ST_pow pow(float a,Stream b) {
+        return (new ST_pow).init(a,b) $ ST_pow;
     }
     
     fun static Stream [] cdr(Stream arg[]) {
@@ -1033,11 +1073,23 @@ public class st {
     
     
     fun static ST_line phasor(float wavelength) {
-        return line(seq(-1,1),seq(wavelength,0));
+        return line(seq(0,1),seq(wavelength,0));
     }
     
     fun static ST_line phasor(Stream wavelength) {
-        return line(seq(-1,1),seq(wavelength,st(0)));
+        return line(seq(0,1),seq(wavelength,st(0)));
+    }
+    
+    fun static ST_hzPhasor hzPhasor(Stream arg) {
+        return (new ST_hzPhasor).init(arg);
+    }
+    
+    fun static ST_tableCap tableCap(float tab[]) {
+        return (new ST_tableCap).init(tab);
+    }
+    
+    fun static ST_tableCap tableCap(int tab[]) {
+        return (new ST_tableCap).init(tab);
     }
     
     fun static ST_divider divider(float dividend,float divisor) {
@@ -1146,8 +1198,9 @@ public class st {
     fun static ST_timed fractRandTimer() {
         cs.grow(0.0001,2,15) @=> float table[];
         return t( ch(table) , 
-        t( ch(table), 
-        t( ch(table), ch(table)) ));
+                 t( ch(table), 
+                   t( ch(table), 
+                      ch(table))));
     }
     
     fun static ST_timed fractRandTimer(float arg) {
@@ -1156,6 +1209,18 @@ public class st {
         t( ch(table), 
         t( ch(table), ch(table)) ));
     }
+    
+    fun static ST_timed fractRandTimer(float table[]) {
+        return t( ch(table) , 
+                 t( ch(table) , 
+                   t( ch(table) , 
+                      ch(table))));
+    }
+    
+    fun static ST_timed fractRandTimer(Stream arg) {
+        return t( arg , t( arg , t( arg , arg )));
+    }
+                      
     
     fun static ST_timed fractRandTimer(float arg1, int arg2) {
         cs.grow(arg1,2,arg2) @=> float table[];
@@ -1169,22 +1234,26 @@ public class st {
     
     fun static ST_index waveOsc( float table[], Stream freqArg ) {
         table.cap() => int size;
-        line( seq(0,size-1),seq(div(1.0,freqArg),st(0)) ) @=> Stream @ idx;
+        mup( phasor(freqArg) , size ) @=> Stream @ idx;
         return index( table, idx );
     }
     
     /// linear
     fun static ST_indexLin waveOscL( float table[], Stream freqArg ) {
         table.cap() => int size;
-        line( seq(0,size-1),seq(div(1.0,freqArg),st(0)) ) @=> Stream @ idx;
+        mup( phasor(freqArg) , size ) @=> Stream @ idx;
         return indexLin( table, idx );
     }
+    
+    fun static ST_replaceZero replaceZero( Stream in ) {
+        return (new ST_replaceZero).init(in);
+    }
+
     
     // more efficient ?
     fun static ST_wave wave(float tableArg[],Stream freqArg) {
         return (new ST_wave).init(tableArg,freqArg);
     }
-    
     // reads a table with a certain frequency
     fun static ST_wave wave(float tableArg[],float freqArg) {
         return (new ST_wave).init(tableArg,st(freqArg));
@@ -1208,9 +1277,13 @@ public class st {
             timerArg.next() * second => now;
         }
     }
-        
+    
+    fun static ST_write write( float table[], Stream valueArg, Stream indexArg) {
+        return (new ST_write).init(table,valueArg,indexArg);
+    }
+   
 
-    fun static ST_write write( Stream valueArg, Stream indexArg, float tableArg[], Stream timerArg ) {
+    fun static ST_write writeScheduled( Stream valueArg, Stream indexArg, float tableArg[], Stream timerArg ) {
         ST_write stream;
         stream.value(valueArg);
         stream.indexer(indexArg);
@@ -1219,7 +1292,7 @@ public class st {
         return stream;
     }
     
-    fun static ST_write write( Stream valueArg, Stream indexArg, float tableArg[] ) {
+    fun static ST_write writeScheduled( Stream valueArg, Stream indexArg, float tableArg[] ) {
         ST_write stream;
         stream.value(valueArg);
         stream.indexer(indexArg);
@@ -1228,13 +1301,31 @@ public class st {
         return stream;
     }
     
-    fun static ST_write write( Stream valueArg, float tableArg[], Stream timerArg ) {
+    fun static ST_write writeScheduled( Stream valueArg, float tableArg[], Stream timerArg ) {
         ST_write stream;
         stream.value(valueArg);
         stream.indexer(count( tableArg.cap() ));
         stream.table(tableArg);
         spork ~ writerShred( stream, timerArg );
         return stream;
+    }
+    
+    fun static ST_readWrite readWrite( float tableArg[], Stream readIndexArg,Stream valueArg, Stream writeIndexArg, int overwriteArg) {
+        return (new ST_readWrite).init( tableArg, readIndexArg, valueArg , writeIndexArg, overwriteArg);
+    }
+    
+    fun static ST_readWrite readWrite( float tableArg[], Stream readIndexArg,Stream valueArg, Stream writeIndexArg) {
+        // write and read synchronized.
+        return (new ST_readWrite).init( tableArg, readIndexArg, valueArg , writeIndexArg, 0);
+    }
+    
+    fun static ST_readWrite readWrite(float tableArg[],  Stream readIndexArg, Stream valueArg) {
+        // write sequentially.
+        return (new ST_readWrite).init( tableArg, readIndexArg, valueArg, count( tableArg.cap() ),0);
+    }
+    
+    fun static ST_onePole onepole(Stream arg,Stream fArg) {
+        return (new ST_onePole).init(arg,fArg);
     }
     
     /* prints the output to the log */
@@ -1253,6 +1344,10 @@ public class st {
     
     fun static void test (Stream arg) {
         return arg.test();
+    }
+    
+    fun static Schedule schedule (Stream procArg,Stream timeArg) {
+        return (new Schedule).init(procArg,timeArg);
     }
         
 }
