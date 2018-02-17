@@ -13,7 +13,7 @@ public class ST_seq extends Stream
     
     1 => int _loop;
 
-    false => int _holdMode;
+    false => _latchMode;
     true => int _more;
     
     fun ST_seq init(float _sequence[]) {
@@ -35,7 +35,7 @@ public class ST_seq extends Stream
     }
 
     fun ST_seq holdMode(int arg) {
-        arg => _holdMode;
+        arg => _latchMode;
         return this;
     }
     
@@ -52,8 +52,12 @@ public class ST_seq extends Stream
         return result;
     }
     
+    fun void reset() {
+        if (st_min != null) st_min.nextInt() => index => _min;
+    }
+    
     fun int more() {
-        if (_holdMode) {
+        if (_latchMode) {
             if (_more) {
                 return true;
             } else {
@@ -65,17 +69,15 @@ public class ST_seq extends Stream
     }
     
     fun void updateIndex() {
-        
+        0 => int special;
         if (st_sequence != null) {
-            if (st_sequence[index].more()) {
+            if(st_sequence[index].more()) {
                 true => _more;
                 return;
-            } else {
-                index++;
-            }
-        } else {
-            index++;
+            } 
         }
+        
+        index++;        
         
         if (st_min != null) st_min.nextInt() => _min;
         if (st_max != null) st_max.nextInt() => _max;
@@ -88,7 +90,6 @@ public class ST_seq extends Stream
             _min => index;
             false => _more;
         } 
-        
     }
     
     fun ST_seq min(int arg) {

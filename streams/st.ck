@@ -13,10 +13,6 @@ class Foo extends st {
 
 minute => now;
 
-TODO:
-make a stream that interperets a Nan as ending it.
-This way you could construct easily finite streams with weird logic.
-
 
 */
 
@@ -24,7 +20,7 @@ This way you could construct easily finite streams with weird logic.
 
 public class st {
     static Stream globals[];
-    
+        
     fun static float [] collect (Stream arg,int number) {
         return arg.collect( number );
     }
@@ -619,7 +615,6 @@ public class st {
         walk.init(list,stepper);
         return walk;
     }
-
     
     fun static ST_walkList walkList(int values[],Stream step) {
         ST_walkList walk;
@@ -725,6 +720,36 @@ public class st {
     fun static ST_sum sum(float a,float b) {
         return (new ST_sum).init(a,b) $ ST_sum;
     }
+    /* ST_smaller */
+    fun static ST_smaller smaller(Stream a,Stream b) {
+        return (new ST_smaller).init(a,b) $ ST_smaller;
+    }
+    fun static ST_smaller smaller(float a,Stream b) {
+        return (new ST_smaller).init(a,b) $ ST_smaller;
+    }
+    fun static ST_smaller smaller(Stream a,float b) {
+        return (new ST_smaller).init(a,b) $ ST_smaller;
+    } 
+    
+    fun static ST_smaller smaller(float a,float b) {
+        return (new ST_smaller).init(a,b) $ ST_smaller;
+    }
+    
+    /* ST_bigger */
+    fun static ST_bigger bigger(Stream a,Stream b) {
+        return (new ST_bigger).init(a,b) $ ST_bigger;
+    }
+    fun static ST_bigger bigger(float a,Stream b) {
+        return (new ST_bigger).init(a,b) $ ST_bigger;
+    }
+    fun static ST_bigger bigger(Stream a,float b) {
+        return (new ST_bigger).init(a,b) $ ST_bigger;
+    } 
+    
+    fun static ST_bigger bigger(float a,float b) {
+        return (new ST_bigger).init(a,b) $ ST_bigger;
+    }
+
     
     fun static ST_div div(float a,float b) {
         return (new ST_div).init(a,b) $ ST_div;
@@ -1092,6 +1117,14 @@ public class st {
         return (new ST_tableCap).init(tab);
     }
     
+    fun static ST_store wr (string name,Stream value) {
+        return (new ST_store).init(name,value);
+    }
+    
+    fun static ST_recall rd (string name) {
+        return (new ST_recall).init(name);
+    } 
+    
     fun static ST_divider divider(float dividend,float divisor) {
         return (new ST_divider).dividend(dividend).divisor(divisor);
     }
@@ -1121,6 +1154,10 @@ public class st {
     }
     fun static ST_sum scale(Stream input,float range,Stream offset) {
         return sum( mup(input,range), offset );
+    }
+    
+    fun static ST_sum scaleAC(Stream input,Stream range,Stream offset) {
+        return sum( mup( div(sum(input, 1.0),2.0) ,range) , offset );
     }
     
     // optimized scaling
@@ -1163,6 +1200,20 @@ public class st {
     
     fun static ST_scale linexp(Stream input,float minIn,float maxIn,float minOut,float maxOut,float expArg) {
         return (new ST_scale).init(input,st(minIn),st(maxIn),st(minOut),st(maxOut),st(expArg));
+    }
+    /*    
+    fun static ST_scale linlin(Stream input,float minIn,float maxIn,float minOut,float maxOut) {
+        return (new ST_scale).init(input,st(minIn),st(maxIn),st(minOut),st(maxOut),st(1.0));
+    } 
+    */
+    
+    fun static ST_sum map(Stream input,float minIn,float maxIn,float minOut,float maxOut) {
+        // ((in - minIn) * ( maxIn-minIn ) * maxOut - minOut) + minOut
+        return  sum( 
+                 mup( 
+                  div(
+                   sub( input , minIn ) ,
+                    maxIn - minIn ) , maxOut - minOut), minOut);
     }
         
     fun static ST_ugen ugen(UGen arg) {
@@ -1324,6 +1375,10 @@ public class st {
         return (new ST_readWrite).init( tableArg, readIndexArg, valueArg, count( tableArg.cap() ),0);
     }
     
+    fun static ST_append append(float tabArg[],Stream valueArg) {
+        return (new ST_append).init(tabArg,valueArg);
+    }
+    
     fun static ST_onePole onepole(Stream arg,Stream fArg) {
         return (new ST_onePole).init(arg,fArg);
     }
@@ -1349,9 +1404,34 @@ public class st {
     fun static Schedule schedule (Stream procArg,Stream timeArg) {
         return (new Schedule).init(procArg,timeArg);
     }
-        
+    
+    fun static ST_couple couple (Stream arg1, Stream arg2) {
+        // sync a procedure with a stream, a is the stream, b is the procedure.
+        // arg1.next() is returned
+        return (new ST_couple).init(arg1,arg2);
+    }
+    
+    fun static ST_midiCtrl midiCtrl(int deviceArg,int channelArg,int controllerArg) {
+        return (new ST_midiCtrl).init(deviceArg,channelArg,controllerArg);
+    }
+    
+    fun static ST_midiCtrl midiCtrl(int channelArg,int controllerArg) {
+        return (new ST_midiCtrl).init(3,channelArg,controllerArg);
+    }
+    
+    fun static ST_midiCtrl midiCtrl(int controllerArg) {
+        return (new ST_midiCtrl).init(3,1,controllerArg);
+    }
+    
+    fun static ST_sum scaledMidiCtrl(int controllerArg,float min,float max) {
+        Math.fabs(max-min) => float range;
+        Math.min(min,max) => min;
+        return sum( 
+                mup(  
+                 midiCtrl( controllerArg ), 
+                 range), 
+                min);
+    }
 }
-
-
 
 [st.st(1)] @=> st.globals;

@@ -2,6 +2,8 @@ public class Schedule {
     Stream st_procedure;
     Stream st_timer;
     
+    second => dur _timeStep;
+    
     0 => int play;
     
     fun Schedule init(Stream arg,Stream arg2) {
@@ -24,7 +26,7 @@ public class Schedule {
         1 => play;
         while(play) {
             st_procedure.next();
-            Math.fabs(st_timer.next()) * second => now;
+            Math.fabs(st_timer.next()) * _timeStep => now;
         }
     }
     

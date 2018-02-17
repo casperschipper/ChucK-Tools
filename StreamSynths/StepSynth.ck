@@ -1,4 +1,6 @@
-public class StepSynth extends Chubgraph {
+
+
+public class StepSynth extends StreamSynth {
     Step i => outlet;
     
     null @=> Stream @ _value;
@@ -29,6 +31,7 @@ public class StepSynth extends Chubgraph {
     fun void play() {
         1 => loop;
         while(loop) {
+            updateDefered();
             _value.next() => i.next;
             _dura.next() * _timeStep => now;
         }

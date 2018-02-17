@@ -17,7 +17,7 @@ class ST_defer extends Stream {
     }
 }
 
-public class SuperChuck {
+public class SuperChuck extends StreamSynth {
     OscSend xmit;
     "localhost" => string _host;
     57110 => int _port;
@@ -28,7 +28,6 @@ public class SuperChuck {
     -1 => int nodeID;
     
     StreamDict streamDict;
-    ST_defer deferedStreams[0];
     
     // mes   i  id act target
     "/s_new, s, i, i, i," @=> string prefix;
@@ -66,6 +65,7 @@ public class SuperChuck {
         return this;
     }
     
+    /*
     fun SuperChuck addDefered(string nameArg,Stream streamArg) {
         // called with a name (that will be used for the (~ busName)) 
         // and the stream to be evaluated once per event
@@ -79,6 +79,7 @@ public class SuperChuck {
         (new ST_bus).init(defered.st(),nameArg);
         return this;
     }
+    */
     
     fun void updateMessage() { // private
         // this creates the SC string address for OSC
@@ -97,10 +98,6 @@ public class SuperChuck {
         return addPar("duration",arg);
     }
     
-    fun SuperChuck gain(Stream arg) {
-        return addPar("gain",arg);
-    }
-    
     fun SuperChuck amp(Stream arg) {
         return addPar("amp",arg);
     }
@@ -115,10 +112,6 @@ public class SuperChuck {
     
     fun SuperChuck duration(float arg) {
         return addPar("duration",ST_value.make(arg));
-    }
-    
-    fun SuperChuck gain(float arg) {
-        return addPar("gain",ST_value.make(arg));
     }
     
     fun SuperChuck amp(float arg) {
@@ -147,9 +140,7 @@ public class SuperChuck {
             streamDict.reset();
            
            // first, update all defered streams.
-           for (int i;i<deferedStreams.cap();i++) {
-                deferedStreams[i].update();
-            }
+           updateDefered();
             
             while(streamDict.more()) {
                 streamDict.nextKey() => xmit.addString;

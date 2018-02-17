@@ -20,6 +20,7 @@ public class ST_count extends Stream
     
     fun ST_count max (Stream arg) {
         arg @=> st_max;
+        Math.floor(st_max.next()) $ int => _max;
         return this;
     }
     
@@ -30,11 +31,12 @@ public class ST_count extends Stream
     }
     
     fun float next() {
-        if (st_max != null) {
-            Math.floor(st_max.next()) $ int => _max;
+        if (value > _max) {
+            0 => value;
+            if (st_max != null) {
+                Math.floor(st_max.next()) $ int => _max;
+            }
         }
-        value % _max => value => int tmp;
-        value++;
-        return tmp $ float;
+        return value++ $ float;
     }
 }

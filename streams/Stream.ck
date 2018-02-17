@@ -28,7 +28,8 @@ public class Stream
     }
     
     fun void reset() {
-        0 => index;
+        // do nothing
+        //0 => index;
     }
     
     fun float [] nextChunk(int chunkSize) {

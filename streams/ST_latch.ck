@@ -8,6 +8,8 @@ public class ST_latch extends Stream
     int repLeft;
     float memValue;
     
+    1 => _latchMode;
+    
     fun static ST_latch make(Stream sourceArg,Stream repsArg) {
         ST_latch stream;
         stream.init(sourceArg,repsArg);
@@ -24,7 +26,7 @@ public class ST_latch extends Stream
     fun int more() {
         if (!st_source.more()) {
             repLeft--;
-        }
+        } 
         if (repLeft > 0) {
             return true;
         } 

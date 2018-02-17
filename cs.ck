@@ -12,6 +12,18 @@ public class cs
         return arg / second;
     }
     
+    fun static int number(int arg) {
+        return arg;
+    }
+    
+    fun static int number(float arg) {
+        return Math.floor(arg) $ int;
+    }
+    
+    fun static float flt(float arg) {
+        return arg;
+    }
+    
     1.0 / 44100.0 => static float samplet;
     
     fun static float [] reversef(float seq[]) {
@@ -786,6 +798,15 @@ public class cs
         return input;
     }
     
+    fun static int [] print (int input[],int n ) {
+        Math.min(n+1,input.size()) $ int => n;
+        for (int i;i<n;chout <= input[i++] <= "\t") {
+            // nothing
+        }
+        chout <= IO.newline();
+        return input;  
+    }
+      
     fun static float [] printf( float input[] )
     {
         for (int i;i<input.size();chout <= input[i++] <= "\t\t") {
@@ -1637,6 +1658,7 @@ public class cs
         
         for (int i;i<size;i++) {
             b.valueAt(i) => array[i];
+            1::samp => now;
         }
         return array;
     }

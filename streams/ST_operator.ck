@@ -126,7 +126,12 @@ public class ST_operator extends Stream
             if (v2IsStream) st_v2.next() => _v2;
         }
 
-
         return result;
     }
+    
+    fun float nextCurry(float x) {
+        x => _v2;
+        return next();
+    }
+        
 }

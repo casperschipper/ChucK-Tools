@@ -1,4 +1,4 @@
-public class MidiStream {
+public class MidiStream extends StreamSynth {
     MidiOut mout;
     MidiMsg msg;
     if (mout.open(0)) {
@@ -14,7 +14,7 @@ public class MidiStream {
     null @=> Stream @ st_pitch;
     null @=> Stream @ st_velo;
     null @=> Stream @ st_dura;
-    null @=> Stream @ st_delta;
+    null @=> Stream @ st_timer;
     
     0x90 => int _noteOn;
     0x80 => int _noteOff;
@@ -39,7 +39,7 @@ public class MidiStream {
         pitchArg @=> st_pitch;
         veloArg @=> st_velo;
         duraArg @=> st_dura;
-        delta @=> st_delta;
+        delta @=> st_timer;
         spork ~ midiSpork();
         return this;
     }
@@ -60,7 +60,7 @@ public class MidiStream {
     }
     
     fun MidiStream timer(Stream arg) {
-        arg @=> st_delta;
+        arg @=> st_timer;
         return this;
     }
     
@@ -85,7 +85,7 @@ public class MidiStream {
     }
     
     fun MidiStream timer(float arg) {
-        ST_value.make(arg) @=> st_delta;
+        ST_value.make(arg) @=> st_timer;
         return this;
     }
     
@@ -100,7 +100,7 @@ public class MidiStream {
     }
     
     fun MidiStream timer(int arg) {
-        ST_value.make(arg) @=> st_delta;
+        ST_value.make(arg) @=> st_timer;
         return this;
     }
     
@@ -111,9 +111,9 @@ public class MidiStream {
     
     fun void killAll() {
         // killall
-        for (int chan;chan<16;chan++) {
+        for (int midi_chan;midi_chan<16;midi_chan++) {
             for (int note;note<127;note++) {
-                _noteOff+chan => msg.data1;
+                _noteOff + midi_chan => msg.data1;
                 note => msg.data2;
                 0 => msg.data3;
                 mout.send(msg);
@@ -130,8 +130,9 @@ public class MidiStream {
         0x80 + _channel => _noteOff;
         
         while(play) {
+            updateDefered();
             spork ~ playNote();
-            st_delta.next() * second => now;
+            st_timer.next() * second => now;
         }
     }
     

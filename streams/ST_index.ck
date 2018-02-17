@@ -60,12 +60,14 @@ public class ST_index extends Stream {
 
     
     fun int safeIndex() {
-        indexer.more() => _more;
-        indexer.nextInt() => int index;
+        indexer.nextInt() => index;
         if (index < 0) {
             -1 * index => index;
         }
-        return index % size;
+        if(st_table != null) {            
+            return index % st_table.cap();
+        } 
+        return index % table.cap();
     }
     
     fun float next() {

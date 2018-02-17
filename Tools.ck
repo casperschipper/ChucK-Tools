@@ -1,159 +1,177 @@
 "/Users/casperschipper/Google Drive/chuck/tools/" @=> string toolsPath;
 
+fun void add(string filename) {
+    Machine.add(toolsPath+filename);
+}
 
-Machine.add(toolsPath + "cs.ck");
-Machine.add(toolsPath + "Random.ck");
-Machine.add(toolsPath + "PanFour.ck");
-Machine.add(toolsPath + "PanBin.ck");
-Machine.add(toolsPath + "PanBin8.ck");
-Machine.add(toolsPath + "Pan4.ck");
-Machine.add(toolsPath + "Global.ck");
-Machine.add(toolsPath + "OSC_Read.ck");
-Machine.add(toolsPath + "FeedbackDelay.ck");
-Machine.add(toolsPath + "Safe.ck");
-Machine.add(toolsPath + "List.ck");
-Machine.add(toolsPath + "CList.ck");
-Machine.add(toolsPath + "SeqUnit.ck");
+add("cs.ck");
+add("Random.ck");
+add("PanFour.ck");
+add("PanBin.ck");
+add("PanBin8.ck");
+add("Pan4.ck");
+add("Global.ck");
+add("OSC_Read.ck");
+add("FeedbackDelay.ck");
+add("Safe.ck");
+add("List.ck");
+add("CList.ck");
+add("SeqUnit.ck");
+add("ShredEventStack.ck");
 
 
-Machine.add(toolsPath + "Synths/SuperSaw.ck");
-Machine.add(toolsPath + "PercEnv.ck");
-Machine.add(toolsPath + "Ping.ck");
+add("Synths/SuperSaw.ck");
+add("PercEnv.ck");
+add("Ping.ck");
 
-Machine.add(toolsPath + "Streams/Stream");
-Machine.add(toolsPath + "Streams/ST_choice");
-Machine.add(toolsPath + "Streams/ST_count");
-Machine.add(toolsPath + "Streams/ST_count2"); // this can also hold...
-Machine.add(toolsPath + "Streams/ST_delay");
-Machine.add(toolsPath + "Streams/ST_float");
-Machine.add(toolsPath + "Streams/ST_index");
-Machine.add(toolsPath + "Streams/ST_indexLin");
-Machine.add(toolsPath + "Streams/ST_repeat");
-Machine.add(toolsPath + "Streams/ST_latch");
-Machine.add(toolsPath + "Streams/ST_timedLatch");
-Machine.add(toolsPath + "Streams/ST_seq");
-Machine.add(toolsPath + "Streams/ST_value");
-Machine.add(toolsPath + "Streams/ST_vase");
-Machine.add(toolsPath + "Streams/ST_weave");
-Machine.add(toolsPath + "Streams/ST_tri");
-//Machine.add(toolsPath + "Streams/ST_loop");
-Machine.add(toolsPath + "Streams/ST_loop3");
-Machine.add(toolsPath + "Streams/ST_timed");
-Machine.add(toolsPath + "Streams/ST_scale");
-Machine.add(toolsPath + "Streams/ST_scale2");
-Machine.add(toolsPath + "Streams/ST_line");
-Machine.add(toolsPath + "Streams/ST_linseg");
-Machine.add(toolsPath + "Streams/ST_walk");
-Machine.add(toolsPath + "Streams/ST_walkList");
-Machine.add(toolsPath + "Streams/ST_smartWalkList");
-Machine.add(toolsPath + "Streams/ST_mupWalk");
-Machine.add(toolsPath + "Streams/ST_maskedChoice");
-Machine.add(toolsPath + "Streams/ST_boundedMupWalk");
-Machine.add(toolsPath + "Streams/ST_boundedMupResetWalk");
-Machine.add(toolsPath + "Streams/ST_boundedWalk");
-Machine.add(toolsPath + "Streams/ST_bumpyWalk");
-Machine.add(toolsPath + "Streams/ST_bouncyWalk");
-Machine.add(toolsPath + "Streams/ST_operator");
-Machine.add(toolsPath + "Streams/ST_sum");
-Machine.add(toolsPath + "Streams/ST_mup");
-Machine.add(toolsPath + "Streams/ST_div");
-Machine.add(toolsPath + "Streams/ST_sub");
-Machine.add(toolsPath + "Streams/ST_max");
-Machine.add(toolsPath + "Streams/ST_min");
-Machine.add(toolsPath + "Streams/ST_rv");
-Machine.add(toolsPath + "Streams/ST_modulo");
-Machine.add(toolsPath + "Streams/ST_floor");
-Machine.add(toolsPath + "Streams/ST_greater");
-Machine.add(toolsPath + "Streams/ST_bitAnd");
-Machine.add(toolsPath + "Streams/ST_bitOr");
-Machine.add(toolsPath + "Streams/ST_bitXor");
-Machine.add(toolsPath + "Streams/ST_equal");
-Machine.add(toolsPath + "Streams/ST_exprv");
-Machine.add(toolsPath + "Streams/ST_pow");
-Machine.add(toolsPath + "Streams/ST_timedReset");
-Machine.add(toolsPath + "Streams/ST_reset");
-Machine.add(toolsPath + "Streams/ST_write");
-Machine.add(toolsPath + "Streams/ST_readWrite");
-Machine.add(toolsPath + "Streams/ST_diff");
-Machine.add(toolsPath + "Streams/ST_onePole");
-Machine.add(toolsPath + "Streams/ST_tableCap");
-Machine.add(toolsPath + "Streams/ST_hzPhasor");
+add("Streams/Stream");
+add("Streams/ST_choice");
+add("Streams/ST_count");
+add("Streams/ST_count2"); // this can also hold...
+add("Streams/ST_delay");
+add("Streams/ST_float");
+add("Streams/ST_index");
+add("Streams/ST_indexLin");
+add("Streams/ST_repeat");
+add("Streams/ST_latch");
+add("Streams/ST_timedLatch");
+add("Streams/ST_seq");
+add("Streams/ST_value");
+add("Streams/ST_vase");
+add("Streams/ST_weave");
+add("Streams/ST_tri");
+//add("Streams/ST_loop");
+add("Streams/ST_loop3");
+add("Streams/ST_timed");
+add("Streams/ST_scale");
+add("Streams/ST_scale2");
+add("Streams/ST_line");
+add("Streams/ST_linseg");
+add("Streams/ST_walk");
+add("Streams/ST_walkList");
+add("Streams/ST_smartWalkList");
+add("Streams/ST_mupWalk");
+add("Streams/ST_maskedChoice");
+add("Streams/ST_boundedMupWalk");
+add("Streams/ST_boundedMupResetWalk");
+add("Streams/ST_boundedWalk");
+add("Streams/ST_bumpyWalk");
+add("Streams/ST_bouncyWalk");
+add("Streams/ST_jumpWalk");
+add("Streams/ST_operator");
+add("Streams/ST_sum");
+add("Streams/ST_mup");
+add("Streams/ST_div");
+add("Streams/ST_sub");
+add("Streams/ST_max");
+add("Streams/ST_min");
+add("Streams/ST_rv");
+add("Streams/ST_modulo");
+add("Streams/ST_floor");
+add("Streams/ST_greater");
+add("Streams/ST_bitAnd");
+add("Streams/ST_bitOr");
+add("Streams/ST_bitXor");
+add("Streams/ST_equal");
+add("Streams/ST_bigger");
+add("Streams/ST_smaller");
+add("Streams/ST_exprv");
+add("Streams/ST_pow");
+add("Streams/ST_timedReset");
+add("Streams/ST_reset");
+add("Streams/ST_write");
+add("Streams/ST_append");
+add("Streams/ST_readWrite");
+add("Streams/ST_diff");
+add("Streams/ST_onePole");
+add("Streams/ST_tableCap");
+add("Streams/ST_hzPhasor");
+add("Streams/ST_couple");
 
-Machine.add(toolsPath + "Streams/ST_bitShiftL");
-Machine.add(toolsPath + "Streams/ST_bitShiftR");
+add("Streams/ST_bitShiftL");
+add("Streams/ST_bitShiftR");
 
-Machine.add(toolsPath + "Streams/ST_divider");
+add("Streams/ST_divider");
 
-Machine.add(toolsPath + "Streams/ST_q");
-Machine.add(toolsPath + "Streams/ST_series");
-Machine.add(toolsPath + "Streams/ST_bus");
-Machine.add(toolsPath + "Streams/ST_weights");
-Machine.add(toolsPath + "Streams/ST_wchoice");// optimized version
-Machine.add(toolsPath + "Streams/ST_weightStream");
-Machine.add(toolsPath + "Streams/ST_trigger");
-Machine.add(toolsPath + "Streams/ST_triggerSend");
-Machine.add(toolsPath + "Streams/ST_mtof");
-Machine.add(toolsPath + "Streams/ST_ftom");
-Machine.add(toolsPath + "Streams/ST_mtor");
-Machine.add(toolsPath + "Streams/ST_mtosamps");
-Machine.add(toolsPath + "Streams/ST_sine");
-Machine.add(toolsPath + "Streams/ST_sineseg");
-Machine.add(toolsPath + "Streams/ST_ugen");
-Machine.add(toolsPath + "Streams/ST_clip");
-Machine.add(toolsPath + "Streams/ST_tanh");
-Machine.add(toolsPath + "Streams/ST_wave");
-Machine.add(toolsPath + "Streams/ST_monitor");
-Machine.add(toolsPath + "Streams/ST_replaceZero");
+add("Streams/ST_q");
+add("Streams/ST_series");
+add("Streams/ST_bus");
+add("Streams/ST_weights");
+add("Streams/ST_wchoice");// optimized version
+add("Streams/ST_weightStream");
+add("Streams/ST_trigger");
+add("Streams/ST_triggerSend");
+add("Streams/ST_mtof");
+add("Streams/ST_ftom");
+add("Streams/ST_mtor");
+add("Streams/ST_mtosamps");
+add("Streams/ST_sine");
+add("Streams/ST_sineseg");
+add("Streams/ST_ugen");
+add("Streams/ST_clip");
+add("Streams/ST_tanh");
+add("Streams/ST_wave");
+add("Streams/ST_monitor");
+add("Streams/ST_replaceZero");
+add("Streams/ST_store");
+add("Streams/ST_recall");
 
 
 // funkstreams
-Machine.add(toolsPath + "Funk.ck");
-Machine.add(toolsPath + "TimedFunk.ck");
-Machine.add(toolsPath + "Streams/ST_funkStream");
-Machine.add(toolsPath + "Schedule.ck");
+add("Funk.ck");
+add("TimedFunk.ck");
+add("Streams/ST_funkStream");
+add("Schedule.ck");
 
+// StreamSynth motherclass
+add("StreamSynths/StreamSynth");
 // Stream dict
-Machine.add(toolsPath + "Streams/StreamDict");
+add("Streams/StreamDict");
 // supercollider link
-Machine.add(toolsPath + "Streams/Superchuck2");
+add("Streams/Superchuck2");
 
 // writing to array with streams
-Machine.add(toolsPath + "StreamSynths/WriteStream");
+add("StreamSynths/WriteStream");
 
-Machine.add(toolsPath + "Streams/ST_normStream");
-
- 
-
-Machine.add(toolsPath + "StreamSynths/LineSynth");
-Machine.add(toolsPath + "StreamSynths/PulseSynth");
-Machine.add(toolsPath + "StreamSynths/StepSynth");
-Machine.add(toolsPath + "StreamSynths/FMSynth");
-Machine.add(toolsPath + "StreamSynths/PingSynth");
-Machine.add(toolsPath + "StreamSynths/PulsePanSynth");
-Machine.add(toolsPath + "StreamSynths/StepPanSynth");
-Machine.add(toolsPath + "StreamSynths/LinePanSynth");
-Machine.add(toolsPath + "StreamSynths/SinSynth");
-Machine.add(toolsPath + "StreamSynths/SquareSynth");
-Machine.add(toolsPath + "StreamSynths/PwmSynth");
-Machine.add(toolsPath + "StreamSynths/StreamPan");
-Machine.add(toolsPath + "StreamSynths/StreamHPFilter");
-Machine.add(toolsPath + "StreamSynths/StreamBPFilter");
-Machine.add(toolsPath + "StreamSynths/StreamLPFilter");
-Machine.add(toolsPath + "StreamSynths/StreamFeedbackDelay");
-Machine.add(toolsPath + "StreamSynths/WriteSchedule");
-
-Machine.add(toolsPath + "StreamSynths/MidiStream");
-Machine.add(toolsPath + "StreamSynths/MidiControlStream");
-
-Machine.add(toolsPath + "StreamSynths/StreamNonLinFilter");
-
-Machine.add(toolsPath + "OSCTable");
-
-Machine.add(toolsPath + "Streams/st");
+add("Streams/ST_normStream");
 
 
-Machine.add(toolsPath + "Buses2.ck");
-Machine.add(toolsPath + "PanFourBus.ck");
-Machine.add(toolsPath + "ReadSSV.ck");
+
+add("StreamSynths/LineSynth");
+add("StreamSynths/PulseSynth");
+add("StreamSynths/StepSynth");
+add("StreamSynths/FMSynth");
+add("StreamSynths/PingSynth");
+add("StreamSynths/PulsePanSynth");
+add("StreamSynths/StepPanSynth");
+add("StreamSynths/LinePanSynth");
+add("StreamSynths/PulseFBSynth");
+add("StreamSynths/PulseFBSynth2");
+
+add("StreamSynths/SinSynth");
+add("StreamSynths/SquareSynth");
+add("StreamSynths/PwmSynth");
+add("StreamSynths/StreamPan");
+add("StreamSynths/StreamHPFilter");
+add("StreamSynths/StreamBPFilter");
+add("StreamSynths/StreamLPFilter");
+add("StreamSynths/StreamFeedbackDelay");
+add("StreamSynths/WriteSchedule");
+
+add("StreamSynths/MidiStream");
+add("StreamSynths/MidiControlStream");
+
+add("StreamSynths/StreamNonLinFilter");
+
+add("OSCTable");
+add("Streams/ST_midiCtrl");
+
+
+add("Streams/st");
+
+
+add("Buses2.ck");
+add("PanFourBus.ck");
+add("ReadSSV.ck");
 
 
