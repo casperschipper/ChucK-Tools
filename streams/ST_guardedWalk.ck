@@ -1,71 +1,3 @@
-class Guard {
-    // default is always.
-    ST_operator st_funktor;
-    
-    fun Guard funktor(ST_operator arg) {
-        arg @=> st_funktor;
-        return this;
-    }
-    
-    fun Guard init(ST_operator funktorArg) { 
-        funktorArg @=> st_funktor;
-        return this;
-    }
-    
-    fun int test(float in) {
-        // returns true always;
-        return 1;
-    }
-    
-    fun float apply(float in) {
-        // if test is true, apply funktor
-        return st_funktor.nextCurry(in);
-    }
-}
-
-
-class GuardTest extends Guard { 
-    ST_operator st_test;
-    
-    fun Guard init(ST_operator arg,ST_operator funktorArg) { 
-        arg @=> st_test;
-        funktorArg @=> st_funktor;
-        return this;
-    }
-       
-   fun int test(float in) {
-       return (st_test.nextCurry(in) > 0);
-   }
-
-   fun float apply(float in) {
-       // if test is true, apply funktor
-       return st_funktor.nextCurry(in);
-   }
-}
-
-class GuardControl extends Guard { 
-    // 
-    Stream control;
-        
-    fun Guard init(Stream controlArg,ST_operator funktorArg) {
-        controlArg @=> control;
-        funktorArg @=> st_funktor;
-        return this;
-    }
-    
-    fun int test(float in) {
-        if (controlArg.next() > 0) {
-            return 1;
-        }
-    }
-    
-    fun float apply(float in) {
-        // if test is true, apply funktor
-        return st_funktor.nextCurry(in);
-    }
-}
-
-
 class ST_guardedWalk extends ST_walk {
     // guarded walk
     Guard guards[];
@@ -103,25 +35,27 @@ class ST_guardedWalk extends ST_walk {
         return _value;
     }       
 }
-
+/*
+testing code
 class M extends st {    
     (new GuardTest).init( 
-        smaller( st(30) ), mup(st(1.5)) 
+        smaller( st(30) ), sum(rv(1,10000)) 
     ) @=> Guard @ g1;
     (new GuardTest).init(
-        bigger(st(800)), div(st(2)) 
+        bigger(st(19000)), div(st(2)) 
     ) @=> Guard g2;   
     
-    (new Guard).init( div(st(2)) ) @=> Guard g3; 
+    (new Guard).init( mup(seq([rv(0.9,0.01).st(),rv(0.0,3.9)])) ) @=> Guard g3; 
     
     PingSynth synth => Safe safe => dac;
     synth.init(
     (new ST_guardedWalk).init(400,[g1,g2,g3]),
-    st(0.14),       
-    st(0.99),
+    st(0.002),       
+    st(0.02),
     st(1.0));
 }
 
 M m ;
 hour => now;
+*/
     

@@ -104,6 +104,13 @@ public class ST_operator extends Stream
         return this;
     }
     
+    fun ST_operator init(Stream arg) {
+        v2(arg);
+        null @=> st_v1;
+        return this;
+    }
+        
+    
     fun float operator(float a,float b) {
         return a;
     }
@@ -130,7 +137,7 @@ public class ST_operator extends Stream
     }
     
     fun float nextCurry(float x) {
-        x => _v2;
+        x => _v1;
         return next();
     }
         
