@@ -787,6 +787,7 @@ public class st {
         
     
     fun static ST_sum sum(Stream arg[]) {
+        // handling summing arrays:
         arg.cap () => int n;
         
         if (n == 0) {
@@ -842,8 +843,28 @@ public class st {
         }
     }
     
-        
-        
+    // curried operators (for use in guards)
+    fun static ST_sub sub(Stream arg) {
+        return (new ST_sub).init(arg) $ ST_sub;
+    }   
+    fun static ST_sum sum(Stream arg) {
+        return (new ST_sum).init(arg) $ ST_sum;
+    } 
+    fun static ST_div div(Stream arg) {
+        return (new ST_div).init(arg) $ ST_div;    
+    }
+    fun static ST_mup mup(Stream arg) {
+        return (new ST_mup).init(arg) $ ST_mup;    
+    }
+    fun static ST_bigger bigger(Stream arg) {
+        return (new ST_bigger).init(arg) $ ST_bigger;
+    }
+    fun static ST_smaller smaller(Stream arg) {
+        return (new ST_smaller).init(arg) $ ST_smaller;
+    }
+    fun static ST_modulo modulo(Stream arg) {
+        return (new ST_modulo).init(arg) $ ST_modulo;
+    }
    
     fun static ST_sub sub(Stream a,Stream b) {
         return (new ST_sub).init(a,b) $ ST_sub;

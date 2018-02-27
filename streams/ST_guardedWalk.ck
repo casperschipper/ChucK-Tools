@@ -1,36 +1,39 @@
-class Guard { 
-    // a test and a funktor (which changes the value when test is true)
-   ST_operator st_test;
-  
-   ST_operator st_funktor;
+class Guard {
+    // default is always.
+    ST_operator st_funktor;
+    
+    fun Guard funktor(ST_operator arg) {
+        arg @=> st_funktor;
+        return this;
+    }
+    
+    fun Guard init(ST_operator funktorArg) { 
+        funktorArg @=> st_funktor;
+        return this;
+    }
+    
+    fun int test(float in) {
+        // returns true always;
+        return 1;
+    }
+    
+    fun float apply(float in) {
+        // if test is true, apply funktor
+        return st_funktor.nextCurry(in);
+    }
+}
 
-   // a guard that is always true (default case)
-   false => int isDefault;       
-   
-   fun Guard init(ST_operator testArg,ST_operator funktorArg) {
-       testArg @=> st_test;
-       funktorArg @=> st_funktor;
-       return this;
-   }
-   
-   fun Guard init(int arg, ST_operator funktorArg) {
-       null @=> st_test;
-       true => isDefault;
-       funktorArg @=> st_funktor;
-       return this;
-   }
-   
-   fun Guard init(Stream arg,ST_operator funktorArg) { 
-       arg @=> st_test;
-       false => isDefault;
-       funktorArg @=> st_funktor;
-       return this;
-   }
-   
+
+class GuardTest extends Guard { 
+    ST_operator st_test;
+    
+    fun Guard init(ST_operator arg,ST_operator funktorArg) { 
+        arg @=> st_test;
+        funktorArg @=> st_funktor;
+        return this;
+    }
+       
    fun int test(float in) {
-       if (isDefault) {
-           return 1;
-       }
        return (st_test.nextCurry(in) > 0);
    }
 
@@ -39,6 +42,29 @@ class Guard {
        return st_funktor.nextCurry(in);
    }
 }
+
+class GuardControl extends Guard { 
+    // 
+    Stream control;
+        
+    fun Guard init(Stream controlArg,ST_operator funktorArg) {
+        controlArg @=> control;
+        funktorArg @=> st_funktor;
+        return this;
+    }
+    
+    fun int test(float in) {
+        if (controlArg.next() > 0) {
+            return 1;
+        }
+    }
+    
+    fun float apply(float in) {
+        // if test is true, apply funktor
+        return st_funktor.nextCurry(in);
+    }
+}
+
 
 class ST_guardedWalk extends ST_walk {
     // guarded walk
@@ -79,14 +105,14 @@ class ST_guardedWalk extends ST_walk {
 }
 
 class M extends st {    
-    (new Guard).init( 
+    (new GuardTest).init( 
         smaller( st(30) ), mup(st(1.5)) 
     ) @=> Guard @ g1;
-    (new Guard).init(
+    (new GuardTest).init(
         bigger(st(800)), div(st(2)) 
     ) @=> Guard g2;   
     
-    (new Guard).init( true, div(st(2)) ) @=> Guard g3; 
+    (new Guard).init( div(st(2)) ) @=> Guard g3; 
     
     PingSynth synth => Safe safe => dac;
     synth.init(
