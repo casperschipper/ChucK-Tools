@@ -88,6 +88,11 @@ add("Streams/ST_tableCap");
 add("Streams/ST_hzPhasor");
 add("Streams/ST_couple");
 
+add("Streams/Guard");
+add("Streams/GuardControl");
+add("Streams/GuardTest");
+add("Streams/ST_guardedWalk");
+
 add("Streams/ST_bitShiftL");
 add("Streams/ST_bitShiftR");
 
@@ -147,6 +152,7 @@ add("StreamSynths/StepPanSynth");
 add("StreamSynths/LinePanSynth");
 add("StreamSynths/PulseFBSynth");
 add("StreamSynths/PulseFBSynth2");
+add("StreamSynths/ChannelSynth");
 
 add("StreamSynths/SinSynth");
 add("StreamSynths/SquareSynth");

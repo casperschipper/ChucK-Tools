@@ -4,13 +4,13 @@
  * The walk first applies the test, if true, it applies the funktor to its inner value.
  * This way you can look before you leap.
  */
-class GuardTest extends Guard { 
+public class GuardTest extends Guard { 
     ST_operator st_test;
     
     fun Guard init(ST_operator arg,ST_operator funktorArg) { 
         arg @=> st_test;
         funktorArg @=> st_funktor;
-        return this;
+        return this $ Guard;
     }
     
     fun int test(float in) {

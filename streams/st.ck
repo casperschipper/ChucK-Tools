@@ -570,10 +570,6 @@ public class st {
         return walk;
     }
     
-    fun static ST_walkList walkList(Stream values[]) {
-        return walkList(values,ch(-1,1));
-    }
-    
     fun static ST_walkList walkList(int values[]) {
         ST_walkList walk;
         walk.list(values);
@@ -693,6 +689,26 @@ public class st {
     
     fun static Stream listWalkLin(float list[],Stream stepArg) {
         return indexLin( list, boundedWalk(0,list.cap(),stepArg));
+    }
+    
+    fun static ST_guardedWalk guardedWalk(float startArg,Guard guardsArg[]) {
+        return (new ST_guardedWalk).init(startArg,guardsArg);
+    }
+    
+    fun static Guard guard(ST_operator funktorArg) {
+        return (new Guard).init(funktorArg);
+    }
+    
+    fun static Guard guardTest(ST_operator testArg,ST_operator funktorArg) {
+        return (new GuardTest).init(testArg,funktorArg);
+    }
+    
+    fun static Guard guardControl(Stream controlArg,ST_operator funktorArg) {
+        return (new GuardControl).init(controlArg,funktorArg);
+    }
+    
+    fun static ST_walkList walkList(Stream values[]) {
+        return walkList(values,ch(-1,1));
     }
     
     fun static ST_div div (Stream a,Stream b) {

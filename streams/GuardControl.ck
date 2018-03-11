@@ -3,14 +3,14 @@
  * Here a value is not tested, there is a control value
  * If the control is true, the funktor can be applied
  */
-class GuardControl extends Guard { 
+public class GuardControl extends Guard { 
      // 
      Stream control;
      
      fun Guard init(Stream controlArg,ST_operator funktorArg) {
          controlArg @=> control;
          funktorArg @=> st_funktor;
-         return this;
+         return this $ Guard;
      }
      
      fun int test(float in) {

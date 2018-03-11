@@ -1,5 +1,12 @@
-class ST_guardedWalk extends ST_walk {
-    // guarded walk
+/*
+ * A guarded walk is a walk where the step is determend by some external factor
+ * For example if the value gets too small, you can add or multiply it
+ * 
+ *
+ */
+
+public class ST_guardedWalk extends ST_walk {
+   
     Guard guards[];
        
     fun ST_guardedWalk init( float startArg, Guard guardsArg[] ) {

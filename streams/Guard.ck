@@ -8,11 +8,6 @@ public class Guard {
     // default is always.
     ST_operator st_funktor;
     
-    fun Guard funktor(ST_operator arg) {
-        arg @=> st_funktor;
-        return this;
-    }
-    
     fun Guard init(ST_operator funktorArg) { 
         funktorArg @=> st_funktor;
         return this;
