@@ -109,6 +109,13 @@ public class ST_operator extends Stream
         null @=> st_v1;
         return this;
     }
+    
+    fun ST_operator init(float arg) {
+        v2(arg)
+        null @=> st_v1;
+        null @=> st_v2;
+        return this;
+    }
         
     
     fun float operator(float a,float b) {
