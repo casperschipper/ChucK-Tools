@@ -881,7 +881,7 @@ public class st {
     fun static ST_modulo modulo(Stream arg) {
         return (new ST_modulo).init(arg) $ ST_modulo;
     }
-    
+    // curry !
     fun static ST_sub sub(float arg) {
         return (new ST_sub).init(arg) $ ST_sub;
     }   
@@ -976,6 +976,16 @@ public class st {
     }
     fun static ST_q q(Stream a,float b) {
         return (new ST_q).init(a,b) $ ST_q;
+    }
+    
+    fun static ST_overwrite overwrite(float b) {
+        // always returns b, because sometimes needed in guardControl
+        // this means walk is reset to value upon reaching test = true.
+        return (new ST_overwrite).init(b) $ ST_overwrite;
+    }
+    
+    fun static ST_overwrite overwrite(Stream b) {
+        return (new ST_overwrite).init(b) $ ST_overwrite;
     }
     
     fun static ST_walk walk(float start,Stream step) {

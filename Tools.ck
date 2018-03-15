@@ -87,6 +87,7 @@ add("Streams/ST_onePole");
 add("Streams/ST_tableCap");
 add("Streams/ST_hzPhasor");
 add("Streams/ST_couple");
+add("Streams/ST_overwrite");
 
 add("Streams/Guard");
 add("Streams/GuardControl");
