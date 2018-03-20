@@ -92,6 +92,7 @@ add("Streams/ST_overwrite");
 add("Streams/Guard");
 add("Streams/GuardControl");
 add("Streams/GuardTest");
+add("Streams/GuardTestValue");
 add("Streams/ST_guardedWalk");
 
 add("Streams/ST_bitShiftL");
@@ -121,6 +122,8 @@ add("Streams/ST_monitor");
 add("Streams/ST_replaceZero");
 add("Streams/ST_store");
 add("Streams/ST_recall");
+add("Streams/ST_define");
+add("Streams/ST_apply");
 
 
 // funkstreams

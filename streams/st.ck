@@ -695,12 +695,24 @@ public class st {
         return (new ST_guardedWalk).init(startArg,guardsArg);
     }
     
+    fun static ST_apply apply(Stream inArg,Guard guards[]) {
+        return (new ST_apply).init(inArg,guards);
+    }
+    
+    fun static ST_apply apply(Stream inArg, Guard guard) {
+        return apply(inArg,[guard]);
+    }
+    
     fun static Guard guard(ST_operator funktorArg) {
         return (new Guard).init(funktorArg);
     }
     
     fun static Guard guardTest(ST_operator testArg,ST_operator funktorArg) {
         return (new GuardTest).init(testArg,funktorArg);
+    }
+    
+    fun static Guard guardTestValue(ST_operator testArg,Stream valueArg) {
+        return (new GuardTestValue).init(testArg,valueArg);
     }
     
     fun static Guard guardControl(Stream controlArg,ST_operator funktorArg) {
@@ -881,7 +893,7 @@ public class st {
     fun static ST_modulo modulo(Stream arg) {
         return (new ST_modulo).init(arg) $ ST_modulo;
     }
-    // curry !
+    // FLOAT ARGS
     fun static ST_sub sub(float arg) {
         return (new ST_sub).init(arg) $ ST_sub;
     }   
@@ -1193,6 +1205,10 @@ public class st {
     fun static ST_recall rd (string name) {
         return (new ST_recall).init(name);
     } 
+    
+    fun static ST_define define(string name,float value) {
+        return (new ST_define).init(name,value);
+    }
     
     fun static ST_divider divider(float dividend,float divisor) {
         return (new ST_divider).dividend(dividend).divisor(divisor);

@@ -14,7 +14,7 @@ public class GuardTest extends Guard {
     }
     
     fun int test(float in) {
-        return (st_test.nextCurry(in) > 0);
+        return (st_test.nextCurry(in) != 0);
     }
     
     fun float apply(float in) {

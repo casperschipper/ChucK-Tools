@@ -25,21 +25,14 @@ public class ST_guardedWalk extends ST_walk {
         return this;
     }
     
-    fun float next() {
-        0 => int i;
-        true => int defaultCase;
-                
-        for(;i < guards.cap();i++) { // try untill you find a guard, note: only one guard is applied per step!
+    fun float next() {           
+        for(0 => int i;i < guards.cap();i++) { // try untill you find a guard, note: only one guard is applied per step!
             if (guards[i].test(_value)) {
-                false => defaultCase;
-                break;
+                guards[i].apply(_value) => _value;            
+                return _value;
             }
         }
-        if (defaultCase) {
-            return _value; // dont' do nothin
-        }
-        guards[i].apply(_value) => _value; // apply connected step;
-        return _value;
+        return _value; // dont' do nothin
     }       
 }
 /*
