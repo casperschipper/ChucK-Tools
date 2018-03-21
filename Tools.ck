@@ -94,6 +94,7 @@ add("Streams/GuardControl");
 add("Streams/GuardTest");
 add("Streams/GuardTestValue");
 add("Streams/ST_guardedWalk");
+add("Streams/Otherwise");
 
 add("Streams/ST_bitShiftL");
 add("Streams/ST_bitShiftR");

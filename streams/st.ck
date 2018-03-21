@@ -719,6 +719,10 @@ public class st {
         return (new GuardControl).init(controlArg,funktorArg);
     }
     
+    fun static Guard otherwise(Stream valueArg) {
+        return (new Otherwise).init(valueArg);
+    }
+    
     fun static ST_walkList walkList(Stream values[]) {
         return walkList(values,ch(-1,1));
     }
