@@ -15,9 +15,10 @@ public class ST_sineseg extends Stream {
     fun float next() {
         if (phase > 1.0) {
             1.0 / st_steps.next() => incr;
+            chout <= (incr*44100) <= IO.newline();
             0 => phase;
         }   
-        phase + incr => phase;
+        incr +=> phase;
         return Math.sin( phase * TWOPI );
     }
 }

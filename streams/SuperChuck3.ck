@@ -1,20 +1,61 @@
+class OscWrite write() {
+    FileIO fout;
+    "default" => String fileName;
 
-public class SuperChuck {
-    OscSend xmit;
-    "localhost" => string _host;
-    57110 => int _port;
+    fun OscWrite init(string fileName) {
+        fileName @=> this.fileName;
+        fout.open( this.fileName, FileIO.WRITE );
+        if (!fout.good() ) {
+            cherr <= "can't open file for writing..." <= IO.newline();
+            me.exit();
+        }
+
+    }
+}
+
+class NodeID {
+    1000 => static int nodeID;
     
-    xmit.setHost("localhost",57110);
+    fun int get() {
+        nodeID + 1 => nodeID;
+        return nodeID;
+    }
+}
+
+class ST_defer extends Stream {
+    // this stream only updates if update is called.
+    Stream input;
+    0 => float _value;
     
+    fun void update() {
+        input.next() => _value;
+    }
+    
+    fun float next() {
+        return _value;
+    }
+    
+    fun ST_defer init( Stream arg ) {
+        arg @=> input;
+        return this;
+    }
+}
+
+public class SuperChuck extends StreamSynth {
+    NodeID nodeID;
+    int currentID;
     "default" @=> string instr;
-    -1 => int nodeID;
+     
+     OscSend xmit;
+     xmit.setHost("localhost",57110);
+            
     
     StreamDict streamDict;
     
     // mes   i  id act target
     "/s_new, s, i, i, i," @=> string prefix;
     
-    "" @=> string formatString;
+    string formatString;
     
     false => int loop;
     
@@ -47,12 +88,32 @@ public class SuperChuck {
         return this;
     }
     
+    /*
+    fun SuperChuck addDefered(string nameArg,Stream streamArg) {
+        // called with a name (that will be used for the (~ busName)) 
+        // and the stream to be evaluated once per event
+        ST_defer defered;
+        defered.init( streamArg );
+        // store it, so we can call update at the right moment.
+        deferedStreams.size() => int arraySize;
+        arraySize + 1 => deferedStreams.size;
+        defered @=> deferedStreams[arraySize];
+        // store the stream in the bus namesspace, so it can be used anywwhere.
+        (new ST_bus).init(defered.st(),nameArg);
+        return this;
+    }
+    */
+    
     fun void updateMessage() { // private
         // this creates the SC string address for OSC
         streamDict.length => int n;
         prefix @=> formatString;
         while(n--) {
-            "s, f" +=> formatString;
+            if (n == 0) {
+                " s, f" +=> formatString;
+            } else {
+                " s, f," +=> formatString;
+            }
         }
     }
     
@@ -62,10 +123,6 @@ public class SuperChuck {
     
     fun SuperChuck duration(Stream arg) {
         return addPar("duration",arg);
-    }
-    
-    fun SuperChuck gain(Stream arg) {
-        return addPar("gain",arg);
     }
     
     fun SuperChuck amp(Stream arg) {
@@ -84,10 +141,6 @@ public class SuperChuck {
         return addPar("duration",ST_value.make(arg));
     }
     
-    fun SuperChuck gain(float arg) {
-        return addPar("gain",ST_value.make(arg));
-    }
-    
     fun SuperChuck amp(float arg) {
         return addPar("amp",ST_value.make(arg));
     }
@@ -103,27 +156,36 @@ public class SuperChuck {
     
     fun void playShred() { // private
         1 => loop;
-        while(loop) {
-            st_timer.next() * _timeStep => now;
-            
-            xmit.startMsg(formatString);
-            
-            xmit.openBundle();
+        
+        
+        while(loop) {      
+            nodeID.get() => currentID;
 
+                  
+            st_timer.next() * _timeStep => now;
+            xmit.openBundleTimed(0.2);
+            xmit.startMsg("/s_new",",siii");
             xmit.addString(instr); // instrument
-            xmit.addInt(nodeID);
+            xmit.addInt(currentID);
             xmit.addInt(0);
             xmit.addInt(1);
+            
             streamDict.reset();
+           
+           // first, update all defered streams.
+           updateDefered();
+            
             while(streamDict.more()) {
+                xmit.startMsg("/n_set",",isf");
+                currentID => xmit.addInt;
                 streamDict.nextKey() => xmit.addString;
                 streamDict.nextStream().next() => xmit.addFloat;
             }
-            
             xmit.closeBundle();
         }
+        
     }
-    
+        
     fun SuperChuck play() {
         spork ~ playShred();
         return this;
@@ -139,8 +201,13 @@ public class SuperChuck {
         return this;
     }
     
-    fun SuperChuck setHost(string hostArg,int portArg) {
-        xmit.setHost("localhost",portArg);
+    fun SuperChuck init() {
+        // abstrat method
         return this;
     }
-}        
+}  
+
+
+        
+        
+            

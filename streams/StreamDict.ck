@@ -41,7 +41,9 @@ public class StreamDict {
     
     fun Stream nextStream() {
         if (index < length) {
-            return values[keys[index++]];
+            index => int curr;
+            index + 1 => index;
+            return values[keys[curr]];
         } 
         return null;
     }

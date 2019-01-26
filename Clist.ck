@@ -1,7 +1,7 @@
 public class Clist 
 {
     int array[0];
-    Random random;
+    CRandom random;
     -1 => int pos;
     
     fun void print()

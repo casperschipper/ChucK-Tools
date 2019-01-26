@@ -1593,7 +1593,20 @@ public class cs
     
     fun static int [] int2bin( int n ) {
         return int2binary( n );
-    }         
+    }      
+        
+    /* Function to get no of set bits in binary 
+    representation of passed binary no. */
+    fun static int countSetBits(int n) 
+    { 
+        0 => int count; 
+        while (n) 
+        { 
+            n & (n-1) => n; 
+            count++; 
+        } 
+        return count; 
+    } 
     
     fun static float [] pitchClassMap( float seq[] , float minArg, float maxArg ) {
         float result[0];
@@ -1709,8 +1722,9 @@ public class cs
         }
         return out;
     }
-            
 }
+
+second => now;
 
 
 

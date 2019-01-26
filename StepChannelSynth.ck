@@ -1,13 +1,12 @@
-public class ChannelSynth extends Chubgraph {
-    SawOsc c;
-    
+public class StepChannelSynth extends Chubgraph {
+    Step step;
+        
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
-    null @=> Stream @ _amp;
     null @=> Stream @ _channel;
     
     dac.channels( ) => int nChannels;
-    <<<dac.channels()>>>;
+    <<<"number of chans",dac.channels()>>>;
     
     int channel;
     
@@ -31,7 +30,6 @@ public class ChannelSynth extends Chubgraph {
     fun ChannelSynth init(Stream value,Stream dura,Stream amp,Stream channel) {
         value @=> _value;
         dura @=> _dura;
-        amp @=> _amp;
         channel @=> _channel;
         spork ~ play();
         return this;
@@ -46,14 +44,12 @@ public class ChannelSynth extends Chubgraph {
         1 => loop;
         while(loop) {
             Math.floor(_channel.next() % nChannels) $ int => channel;
-            c => dac.chan(channel);
+            step => dac.chan(channel);
             
-            if (_amp != null) {
-                _amp.next() => c.gain;
-            }
-            _value.next() => c.freq;
+            _value.next() => step.next; 
             _dura.next() * _timeStep => now;
-            c !=> dac.chan(channel);   
+            
+            step !=> dac.chan(channel);   
         }
     }
     

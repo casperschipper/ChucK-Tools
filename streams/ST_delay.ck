@@ -12,6 +12,13 @@ public class ST_delay extends Stream
         return this;
     }
     
+    fun ST_delay init(Stream inArg,int maxArg, Stream delayArg) {
+        input(inArg);
+        maxRead(maxArg);
+        delay(delayArg);
+        return this;
+    }
+    
     fun ST_delay maxRead( int arg ) {
         arg => _maxRead => _memory.size;
         return this;

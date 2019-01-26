@@ -1,6 +1,6 @@
 public class SeqUnit
 {
-    Random random;
+    CRandom random;
     
     random.seed();
     

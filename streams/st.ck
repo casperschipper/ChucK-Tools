@@ -263,6 +263,10 @@ public class st {
     fun static ST_div inv(Stream in) {
         return div(1.0,in);
     }
+    
+    fun static ST_diff diff(Stream in) {
+        return (new ST_diff).init(in);
+    }
   
     fun static ST_latch latch(Stream valueArg,Stream repeatArg) {
         return (new ST_latch).init(valueArg,repeatArg);
@@ -1490,6 +1494,10 @@ public class st {
         return arg.test();
     }
     
+    fun static void test (Stream streamArg,float timeArg) {
+        return streamArg.test(timeArg*second);
+    }
+    
     fun static Schedule schedule (Stream procArg,Stream timeArg) {
         return (new Schedule).init(procArg,timeArg);
     }
@@ -1520,6 +1528,10 @@ public class st {
                  midiCtrl( controllerArg ), 
                  range), 
                 min);
+    }
+    
+    fun static ST_delay delay(Stream inArg,int maxArg,Stream delArg) {
+        return (new ST_delay).init(inArg,maxArg,delArg);
     }
 }
 

@@ -5,7 +5,7 @@
 
 // get name
 me.arg(0) => string filename;
-if( filename.length() == 0 ) "Collatz-chord-5" => filename;
+if( filename.length() == 0 ) "PulseRec" => filename;
 
 // pull samples from the dac
 dac.chan(0) => Gain g1 => WvOut w1 => blackhole;

@@ -1,3 +1,12 @@
+class NodeID {
+    1000 => static int nodeID;
+    
+    fun int get() {
+        nodeID + 1 => nodeID;
+        return nodeID;
+    }
+}
+
 class ST_defer extends Stream {
     // this stream only updates if update is called.
     Stream input;
@@ -18,21 +27,20 @@ class ST_defer extends Stream {
 }
 
 public class SuperChuck extends StreamSynth {
-    OscSend xmit;
-    "localhost" => string _host;
-    57110 => int _port;
-    
-    xmit.setHost("localhost",57110);
-    
+    NodeID nodeID;
+    int currentID;
     "default" @=> string instr;
-    -1 => int nodeID;
+     
+     OscSend xmit;
+     xmit.setHost("localhost",57110);
+            
     
     StreamDict streamDict;
     
     // mes   i  id act target
     "/s_new, s, i, i, i," @=> string prefix;
     
-    "" @=> string formatString;
+    string formatString;
     
     false => int loop;
     
@@ -86,7 +94,11 @@ public class SuperChuck extends StreamSynth {
         streamDict.length => int n;
         prefix @=> formatString;
         while(n--) {
-            "s, f" +=> formatString;
+            if (n == 0) {
+                " s, f" +=> formatString;
+            } else {
+                " s, f," +=> formatString;
+            }
         }
     }
     
@@ -129,23 +141,32 @@ public class SuperChuck extends StreamSynth {
     
     fun void playShred() { // private
         1 => loop;
-        while(loop) {
+        
+        
+        while(loop) {      
+            nodeID.get() => currentID;
+
+                  
             st_timer.next() * _timeStep => now;
-            
-            xmit.startMsg(formatString);
+            xmit.openBundleTimed(0.2);
+            xmit.startMsg("/s_new",",siii");
             xmit.addString(instr); // instrument
-            xmit.addInt(nodeID);
+            xmit.addInt(currentID);
             xmit.addInt(0);
             xmit.addInt(1);
+            
             streamDict.reset();
            
            // first, update all defered streams.
            updateDefered();
             
             while(streamDict.more()) {
+                xmit.startMsg("/n_set",",isf");
+                currentID => xmit.addInt;
                 streamDict.nextKey() => xmit.addString;
                 streamDict.nextStream().next() => xmit.addFloat;
             }
+            xmit.closeBundle();
         }
         
     }
@@ -165,8 +186,8 @@ public class SuperChuck extends StreamSynth {
         return this;
     }
     
-    fun SuperChuck setHost(string hostArg,int portArg) {
-        xmit.setHost("localhost",portArg);
+    fun SuperChuck init() {
+        // abstrat method
         return this;
     }
 }  

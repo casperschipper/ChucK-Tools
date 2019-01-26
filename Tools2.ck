@@ -1,4 +1,4 @@
-"/users/casperschipper/Google Drive/chuck/tools/" @=> string toolsPath;
+"/Users/casperschipper/Google Drive/chuck/tools/" @=> string toolsPath;
 
 <<<"hi there, chuck here">>>;
 
@@ -6,7 +6,7 @@ fun void add(string filename) {
     Machine.add(toolsPath+filename);
 }
 
-add("cs.ck");
+//add("cs.ck");
 1::second => now;
 add("CRandom.ck");
 add("PanFour.ck");

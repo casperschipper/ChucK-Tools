@@ -1,6 +1,65 @@
+class CustomPanner {
+    fun float pan(float arg) {
+        // nothgin 
+        return arg;
+    }
+    fun void connect(UGen arg) {
+    }
+}
+
+class PannerFour extends CustomPanner {
+    PanFour p;
+    fun float pan(float arg) {
+        p.pan(arg);
+    }
+    fun void connect(UGen arg) {
+        p.connect(arg);
+    }
+}
+
+class PannerEight extends CustomPanner {
+    Pan8 p => dac;
+    fun float pan(float arg) {
+        arg * 4.0 => p.pan;
+        return arg;
+    }
+    fun void connect(UGen arg) {
+        arg => p;
+    }
+}
+    
+
+class PannerSixteen extends CustomPanner {
+    Pan16 p => dac;
+    
+    fun float pan(float arg) {
+        arg * 8.0 => p.pan;
+        return arg;
+    }
+    
+    fun void connect(UGen arg) {
+        arg => p;
+    }
+}
+
+
 public class StepPanSynth extends Chubgraph {
-    Step i => Safe safe; PanFour p;
+    Step i => Safe safe; 
+    CustomPanner p;
+    
+    dac.channels() => int nChannels;
+    <<<"number of channels",nChannels>>>;
+    
+    if (nChannels > 16) {
+        (new PannerSixteen) @=> p;
+    } else if (nChannels > 7) {
+        (new PannerEight) @=> p;
+    } else {
+        (new PannerFour) @=> p;
+    }
+    // connect input
     p.connect(safe);
+        
         
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
@@ -47,6 +106,7 @@ public class StepPanSynth extends Chubgraph {
         return arg;
     }      
 }
+
 
 
 
