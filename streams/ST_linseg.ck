@@ -1,11 +1,8 @@
 public class ST_linseg extends Stream {
-    0 => int _current;
-    0 => int _target;
-    
-    0. => float _currentValue;
-    0. => float _targetValue;
-    1 => float _rate;
-    1 => int _steps;
+    0. => float _current;
+    0. => float _target;
+    0. => float _rate;
+    0 => int _steps;
     
     null @=> Stream @ st_startValues;
     null @=> Stream @ st_endValues;
@@ -13,7 +10,7 @@ public class ST_linseg extends Stream {
 
     false => int _holdMode;
     false => int _more;
-
+    
     fun ST_linseg holdMode (int arg) {
         (arg != 0) => _holdMode;
         true => _more;
@@ -31,22 +28,24 @@ public class ST_linseg extends Stream {
         } 
         return false;
     }
+    
+    fun float calcRate (float a, float b, int steps) {
+        if (steps == 0) {
+            return (b-a);
+        }
+        return (b - a) / Math.abs(steps);
+    }
 
     fun float next() {
-        _currentValue => float tmp;
-        if(_current < _target) {
-            _currentValue + _rate => _currentValue;
-        } else {
-            false => _more;
-            0 => _current;
-            st_startValues.next() => _currentValue;
-            st_endValues.next() => _targetValue;
-            if (st_numberOfSteps != null) st_numberOfSteps.nextInt() => _steps;
-            _current + _steps => _target;
-            (_targetValue - _currentValue) / (_steps $ float) => _rate;
+        if ( _steps == 0 ) {
+            st_startValues.next() => _current;
+            st_endValues.next() => _target;
+            Math.floor(st_numberOfSteps.next()) $ int => _steps;
+            calcRate(_current,_target,_steps) => _rate;
         }
-        _current++;
-        
+        _steps--;
+        _current => float tmp;
+        _current + _rate => _current;
         return tmp;
     }
     

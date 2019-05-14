@@ -117,6 +117,7 @@ add("Streams/ST_ftom");
 add("Streams/ST_mtor");
 add("Streams/ST_mtosamps");
 add("Streams/ST_sine");
+add("Streams/ST_sin");
 add("Streams/ST_sineseg");
 add("Streams/ST_ugen");
 add("Streams/ST_clip");
@@ -147,7 +148,6 @@ add("Streams/Superchuck2");
 add("StreamSynths/WriteStream");
 
 add("Streams/ST_normStream");
-
 
 
 add("StreamSynths/LineSynth");

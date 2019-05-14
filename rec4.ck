@@ -5,7 +5,7 @@
 
 // get name
 me.arg(0) => string filename;
-if( filename.length() == 0 ) "brownLines5-rec2" => filename;
+if( filename.length() == 0 ) "LongBirdsIntterrupts" => filename;
 
 // pull samples from the dac
 dac.chan(0) => Gain g1 => WvOut c1 => blackhole;
@@ -19,13 +19,16 @@ filename + "-2.wav" => c2.wavFilename;
 filename + "-3.wav" => c3.wavFilename;
 filename + "-4.wav" => c4.wavFilename;
 
-<<<"writing to file:", "'" + c1.filename() + "'">>>;
+<<<"writing to files:", "'" + c1.filename() + "','"+ c2.filename() + "','"+ c3.filename()+ "','" + c4.filename() + "'">>>;
 // any gain you want for the output
 1 => g1.gain;
 1 => g2.gain;
 1 => g3.gain;
 1 => g4.gain;
 
+<<<"will record 2 minutes">>>;
 // infinite time loop...
 // ctrl-c will stop it, or modify to desired duration
-while( true ) 1::second => now;
+2::minute => now;
+
+<<<"recording stopped">>>;

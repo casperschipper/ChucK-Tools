@@ -1,6 +1,6 @@
 public class ST_normStream extends Stream {
     /*
-    normStream
+    normstream
     =====================================
     
     This Stream takes an array of streams.

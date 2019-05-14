@@ -1,5 +1,7 @@
 public class LinePanSynth extends Chubgraph {
-    Step unit => Envelope i => Safe safe => Pan4 p;
+    Step unit => Envelope i => Safe safe;
+    PanFour p;
+    p.connect(safe);
     1 => unit.next;
     null @=> Stream @ _value;
     null @=> Stream @ _dura;

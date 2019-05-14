@@ -205,6 +205,12 @@ public class st {
     fun static ST_seq seq(Stream seq[],Stream low,Stream high) {
         return (new ST_seq).init(seq).min(low).max(high);
     }
+    fun static ST_seq seq(Stream arg) {
+        return (new ST_seq).init([arg]);
+    }
+    fun static ST_seq seq(float arg) {
+        return (new ST_seq).init([arg]);
+    }
 
         
     
@@ -443,6 +449,10 @@ public class st {
     }
     
     fun static ST_choice ch(float a) {
+        return ST_choice.make([a]);
+    }
+    
+    fun static ST_choice ch(Stream a) {
         return ST_choice.make([a]);
     }
     
@@ -1114,6 +1124,12 @@ public class st {
     
     fun static ST_sine sine(float freqArg) {
         return (new ST_sine).init(freqArg);
+    }
+    
+    
+    
+    fun static ST_sin sin(Stream phase) {
+        return (new ST_sin).init(phase);
     }
     
     fun static ST_sineseg sineseg( Stream arg ) {

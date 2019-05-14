@@ -1,5 +1,6 @@
 public class PulsePanSynth extends Chubgraph {
-    Impulse i => Safe safe => Pan4 p;
+    Impulse i => Safe safe;PanFour p;
+    p.connect(safe);
         
     null @=> Stream @ _value;
     null @=> Stream @ _dura;

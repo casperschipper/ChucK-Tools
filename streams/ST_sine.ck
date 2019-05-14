@@ -1,26 +1,41 @@
 public class ST_sine extends Stream {    
     2.0 * pi => float twopi;
+
+    float phase;
+    dur wl;
     
-    float freq;
     null @=> Stream st_freq;
-    
+    time then;
+        
     fun ST_sine init (float arg) {
-        arg => freq;
+        now => then;
+        second /arg => wl;
         null @=> st_freq;
         return this;
     }
     
     fun ST_sine init(Stream arg) {
+        now => then;
         arg @=> st_freq;
+        second / st_freq.next() => wl;
         return this;
     }
     
     fun float next() {
-        now / second => float phase;
-        if (st_freq != null) {
-            st_freq.next() => freq;
+        now - then => dur diff;
+        now => then;
+        
+        (phase + (diff/wl)) => phase;
+        while (phase < 0) {
+            1.0 +=> phase;
         }
-        return Math.sin(phase * freq * twopi);
+        while (phase > 1.0) {
+            1.0 -=> phase;
+        }
+        if (st_freq != null) {
+            second /st_freq.next() => wl;
+        }
+        return Math.sin(phase * twopi);
     }
 }
 
