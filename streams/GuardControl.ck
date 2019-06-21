@@ -14,7 +14,8 @@ public class GuardControl extends Guard {
      }
      
      fun int test(float in) {
-         if (control.next() > 0) {
+         // notice that in is ignored
+         if (control.next() >= 1) {
              return 1;
          }
      }

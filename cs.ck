@@ -1722,6 +1722,16 @@ public class cs
         }
         return out;
     }
+    
+    fun static int [] steno ( string steno ) { // "abcda" => [0,1,2,3,4,0]
+        steno.length() => int size;
+        int array[size];
+        for (int i;i<steno.length();i++) {
+            steno.charAt(i) - 97 => array[i];
+        }
+        return array;
+    }
+            
 }
 
 second => now;

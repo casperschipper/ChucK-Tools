@@ -20,4 +20,4 @@ filename + "R" => w2.wavFilename;
 
 // infinite time loop...
 // ctrl-c will stop it, or modify to desired duration
-while( true ) 1::second => now;
+30::second => now;

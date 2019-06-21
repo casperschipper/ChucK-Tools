@@ -125,10 +125,13 @@ add("Streams/ST_tanh");
 add("Streams/ST_wave");
 add("Streams/ST_monitor");
 add("Streams/ST_replaceZero");
+add("Streams/ST_zeroCount");
+add("Streams/ST_avg");
 add("Streams/ST_store");
 add("Streams/ST_recall");
 add("Streams/ST_define");
 add("Streams/ST_apply");
+add("Streams/ST_adc");
 
 
 // funkstreams
@@ -142,7 +145,8 @@ add("StreamSynths/StreamSynth");
 // Stream dict
 add("Streams/StreamDict");
 // supercollider link
-add("Streams/Superchuck2");
+add("Streams/SuperChuck2");
+add("Streams/OscStream");
 
 // writing to array with streams
 add("StreamSynths/WriteStream");

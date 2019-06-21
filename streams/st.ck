@@ -733,8 +733,8 @@ public class st {
         return (new GuardControl).init(controlArg,funktorArg);
     }
     
-    fun static Guard otherwise(Stream valueArg) {
-        return (new Otherwise).init(valueArg);
+    fun static Guard otherwise(ST_operator valueArg) {
+        return (new Guard).init(valueArg);
     }
     
     fun static ST_walkList walkList(Stream values[]) {
@@ -1008,6 +1008,7 @@ public class st {
         return (new ST_q).init(a,b) $ ST_q;
     }
     
+    // overwrite !!!
     fun static ST_overwrite overwrite(float b) {
         // always returns b, because sometimes needed in guardControl
         // this means walk is reset to value upon reaching test = true.
@@ -1203,11 +1204,11 @@ public class st {
     
     
     fun static ST_line phasor(float wavelength) {
-        return line(seq(0,1),seq(wavelength,0));
+        return line(seq(0,1),seq(wavelength,0.0002267573696));
     }
     
     fun static ST_line phasor(Stream wavelength) {
-        return line(seq(0,1),seq(wavelength,st(0)));
+        return line(seq(0,1),seq(wavelength,st(0.002267573696)));
     }
     
     fun static ST_hzPhasor hzPhasor(Stream arg) {
@@ -1408,6 +1409,36 @@ public class st {
     fun static ST_replaceZero replaceZero( Stream in ) {
         return (new ST_replaceZero).init(in);
     }
+    
+    fun static ST_zeroCount zeroCount(Stream input,Stream stFrame) {
+        return (new ST_zeroCount).init(input,stFrame);
+    }
+    
+    fun static ST_zeroCount zeroCount(Stream input, int framesize) {
+        return (new ST_zeroCount).init(input,framesize);
+    }
+    
+    fun static ST_zeroCount zeroCount(Stream input) {
+        return (new ST_zeroCount).init(input, 4410);
+    }
+    
+    fun static ST_mup freqCount(Stream input, int framesize) {
+        // using zerocount to estimate frequency
+        // smaller framesize = faster response, less accurate
+        second / samp => float samplerate;
+        <<<samplerate / framesize>>> => float mupper;
+        return mup(mupper,zeroCount(input,framesize));
+    }
+    
+    fun static ST_mup freqCount (Stream input) {
+        return freqCount(input,4410);
+    }
+    
+    fun static ST_mup freqCount(Stream input, Stream frameSize) {
+        second / samp => float samplerate;
+        div(samplerate,frameSize) @=> Stream mupper;
+        return mup(mupper,zeroCount(input,frameSize));
+    }
 
     
     // more efficient ?
@@ -1549,6 +1580,27 @@ public class st {
     fun static ST_delay delay(Stream inArg,int maxArg,Stream delArg) {
         return (new ST_delay).init(inArg,maxArg,delArg);
     }
+    
+    fun static ST_adc audioIn(Stream channel) {
+        return (new ST_adc).init(channel);
+    }
+    
+    fun static ST_adc audioIn(int channel) {
+        return (new ST_adc).init(channel);
+    }
+    
+    fun static ST_adc audioIn() {
+        return audioIn(0);
+    }
+    
+    fun static ST_avg avg(Stream in, int n) {
+        return (new ST_avg).init(in,n);
+    }
+    
+    fun static ST_avg avg(Stream in) {
+        return (new ST_avg).init(in,8);
+    }
+            
 }
 
 [st.st(1)] @=> st.globals;

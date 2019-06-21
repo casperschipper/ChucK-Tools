@@ -68,6 +68,7 @@ public class Stream
             chout <= next();
             if (numberOfTabs > 0) {
                 numberOfTabs--;
+                <<<next()>>>;
                 chout <= "\t\t\t";
             } else {
                 chout <= IO.newline();

@@ -33,6 +33,15 @@ public class ST_seq extends Stream
         _sequence.size() => size => _max;
         return this;
     }
+    
+    fun ST_seq init(string steno) { // allow people to use "abcdefg" as input
+        steno.length() => int size;
+        int stenoList[size];
+        for (int i;i<size;i++) {
+            (steno.charAt(i) - 97) => stenoList[i];
+        }
+        return init(stenoList);
+    }
 
     fun ST_seq holdMode(int arg) {
         arg => _latchMode;
