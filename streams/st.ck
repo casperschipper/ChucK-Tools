@@ -227,6 +227,22 @@ public class st {
         return (new ST_rv).init(minArg,maxArg) $ ST_rv;
     }
     
+    fun static ST_floor rvi(Stream minArg,Stream maxArg) {
+        return floor(rv(minArg,sum(maxArg,1)));
+    }
+    
+    fun static ST_floor rvi(float minArg,Stream maxArg) {
+        return floor(rv(minArg,sum(maxArg,1)));
+    }
+    
+    fun static ST_floor rvi(Stream minArg,float maxArg) {
+        return floor(rv(minArg,maxArg+1.0));
+    }
+    
+    fun static ST_floor rvi(float minArg,float maxArg) {
+        return floor(rv(minArg,maxArg+1.0));
+    }
+    
     fun static ST_mtof rf(Stream minArg,Stream maxArg) {
         return mtof(rv(minArg,maxArg));
     }
@@ -1062,6 +1078,14 @@ public class st {
     fun static ST_loop loop (Stream src,Stream repeats,Stream length) {
         return (new ST_loop).init(src,repeats,length);
     }  
+    
+    fun static ST_customLoop customLoop (Stream input, Stream length, Stream indexArg) {
+        ST_customLoop str;
+        str.input(input);
+        str.length(length);
+        str.indexer(indexArg);
+        return str;
+    }
 
     fun static ST_wchoice wchoice(float valueWeights[][]) {
         return (new ST_wchoice).init(valueWeights);
@@ -1213,6 +1237,23 @@ public class st {
     
     fun static ST_hzPhasor hzPhasor(Stream arg) {
         return (new ST_hzPhasor).init(arg);
+    }
+    
+    fun static ST_rampGen rampGen(Stream trig, Stream number) {
+        (ST_rampGen gen).init( trig, number );
+        return gen;
+    }
+    
+    fun static ST_seq impulse(Stream interval) {
+        return seq( latch(st(1),st(1)) 
+                  , latch(st(0),interval) 
+                  );
+    }
+    
+    fun static ST_seq impulse(Stream interval,Stream source) {
+        return seq ( source 
+                   , latch ( st(0), interval) 
+                   );
     }
     
     fun static ST_tableCap tableCap(float tab[]) {
@@ -1515,6 +1556,13 @@ public class st {
         return (new ST_readWrite).init( tableArg, readIndexArg, valueArg, count( tableArg.cap() ),0);
     }
     
+    fun static ST_writeHead writeHead(float tableArg[], Stream recordOn, Stream valueArg) {
+        ST_writeHead wh;
+        wh.init( tableArg, count2( tableArg.cap() ), valueArg);
+        wh.recordOn(recordOn);
+        return wh;
+    }
+    
     fun static ST_append append(float tabArg[],Stream valueArg) {
         return (new ST_append).init(tabArg,valueArg);
     }
@@ -1549,6 +1597,15 @@ public class st {
         return (new Schedule).init(procArg,timeArg);
     }
     
+    
+    fun static Schedule sampSchedule (Stream procArg, Stream timeArg) {
+        Schedule schedule;
+        samp => schedule._timeStep;
+        return schedule.init(procArg,timeArg);
+    }
+    
+    
+    
     fun static ST_couple couple (Stream arg1, Stream arg2) {
         // sync a procedure with a stream, a is the stream, b is the procedure.
         // arg1.next() is returned
@@ -1575,6 +1632,10 @@ public class st {
                  midiCtrl( controllerArg ), 
                  range), 
                 min);
+    }
+    
+    fun static ST_oscin oscin(int port, string name) {
+        return (new ST_oscin).init(port,name);
     }
     
     fun static ST_delay delay(Stream inArg,int maxArg,Stream delArg) {

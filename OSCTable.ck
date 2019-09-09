@@ -8,6 +8,8 @@ public class OSC {
     static float table7[];
     static float table8[];
     static float table9[];
+    static float table10[];
+    static float table11[];
 }
     
 
@@ -74,6 +76,9 @@ osc6.init("/shape6",16).table @=> OSC.table6;
 osc7.init("/shape7",16).table @=> OSC.table7;
 osc8.init("/shape8",16).table @=> OSC.table8;
 osc9.init("/shape9",512).table @=> OSC.table9;
+
+(new float [441000]) @=> OSC.table10;
+(new float [441000]) @=> OSC.table11;
 
 
 day * 7 => now;

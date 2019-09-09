@@ -37,6 +37,7 @@ add("Streams/ST_index");
 add("Streams/ST_indexLin");
 add("Streams/ST_repeat");
 add("Streams/ST_latch");
+//add("Streams/ST_forcedRepeat");
 add("Streams/ST_timedLatch");
 add("Streams/ST_seq");
 add("Streams/ST_value");
@@ -45,6 +46,7 @@ add("Streams/ST_weave");
 add("Streams/ST_tri");
 //add("Streams/ST_loop");
 add("Streams/ST_loop3");
+add("Streams/ST_customLoop");
 add("Streams/ST_timed");
 add("Streams/ST_scale");
 add("Streams/ST_scale2");
@@ -83,12 +85,14 @@ add("Streams/ST_pow");
 add("Streams/ST_timedReset");
 add("Streams/ST_reset");
 add("Streams/ST_write");
+add("Streams/ST_writeHead");
 add("Streams/ST_append");
 add("Streams/ST_readWrite");
 add("Streams/ST_diff");
 add("Streams/ST_onePole");
 add("Streams/ST_tableCap");
 add("Streams/ST_hzPhasor");
+add("Streams/ST_rampGen");
 add("Streams/ST_couple");
 add("Streams/ST_overwrite");
 
@@ -147,6 +151,7 @@ add("Streams/StreamDict");
 // supercollider link
 add("Streams/SuperChuck2");
 add("Streams/OscStream");
+add("Streams/ST_oscin");
 
 // writing to array with streams
 add("StreamSynths/WriteStream");
@@ -183,6 +188,7 @@ add("StreamSynths/StreamNonLinFilter");
 
 add("OSCTable");
 add("Streams/ST_midiCtrl");
+add("Streams/ST_keys");
 
 
 add("Streams/st");
