@@ -1,9 +1,7 @@
 public class ST_sineseg extends Stream {
     float phase;
     float incr;
-    
-    3.1415926535 * 2.0 => float TWOPI;
-    
+        
     Stream st_steps;
     
     float table[4096];

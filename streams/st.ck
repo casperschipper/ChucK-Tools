@@ -119,6 +119,14 @@ public class st {
         return indexLin(seq,indexer).holdMode(holdArg);
     }
     
+    fun static ST_modIndex modIndex(Stream in, float t1[], float t2[]) {
+        return (new ST_modIndex).init(in,t1,t2);
+    }
+    
+    fun static ST_mupModIndex mupModIndex(Stream in, float t1[], float t2[]) {
+        return (new ST_mupModIndex).init(in,t1,t2);
+    }
+    
     fun static ST_seq seq(float seq[]) {
         return ST_seq.make(seq);
     } 
@@ -211,9 +219,11 @@ public class st {
     fun static ST_seq seq(float arg) {
         return (new ST_seq).init([arg]);
     }
-
-        
     
+    fun static ST_compose compose(Stream inArg,Stream segArg) {
+        return (new ST_compose).init(inArg,segArg);
+    }
+
     fun static ST_rv rv(float minArg,float maxArg) {
         return (new ST_rv).init(minArg,maxArg) $ ST_rv;
     }
@@ -757,6 +767,10 @@ public class st {
         return walkList(values,ch(-1,1));
     }
     
+    fun static ST_collatz collatz(Stream inputArg) {
+        return (new ST_collatz).init(inputArg);
+    }
+    
     fun static ST_div div (Stream a,Stream b) {
         return (new ST_div).init(a,b) $ ST_div;
     }
@@ -837,6 +851,10 @@ public class st {
     
     fun static ST_pow pow(float a,Stream b) {
         return (new ST_pow).init(a,b) $ ST_pow;
+    }
+    
+    fun static ST_bind bind(Stream a, Stream b) {
+        return (new ST_bind).init(a,b) $ ST_bind; // just returns always a, but steps b (probably a writer ?)
     }
     
     fun static Stream [] cdr(Stream arg[]) {
@@ -1099,6 +1117,14 @@ public class st {
         return wchoice(valueWeights);
     }
     
+    fun static Stream sometimes(float x, float y, int n) {
+        return wchoice( [[x,1],[y,n]] ) $ Stream;
+    }
+    
+    fun static Stream sometimes(Stream x, Stream y, int n) {
+        return index( [ x, y ] , wchoice ( [[0,1], [1,n]] ) ) $ Stream;
+    }
+    
     fun static ST_wchoice weights(int valueWeights[][]) {
         return (new ST_wchoice).init(valueWeights);
     }
@@ -1144,7 +1170,17 @@ public class st {
     }
     
     fun static ST_indexLin scan(float arrayArg[],Stream sizeArg,Stream offsetArg) {
-        return (new ST_indexLin).init(arrayArg,sum(count2(sizeArg),offsetArg));
+        return (new ST_indexLin).init(
+            arrayArg
+            , sum( count2(sizeArg) , offsetArg ));
+    }
+    
+    fun static ST_indexLin lookup(float arrayArg[],Stream indexer) {
+        return (new ST_indexLin).init(arrayArg, scaler(indexer, -1.0,1.0,0,arrayArg.cap()-1 ));
+    }
+    
+    fun static ST_index lookupStream (Stream arrayArg[],Stream indexer) {
+        return (new ST_index).init (arrayArg, scaler(indexer,-1.0,1.0,0,arrayArg.cap()-1));
     }
     
     fun static ST_sine sine(float freqArg) {
@@ -1405,6 +1441,7 @@ public class st {
                       ch(table))));
     }
     
+    
     fun static ST_timed fractRandTimer(float arg) {
         cs.grow(arg,2,15) @=> float table[];
         return t( ch(table) , 
@@ -1421,6 +1458,14 @@ public class st {
     
     fun static ST_timed fractRandTimer(Stream arg) {
         return t( arg , t( arg , t( arg , arg )));
+    }
+    
+    fun static ST_repeat fractHold(Stream in,Stream arg) {
+        return hold ( in, hold ( arg, arg ) );
+    }
+    
+    fun static ST_repeat fractHold4(Stream in,Stream arg) {
+        return hold ( in, (hold (arg, hold (arg, arg) ) ) );
     }
                       
     

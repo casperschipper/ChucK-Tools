@@ -11,10 +11,7 @@ public class ST_indexLin extends Stream {
     
         
     false => int _holdMode; 
-    false => int _more;   
-    
-    "ST_index" @=> _type;
-    
+    false => int _more;       
     
     
     "ST_indexLin" @=> _type;

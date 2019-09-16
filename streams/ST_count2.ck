@@ -5,7 +5,7 @@ public class ST_count2 extends Stream {
     int _max;
     
     int _more;
-    int _holdMode;
+    true => int _holdMode;
     
     null @=> Stream @ st_max;
     

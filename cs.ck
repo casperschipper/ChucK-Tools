@@ -1731,6 +1731,11 @@ public class cs
         }
         return array;
     }
+    
+    fun static float [] alloc ( int size ) {
+        float array[size];
+        return array;
+    }
             
 }
 

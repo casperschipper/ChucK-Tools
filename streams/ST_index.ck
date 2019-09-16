@@ -94,4 +94,8 @@ public class ST_index extends Stream {
         } 
         return false;
     }
+    
+    fun void reset() {
+        indexer.reset();
+    }
 }  
