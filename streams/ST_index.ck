@@ -60,6 +60,8 @@ public class ST_index extends Stream {
 
     
     fun int safeIndex() {
+        indexer.more() => _more;
+        
         indexer.nextInt() => index;
         if (index < 0) {
             -1 * index => index;
@@ -79,21 +81,17 @@ public class ST_index extends Stream {
             false => _more;
             safeIndex() => index;
             return st_table[index].next();
-        }
+        } 
         return table[safeIndex()];
     }
     
     fun int more() {
-        if (_holdMode) {
-            if (_more) {
-                return true;
-            } else {
-                true => _more;
-                return false;
-            }
+        if (_more) {
+            return true;
         } 
+        true => _more;
         return false;
-    }
+    }        
     
     fun void reset() {
         indexer.reset();

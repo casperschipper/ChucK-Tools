@@ -1,7 +1,8 @@
 public class ST_adc extends Stream {
     0 => int channel;
     null @=> Stream ST_channel;
-    adc.channels() => int nchans;
+    <<<"ST_adc - number of channels in:">>>;
+    <<<adc.channels()>>> => int nchans;
     
     fun ST_adc init(int channel) {
         channel % nchans => this.channel;
@@ -21,4 +22,5 @@ public class ST_adc extends Stream {
         return adc.chan(channel).last();
     }
 }
+
 

@@ -1,1 +1,0 @@
-/Users/casperschipper/Google Drive/ChucK/tools/LongBirdsIntterrupts-4.wav

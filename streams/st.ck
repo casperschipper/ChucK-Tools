@@ -1118,11 +1118,23 @@ public class st {
     }
     
     fun static Stream sometimes(float x, float y, int n) {
-        return wchoice( [[x,1],[y,n]] ) $ Stream;
+        ST_sometimes str;
+        str.init( x, y, n);
+        return str;
+    }
+    
+    fun static Stream sometimes(float x,float y, Stream n) {
+        ST_sometimes str;
+        str.init( x, y, n);
+        return str;
     }
     
     fun static Stream sometimes(Stream x, Stream y, int n) {
-        return index( [ x, y ] , wchoice ( [[0,1], [1,n]] ) ) $ Stream;
+        return index( [ x, y ] , sometimes(0,1,n) ) $ Stream;
+    }
+    
+    fun static Stream sometimes(Stream x,Stream y, Stream n) {
+        return index( [ x, y ], sometimes(0,1,n)) $ Stream;
     }
     
     fun static ST_wchoice weights(int valueWeights[][]) {
@@ -1407,6 +1419,48 @@ public class st {
         return (new ST_ugen).init(arg);
     }
     
+    fun static ST_biquad biquad(Stream inArg, string typeArg, float freqArg, float QArg, float gainArg) {
+        ST_biquad biquad; 
+        biquad.init(inArg,typeArg,freqArg,QArg,gainArg);
+        return biquad;
+    }
+    
+    fun static ST_biquad biquad(Stream inArg, int typeArg, float freqArg, float QArg, float gainArg) {
+        ST_biquad biquad; 
+        biquad.init(inArg,typeArg,freqArg,QArg,gainArg);
+        return biquad;
+    }
+    
+    fun static ST_biquad biquad(Stream inArg,int typeArg, Stream freqArg, float QArg, float gainArg) {
+        ST_biquad biquad;
+        biquad.setInput(inArg);
+        biquad.setType(typeArg);
+        biquad.setFreq(freqArg);
+        biquad.setQ(QArg);
+        biquad.setPeakGain(gainArg);
+        return biquad;
+    }
+    
+    fun static ST_biquad biquad(Stream inArg,int typeArg, Stream freqArg, Stream QArg, float gainArg) {
+        ST_biquad biquad;
+        biquad.setInput(inArg);
+        biquad.setType(typeArg);
+        biquad.setFreq(freqArg);
+        biquad.setQ(QArg);
+        biquad.setPeakGain(gainArg);
+        return biquad;
+    }
+    
+    fun static ST_biquad biquad(Stream inArg,int typeArg, Stream freqArg, Stream QArg, Stream gainArg) {
+        ST_biquad biquad;
+        biquad.setInput(inArg);
+        biquad.setType(typeArg);
+        biquad.setFreq(freqArg);
+        biquad.setQ(QArg);
+        biquad.setPeakGain(gainArg);
+        return biquad;
+    }
+    
     fun static ST_clip clip(Stream inputArg,Stream minArg,Stream maxArg) {
         return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
     }
@@ -1689,6 +1743,14 @@ public class st {
     
     fun static ST_adc audioIn(Stream channel) {
         return (new ST_adc).init(channel);
+    }
+    
+    fun static ST_dacin dacin(Stream channel) {
+        return (new ST_dacin).init(channel);
+    }
+    
+    fun static ST_dacin dacin(int channel) {
+        return (new ST_dacin).init(channel);
     }
     
     fun static ST_adc audioIn(int channel) {

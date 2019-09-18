@@ -8,6 +8,7 @@ public class ST_count2 extends Stream {
     true => int _holdMode;
     
     null @=> Stream @ st_max;
+   
     
     fun ST_count2 init(Stream arg,int holdArg) {
         holdMode(holdArg);

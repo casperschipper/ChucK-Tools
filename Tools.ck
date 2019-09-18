@@ -119,6 +119,7 @@ add("Streams/ST_bus");
 add("Streams/ST_weights");
 add("Streams/ST_wchoice");// optimized version
 add("Streams/ST_weightStream");
+add("Streams/ST_sometimes");
 add("Streams/ST_trigger");
 add("Streams/ST_triggerSend");
 add("Streams/ST_mtof");
@@ -141,6 +142,8 @@ add("Streams/ST_recall");
 add("Streams/ST_define");
 add("Streams/ST_apply");
 add("Streams/ST_adc");
+add("Streams/ST_dacin");
+add("Streams/ST_biquad");
 
 
 // funkstreams

@@ -5,8 +5,8 @@
 class ST_bound extends Stream {
     ST_walk @ walk;
     
-    Stream @ st_min;
-    Stream @ st_max;
+    null @=> Stream @ st_min;
+    null @=> Stream @ st_max;
     
     float _min;
     float _max;
@@ -16,11 +16,10 @@ class ST_bound extends Stream {
     false => int _more;
     false => int _holdMode;
     
-    fun ST_bound init(ST_walk walkArg,Stream minArg,Stream maxArg) {
+    fun void init(ST_walk walkArg,Stream minArg,Stream maxArg) {
         walkArg @=> walk;
         minArg @=> st_min;
         maxArg @=> st_max;
-        return this;
     }
     
     fun ST_bound holdMode(int arg) {
@@ -52,8 +51,8 @@ class ST_bound extends Stream {
     }
         
     fun void checkBoundaries() {
-        st_min.next() => _min;
-        st_max.next() => _max;
+        if(st_min != null) { st_min.next() => _min; }
+        if(st_max != null) { st_max.next() => _max; }
         if ( walk._value < _min ) {
             boundMin();
         }
