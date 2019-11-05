@@ -7,7 +7,7 @@ fun void add(string filename) {
 }
 
 add("cs.ck");
-1::second => now;
+.1::second => now;
 add("CRandom.ck");
 add("PanFour.ck");
 add("PanBin.ck");
@@ -122,6 +122,7 @@ add("Streams/ST_weightStream");
 add("Streams/ST_sometimes");
 add("Streams/ST_trigger");
 add("Streams/ST_triggerSend");
+add("Streams/ST_trig"); // new variant of trigger, releis on wr / rd
 add("Streams/ST_mtof");
 add("Streams/ST_ftom");
 add("Streams/ST_mtor");

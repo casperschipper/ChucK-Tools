@@ -32,6 +32,15 @@ public class ShredEventStack {
         <<<"removed all but last shred">>>;
     }
     
+    fun static void popOldest() {
+        eventStack[0].signal(); // remove oldest
+        eventStack.size() => int size;
+        for (int i;i<size-1;i++) {
+            eventStack[i+1] @=> eventStack[i]; // move all one left
+        }
+        eventStack.size(size-1); // make one smaller
+    }
+    
     fun static void popAll() {
         if (eventStack.size() < 2) {
             return;

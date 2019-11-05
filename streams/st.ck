@@ -119,11 +119,19 @@ public class st {
         return indexLin(seq,indexer).holdMode(holdArg);
     }
     
-    fun static ST_modIndex modIndex(Stream in, float t1[], float t2[]) {
+    fun static ST_modIndex modIndex(float t1[], float t2[],Stream in) {
         return (new ST_modIndex).init(in,t1,t2);
     }
     
-    fun static ST_mupModIndex mupModIndex(Stream in, float t1[], float t2[]) {
+    fun static ST_mupModIndex mupModIndex(float t1[], float t2[],Stream in) {
+        return (new ST_mupModIndex).init(in,t1,t2);
+    }
+    
+    fun static ST_modIndex modIndex(Stream in,float t1[], float t2[]) {
+        return (new ST_modIndex).init(in,t1,t2);
+    }
+    
+    fun static ST_mupModIndex mupModIndex(Stream in,float t1[], float t2[]) {
         return (new ST_mupModIndex).init(in,t1,t2);
     }
     
@@ -584,6 +592,20 @@ public class st {
     fun static ST_boundedMupWalk boundedMupWalk(float minArg,float maxArg,Stream stepArg) {
         return boundedMupWalk(st(minArg),st(maxArg),stepArg);
     }
+    
+    fun static ST_boundedMupWalk boundedMupWalk(Stream minArg,Stream maxArg,Stream stepArg,float start) {
+        ST_boundedMupWalk walk;
+        walk.min(minArg);
+        walk.max(maxArg);
+        walk.step(stepArg);
+        start => walk._value;
+        return walk;
+    }
+    
+    fun static ST_boundedMupWalk boundedMupWalk(float minArg,float maxArg,Stream stepArg, float start) {
+        return boundedMupWalk(st(minArg),st(maxArg),stepArg,start);
+    }
+
     
     fun static ST_boundedMupResetWalk boundedMupResetWalk(float minArg,float maxArg,Stream stepArg,Stream resetArg) {
         ST_boundedMupResetWalk walk;
@@ -1161,6 +1183,10 @@ public class st {
         return (new ST_trigger).init(arg);
     }
     
+    fun static ST_trig trig (Stream inArg, Stream trigArg ) {
+        return (new ST_trig).init( inArg, trigArg );
+    }
+    
     fun static ST_mtof mtof(Stream arg) {
         return (new ST_mtof).init(arg);
     }
@@ -1199,14 +1225,26 @@ public class st {
         return (new ST_sine).init(freqArg);
     }
     
-    
+   
     
     fun static ST_sin sin(Stream phase) {
         return (new ST_sin).init(phase);
     }
     
+    fun static ST_sineseg sineseg(float number) {
+        return (new ST_sineseg).init( st(number) );
+    }
+    
     fun static ST_sineseg sineseg( Stream arg ) {
         return (new ST_sineseg).init( arg );
+    }
+    
+    fun static ST_sineseg hzSineseg(float freqArg) {
+        return sineseg( 44100.0 / freqArg );
+    }
+    
+    fun static ST_sineseg hzSineseg(Stream arg) {
+        return sineseg( div ( 44100, arg ) );
     }
     
     fun static ST_sine sine(int freqArg) {

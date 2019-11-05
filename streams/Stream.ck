@@ -4,7 +4,6 @@ public class Stream
     0 => int index;
     "Stream" @=> string _type;
     false => int _latchMode;
-    Math.sqrt(-1) => static float nan; // use this for finished finite streams ?
     
     fun string type() {
         return _type;

@@ -13,10 +13,10 @@ public class ST_boundedMupWalk extends ST_mupWalk {
         if (_value == 0) {
             _min => _value;
         }
-        if (_value < Math.min(_min,_max)) {
+        while (_value < Math.min(_min,_max)) {
             _value * 2 => _value;
         }
-        if (_value > Math.max(_min,_max)) {
+        while (_value > Math.max(_min,_max)) {
             _value * 0.5 => _value;
         }
     }

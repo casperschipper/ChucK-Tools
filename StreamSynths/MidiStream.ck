@@ -1,6 +1,8 @@
 public class MidiStream extends StreamSynth {
     MidiOut mout;
     MidiMsg msg;
+
+    
     if (mout.open(0)) {
         chout <= "midi port: " <= 0 <= " is open" <= IO.newline();
     } else {
@@ -9,7 +11,7 @@ public class MidiStream extends StreamSynth {
     
     
     
-    1 => int _channel;
+    0 => int _channel;
     
     null @=> Stream @ st_pitch;
     null @=> Stream @ st_velo;
@@ -110,7 +112,16 @@ public class MidiStream extends StreamSynth {
     }
     
     fun void killAll() {
-        // killall
+        // https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message
+        0xd0 | _channel => msg.data1; // controller type, but 
+        0x7b => msg.data2; // using 123
+        0 => msg.data3;
+        
+        mout.send(msg);
+        
+        64*samp => now; // 80's technology, lets give a bit of time..
+        
+        /*** outdated note off ***
         for (int midi_chan;midi_chan<16;midi_chan++) {
             for (int note;note<127;note++) {
                 _noteOff + midi_chan => msg.data1;
@@ -119,6 +130,7 @@ public class MidiStream extends StreamSynth {
                 mout.send(msg);
             }
         }
+        ******/
     }
     
     fun void midiSpork() {
@@ -139,7 +151,7 @@ public class MidiStream extends StreamSynth {
     fun void playNote() {
         int currentPitch;
         
-        _noteOn => msg.data1;
+        _noteOn | _channel => msg.data1;
         st_pitch.nextInt() => currentPitch => msg.data2;
         st_velo.nextInt() => msg.data3;
         mout.send(msg);

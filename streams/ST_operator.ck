@@ -31,6 +31,10 @@ public class ST_operator extends Stream
     fun ST_operator make(int arg1,Stream arg2) {
         return (new ST_operator).init(arg1,arg2);
     }
+    
+    fun int more() {
+        return v1More || v2More;
+    }
         
     fun ST_operator v1(Stream arg) {
         arg @=> st_v1;
