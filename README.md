@@ -14,7 +14,7 @@ In several files I use some of my own chugins, especially Linseg and Buffer, so 
 You can also make your own Chugen version of linseg, since it is identical to:
 
     class Linseg extends Chubgraph {
-      Step unit => Envelope env => Outlet out;
+      Step unit => Envelope env => outlet;
       1 => unit.next;
       
       fun void target(float x) {
