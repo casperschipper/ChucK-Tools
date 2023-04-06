@@ -15,6 +15,10 @@ public class ST_value extends Stream
         return stream;
     }
     
+    fun void setValue(float arg) {
+        arg => value;
+    }
+    
     fun float next () {
         return value;
     }

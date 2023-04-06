@@ -1,4 +1,4 @@
-public class ChannelSynth extends Chubgraph {
+public class ChannelSynth extends Chugraph {
     SawOsc c;
     
     null @=> Stream @ _value;

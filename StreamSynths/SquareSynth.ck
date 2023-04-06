@@ -1,4 +1,4 @@
-public class SquareSynth extends Chubgraph {
+public class SquareSynth extends Chugraph {
     BlitSquare c => outlet;
     
     null @=> Stream @ _value;

@@ -1,2 +1,2 @@
-class SubtractSynth extends Chubgraph {
+class SubtractSynth extends Chugraph {
     BlitSquare sqr =>

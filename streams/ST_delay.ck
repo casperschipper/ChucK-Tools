@@ -7,9 +7,8 @@ public class ST_delay extends Stream
     int _phase,_readPos,_delay,_maxRead;
     "ST_delay" @=> _type;
        
-    fun ST_delay input (Stream arg) {
+    fun void input (Stream arg) {
         arg @=> _input;
-        return this;
     }
     
     fun ST_delay init(Stream inArg,int maxArg, Stream delayArg) {
@@ -19,28 +18,35 @@ public class ST_delay extends Stream
         return this;
     }
     
-    fun ST_delay maxRead( int arg ) {
-        arg => _maxRead => _memory.size;
-        return this;
+    fun void maxRead( int arg ) {
+        arg => Math.nextpow2 => int nextPow;
+        _memory.size(nextPow);
+        nextPow - 1 => _maxRead;   
     }
     
-    fun ST_delay delay( int arg ) {
+    fun void delay( int arg ) {
        null @=> st_delay;
-       arg => _delay;
-       return this;
+       arg & _maxRead => _delay;
    }
    
-   fun ST_delay delay( Stream arg ) {
+   fun void delay( Stream arg ) {
        arg @=> st_delay;
-       return this;
    }
-    
+   
+   fun int delayBound(int value) {
+       if (value < 0) {
+           return _maxRead - ((-1 * value) & _maxRead);
+       } else {
+           return value & _maxRead;
+       }
+   }
+       
     fun float next() {
-        (_phase+1) % _maxRead => _phase;
+        (_phase+1) & _maxRead => _phase;
         
         if (st_delay != null) {
             st_delay.nextInt() => _delay;
-            cs.wrap(_delay,0,_maxRead) => _delay;
+            delayBound(_delay) => _delay;
         }
         
         _input.next() => _memory[_phase];

@@ -1,4 +1,4 @@
-class DecayEnvelope extends chubgraph {
+class DecayEnvelope extends Chugraph {
     inlet => Gain g => outlet;
     
     0 => float value;

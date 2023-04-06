@@ -43,7 +43,7 @@ class PannerSixteen extends CustomPanner {
 }
 
 
-public class StepPanSynth extends Chubgraph {
+public class StepPanSynth extends Chugraph {
     Step i => Safe safe; 
     CustomPanner p;
     

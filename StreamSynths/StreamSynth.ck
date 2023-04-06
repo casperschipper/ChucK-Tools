@@ -17,8 +17,10 @@ class ST_defer extends Stream {
     }
 }
 
-public class StreamSynth extends Chubgraph {
+public class StreamSynth extends Chugraph {
     ST_defer deferedStreams[0];
+    
+    int loop;
     
     fun StreamSynth addDefered(string nameArg,Stream streamArg) {
         // called with a name (that will be used for the (~ busName)) 
@@ -32,6 +34,20 @@ public class StreamSynth extends Chubgraph {
         // store the stream in the bus namesspace, so it can be used anywwhere.
         (new ST_bus).init(defered.st(),nameArg);
         return this;
+    }
+    
+    fun void start() {
+        spork ~ play();
+    }
+    
+    fun void play() {
+        while(loop) {
+            day => now;
+        }
+    }
+    
+    fun void stop() {
+        0 => loop;
     }
     
     fun void updateDefered() {

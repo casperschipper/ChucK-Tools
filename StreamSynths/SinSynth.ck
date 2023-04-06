@@ -1,4 +1,4 @@
-public class SinSynth extends Chubgraph {
+public class SinSynth extends Chugraph {
     SinOsc c => outlet;
     
     null @=> Stream @ _value;

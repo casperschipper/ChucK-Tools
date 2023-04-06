@@ -1,4 +1,4 @@
-public class PanBin8 extends Chubgraph
+public class PanBin8 extends Chugraph
 {
     Gain fl,fr,bl,br,F,R,L,B;
     if (dac.channels() == 8) {

@@ -1,4 +1,4 @@
-public class PulsePanSynth extends Chubgraph {
+public class PulsePanSynth extends Chugraph {
     Impulse i => Safe safe;PanFour p;
     p.connect(safe);
         

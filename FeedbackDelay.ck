@@ -1,4 +1,4 @@
-public class FeedbackDelay extends Chubgraph 
+public class FeedbackDelay extends Chugraph 
 {
     inlet => LPF _lf => HPF _hf => DelayC _del;
     _del => Gain _fb => Clip _clip => _del;

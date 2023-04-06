@@ -95,5 +95,10 @@ public class ST_index extends Stream {
     
     fun void reset() {
         indexer.reset();
+        if (st_table != null) {
+            for (int i;i<st_table.cap();i++) {
+                st_table[i].reset();
+            }
+        }
     }
 }  

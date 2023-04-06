@@ -19,7 +19,7 @@ class Lookup extends Chugen {
     }
 }
 
-class LookupFilter extends Chubgraph {
+class LookupFilter extends Chugraph {
     inlet => Gain input => Lookup lookup => DelayL del => HPF dc => Clip c => outlet;
     dc => input;
     
@@ -61,7 +61,7 @@ class LookupFilter extends Chubgraph {
 }
 
 
-class StreamLookupFilter extends Chubgraph {
+class StreamLookupFilter extends Chugraph {
     inlet => LookupFilter f => Clip c => outlet;
     
     Stream @ st_freq;

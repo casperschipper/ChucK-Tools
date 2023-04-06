@@ -1,4 +1,4 @@
-public class PwmSynth extends Chubgraph {
+public class PwmSynth extends Chugraph {
 
     SqrOsc c => outlet;
     

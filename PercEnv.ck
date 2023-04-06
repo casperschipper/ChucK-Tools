@@ -1,4 +1,4 @@
-public class PercEnv extends Chubgraph {
+public class PercEnv extends Chugraph {
     inlet => Gain VCA;
     Step unit => Envelope l => CurveTable c => VCA => outlet; 
     

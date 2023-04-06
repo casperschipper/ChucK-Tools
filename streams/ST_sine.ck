@@ -24,7 +24,9 @@ public class ST_sine extends Stream {
     fun float next() {
         now - then => dur diff;
         now => then;
-        
+        if (st_freq != null) {
+            second /st_freq.next() => wl;
+        }
         (phase + (diff/wl)) => phase;
         while (phase < 0) {
             1.0 +=> phase;
@@ -32,9 +34,7 @@ public class ST_sine extends Stream {
         while (phase > 1.0) {
             1.0 -=> phase;
         }
-        if (st_freq != null) {
-            second /st_freq.next() => wl;
-        }
+        
         return Math.sin(phase * twopi);
     }
 }

@@ -63,6 +63,11 @@ public class ST_seq extends Stream
     
     fun void reset() {
         if (st_min != null) st_min.nextInt() => index => _min;
+        if (st_sequence != null) {
+            for (int i;i<st_sequence.cap();i++) {
+                st_sequence[i].reset();
+            }
+        }
     }
     
     fun int more() {
@@ -157,7 +162,9 @@ public class ST_seq extends Stream
         return this;
     }
     
+    /*
     fun void reset() {
         0 => index;
     }
+    */
 }

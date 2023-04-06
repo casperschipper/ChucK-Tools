@@ -1,4 +1,4 @@
-public class SawSynth extends Chubgraph {
+public class SawSynth extends Chugraph {
     BlitSaw c => outlet;
     
     null @=> Stream @ _value;

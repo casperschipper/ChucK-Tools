@@ -1,4 +1,4 @@
-public class LineSynth extends Chubgraph {
+public class LineSynth extends Chugraph {
     Linseg l => outlet;
     
     null @=> Stream @ _value;

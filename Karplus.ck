@@ -1,4 +1,4 @@
-class Karplus extends Chubgraph 
+class Karplus extends Chugraph 
 {    
     DelayL _del => Gain _fb => OnePole _p => PoleZero _dcblock => _del;
     _dcblock => outlet;

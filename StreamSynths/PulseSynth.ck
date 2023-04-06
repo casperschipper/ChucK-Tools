@@ -1,11 +1,9 @@
-public class PulseSynth extends Chubgraph {
+public class PulseSynth extends StreamSynth {
     Impulse i => outlet;
     
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
-    
-    0 => int loop;
-    
+        
     samp => dur _timeStep;
     
     fun static PulseSynth make(Stream value,Stream dura) {
@@ -29,6 +27,7 @@ public class PulseSynth extends Chubgraph {
     fun void play() {
         1 => loop;
         while(loop) {
+            updateDefered();
             _value.next() => i.next;
             _dura.next() * _timeStep => now;
         }

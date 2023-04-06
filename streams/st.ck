@@ -63,6 +63,7 @@ public class st {
         .holdMode(1);
     }
     
+    /*
     fun static ST_linseg linseg(Stream startArg,Stream endArg,Stream stepsArg,int holdArg) {
         return (new ST_linseg)
         .start(startArg)
@@ -70,7 +71,18 @@ public class st {
         .steps(stepsArg)
         .holdMode(holdArg);
     }
-
+    */
+/* TODO TODO TODO
+    fun static ST_index index(Stream seq[],int idx) {
+        if (idx > seq.cap() || idx < 0) {
+            0 => idx;
+        }
+        return ST_index.make(seq,idx);
+    }
+    
+    fun static Stream index(float seq[],int idx) {
+        return ST_index index(
+    }*/
     
     fun static ST_index index(float seq[],Stream index) {
         return ST_index.make(seq,index);
@@ -143,9 +155,10 @@ public class st {
         return ST_seq.make([a,b]);
     }
     
+    /*
     fun static ST_seq seq(Stream a,Stream b) {
         return ST_seq.make([a,b]);
-    }
+    }*/
     
     fun static ST_series series(float seq[]) {
         ST_series stream;
@@ -224,9 +237,10 @@ public class st {
     fun static ST_seq seq(Stream arg) {
         return (new ST_seq).init([arg]);
     }
-    fun static ST_seq seq(float arg) {
+    
+    /*fun static ST_seq seq(float arg) {
         return (new ST_seq).init([arg]);
-    }
+    }*/
     
     fun static ST_compose compose(Stream inArg,Stream segArg) {
         return (new ST_compose).init(inArg,segArg);
@@ -281,9 +295,6 @@ public class st {
         return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
     }
     fun static ST_exprv exprv(Stream minArg,float maxArg,float expArg) {
-        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
-    }
-    fun static ST_exprv exprv(float minArg,float maxArg,float expArg) {
         return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
     }
     fun static ST_exprv exprv(float minArg,float maxArg,Stream expArg) {
@@ -353,6 +364,7 @@ public class st {
     fun static ST_timed timedSeq(Stream seqArg[],Stream timing) {
         return t(seq(seqArg),timing);
     }
+    
     fun static ST_timed timedSeq(float seqArg[],Stream timing) {
         return t(seq(seqArg),timing);
     }
@@ -516,6 +528,12 @@ public class st {
         return stream;
     }
     
+    fun static ST_line line(Stream value,float timing) {
+        ST_line stream;
+        stream.init(value,st(timing));
+        return stream;
+    }
+    
     fun static ST_line line(Stream value,Stream timing,int holdArg) {
         ST_line stream;
         stream.init(value,timing).holdMode(holdArg);
@@ -639,12 +657,14 @@ public class st {
         return walk;
     }
     
+    /*
     fun static ST_walkList walkList(int values[],Stream step) {
         ST_walkList walk;
         walk.list(values);
         walk.step(step);
         return walk;
-    } 
+    }
+    */ 
     
     fun static ST_bouncyWalk bouncyWalk(float minArg,float maxArg,Stream stepArg) {
         ST_bouncyWalk walk;
@@ -751,6 +771,12 @@ public class st {
     
     fun static Stream listWalkLin(float list[],Stream stepArg) {
         return indexLin( list, boundedWalk(0,list.cap(),stepArg));
+    }
+    
+    fun static ST_latchWalk latchWalk(Stream sourceArg, Stream stepArg) {
+        ST_latchWalk stream;
+        stream.init(sourceArg,stepArg);
+        return stream;
     }
     
     fun static ST_guardedWalk guardedWalk(float startArg,Guard guardsArg[]) {
@@ -1011,11 +1037,15 @@ public class st {
     fun static ST_mup mup(Stream a,Stream b,float c) {
         return mup( mup(a,b) , c);
     }
+    
+    /*
     fun static ST_mup mup (Stream a,Stream b,Stream c) {
         return (new ST_mup).init( 
                    (new ST_mup).init(a,b) , c 
                ) $ ST_mup;
     }
+    */
+    
     fun static ST_mup mup (float a,Stream b) {
         return (new ST_mup).init(a,b) $ ST_mup;
     }
@@ -1225,7 +1255,9 @@ public class st {
         return (new ST_sine).init(freqArg);
     }
     
-   
+    fun static ST_stateMachine statemachine(Stream args[]) {
+        return (new ST_stateMachine).init(args);
+    }
     
     fun static ST_sin sin(Stream phase) {
         return (new ST_sin).init(phase);
@@ -1398,9 +1430,11 @@ public class st {
     }
     
     // optimized scaling
+    /*
     fun static ST_scale2 scaler(Stream input,float outMin,float outMax) {
         return (new ST_scale2).init(input,outMin,outMax);
     }
+    */
     
     fun static ST_scale2 scaler(Stream input,float inMin,float inMax,Stream outMin,Stream outMax) {
         return (new ST_scale2).init(input,inMin,inMax,outMin,outMax);
@@ -1497,6 +1531,22 @@ public class st {
         biquad.setQ(QArg);
         biquad.setPeakGain(gainArg);
         return biquad;
+    }
+    
+    fun static ST_slide slide(Stream inArg, Stream upArg, Stream downArg) {
+        return (new ST_slide).init(inArg,upArg,downArg);
+    }
+    
+    fun static ST_slide slide(Stream inArg, int upArg, int downArg) {
+        return slide(inArg,st(upArg),st(downArg));
+    }
+    
+    fun static ST_slide slide(Stream inArg, int upArg, Stream downArg) {
+        return slide(inArg,st(upArg),downArg);
+    }
+    
+    fun static ST_slide slide(Stream inArg, Stream upArg, int downArg) {
+        return slide(inArg,upArg,st(downArg));
     }
     
     fun static ST_clip clip(Stream inputArg,Stream minArg,Stream maxArg) {
@@ -1634,6 +1684,10 @@ public class st {
         return (new ST_reset).init(walkArg,sourceArg,repsArg);
     }
     
+    fun static ST_trigReset trigReset( ST_walk walkArg, Stream sourceArg, Stream trigArg ) {
+        return (new ST_trigReset).init(walkArg, sourceArg, trigArg );
+    }
+    
     // resets a walk to source every time 'timer' has passed
     fun static ST_timedReset timedReset( ST_walk walkArg , Stream sourceArg, Stream timerArg ) {
         return (new ST_timedReset).init(walkArg,sourceArg,timerArg);
@@ -1700,6 +1754,16 @@ public class st {
         return wh;
     }
     
+    fun static ST_writeover writeover(float tableArg[], Stream input, Stream index, Stream mix) {
+        // this mixes the input signal over the existing value, so as to allow you to mix the values.
+        // Mix is the amount of input added, 1.0 is all new signal, 0.0 is all old.
+        return (new ST_writeover).init(tableArg,input,index,mix,st(0.0));
+    }
+    
+    fun static ST_writeover writeover(float tableArg[], Stream input, Stream index, Stream mix, Stream offset) {
+        return (new ST_writeover).init(tableArg,input,index,mix,offset);
+    }
+    
     fun static ST_append append(float tabArg[],Stream valueArg) {
         return (new ST_append).init(tabArg,valueArg);
     }
@@ -1761,6 +1825,44 @@ public class st {
         return (new ST_midiCtrl).init(3,1,controllerArg);
     }
     
+    fun static MidiStream midiStream(Stream timerArg, Stream pitchArg, Stream durArg, Stream veloArg) {
+        MidiStream stream;
+        stream.init(timerArg,pitchArg,durArg,veloArg);
+        return stream;
+    }
+    
+    /*
+    fun static ST_line bend(Stream input,Stream bendUp,Stream bendDown,float range,float ramp) {
+        sum ( 
+           mup(-1,bigger(0,bendDown)) , 
+           mup(1,bigger(0,bendUp))
+           ) @=> Stream indexy;
+        ST_line bendy;
+        return bendy.init( index([-range,0,range],sum(indexy,1)) ,ramp);
+    }
+    */
+    
+    
+    /*
+    fun static ST_line bendWithKeys(string x,string y);
+    */
+       
+    
+    /*
+    fun static SingleKeySynth singleKeySynth( StreamSynth synthArg, int keyNumber ) {
+        return (new SingleKeySynth).init( synthArg, keyNumber);
+    }
+    */
+    
+    fun static ST_key keyboard( int hidNum ) {
+        return (new ST_key).init(hidNum);
+    }
+    
+    fun static ST_singleKey singleKey( int hidNum, string key ) {
+        return (new ST_singleKey).init(hidNum,key);
+    }
+    
+    
     fun static ST_sum scaledMidiCtrl(int controllerArg,float min,float max) {
         Math.fabs(max-min) => float range;
         Math.min(min,max) => min;
@@ -1771,12 +1873,32 @@ public class st {
                 min);
     }
     
+    fun static ST_sum scaleMidi(Stream midiIn, float min, float max) {
+        Math.fabs(max-min) => float r;
+        Math.min(min,max) => float m;
+        return sum( mup ( midiIn, r ), m );
+    }
+    
+    fun static ST_sum scaleAC(Stream acIn, float min, float max) {
+        Math.fabs(max-min) / 2 => float r;
+        Math.min(min,max) => float m;
+        return sum( mup ( sum (acIn, 1) , r ) , m);
+    }
+    
     fun static ST_oscin oscin(int port, string name) {
         return (new ST_oscin).init(port,name);
     }
     
     fun static ST_delay delay(Stream inArg,int maxArg,Stream delArg) {
         return (new ST_delay).init(inArg,maxArg,delArg);
+    }
+    
+    fun static ST_delayi delayi(Stream inArg, int maxArg, Stream delArg) {
+        ST_delayi stream;
+        stream.input(inArg);
+        stream.maxRead(maxArg);
+        stream.delay(delArg);
+        return stream;
     }
     
     fun static ST_adc audioIn(Stream channel) {
@@ -1805,6 +1927,29 @@ public class st {
     
     fun static ST_avg avg(Stream in) {
         return (new ST_avg).init(in,8);
+    }
+    
+    fun static Stream beat(Stream bpm,int divisor) {
+        return div( div( 60.0, bpm ), divisor ) $ Stream;
+    }
+    
+    
+    fun static Stream beat(Stream bpm,Stream divisor) {
+        return div( div( 60.0, bpm), divisor) $ Stream;
+    }
+    
+    fun static Stream beat(float bpm,float divisor) {
+        return st( 60.0 / bpm / divisor );
+    }
+    
+    fun static float beati (float bpm,float divisor) {
+        return 60.0 / bpm / divisor;
+    }
+    
+    fun static ST_leakDC leakDC(Stream inArg,Stream coefArg) {
+        ST_leakDC leak;
+        leak.init(inArg,coefArg);
+        return leak;
     }
             
 }

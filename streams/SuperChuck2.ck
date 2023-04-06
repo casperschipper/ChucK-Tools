@@ -41,9 +41,7 @@ public class SuperChuck extends StreamSynth {
     "/s_new, s, i, i, i," @=> string prefix;
     
     string formatString;
-    
-    false => int loop;
-    
+        
     (new ST_value).init(0.25) @=> Stream st_timer;
     second => dur _timeStep;
     
@@ -171,19 +169,12 @@ public class SuperChuck extends StreamSynth {
         
     }
         
-    fun SuperChuck play() {
+    fun void play() {
         spork ~ playShred();
-        return this;
     }
     
-    fun SuperChuck stop() {
-        0 => loop;
-        return this;
-    }
-    
-    fun SuperChuck start() {
-        spork ~ playShred();
-        return this;
+    fun void start() {
+        play(); // just a pointer
     }
     
     fun SuperChuck init() {

@@ -10,7 +10,7 @@ class MouthPiece extends Chugen {
     }
 }    
 
-class NonLinFeedbackFilter extends Chubgraph {
+class NonLinFeedbackFilter extends Chugraph {
     inlet => Gain input => MouthPiece mpiece => DelayL del => HPF dc => Clip c => outlet;
     dc => input;
     
@@ -63,7 +63,7 @@ class NonLinFeedbackFilter extends Chubgraph {
 }
 
 
-public class StreamNonLinFilter extends Chubgraph {
+public class StreamNonLinFilter extends Chugraph {
     inlet => NonLinFeedbackFilter f => Clip c => outlet;
     
     Stream @ st_freq;

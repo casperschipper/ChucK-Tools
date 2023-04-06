@@ -1,4 +1,4 @@
-public class LinePanSynth extends Chubgraph {
+public class LinePanSynth extends Chugraph {
     Step unit => Envelope i => Safe safe;
     PanFour p;
     p.connect(safe);
@@ -12,9 +12,10 @@ public class LinePanSynth extends Chubgraph {
     samp => dur _timeStep;
     
     fun float gain(float arg) {
-        arg => unit.gain;
+        arg => safe.gain;
         return arg;
     }
+
     
     fun static LinePanSynth make(Stream value,Stream dura,Stream pan) {
         LinePanSynth synth;
@@ -48,10 +49,7 @@ public class LinePanSynth extends Chubgraph {
         0 => loop;
     }    
     
-    fun float gain(float arg) {
-        arg => safe.gain;
-        return arg;
-    }
+ 
            
 }
 

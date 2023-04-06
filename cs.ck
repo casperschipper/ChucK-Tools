@@ -328,6 +328,7 @@ public class cs
         return output; 
     }
     
+    /*
     fun static void replacef(float arg1[],float arg2[]) {
         // only way to replace is copy one by one.
         arg1.size() => int n;
@@ -336,6 +337,7 @@ public class cs
             arg1[i] => arg2[i];
         }
     }
+    */
     
     fun static void replace(int arg1[],int arg2[]) {
         // only way to really replace is copy one by one.
@@ -455,22 +457,6 @@ public class cs
         return range(0,high,1);
     }
     
-    fun static int[] range( int low, int high ) {
-        return range(low,high,1);
-    }   
-    
-    fun static float[] rangef( float low, float high, float step) {
-        Std.fabs(high-low) => float diff;
-        Math.min(low,high) => float min;
-        Math.max(low,high) => float max;
-        float output [Math.floor(((diff/step) + 1))$int];
-        int x;
-        for (min => float i;i<=max;i + step => i) {
-            i => output[x++];
-        }
-        return output;
-    }   
-    
     fun static int[] stepper( int start, int step, int amount)
     {
         int output[amount];
@@ -492,7 +478,7 @@ public class cs
         }
         return output;
     }
-        
+    
     
     fun static float[] rangef (float low, float high, float step)
     {
@@ -552,8 +538,8 @@ public class cs
     
     fun static int[] shuffle(int array[]) {
         array.size() => int max;
-        0 => int tmp;
-        0 => int pos;
+        int tmp;
+        int pos;
         while(max-- > 1) {
             Math.random2(0,max-1) => pos;
             array[pos] => tmp;
@@ -590,14 +576,6 @@ public class cs
                 b[i-a.size()] => output[i];
         }
         return output;
-    }
-    
-    fun static int[] append(int a[],int b[]) {
-        return addArray(a,b);
-    }
-    
-    fun static float[] appendf(float a[],float b[]) {
-        return addArrayf(a,b);
     }
         
     
@@ -809,8 +787,9 @@ public class cs
       
     fun static float [] printf( float input[] )
     {
-        for (int i;i<input.size();chout <= input[i++] <= "\t\t") {
-            // nothing
+        for (int i;i<input.size();i++) {
+            chout <= input[i] <= "\t";
+            if (i % 4 == 0) { chout <= "\n"; }
         }
         chout <= IO.newline();
         return input;
@@ -964,13 +943,7 @@ public class cs
         return integrate(seq,0);
     }
     
-    fun static int sum(int seq[]) {
-        int x;
-        for (int i;i<seq.cap();i++) {
-            seq[i] +=> x;
-        }
-        return x;
-    }
+  
     
     fun static float sumf(float seq[])
     {
@@ -1231,11 +1204,6 @@ public class cs
         return 440.0 * Math.pow(2,((midi-69.0)/12.0));
     }
     
-    fun static dur mtod(float midi) 
-    {
-        return (1.0/Std.mtof(midi))::second;
-    }
-    
     fun static float mtodf(float midi) 
     {
         return (1.0/Std.mtof(midi));
@@ -1391,7 +1359,7 @@ public class cs
         }
     }
     
-    fun static void spray(Chubgraph ugen[]) {
+    fun static void spray(Chugraph ugen[]) {
         Pan2 pan[ugen.cap()];
         for (int i;i<ugen.cap();++i) {
             ugen[i] => pan[i] => dac;
@@ -1434,7 +1402,7 @@ public class cs
         return result;
     }
     
-    fun static void normalize(Chubgraph ugen[]) {
+    fun static void normalize(Chugraph ugen[]) {
         ugen.cap() => int size;
         1.0 / size => float gain;
         for (int i;i<size;++i) gain => ugen[i].gain;
@@ -1735,6 +1703,10 @@ public class cs
     fun static float [] alloc ( int size ) {
         float array[size];
         return array;
+    }
+    
+    fun static float linterp ( float y0, float y1, float p) {
+        return y0 + ((y1-y0)/1.0) * p;
     }
             
 }

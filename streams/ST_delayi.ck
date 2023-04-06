@@ -1,58 +1,28 @@
-public class ST_delayl extends Stream 
+public class ST_delayi extends ST_delay 
 {
-    Stream @ _input;
-    null @=> Stream @ st_delay;
-    
-    float _memory[256];
-    int _phase,_maxRead;
-    float _readPos,_delay;
-    "ST_delay" @=> _type;
-    
-    fun ST_delayl input (Stream arg) {
-        arg @=> _input;
-        return this;
-    }
-    
-    fun ST_delayl init(Stream inArg,int maxArg, Stream delayArg) {
-        input(inArg);
-        maxRead(maxArg);
-        delay(delayArg);
-        return this;
-    }
-    
-    fun ST_delayl maxRead( int arg ) {
-        arg => _maxRead => _memory.size;
-        return this;
-    }
-    
-    fun ST_delayl delay( int arg ) {
-        null @=> st_delay;
-        arg => _delay;
-        return this;
-    }
-    
-    fun ST_delayl delay( Stream arg ) {
-        arg @=> st_delay;
-        return this;
-    }
-    
+   fun int delayBound(int value) {
+       if (value < 0) {
+           return _maxRead - ((-1 * value) & _maxRead);
+       } else {
+           return value & _maxRead;
+       }
+   }
+       
     fun float next() {
-        (_phase+1) % _maxRead => _phase;
+        (_phase+1) & _maxRead => _phase;
         
         if (st_delay != null) {
-            st_delay.next() => _delay;
+            st_delay.nextInt() => _delay;
+            delayBound(_delay) => _delay;
         }
         
         _input.next() => _memory[_phase];
-        
-        _delay + _phase => _readPos;
-        Math.floor(_readPos) => int bottom;
-
-        cs.safeTableIndex(bottom,_maxRead) => bottom;
-
-        _memory[bottom] => float leftsamp;
-        return leftsamp + (
-            (_readPos - Math.floor(_readPos)) * 
-            (_memory[(bottom + 1) % _maxRead] - leftsamp));
+        _phase - _delay => _readPos;
+        while (_readPos < 0)  _maxRead +=> _readPos;        
+        Math.floor(_readPos) $ int => int x0;
+        _readPos - x0 => float p;
+        _memory[x0] => float y0;
+        _memory[(x0+1) & _maxRead] => float y1;
+        return cs.linterp(y0,y1,p);
     }        
 }

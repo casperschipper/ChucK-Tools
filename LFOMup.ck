@@ -1,4 +1,4 @@
-public class LFOMup extends Chubgraph {
+public class LFOMup extends Chugraph {
     inlet => Gain VCA => outlet;
     SinOsc LFO => Scaler s => VCA;
     3 => VCA.op;

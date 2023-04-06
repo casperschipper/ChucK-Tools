@@ -1,0 +1,7 @@
+class ST_key extends Stream {
+    Hid hi;
+    HidMsg msg;
+
+    fun float next() {
+	
+	

@@ -1,4 +1,4 @@
-public class PulseFBSynth extends Chubgraph {
+public class PulseFBSynth extends Chugraph {
     Step i => Gain in => Gain out => Safe safe; 
     PanFour p;
     out => DelayC d => BiQuad f => in;

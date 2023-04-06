@@ -40,7 +40,7 @@ public class Schedule {
         return this;
     }
     
-    fun Schedule procedure(Stream arg) {
+    fun Schedule timer(Stream arg) {
         arg @=> st_timer;
         return this;
     }

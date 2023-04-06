@@ -90,7 +90,7 @@ class ST_seriesIndex extends Stream {
     
     int list[1];
     int current;
-
+    
     1 => int running;
     
     fun void init(int amount) {
@@ -99,9 +99,8 @@ class ST_seriesIndex extends Stream {
         for (int i;i<amount;++i) {
             i => list[i];
         }
-        shuffle();
     }
-
+    
     fun int more() {
         if (running) {
             return true;
@@ -110,21 +109,30 @@ class ST_seriesIndex extends Stream {
             return false;
         }
     }
-
+    
     fun void reset() {
         1 => running;
         0 => current;
-        shuffle();
-    }
-    
-    fun void shuffle() {
-        cs.shuffle(list) @=> list;
     }
     
     fun int nextInt() {
-        if ((current+1) >= size) {
-            0 => running;
+        int pos,tmp;
+        if (current > (size - 2)) {
+            0 => current;
+            false => running;
+            return list[size-1];
         }
-        return list[current++];
+        else {
+            Math.random2(current,size-1) => pos;
+            list[pos] => tmp;
+            list[current] => list[pos];
+            tmp => list[current]; 
+        }
+        current++;
+        return tmp;
+    }
+    
+    fun float next() {
+        return nextInt() $ float;
     }
 } 

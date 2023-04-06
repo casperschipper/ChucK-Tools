@@ -151,5 +151,10 @@ public class ST_operator extends Stream
         x => _v1;
         return next();
     }
+    
+    fun void reset() {
+        if (v1IsStream) st_v1.reset();
+        if (v2IsStream) st_v2.reset();
+    }
         
 }

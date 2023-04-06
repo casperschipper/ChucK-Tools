@@ -1,3 +1,14 @@
+// JUST SOME OLD CRAP
+
+class NodeID {
+    1000 => static int nodeID;
+    
+    fun int get() {
+        nodeID + 1 => nodeID;
+        return nodeID;
+    }
+}
+
 class ST_defer extends Stream {
     // this stream only updates if update is called.
     Stream input;
@@ -18,18 +29,21 @@ class ST_defer extends Stream {
 }
 
 public class OSCStream extends StreamSynth {
+    NodeID nodeID;
+    int currentID;
     "default" @=> string instr;
-    6159 => int OSC_PORT;
-
-    OscOut xmit;
-    xmit.dest("localhost", OSC_PORT);
+    
+    OscSend xmit;
+    xmit.setHost("localhost",57110);
+    
     
     StreamDict streamDict;
     
     // mes   i  id act target
+    "/s_new, s, i, i, i," @=> string prefix;
     
-    false => int loop;
-    
+    string formatString;
+        
     (new ST_value).init(0.25) @=> Stream st_timer;
     second => dur _timeStep;
     
@@ -55,7 +69,7 @@ public class OSCStream extends StreamSynth {
     
     fun OSCStream addPar(string nameArg,Stream streamArg) {
         streamDict.store(nameArg,streamArg);
-        //updateMessage();
+        updateMessage();
         return this;
     }
     
@@ -74,8 +88,7 @@ public class OSCStream extends StreamSynth {
         return this;
     }
     */
-  
-  /*  
+    
     fun void updateMessage() { // private
         // this creates the SC string address for OSC
         streamDict.length => int n;
@@ -88,7 +101,6 @@ public class OSCStream extends StreamSynth {
             }
         }
     }
-    */
     
     fun OSCStream freq(Stream arg) {
         return addPar("freq",arg);
@@ -129,38 +141,39 @@ public class OSCStream extends StreamSynth {
     
     fun void playShred() { // private
         1 => loop;
-
-        while(loop) {                  
+        
+        
+        while(loop) {      
+            nodeID.get() => currentID;
+            
+            
             st_timer.next() * _timeStep => now;
+            xmit.openBundle();
+            xmit.startMsg("/s_new",",s");
+            xmit.addString(instr); // instrument
             
             streamDict.reset();
             
             // first, update all defered streams.
             updateDefered();
             
-            "/" + instr => xmit.start;
-
             while(streamDict.more()) {
-                streamDict.nextKey() => xmit.add; // add par
-                streamDict.nextStream().next() => xmit.add; //add value
+                xmit.startMsg("/n_set",",isf");
+                currentID => xmit.addInt;
+                streamDict.nextKey() => xmit.addString;
+                streamDict.nextStream().next() => xmit.addFloat;
             }
-            xmit.send();
+            xmit.closeBundle();
         }
+        
     }
     
-    fun OSCStream play() {
+    fun void play() {
         spork ~ playShred();
-        return this;
     }
-    
-    fun OSCStream stop() {
-        0 => loop;
-        return this;
-    }
-    
-    fun OSCStream start() {
+
+    fun void start() {
         spork ~ playShred();
-        return this;
     }
     
     fun OSCStream init() {

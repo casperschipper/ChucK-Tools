@@ -55,5 +55,3 @@ class M extends st {
 
 M m;
 */
-
-day => now;

@@ -1,4 +1,4 @@
-class Expseg extends Chubgraph {
+class Expseg extends Chugraph {
     Step unit => Envelope e => Gen5 gen5 => Gain mup => Gain sum => outlet;
     Step offset => sum;
       

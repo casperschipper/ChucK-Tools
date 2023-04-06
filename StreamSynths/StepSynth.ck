@@ -5,9 +5,7 @@ public class StepSynth extends StreamSynth {
     
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
-    
-    0 => int loop;
-    
+        
     samp => dur _timeStep;
     
     fun static StepSynth make(Stream value,Stream dura) {
@@ -39,6 +37,8 @@ public class StepSynth extends StreamSynth {
     
     fun void stop() {
         0 => loop;
+        _value.reset();
+        _dura.reset();
     }       
 }
 

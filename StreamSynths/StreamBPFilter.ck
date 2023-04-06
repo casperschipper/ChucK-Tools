@@ -3,7 +3,7 @@
 // filter.init(freq,q,timing);
 // 
 
-public class StreamBPFilter extends Chubgraph {
+public class StreamBPFilter extends Chugraph {
     inlet => BPF f => Clip c => outlet;
     
     Stream @ st_freq;

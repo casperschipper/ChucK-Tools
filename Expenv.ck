@@ -1,4 +1,4 @@
-public class Expenv extends Chubgraph {
+public class Expenv extends Chugraph {
     inlet => Gain g => outlet;
     Step unit => Envelope e => g; 
     1 => unit.next;

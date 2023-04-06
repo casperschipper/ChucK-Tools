@@ -2,8 +2,10 @@ public class ST_walk extends Stream {
     null @=> Stream @ st_step;
     
     0 => float initialValue;
+    
     float _value;
     float _step;
+    
     
     fun ST_walk step(Stream stepArg) {
         stepArg @=> st_step;
@@ -59,6 +61,13 @@ public class ST_walk extends Stream {
         _step + _value => _value;
         wrap();
         return _value;
+    }
+    
+    fun void reset() {
+        initialValue => _value;
+        if (st_step != null) {
+            st_step.reset();
+        }
     }
     
     // here you can do advanced stuff with boundaries.

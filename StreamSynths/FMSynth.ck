@@ -1,4 +1,4 @@
-public class FMSynth extends Chubgraph {
+public class FMSynth extends Chugraph {
     SinOsc c => outlet;
     SinOsc m => c;
     

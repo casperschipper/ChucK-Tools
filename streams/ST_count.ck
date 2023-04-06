@@ -39,4 +39,9 @@ public class ST_count extends Stream
         }
         return value++ $ float;
     }
+    
+    fun void reset() {
+        0 => value;
+        st_max.reset();
+    }
 }

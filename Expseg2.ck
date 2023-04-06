@@ -1,4 +1,4 @@
-Expsig2 extends Chubgraph {
+Expsig2 extends Chugraph {
     Linseg l => Buffer exptable => outlet;
     Step offset => 
     

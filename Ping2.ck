@@ -29,7 +29,7 @@ for (int i;i<CheapEnv.lookup.cap();i++) {
     1.0 * Math.pow(0.0001,(i $ float)/4096) => CheapEnv.lookup[i];
 }
 
-class Ping2 extends Chubgraph {
+class Ping2 extends Chugraph {
     1.0 => float _gain;
     
     fun void trigger(float frq,dur dura,float amp) {

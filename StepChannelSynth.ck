@@ -1,4 +1,4 @@
-public class StepChannelSynth extends Chubgraph {
+public class StepChannelSynth extends Chugraph {
     Step step;
         
     null @=> Stream @ _value;

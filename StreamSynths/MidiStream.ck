@@ -8,9 +8,7 @@ public class MidiStream extends StreamSynth {
     } else {
         <<<"port failed">>>;
     }
-    
-    
-    
+      
     0 => int _channel;
     
     null @=> Stream @ st_pitch;
@@ -20,21 +18,19 @@ public class MidiStream extends StreamSynth {
     
     0x90 => int _noteOn;
     0x80 => int _noteOff;
-        
-    0 => int play;
-    
+            
     fun MidiStream port(int arg) {
         if (mout.open(arg)) {
             chout <= "midi port: " <= arg <= " is open" <= IO.newline();
         } else {
             <<<"else okay">>>;
         }
-        return this;
+        
     }
     
     fun MidiStream channel(int arg) {
-        arg => _channel;
-        return this;
+        arg - 1 => _channel;
+        
     }
     
     fun MidiStream init(Stream pitchArg,Stream veloArg,Stream duraArg,Stream delta) {
@@ -46,80 +42,98 @@ public class MidiStream extends StreamSynth {
         return this;
     }
     
-    fun MidiStream pitch(Stream arg) {
+    fun void pitch(Stream arg) {
         arg @=> st_pitch;
-        return this;
     }
     
-    fun MidiStream velo(Stream arg) {
+    fun void velo(Stream arg) {
         arg @=> st_velo;
-        return this;
     }
     
-    fun MidiStream dura(Stream arg) {
+    fun void dura(Stream arg) {
         arg @=> st_dura;
-        return this;
+        
     }
     
-    fun MidiStream timer(Stream arg) {
+    fun void timer(Stream arg) {
         arg @=> st_timer;
-        return this;
+        
     }
     
-    fun MidiStream pitch(Stream arg) {
-        arg @=> st_pitch;
-        return this;
-    }
-    
-    fun MidiStream pitch(float arg) {
+    fun void pitch(float arg) {
         ST_value.make(arg) @=> st_pitch;
-        return this;
+        
     }
     
-    fun MidiStream velo(float arg) {
+    fun void velo(float arg) {
         ST_value.make(arg) @=> st_velo;
-        return this;
+        
     }
     
-    fun MidiStream dura(float arg) {
+    fun void dura(float arg) {
         ST_value.make(arg) @=> st_dura;
-        return this;
+        
     }
     
-    fun MidiStream timer(float arg) {
+    fun void timer(float arg) {
         ST_value.make(arg) @=> st_timer;
-        return this;
+        
     }
     
-    fun MidiStream velo(int arg) {
+    fun void velo(int arg) {
         ST_value.make(arg) @=> st_velo;
-        return this;
+        
     }
     
-    fun MidiStream dura(int arg) {
+    fun void dura(int arg) {
         ST_value.make(arg) @=> st_dura;
-        return this;
+        
     }
     
-    fun MidiStream timer(int arg) {
+    fun void timer(int arg) {
         ST_value.make(arg) @=> st_timer;
-        return this;
+        
     }
     
-    fun MidiStream start() {
+    fun void start() {
         spork ~ midiSpork();
-        return this;
     }
+    
+    fun void midiSpork() {
+        1 => loop;
+        
+        killAll();
+        
+        while(loop) {
+            updateDefered();
+            spork ~ playNote();
+            st_timer.next() * second => now;
+        }
+    }
+    
     
     fun void killAll() {
         // https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message
-        0xd0 | _channel => msg.data1; // controller type, but 
+        //0xd0 | _channel => msg.data1; // controller type, but 
+        0xb0 | _channel => msg.data1;
         0x7b => msg.data2; // using 123
         0 => msg.data3;
         
         mout.send(msg);
         
-        64*samp => now; // 80's technology, lets give a bit of time..
+        <<<"Kill">>>;
+                
+        // only reset channel 1
+        for (0 => int midi_chan;midi_chan<16;midi_chan++) {
+            for (int note;note < 127;note++) {
+                _noteOff | midi_chan => msg.data1;
+                note => msg.data2;
+                0 => msg.data3;
+                mout.send(msg);
+                ms => now;
+            }
+        }
+            
         
         /*** outdated note off ***
         for (int midi_chan;midi_chan<16;midi_chan++) {
@@ -133,21 +147,6 @@ public class MidiStream extends StreamSynth {
         ******/
     }
     
-    fun void midiSpork() {
-        1 => play;
-        
-        killAll();
-        
-        0x90 + _channel => _noteOn;
-        0x80 + _channel => _noteOff;
-        
-        while(play) {
-            updateDefered();
-            spork ~ playNote();
-            st_timer.next() * second => now;
-        }
-    }
-    
     fun void playNote() {
         int currentPitch;
         
@@ -157,14 +156,17 @@ public class MidiStream extends StreamSynth {
         mout.send(msg);
         
         st_dura.next() * second => now;
-        _noteOff => msg.data1;
+        _noteOff | _channel => msg.data1;
         currentPitch => msg.data2;
         0 => msg.data3;
         mout.send(msg);
     }
     
-    fun MidiStream stop() {
-        0 => play;
-        return this;
+    fun void stop() {
+        0 => loop;
+        st_pitch.reset();
+        st_velo.reset();
+        st_dura.reset();
+        st_timer.reset();
     }
 }

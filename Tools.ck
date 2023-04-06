@@ -1,4 +1,4 @@
-"/users/casperschipper/Google Drive/chuck/tools/" @=> string toolsPath;
+"/Users/casperschipper/devel/chuck/tools/" @=> string toolsPath;
 
 <<<"hi there, chuck here">>>;
 
@@ -32,6 +32,7 @@ add("Streams/ST_choice");
 add("Streams/ST_count");
 add("Streams/ST_count2"); // this can also hold...
 add("Streams/ST_delay");
+add("Streams/ST_delayi");
 add("Streams/ST_float");
 add("Streams/ST_index");
 add("Streams/ST_indexLin");
@@ -58,6 +59,7 @@ add("Streams/ST_linseg");
 add("Streams/ST_walk");
 add("Streams/ST_walkList");
 add("Streams/ST_smartWalkList");
+add("Streams/ST_latchWalk");
 add("Streams/ST_mupWalk");
 add("Streams/ST_maskedChoice");
 add("Streams/ST_boundedMupWalk");
@@ -84,12 +86,15 @@ add("Streams/ST_bitXor");
 add("Streams/ST_equal");
 add("Streams/ST_bigger");
 add("Streams/ST_smaller");
+add("Streams/ST_overwrite");
 add("Streams/ST_exprv");
 add("Streams/ST_pow");
 add("Streams/ST_bind");
 add("Streams/ST_timedReset");
 add("Streams/ST_reset");
+add("Streams/ST_trigReset");
 add("Streams/ST_write");
+add("Streams/ST_writeover");
 add("Streams/ST_writeHead");
 add("Streams/ST_append");
 add("Streams/ST_readWrite");
@@ -99,7 +104,7 @@ add("Streams/ST_tableCap");
 add("Streams/ST_hzPhasor");
 add("Streams/ST_rampGen");
 add("Streams/ST_couple");
-add("Streams/ST_overwrite");
+add("Streams/ST_stateMachine");
 
 add("Streams/Guard");
 add("Streams/GuardControl");
@@ -145,7 +150,8 @@ add("Streams/ST_apply");
 add("Streams/ST_adc");
 add("Streams/ST_dacin");
 add("Streams/ST_biquad");
-
+add("Streams/ST_slide");
+add("Streams/ST_leakDC");
 
 // funkstreams
 add("Funk.ck");
@@ -159,7 +165,6 @@ add("StreamSynths/StreamSynth");
 add("Streams/StreamDict");
 // supercollider link
 add("Streams/SuperChuck2");
-add("Streams/OscStream");
 add("Streams/ST_oscin");
 
 // writing to array with streams
@@ -189,15 +194,23 @@ add("StreamSynths/StreamBPFilter");
 add("StreamSynths/StreamLPFilter");
 add("StreamSynths/StreamFeedbackDelay");
 add("StreamSynths/WriteSchedule");
+add("StreamSynths/OSCStream");
+
 
 add("StreamSynths/MidiStream");
+add("StreamSynths/MidiNoteChannelSyncStream");
+add("StreamSynths/MidiNoteChannelSyncTriggerStream");
+add("StreamSynths/MidiNoteChannelStream");
+add("StreamSynths/MidiNoteCtrlStream");
 add("StreamSynths/MidiControlStream");
-
+add("StreamSynths/MidiSyncStream");
+add("StreamSynths/SingleKeySynth");
 add("StreamSynths/StreamNonLinFilter");
 
 add("OSCTable");
 add("Streams/ST_midiCtrl");
-add("Streams/ST_keys");
+add("Streams/ST_key");
+add("Streams/ST_singleKey"); // 
 
 
 add("Streams/st");

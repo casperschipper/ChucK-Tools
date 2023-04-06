@@ -1,4 +1,4 @@
-public class StreamPan extends Chubgraph {
+public class StreamPan extends Chugraph {
     inlet => Pan4 p => dac;
 
     null @=> Stream @ stream;

@@ -4,7 +4,7 @@ class Shaper extends Chugen {
     }
 }
 
-public class PulseFBSynth2 extends Chubgraph {
+public class PulseFBSynth2 extends Chugraph {
     Step i => Gain in => Gain out => Safe safe; 
     PanFour p;
     out => DelayC d => BiQuad f => Shaper s => in;

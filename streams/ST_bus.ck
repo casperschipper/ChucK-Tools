@@ -50,5 +50,7 @@ public class ST_bus extends Stream {
 }
 
 [(new Stream)] @=> ST_bus.bus;
+(new Stream) @=> ST_bus.bus["midi-pitch-in"];
+(new Stream) @=> ST_bus.bus["midi-pitch-in"];
 
       

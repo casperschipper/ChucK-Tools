@@ -1,4 +1,4 @@
-public class Pan4 extends Chubgraph
+public class Pan4 extends Chugraph
 {
     Gain fl,fr,bl,br;
     if (dac.channels() == 4) {

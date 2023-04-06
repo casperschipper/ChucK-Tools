@@ -1,4 +1,4 @@
-public class StreamFeedbackDelay extends Chubgraph {
+public class StreamFeedbackDelay extends Chugraph {
     inlet => FeedbackDelay delay => outlet;
     
     null @=> Stream @ st_delay;
