@@ -1968,8 +1968,8 @@ public class st {
         return leak;
     }
     
-    fun static NodeSynth node(int size,float amp, float pan,Stream outArg,Stream durArg,Stream topArg,Stream timerArg, Stream recordArg) {
-        return (new NodeSynth).init(size,amp,pan,outArg,durArg,topArg,timerArg,recordArg);
+    fun static NodeSynth node(int size,float amp, float pan,Stream outArg,Stream durArg,Stream topArg,Stream timerArg, Stream recordArg, Stream inputArg,Stream fundArg) {
+        return (new NodeSynth).init(size,amp,pan,outArg,durArg,topArg,timerArg,recordArg,inputArg,fundArg);
     }
             
 }

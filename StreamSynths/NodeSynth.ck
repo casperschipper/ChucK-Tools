@@ -8,13 +8,16 @@ public class NodeSynth extends StreamSynth {
 
     int thisBufferIndex; // keep this so we know where we connected.
     
-    Buffer buffer => outlet;
+    
+    Phasor p => Buffer buffer => outlet;
     
     Stream nextOut;
     Stream duration;
     Stream topLevel;
     Stream timer;
     Stream recordSwitch;
+    Stream input;
+    Stream fundamental;
     
     0 => int buffersize;
     
@@ -29,7 +32,7 @@ public class NodeSynth extends StreamSynth {
         nodeCounter + 1 => nodeCounter;
     }
     
-    fun NodeSynth init(int size,float amp, float pan,Stream outArg,Stream durArg,Stream topArg,Stream timerArg,Stream recordSwitchArg) {
+    fun NodeSynth init(int size,float amp, float pan,Stream outArg,Stream durArg,Stream topArg,Stream timerArg,Stream recordSwitchArg,Stream inputArg,Stream fundArg) {
         // size: size of buffer
         // outArg: number of output bus to send to
         // durArg: length of envelope
@@ -39,6 +42,7 @@ public class NodeSynth extends StreamSynth {
         <<<"NodeSynth, nodecounter: ",nodeCounter>>>;
         buffer.max(size*samp);
         size => buffersize;
+        size => p.gain;
         buffer.sync(2);
         buffer.noise();
         
@@ -47,6 +51,8 @@ public class NodeSynth extends StreamSynth {
         topArg @=> topLevel;
         timerArg @=> timer;
         recordSwitchArg @=> recordSwitch;
+        inputArg @=> input;
+        fundArg @=> fundamental;
         
         connect();
         
@@ -58,13 +64,11 @@ public class NodeSynth extends StreamSynth {
         return this;
     }
     
-    fun void envelope(UGen target,Envelope e,float top,dur dura) {
+    fun void envelope(Envelope e,float top,dur dura) {
         top => e.target;
         dura * 0.5 => e.duration => now;
         0 => e.target;
         dura * 0.5 => e.duration => now;
-        buffer !=> e;
-        e !=> target;
     }
         
     
@@ -73,20 +77,21 @@ public class NodeSynth extends StreamSynth {
         while(loop) {
             updateDefered();
             if (recordSwitch.nextInt() != 0) {
-                node_bus[thisBufferIndex] !=> buffer;
-                adc.left => buffer;
-                buffer.record(true);
-                buffer.max() => now; // record one full buffer
-                buffer.record(false);
-                adc.left !=> buffer;
-                node_bus[thisBufferIndex] => buffer;
-            } else {       
+                ((buffer.max() / samp) => Math.floor) $ int => int n;
+                for (int i;i<n;i++) {
+                    buffer.valueAt(i,input.next());
+                    samp => now;
+                 
+                }
+                <<<thisBufferIndex,"done">>>;
+            } else {  
+                fundamental.next() => p.freq;     
                 nextOut.nextInt() => int targetBus;
                 duration.next() * second => dur dura;
                 topLevel.next() => float top;
                 if (targetBus < nodeCounter) {
                     buffer => Envelope env => node_bus[targetBus];
-                    spork ~ envelope(node_bus[targetBus],env,top,dura);
+                    spork ~ envelope(env,top,dura);
                     updateDefered();
                     timer.next() * second => now;
                 } else {
