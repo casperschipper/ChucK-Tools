@@ -42,6 +42,8 @@ public class StreamSynth extends Chugraph {
     
     fun void play() {
         while(loop) {
+            // Here you should update your deferred streams once per loop
+            updateDefered();
             day => now;
         }
     }

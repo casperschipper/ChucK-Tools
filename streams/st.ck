@@ -1233,9 +1233,14 @@ public class st {
         return (new ST_mtosamps).init(arg);
     }
     
+    fun static ST_mtosec mtosec(Stream arg) {
+        return (new ST_mtosec).init(arg);
+    }
+    
     fun static ST_floor floor(Stream arg) {
         return (new ST_floor).init(arg);
     }
+         
     
     fun static ST_indexLin scan(float arrayArg[],Stream sizeArg,Stream offsetArg) {
         return (new ST_indexLin).init(
@@ -1532,6 +1537,17 @@ public class st {
         biquad.setPeakGain(gainArg);
         return biquad;
     }
+    
+    fun static ST_biquad lowpass(Stream inArg, Stream freqArg, Stream QArg, Stream gainArg) {
+        ST_biquad biquad;
+        biquad.setInput(inArg);
+        biquad.setType("lp");
+        biquad.setFreq(freqArg);
+        biquad.setQ(QArg);
+        biquad.setPeakGain(gainArg);
+        return biquad;
+    }
+    
     
     fun static ST_slide slide(Stream inArg, Stream upArg, Stream downArg) {
         return (new ST_slide).init(inArg,upArg,downArg);
@@ -1950,6 +1966,10 @@ public class st {
         ST_leakDC leak;
         leak.init(inArg,coefArg);
         return leak;
+    }
+    
+    fun static NodeSynth node(int size,float amp, float pan,Stream outArg,Stream durArg,Stream topArg,Stream timerArg) {
+        return (new NodeSynth).init(size,amp,pan,outArg,durArg,topArg,timerArg);
     }
             
 }

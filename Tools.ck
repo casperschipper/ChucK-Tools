@@ -132,6 +132,7 @@ add("Streams/ST_mtof");
 add("Streams/ST_ftom");
 add("Streams/ST_mtor");
 add("Streams/ST_mtosamps");
+add("Streams/ST_mtosec");
 add("Streams/ST_sine");
 add("Streams/ST_sin");
 add("Streams/ST_sineseg");
@@ -206,10 +207,11 @@ add("StreamSynths/MidiControlStream");
 add("StreamSynths/MidiSyncStream");
 add("StreamSynths/SingleKeySynth");
 add("StreamSynths/StreamNonLinFilter");
+add("StreamSynths/NodeSynth");
 
 add("OSCTable");
 add("Streams/ST_midiCtrl");
-add("Streams/ST_key");
+add("Streams/ST_key"); 
 add("Streams/ST_singleKey"); // 
 
 
