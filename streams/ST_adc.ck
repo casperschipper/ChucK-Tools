@@ -19,7 +19,13 @@ public class ST_adc extends Stream {
             (ST_channel.next() => Math.floor) $ int => channel;
             channel % nchans => channel;
         }
-        return adc.chan(channel).last();
+        if (nchans == 0) {
+            return 0.0;
+        } else if (nchans == 1) {
+            return adc.last();
+        } else {
+            return adc.chan(channel).last();
+        }
     }
 }
 
