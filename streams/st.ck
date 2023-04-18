@@ -1971,6 +1971,12 @@ public class st {
     fun static NodeSynth node(int size,float amp, float pan,Stream outArg,Stream durArg,Stream topArg,Stream timerArg, Stream recordArg, Stream inputArg,Stream fundArg) {
         return (new NodeSynth).init(size,amp,pan,outArg,durArg,topArg,timerArg,recordArg,inputArg,fundArg);
     }
+    
+    fun static void resetNode () {
+        (new NodeSynth).reset();
+        return;
+    }
+    
             
 }
 

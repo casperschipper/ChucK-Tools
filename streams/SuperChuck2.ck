@@ -1,11 +1,18 @@
 class NodeID {
-    1000 => static int nodeID;
+    static int nodeID;
     
     fun int get() {
         nodeID + 1 => nodeID;
         return nodeID;
     }
+    
+    fun void update() {
+        (NodeID.nodeID + 1) % 16383 => NodeID.nodeID;
+    }
 }
+
+1000 => NodeID.nodeID;
+
 
 class ST_defer extends Stream {
     // this stream only updates if update is called.
@@ -142,7 +149,8 @@ public class SuperChuck extends StreamSynth {
         
         
         while(loop) {      
-            nodeID.get() => currentID;
+            nodeID.update();
+            NodeID.nodeID => currentID;
 
                   
             st_timer.next() * _timeStep => now;

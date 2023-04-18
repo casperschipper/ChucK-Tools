@@ -33,18 +33,21 @@ public class NodeSynth extends StreamSynth {
     }
     
     fun NodeSynth init(int size,float amp, float pan,Stream outArg,Stream durArg,Stream topArg,Stream timerArg,Stream recordSwitchArg,Stream inputArg,Stream fundArg) {
-        // size: size of buffer
-        // outArg: number of output bus to send to
-        // durArg: length of envelope
-        // topArg: amount of modulation
-        // timerArg: length of time to next
-        // recordArg: when 1, start recording one buffer and continue
+        // 1 size: size of buffer
+        // 2 amp
+        // 3 pan
+        // 4 outArg: number of output bus to send to
+        // 5 durArg: length of envelope
+        // 6  topArg: amount of modulation
+        // 7 timerArg: length of time to next
+        // 8 recordArg: when 1, start recording one buffer and continue
+        // 9 inputArg
+        // 10 fundarg: the fader that makes sure some sound comes out
         <<<"NodeSynth, nodecounter: ",nodeCounter>>>;
         buffer.max(size*samp);
         size => buffersize;
         size => p.gain;
         buffer.sync(2);
-        buffer.noise();
         
         outArg @=> nextOut;
         durArg @=> duration;
@@ -57,6 +60,7 @@ public class NodeSynth extends StreamSynth {
         connect();
         
         PanFour p4;
+        p4.gain(amp);
         p4.connect(buffer);
         p4.pan(pan);
         
