@@ -864,7 +864,7 @@ public class cs
         Math.fabs(high - low) => float range;
         Math.fmod(x-low,range) => x;
         if (x<0)
-            return high + x;
+            return high + 1 + x;
         else 
             return low + x;
     }

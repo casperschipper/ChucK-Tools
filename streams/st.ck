@@ -247,16 +247,24 @@ public class st {
     }
 
     fun static ST_rv rv(float minArg,float maxArg) {
-        return (new ST_rv).init(minArg,maxArg) $ ST_rv;
+        ST_rv rv;
+        rv.init(minArg,maxArg);
+        return rv;
     }
     fun static ST_rv rv(Stream minArg,Stream maxArg) {
-        return (new ST_rv).init(minArg,maxArg) $ ST_rv;
+        ST_rv rv;
+        rv.init(minArg,maxArg);
+        return rv;
     }
     fun static ST_rv rv(float minArg,Stream maxArg) {
-        return (new ST_rv).init(minArg,maxArg) $ ST_rv;
+       ST_rv rv;
+        rv.init(minArg,maxArg);
+        return rv;
     }
     fun static ST_rv rv(Stream minArg,float maxArg) {
-        return (new ST_rv).init(minArg,maxArg) $ ST_rv;
+        ST_rv rv;
+        rv.init(minArg,maxArg);
+        return rv;
     }
     
     fun static ST_floor rvi(Stream minArg,Stream maxArg) {
@@ -642,29 +650,7 @@ public class st {
         walk.reset(resetArg);
         return walk;
     }
-         
-    fun static ST_walkList walkList(Stream values[],Stream step) {
-        ST_walkList walk;
-        walk.list(values);
-        walk.step(step);
-        return walk;
-    }
-    
-    fun static ST_walkList walkList(int values[]) {
-        ST_walkList walk;
-        walk.list(values);
-        walk.step(ch(-1,1));
-        return walk;
-    }
-    
-    /*
-    fun static ST_walkList walkList(int values[],Stream step) {
-        ST_walkList walk;
-        walk.list(values);
-        walk.step(step);
-        return walk;
-    }
-    */ 
+       
     
     fun static ST_bouncyWalk bouncyWalk(float minArg,float maxArg,Stream stepArg) {
         ST_bouncyWalk walk;
@@ -682,6 +668,7 @@ public class st {
         return walk;
     }
     
+    /*
     fun static ST_walkList walkList(float list[]) {
         ST_walkList walk;
         walk.init(list,choice(-1,1));
@@ -694,12 +681,35 @@ public class st {
         return walk;
     }
     
+    
     fun static ST_walkList walkList(int values[],Stream step) {
         ST_walkList walk;
         walk.list(cs.int2float(values));
         walk.step(step);
         return walk;
     }
+    */
+    
+    fun static ST_index walkList(int values[], Stream step) {
+        return index(values,boundedWalk(0,values.cap()-1,step));
+    }
+    
+    fun static ST_index walkList(float values[], Stream step) {
+        return index(values,boundedWalk(0,values.cap()-1,step));
+    }
+    
+    fun static ST_index walkList(float values[]) {
+        return index(values,boundedWalk(0,values.cap()-1,ch(-1,1)));
+    }
+    
+    fun static ST_index walkList(int values[]) {
+        return index(values,boundedWalk(0,values.cap()-1,ch(-1,1)));
+    }
+    
+    fun static ST_index walkList(Stream values[]) {
+        return index(values,boundedWalk(0,values.cap()-1,ch(-1.1)));
+    }
+   
 
     fun static ST_smartWalkList smartWalkList(float values[],Stream step,Stream direction) {
         return (new ST_smartWalkList).init(values,step,direction);
@@ -811,98 +821,94 @@ public class st {
         return (new Guard).init(valueArg);
     }
     
-    fun static ST_walkList walkList(Stream values[]) {
-        return walkList(values,ch(-1,1));
-    }
-    
     fun static ST_collatz collatz(Stream inputArg) {
         return (new ST_collatz).init(inputArg);
     }
     
     fun static ST_div div (Stream a,Stream b) {
-        return (new ST_div).init(a,b) $ ST_div;
+        return ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_div div (Stream a,float b) {
-        return (new ST_div).init(a,b) $ ST_div;
+        return ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_div div (Stream a,int b) {
-        return (new ST_div).init(a,b) $ ST_div;
+        return ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_div div (float a,Stream b) {
-        return (new ST_div).init(a,b) $ ST_div;
+        return ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_sum sum(Stream a,Stream b) {
-        return (new ST_sum).init(a,b) $ ST_sum;
+        return ST_sum st_sum; st_sum.init(a,b); return st_sum;
     }
     fun static ST_sum sum(float a,Stream b) {
-        return (new ST_sum).init(a,b) $ ST_sum;
+        return ST_sum st_sum; st_sum.init(a,b); return st_sum;
     }
     fun static ST_sum sum(Stream a,float b) {
-        return (new ST_sum).init(a,b) $ ST_sum;
+        return ST_sum st_sum; st_sum.init(a,b); return st_sum;
     } 
     
     fun static ST_sum sum(float a,float b) {
-        return (new ST_sum).init(a,b) $ ST_sum;
+        return ST_sum st_sum; st_sum.init(a,b); return st_sum;
     }
     /* ST_smaller */
     fun static ST_smaller smaller(Stream a,Stream b) {
-        return (new ST_smaller).init(a,b) $ ST_smaller;
+        return ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
     }
     fun static ST_smaller smaller(float a,Stream b) {
-        return (new ST_smaller).init(a,b) $ ST_smaller;
+        return ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
     }
     fun static ST_smaller smaller(Stream a,float b) {
-        return (new ST_smaller).init(a,b) $ ST_smaller;
+        return ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
     } 
     
     fun static ST_smaller smaller(float a,float b) {
-        return (new ST_smaller).init(a,b) $ ST_smaller;
+        return ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
     }
     
     /* ST_bigger */
     fun static ST_bigger bigger(Stream a,Stream b) {
-        return (new ST_bigger).init(a,b) $ ST_bigger;
+        return ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
     }
     fun static ST_bigger bigger(float a,Stream b) {
-        return (new ST_bigger).init(a,b) $ ST_bigger;
+        return ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
     }
     fun static ST_bigger bigger(Stream a,float b) {
-        return (new ST_bigger).init(a,b) $ ST_bigger;
+        return ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
     } 
     
     fun static ST_bigger bigger(float a,float b) {
-        return (new ST_bigger).init(a,b) $ ST_bigger;
+        return ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
     }
 
     
     fun static ST_div div(float a,float b) {
-        return (new ST_div).init(a,b) $ ST_div;
+        return ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_mup mup(float a,float b) {
-        return (new ST_mup).init(a,b) $ ST_mup;
+        ST_mup st_mup; st_mup.init(a,b);return st_mup;
     }
     fun static ST_sub sub(float a,float b) {
-        return (new ST_sub).init(a,b) $ ST_sub;
+        ST_sub x; x.init(a,b); return x;
     }
     
     fun static ST_pow pow(float a,float b) {
-        return (new ST_pow).init(a,b) $ ST_pow;
+        ST_pow x; x.init(a,b); return x;
     }
     
     fun static ST_pow pow(Stream a,Stream b) {
-        return (new ST_pow).init(a,b) $ ST_pow;
+        ST_pow x; x.init(a,b); return x;
     }
     
     fun static ST_pow pow(Stream a, float b) {
-        return (new ST_pow).init(a,b) $ ST_pow;
+        ST_pow x; x.init(a,b); return x;
     }
     
     fun static ST_pow pow(float a,Stream b) {
-        return (new ST_pow).init(a,b) $ ST_pow;
+        ST_pow x; x.init(a,b); return x;
     }
     
     fun static ST_bind bind(Stream a, Stream b) {
-        return (new ST_bind).init(a,b) $ ST_bind; // just returns always a, but steps b (probably a writer ?)
+        ST_bind x; x.init(a,b); return x;
     }
     
     fun static Stream [] cdr(Stream arg[]) {
@@ -973,60 +979,60 @@ public class st {
     
     // curried operators (for use in guards)
     fun static ST_sub sub(Stream arg) {
-        return (new ST_sub).init(arg) $ ST_sub;
+        ST_sub x; x.init(arg); return x;
     }   
     fun static ST_sum sum(Stream arg) {
-        return (new ST_sum).init(arg) $ ST_sum;
+        ST_sum x; x.init(arg); return x;
     } 
     fun static ST_div div(Stream arg) {
-        return (new ST_div).init(arg) $ ST_div;    
+        ST_div x; x.init(arg);return x;   
     }
     fun static ST_mup mup(Stream arg) {
-        return (new ST_mup).init(arg) $ ST_mup;    
+        ST_mup x; x.init(arg); return x;  
     }
     fun static ST_bigger bigger(Stream arg) {
-        return (new ST_bigger).init(arg) $ ST_bigger;
+        ST_bigger x; x.init(arg); return x;   
     }
     fun static ST_smaller smaller(Stream arg) {
-        return (new ST_smaller).init(arg) $ ST_smaller;
+        ST_smaller x; x.init(arg); return x;
     }
     fun static ST_modulo modulo(Stream arg) {
-        return (new ST_modulo).init(arg) $ ST_modulo;
+        ST_modulo x; x.init(arg); return x;
     }
     // FLOAT ARGS
     fun static ST_sub sub(float arg) {
-        return (new ST_sub).init(arg) $ ST_sub;
+        ST_sub x; x.init(arg); return x;
     }   
     fun static ST_sum sum(float arg) {
-        return (new ST_sum).init(arg) $ ST_sum;
+        ST_sum x; x.init(arg); return x;
     } 
     fun static ST_div div(float arg) {
-        return (new ST_div).init(arg) $ ST_div;    
+        ST_div x; x.init(arg);return x;   
     }
     fun static ST_mup mup(float arg) {
-        return (new ST_mup).init(arg) $ ST_mup;    
+        ST_mup x; x.init(arg); return x;  
     }
     fun static ST_bigger bigger(float arg) {
-        return (new ST_bigger).init(arg) $ ST_bigger;
+        ST_bigger x; x.init(arg); return x;   
     }
     fun static ST_smaller smaller(float arg) {
-        return (new ST_smaller).init(arg) $ ST_smaller;
+        ST_smaller x; x.init(arg); return x;
     }
     fun static ST_modulo modulo(float arg) {
-        return (new ST_modulo).init(arg) $ ST_modulo;
+        ST_modulo x; x.init(arg); return x;
     }
    
     fun static ST_sub sub(Stream a,Stream b) {
-        return (new ST_sub).init(a,b) $ ST_sub;
+        ST_sub x; x.init(a,b); return x;
     }
     fun static ST_sub sub(float a,Stream b) {
-        return (new ST_sub).init(a,b) $ ST_sub;
+        ST_sub x; x.init(a,b); return x;
     }
     fun static ST_sub sub(Stream a,float b) {
-        return (new ST_sub).init(a,b) $ ST_sub;
+        ST_sub x; x.init(a,b); return x;
     }
     fun static ST_mup mup (Stream a,Stream b) {
-        return (new ST_mup).init(a,b) $ ST_mup;
+        ST_mup st_mup; st_mup.init(a,b);return st_mup;
     }
     fun static ST_mup mup (Stream a,Stream b,Stream c) {
         return mup( mup(a,b) , c);
@@ -1047,62 +1053,66 @@ public class st {
     */
     
     fun static ST_mup mup (float a,Stream b) {
-        return (new ST_mup).init(a,b) $ ST_mup;
+        ST_mup st_mup; st_mup.init(a,b);return st_mup;
     }
     fun static ST_mup mup (Stream a,int b) {
-        return (new ST_mup).init(a,b) $ ST_mup;
+        ST_mup st_mup; st_mup.init(a,b);return st_mup;
     }
     fun static ST_mup mup (Stream a,float b) {
-        return (new ST_mup).init(a,b) $ ST_mup;
+        ST_mup st_mup; st_mup.init(a,b);return st_mup;
     }
     fun static ST_max max (float a,Stream b) {
-        return (new ST_max).init(a,b) $ ST_max;
+        ST_max x; x.init(a,b); return x;
     }
     fun static ST_max max (Stream a,int b) {
-        return (new ST_max).init(a,b) $ ST_max;
+        ST_max x; x.init(a,b); return x;
     }
     fun static ST_max max (Stream a,Stream b) {
-        return (new ST_max).init(a,b) $ ST_max;
+        ST_max x; x.init(a,b); return x;
     }
     fun static ST_max max (Stream a,float b) {
-        return (new ST_max).init(a,b) $ ST_max;
+        ST_max x; x.init(a,b); return x;
     }
     fun static ST_min min (Stream a,Stream b) {
-        return (new ST_min).init(a,b) $ ST_min;
+        ST_min x; x.init(a,b); return x;
     }
     fun static ST_min min (Stream a,float b) {
-        return (new ST_min).init(a,b) $ ST_min;
+        ST_min x; x.init(a,b); return x;
     }
     
     fun static ST_modulo modulo(Stream a,Stream b) {
-        return (new ST_modulo).init(a,b) $ ST_modulo;
+        ST_modulo x; x.init(a,b); return x;
     }
     fun static ST_modulo modulo(float a,Stream b) {
-        return (new ST_modulo).init(a,b) $ ST_modulo;
+        ST_modulo x; x.init(a,b); return x;
     }
     fun static ST_modulo modulo(Stream a,float b) {
-        return (new ST_modulo).init(a,b) $ ST_modulo;
+        ST_modulo x; x.init(a,b); return x;
     }
     
     fun static ST_q q(Stream a,Stream b) {
-        return (new ST_q).init(a,b) $ ST_q;
+       ST_q x; x.init(a,b); return x;
     }
     fun static ST_q q(Stream a,int b) {
-        return (new ST_q).init(a,b) $ ST_q;
+       ST_q x; x.init(a,b); return x;
     }
     fun static ST_q q(Stream a,float b) {
-        return (new ST_q).init(a,b) $ ST_q;
+       ST_q x; x.init(a,b); return x;
     }
     
     // overwrite !!!
     fun static ST_overwrite overwrite(float b) {
         // always returns b, because sometimes needed in guardControl
         // this means walk is reset to value upon reaching test = true.
-        return (new ST_overwrite).init(b) $ ST_overwrite;
+        ST_overwrite x;
+        x.init(b);
+        return x; 
     }
     
     fun static ST_overwrite overwrite(Stream b) {
-        return (new ST_overwrite).init(b) $ ST_overwrite;
+        ST_overwrite x;
+        x.init(b);
+        return x; 
     }
     
     fun static ST_walk walk(float start,Stream step) {
@@ -1293,52 +1303,52 @@ public class st {
     }
     
     fun static ST_greater greater(Stream a,Stream b) {
-        return (new ST_greater).init(a,b) $ ST_greater;
+        return ST_greater x; x.init(a,b);return x;
     }
     
     fun static ST_bitAnd bitAnd(Stream a,Stream b) {
-        return (new ST_bitAnd).init(a,b) $ ST_bitAnd;
+        ST_bitAnd x; x.init(a,b); return x;
     }
     
     fun static ST_bitAnd bitAnd(Stream a,int b) {
-        return (new ST_bitAnd).init(a,b) $ ST_bitAnd;
+        ST_bitAnd x; x.init(a,b); return x;
     }
     
     fun static ST_bitOr bitOr(Stream a,Stream b) {
-        return (new ST_bitOr).init(a,b) $ ST_bitOr;
+        ST_bitOr x; x.init(a,b); return x;
     }
     
     fun static ST_bitOr bitOr(Stream a,int b) {
-        return (new ST_bitOr).init(a,b) $ ST_bitOr;
+        ST_bitOr x; x.init(a,b); return x;
     }
     
     fun static ST_bitXor bitXor(Stream a,Stream b) {
-        return (new ST_bitXor).init(a,b) $ ST_bitXor;
+        ST_bitXor x; x.init(a,b); return x;
     }
     
     fun static ST_bitXor bitXor(Stream a,int b) {
-        return (new ST_bitXor).init(a,b) $ ST_bitXor;
+        ST_bitXor x; x.init(a,b); return x;
     }
     
     fun static ST_bitShiftL bitShiftL(Stream a, int b) {
-        return (new ST_bitShiftL).init(a,b) $ ST_bitShiftL;
+        ST_bitShiftL x; x.init(a,b); return x;
     }   
     fun static ST_bitShiftL bitShiftL(Stream a, Stream b) {
-        return (new ST_bitShiftL).init(a,b) $ ST_bitShiftL;
+        ST_bitShiftL x; x.init(a,b); return x;
     }
     fun static ST_bitShiftR bitShiftR(Stream a, int b) {
-        return (new ST_bitShiftR).init(a,b) $ ST_bitShiftR;
+        ST_bitShiftR x; x.init(a,b); return x;    
     }
     fun static ST_bitShiftR bitShiftR(Stream a, Stream b) {
-        return (new ST_bitShiftR).init(a,b) $ ST_bitShiftR;
+        ST_bitShiftR x; x.init(a,b); return x;    
     }
     
     fun static ST_equal equal(Stream a,Stream b) {
-        return (new ST_equal).init(a,b) $ ST_equal;
+        ST_equal x; x.init(a,b); return x;
     }
     
     fun static ST_equal equal(Stream a,int b) {
-        return (new ST_equal).init(a,b) $ ST_equal;
+        ST_equal x; x.init(a,b); return x;
     }
         
     fun static ST_equal bitMask(Stream a,int b) {

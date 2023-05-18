@@ -86,7 +86,7 @@ public class ST_walkList extends Stream {
         Math.max(_min,_max) $ int => _max;
         tmp => _min;
         
-        // make it save
+        // make it safe
         Math.min(_min,size-1) $ int => _min;
         Math.max(_max,size-1) $ int => _max;
     }
@@ -111,7 +111,7 @@ public class ST_walkList extends Stream {
     
     fun int wrap(int x,int low, int high) {
         Math.abs(high - low + 1) => int range;
-        ((x-(Math.min(low,high)$int)) % range) => x;
+        ((x-low) % range) => x;
         if (x<0)
             return high + 1 + x;
         else 

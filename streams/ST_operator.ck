@@ -9,11 +9,11 @@ public class ST_operator extends Stream
     null @=> Stream @ st_v1;
     null @=> Stream @ st_v2;
     
-    0 => int v1IsStream;
-    0 => int v2IsStream;
+    false => int v1IsStream;
+    false => int v2IsStream;
 
-    0 => int v1More;
-    0 => int v2More;
+    true => int v1More;
+    true => int v2More;
         
     fun ST_operator make(Stream arg1,Stream arg2) {
         return (new ST_operator).init(arg1,arg2);
@@ -39,20 +39,20 @@ public class ST_operator extends Stream
     fun ST_operator v1(Stream arg) {
         arg @=> st_v1;
         st_v1.next() => _v1;
-        1 => v1IsStream;
+        true => v1IsStream;
         return this;
     }
     
     fun ST_operator v1(float arg) {
         arg => _v1;
-        0 => v1IsStream;
+        false => v1IsStream;
         null @=> st_v1;
         return this;
     }
     
     fun ST_operator v1(int arg) {
         arg => _v1;
-        0 => v1IsStream;
+        true => v1IsStream;
         null @=> st_v1;
         return this;
     }
@@ -60,20 +60,20 @@ public class ST_operator extends Stream
     fun ST_operator v2(Stream arg) {
         arg @=> st_v2;
         st_v2.next() => _v2;
-        1 => v2IsStream;
+        true => v2IsStream;
         return this;
     }
     
     fun ST_operator v2(float arg) {
         arg => _v2;
-        0 => v2IsStream;
+        false => v2IsStream;
         null @=> st_v2;
         return this;
     }
     
     fun ST_operator v2(int arg) {
         arg => _v1;
-        0 => v2IsStream;
+        false => v2IsStream;
         null @=> st_v1;
         return this;
     }
@@ -123,6 +123,7 @@ public class ST_operator extends Stream
         
     
     fun float operator(float a,float b) {
+        // placeholder
         return a;
     }
     
