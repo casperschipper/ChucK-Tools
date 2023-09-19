@@ -826,63 +826,63 @@ public class st {
     }
     
     fun static ST_div div (Stream a,Stream b) {
-        return ST_div st_div; st_div.init(a,b); return st_div;
+        ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_div div (Stream a,float b) {
-        return ST_div st_div; st_div.init(a,b); return st_div;
+        ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_div div (Stream a,int b) {
-        return ST_div st_div; st_div.init(a,b); return st_div;
+        ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_div div (float a,Stream b) {
-        return ST_div st_div; st_div.init(a,b); return st_div;
+        ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_sum sum(Stream a,Stream b) {
-        return ST_sum st_sum; st_sum.init(a,b); return st_sum;
+        ST_sum st_sum; st_sum.init(a,b); return st_sum;
     }
     fun static ST_sum sum(float a,Stream b) {
-        return ST_sum st_sum; st_sum.init(a,b); return st_sum;
+        ST_sum st_sum; st_sum.init(a,b); return st_sum;
     }
     fun static ST_sum sum(Stream a,float b) {
-        return ST_sum st_sum; st_sum.init(a,b); return st_sum;
+        ST_sum st_sum; st_sum.init(a,b); return st_sum;
     } 
     
     fun static ST_sum sum(float a,float b) {
-        return ST_sum st_sum; st_sum.init(a,b); return st_sum;
+        ST_sum st_sum; st_sum.init(a,b); return st_sum;
     }
     /* ST_smaller */
     fun static ST_smaller smaller(Stream a,Stream b) {
-        return ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
+        ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
     }
     fun static ST_smaller smaller(float a,Stream b) {
-        return ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
+        ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
     }
     fun static ST_smaller smaller(Stream a,float b) {
-        return ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
+        ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
     } 
     
     fun static ST_smaller smaller(float a,float b) {
-        return ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
+        ST_smaller st_smaller; st_smaller.init(a,b); return st_smaller;
     }
     
     /* ST_bigger */
     fun static ST_bigger bigger(Stream a,Stream b) {
-        return ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
+        ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
     }
     fun static ST_bigger bigger(float a,Stream b) {
-        return ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
+        ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
     }
     fun static ST_bigger bigger(Stream a,float b) {
-        return ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
+        ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
     } 
     
     fun static ST_bigger bigger(float a,float b) {
-        return ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
+        ST_bigger st_bigger; st_bigger.init(a,b); return st_bigger;
     }
 
     
     fun static ST_div div(float a,float b) {
-        return ST_div st_div; st_div.init(a,b); return st_div;
+        ST_div st_div; st_div.init(a,b); return st_div;
     }
     fun static ST_mup mup(float a,float b) {
         ST_mup st_mup; st_mup.init(a,b);return st_mup;
@@ -1156,7 +1156,9 @@ public class st {
     }
     
     fun static ST_loop loop (Stream src,Stream repeats,Stream length) {
-        return (new ST_loop).init(src,repeats,length);
+        ST_loop strm;
+        strm.init(src,repeats,length);
+        return strm;
     }  
     
     fun static ST_customLoop customLoop (Stream input, Stream length, Stream indexArg) {
@@ -1697,26 +1699,36 @@ public class st {
     
     // more efficient ?
     fun static ST_wave wave(float tableArg[],Stream freqArg) {
-        return (new ST_wave).init(tableArg,freqArg);
+        ST_wave x;
+        x.init(tableArg,freqArg);
+        return x;
     }
     // reads a table with a certain frequency
     fun static ST_wave wave(float tableArg[],float freqArg) {
-        return (new ST_wave).init(tableArg,st(freqArg));
+        ST_wave x;
+        x.init(tableArg,st(freqArg));
+        return x;
     }
     
     
     // resets a walk to source arg, every reps
     fun static ST_reset reset( ST_walk walkArg , Stream sourceArg, Stream repsArg ) {
-        return (new ST_reset).init(walkArg,sourceArg,repsArg);
+        ST_reset x;
+        x.init(walkArg,sourceArg,repsArg);
+        return x;
     }
     
     fun static ST_trigReset trigReset( ST_walk walkArg, Stream sourceArg, Stream trigArg ) {
-        return (new ST_trigReset).init(walkArg, sourceArg, trigArg );
+        ST_trigReset x;
+        x.init(walkArg, sourceArg, trigArg );
+        return x;
     }
     
     // resets a walk to source every time 'timer' has passed
     fun static ST_timedReset timedReset( ST_walk walkArg , Stream sourceArg, Stream timerArg ) {
-        return (new ST_timedReset).init(walkArg,sourceArg,timerArg);
+        ST_timedReset x;
+        x.init(walkArg,sourceArg,timerArg);
+        return x;
     }
     
     /* writes to table */
@@ -1728,7 +1740,9 @@ public class st {
     }
     
     fun static ST_write write( float table[], Stream valueArg, Stream indexArg) {
-        return (new ST_write).init(table,valueArg,indexArg);
+        ST_write x;
+        x.init(table,valueArg,indexArg);
+        return x;
     }
    
 
