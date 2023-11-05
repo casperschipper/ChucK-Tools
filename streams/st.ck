@@ -14,9 +14,10 @@ class Foo extends st {
 minute => now;
 
 
+
 */
 
-
+<<<"FIX NEW CALLS!!!!">>>;
 
 public class st {
     static Stream globals[];
@@ -40,32 +41,35 @@ public class st {
     }
     
     fun static ST_linseg linseg(Stream startArg,Stream endArg,Stream stepsArg,int holdArg) {
-        return (new ST_linseg)
-        .start(startArg)
-        .end(endArg)
-        .steps(stepsArg)
-        .holdMode(holdArg);
+        ST_linseg str;
+        str.start(startArg);
+        str.end(endArg);
+        str.steps(stepsArg);
+        str.holdMode(holdArg);
+        return str;
     }
     
     fun static ST_linseg linseg(Stream startArg,Stream endArg,float stepsArg,int holdArg) {
-        return (new ST_linseg)
-        .start(startArg)
-        .end(endArg)
-        .steps(stepsArg)
-        .holdMode(holdArg);
+        ST_linseg str;
+        str.start(startArg);
+        str.end(endArg);
+        str.steps(stepsArg);
+        str.holdMode(holdArg);
+        return str;
     }
     
     fun static ST_linseg linseg(Stream startArg,Stream endArg,Stream stepsArg) {
-        return (new ST_linseg)
-        .start(startArg)
-        .end(endArg)
-        .steps(stepsArg)
-        .holdMode(1);
+        ST_linseg str;
+        str.start(startArg);
+        str.end(endArg);
+        str.steps(stepsArg);
+        str.holdMode(1);
+        return str;
     }
     
     /*
     fun static ST_linseg linseg(Stream startArg,Stream endArg,Stream stepsArg,int holdArg) {
-        return (new ST_linseg)
+        //return (new ST_linseg)
         .start(startArg)
         .end(endArg)
         .steps(stepsArg)
@@ -109,14 +113,20 @@ public class st {
     }
     
     fun static ST_indexLin indexLin(float seq[],Stream indexer) {
-        return (new ST_indexLin).init(seq,indexer);
+        ST_indexLin s;
+        s.init(seq,indexer);
+        return s;
     }
     fun static ST_indexLin indexLin(int seq[],Stream indexer) {
-        return (new ST_indexLin).init(seq,indexer);
+        ST_indexLin s;
+        s.init(seq,indexer);
+        return s;
     }
     
     fun static ST_indexLin indexLin(Stream seq[],Stream indexer) {
-        return (new ST_indexLin).init(seq,indexer);
+        ST_indexLin s;
+        s.init(seq,indexer);
+        return s;
     }
     
     fun static ST_indexLin indexLin(int seq[],Stream indexer,int holdArg) {
@@ -132,19 +142,27 @@ public class st {
     }
     
     fun static ST_modIndex modIndex(float t1[], float t2[],Stream in) {
-        return (new ST_modIndex).init(in,t1,t2);
+        ST_modIndex m;
+        m.init(in,t1,t2);
+        return m;
     }
     
     fun static ST_mupModIndex mupModIndex(float t1[], float t2[],Stream in) {
-        return (new ST_mupModIndex).init(in,t1,t2);
+        ST_mupModIndex m;
+        m.init(in,t2,t2);
+        return m;
     }
     
     fun static ST_modIndex modIndex(Stream in,float t1[], float t2[]) {
-        return (new ST_modIndex).init(in,t1,t2);
+        ST_modIndex m;
+        m.init(in,t2,t2);
+        return m;
     }
     
     fun static ST_mupModIndex mupModIndex(Stream in,float t1[], float t2[]) {
-        return (new ST_mupModIndex).init(in,t1,t2);
+        ST_mupModIndex m;
+        m.init(in,t2,t2);
+        return m;
     }
     
     fun static ST_seq seq(float seq[]) {
@@ -226,16 +244,30 @@ public class st {
     }
     
     fun static ST_seq seq(float seq[],Stream low,Stream high) {
-        return (new ST_seq).init(seq).min(low).max(high);
+        ST_seq s;
+        s.init(seq);
+        s.min(low);
+        s.max(high);
+        return s;
     }
     fun static ST_seq seq(int seq[],Stream low,Stream high) {
-        return (new ST_seq).init(seq).min(low).max(high);
+        ST_seq s;
+        s.init(seq);
+        s.min(low);
+        s.max(high);
+        return s;
     }
     fun static ST_seq seq(Stream seq[],Stream low,Stream high) {
-        return (new ST_seq).init(seq).min(low).max(high);
+        ST_seq s;
+        s.init(seq);
+        s.min(low);
+        s.max(high);
+        return s;
     }
     fun static ST_seq seq(Stream arg) {
-        return (new ST_seq).init([arg]);
+        ST_seq s;
+        s.init([arg]);
+        return s;
     }
     
     /*fun static ST_seq seq(float arg) {
@@ -243,7 +275,9 @@ public class st {
     }*/
     
     fun static ST_compose compose(Stream inArg,Stream segArg) {
-        return (new ST_compose).init(inArg,segArg);
+        ST_compose s;
+        s.init(inArg, segArg);
+        return s;
     }
 
     fun static ST_rv rv(float minArg,float maxArg) {
@@ -297,55 +331,98 @@ public class st {
     }
     
     fun static ST_exprv exprv(float minArg,float maxArg,float expArg) {
-        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+        ST_exprv str;
+        str.low(minArg);
+        str.high(maxArg);
+        str.exp(expArg);
+        return str;
     }
     fun static ST_exprv exprv(Stream minArg,Stream maxArg,float expArg) {
-        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+        ST_exprv str;
+        str.low(minArg);
+        str.high(maxArg);
+        str.exp(expArg);
+        return str;    
     }
     fun static ST_exprv exprv(Stream minArg,float maxArg,float expArg) {
-        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+        ST_exprv str;
+        str.low(minArg);
+        str.high(maxArg);
+        str.exp(expArg);
+        return str;  
     }
     fun static ST_exprv exprv(float minArg,float maxArg,Stream expArg) {
-        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+        ST_exprv str;
+        str.low(minArg);
+        str.high(maxArg);
+        str.exp(expArg);
+        return str; 
     }
     fun static ST_exprv exprv(float minArg,Stream maxArg,float expArg) {
-        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+        ST_exprv str;
+        str.low(minArg);
+        str.high(maxArg);
+        str.exp(expArg);
+        return str;
     }
     fun static ST_exprv exprv(float minArg,Stream maxArg,Stream expArg) {
-        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+        ST_exprv str;
+        str.low(minArg);
+        str.high(maxArg);
+        str.exp(expArg);
+        return str;    
     }
     fun static ST_exprv exprv(Stream minArg,Stream maxArg,Stream expArg) {
-        return (new ST_exprv).low(minArg).high(maxArg).exp(expArg);
+        ST_exprv str;
+        str.low(minArg);
+        str.high(maxArg);
+        str.exp(expArg);
+        return str;    
     }
-    
+        
+      
     
     fun static ST_div inv(Stream in) {
         return div(1.0,in);
     }
     
     fun static ST_diff diff(Stream in) {
-        return (new ST_diff).init(in);
+        ST_diff str;
+        str.init(in);
+        return str; 
     }
   
     fun static ST_latch latch(Stream valueArg,Stream repeatArg) {
-        return (new ST_latch).init(valueArg,repeatArg);
+        ST_latch s;
+        s.init(valueArg,repeatArg);
+        return s;
     }
     fun static ST_latch latch(float valueArg,float repeatArg) {
-        return (new ST_latch).init(st(valueArg),st(repeatArg));
+        ST_latch str;
+        str.init(st(valueArg),st(repeatArg));
+        return str;
     }
     fun static ST_latch latch(Stream valueArg,int repeatArg) {
-        return (new ST_latch).init(valueArg,st(repeatArg));
+        ST_latch str;
+        str.init(valueArg,st(repeatArg));
+        return str;
     }
     fun static ST_latch latch(int valueArg,Stream repeatArg) {
-        return (new ST_latch).init(st(valueArg),repeatArg);
+        ST_latch str;
+        str.init(st(valueArg),repeatArg);
+        return str;
     }
     
     fun static ST_latch latch(Stream valueArg, float repeatArg) {
-        return (new ST_latch).init(valueArg,st(repeatArg));
+        ST_latch str;
+        str.init(valueArg,st(repeatArg));
+        return str;
     }
 
     fun static ST_timedLatch tLatch(Stream valueArg,Stream timerArg) {
-        return (new ST_timedLatch).init(valueArg,timerArg);
+        ST_timedLatch str;
+        str.init(valueArg,timerArg);
+        return str;
     }  
     
     fun static ST_timed timed(Stream str,Stream timing) {
@@ -353,7 +430,9 @@ public class st {
     }
     
     fun static ST_timed timed(Stream str,Stream timing,int holdArg) {
-        return (new ST_timed).init(str,timing,holdArg);
+        ST_timed str;
+        str.init(str,timing,holdArg);
+        return str;
     }
         
     
@@ -418,23 +497,33 @@ public class st {
     }
     
     fun static ST_count count(Stream max) {
-        return (new ST_count).init(max);
+        ST_count str;
+        str.init(max);
+        return str;
     }
     
     fun static ST_count2 count2(int maxArg) {
-        return (new ST_count2).init(maxArg,true);
+        ST_count2 str;
+        str.init(maxArg,true);
+        return str;
     }
     
     fun static ST_count2 count2(Stream maxArg) {
-        return (new ST_count2).init(maxArg,true);
+        ST_count2 str;
+        str.init(maxArg,true);
+        return str;
     }
     
     fun static ST_count2 count2(Stream maxArg,int holdArg) {
-        return (new ST_count2).init(maxArg,holdArg);
+        ST_count2 str;
+        str.init(maxArg,holdArg);
+        return str;
     }
     
     fun static ST_count2 count2(int maxArg,int holdArg) {
-        return (new ST_count2).init(maxArg,holdArg);
+         ST_count2 str;
+         str.init(maxArg,holdArg);
+         return str;
     }
     
     fun static ST_timed tcount(int maxArg,Stream timing) {
@@ -511,22 +600,27 @@ public class st {
     }
     
     fun static ST_maskedChoice maskedChoice(int arg[],Stream minArg,Stream maxArg) {
-        return 
-        (new ST_maskedChoice)
-        .init(arg)
-        .min(minArg)
-        .max(maxArg);
+        ST_maskedChoice str;
+        str.init(arg);
+        str.min(minArg);
+        str.max(maxArg);
+        return str;
     }
  
     fun static ST_maskedChoice maskedChoice(float arg[],Stream minArg,Stream maxArg) {
-        return (new ST_maskedChoice)
-        .init(arg)
-        .min(minArg)
-        .max(maxArg);
+        ST_maskedChoice str;
+        str.init(arg);
+        str.min(minArg);
+        str.max(maxArg);
+        return str;
     }   
     
     fun static ST_maskedChoice maskedChoice(Stream arg[],Stream minArg,Stream maxArg) {
-        return (new ST_maskedChoice).init(arg).min(minArg).max(maxArg);
+        ST_maskedChoice str;
+        str.init(arg);
+        str.min(minArg);
+        str.max(maxArg);
+        return str;
     }   
         
     
@@ -712,15 +806,21 @@ public class st {
    
 
     fun static ST_smartWalkList smartWalkList(float values[],Stream step,Stream direction) {
-        return (new ST_smartWalkList).init(values,step,direction);
+        ST_smartWalkList str;
+        str.init(values,step,direction);
+        return str;
     }
 
     fun static ST_smartWalkList smartWalkList(int values[],Stream step,Stream direction) {
-        return (new ST_smartWalkList).init(values,step,direction);
+        ST_smartWalkList str;
+        str.init(values,step,direction);
+        return str;
     }
     
     fun static ST_smartWalkList smartWalkList(Stream values[],Stream step,Stream direction) {
-        return (new ST_smartWalkList).init(values,step,direction);
+        ST_smartWalkList str;
+        str.init(values,step,direction);
+        return str;
     }
     
     fun static Stream bouncyListWalk(Stream minArg,Stream maxArg,float list[],Stream step) {
@@ -790,11 +890,15 @@ public class st {
     }
     
     fun static ST_guardedWalk guardedWalk(float startArg,Guard guardsArg[]) {
-        return (new ST_guardedWalk).init(startArg,guardsArg);
+        ST_guardedWalk str;
+        str.init(startArg,guardsArg);
+        return str;
     }
     
     fun static ST_apply apply(Stream inArg,Guard guards[]) {
-        return (new ST_apply).init(inArg,guards);
+        ST_apply str;
+        str.init(inArg,guards);
+        return str;
     }
     
     fun static ST_apply apply(Stream inArg, Guard guard) {
@@ -802,27 +906,39 @@ public class st {
     }
     
     fun static Guard guard(ST_operator funktorArg) {
-        return (new Guard).init(funktorArg);
+        Guard str;
+        str.init(funktorArg);
+        return str;
     }
     
     fun static Guard guardTest(ST_operator testArg,ST_operator funktorArg) {
-        return (new GuardTest).init(testArg,funktorArg);
+        GuardTest str;
+        str.init(testArg,funktorArg);
+        return str;
     }
     
     fun static Guard guardTestValue(ST_operator testArg,Stream valueArg) {
-        return (new GuardTestValue).init(testArg,valueArg);
+        GuardTestValue str;
+        str.init(testArg,valueArg);
+        return str;
     }
     
     fun static Guard guardControl(Stream controlArg,ST_operator funktorArg) {
-        return (new GuardControl).init(controlArg,funktorArg);
+        GuardControl str;
+        str.init(controlArg,funktorArg);
+        return str;
     }
     
     fun static Guard otherwise(ST_operator valueArg) {
-        return (new Guard).init(valueArg);
+        Guard str;
+        str.init(valueArg);
+        return str;
     }
     
     fun static ST_collatz collatz(Stream inputArg) {
-        return (new ST_collatz).init(inputArg);
+        ST_collatz str;
+        str.init(inputArg);
+        return str;
     }
     
     fun static ST_div div (Stream a,Stream b) {
@@ -1135,11 +1251,15 @@ public class st {
     
 
     fun static ST_bus bus(Stream stream,string name) {
-        return (new ST_bus).init(stream,name);
+        ST_bus b;
+        b.init(stream,name);
+        return b;
     }
     
     fun static ST_bus bus(string name) {
-        return (new ST_bus).init(name);
+        ST_bus b;
+        b.init(name);
+        return b;
     }
     
     fun static ST_timed tchoice(float list[],Stream timer) {
@@ -1202,90 +1322,130 @@ public class st {
     }
     
     fun static ST_wchoice weights(int valueWeights[][]) {
-        return (new ST_wchoice).init(valueWeights);
+        ST_wchoice str;
+        str.init(valueWeights);
+        return str;
     }
     
     fun static ST_weightStream weightStream(Stream values[],int weights[]) {
-        return (new ST_weightStream).init(values,weights);
+        ST_weightStream str;
+        str.init(values,weights);
+        return str;
     }
     
     fun static ST_weightStream weightStream(Stream values[],float weights[]) {
-        return (new ST_weightStream).init(values,weights);
+        ST_weightStream str;
+        str.init(values,weights);
+        return str;
     }
     
     fun static ST_weightStream weightStream(float values[],Stream weights[]) {
-        return (new ST_weightStream).init(values,weights);
+        ST_weightStream str;
+        str.init(values,weights);
+        return str;
     }
     
     fun static ST_weightStream weightStream(Stream values[],Stream weights[]) {
-        return (new ST_weightStream).init(values,weights);
+        ST_weightStream str;
+        str.init(values,weights);
+        return str;
     }
     
     fun static ST_trigger trigger(Stream arg) {
-        return (new ST_trigger).init(arg);
+        ST_trigger str;
+        str.init(arg);
+        return str;
     }
     
     fun static ST_trig trig (Stream inArg, Stream trigArg ) {
-        return (new ST_trig).init( inArg, trigArg );
+        ST_trig str;
+        str.init( inArg, trigArg );
+        return str;
     }
     
     fun static ST_mtof mtof(Stream arg) {
-        return (new ST_mtof).init(arg);
+        ST_mtof str;
+        str.init(arg);
+        return str;
     }
     
     fun static ST_ftom ftom(Stream arg) {
-        return (new ST_ftom).init(arg);
+        ST_ftom str;
+        str.init(arg);
+        return str;
     }
     
     fun static ST_mtor mtor(Stream arg) {
-        return (new ST_mtor).init(arg);
+        ST_mtor str;
+        str.init(arg);
+        return str;
     }
     
     fun static ST_mtosamps mtosamps(Stream arg) {
-        return (new ST_mtosamps).init(arg);
+        ST_mtosamps str;
+        str.init(arg);
+        return str;
     }
     
     fun static ST_mtosec mtosec(Stream arg) {
-        return (new ST_mtosec).init(arg);
+        ST_mtosec str;
+        str.init(arg);
+        return str;
     }
     
     fun static ST_floor floor(Stream arg) {
-        return (new ST_floor).init(arg);
+        ST_floor str;
+        str.init(arg);
+        return str;
     }
          
     
     fun static ST_indexLin scan(float arrayArg[],Stream sizeArg,Stream offsetArg) {
-        return (new ST_indexLin).init(
-            arrayArg
-            , sum( count2(sizeArg) , offsetArg ));
+        ST_indexLin str;
+        str.init(arrayArg, sum( count2(sizeArg) , offsetArg ));
+        return str;
     }
     
     fun static ST_indexLin lookup(float arrayArg[],Stream indexer) {
-        return (new ST_indexLin).init(arrayArg, scaler(indexer, -1.0,1.0,0,arrayArg.cap()-1 ));
+        ST_indexLin str;
+        str.init(arrayArg, scaler(indexer, -1.0,1.0,0,arrayArg.cap()-1 ));
+        return str;
     }
     
     fun static ST_index lookupStream (Stream arrayArg[],Stream indexer) {
-        return (new ST_index).init (arrayArg, scaler(indexer,-1.0,1.0,0,arrayArg.cap()-1));
+        ST_index str;
+        str.init (arrayArg, scaler(indexer,-1.0,1.0,0,arrayArg.cap()-1));
+        return str;
     }
     
     fun static ST_sine sine(float freqArg) {
-        return (new ST_sine).init(freqArg);
+        ST_sine str;
+        str.init(freqArg);
+        return str;
     }
     
     fun static ST_stateMachine statemachine(Stream args[]) {
-        return (new ST_stateMachine).init(args);
+        ST_stateMachine str;
+        str.init(args);
+        return str;
     }
     
     fun static ST_sin sin(Stream phase) {
-        return (new ST_sin).init(phase);
+        ST_sin str;
+        str.init(phase);
+        return str;
     }
     
     fun static ST_sineseg sineseg(float number) {
-        return (new ST_sineseg).init( st(number) );
+        ST_sineseg str;
+        str.init( st(number) );
+        return str;
     }
     
     fun static ST_sineseg sineseg( Stream arg ) {
-        return (new ST_sineseg).init( arg );
+        ST_sineseg str;
+        str.init( arg );
+        return str;
     }
     
     fun static ST_sineseg hzSineseg(float freqArg) {
@@ -1297,11 +1457,15 @@ public class st {
     }
     
     fun static ST_sine sine(int freqArg) {
-        return (new ST_sine).init(freqArg $ float);
+        ST_sine str;
+        str.init(freqArg $ float);
+        return str;
     }
     
     fun static ST_sine sine(Stream streamArg) {
-        return (new ST_sine).init(streamArg);
+        ST_sine str;
+        str.init(streamArg);
+        return str;
     }
     
     fun static ST_greater greater(Stream a,Stream b) {
@@ -1371,7 +1535,9 @@ public class st {
     }
     
     fun static ST_hzPhasor hzPhasor(Stream arg) {
-        return (new ST_hzPhasor).init(arg);
+        ST_hzPhasor str;
+        str.init(arg);
+        return str;
     }
     
     fun static ST_rampGen rampGen(Stream trig, Stream number) {
@@ -1392,40 +1558,64 @@ public class st {
     }
     
     fun static ST_tableCap tableCap(float tab[]) {
-        return (new ST_tableCap).init(tab);
+        ST_tableCap str;
+        str.init(tab);
+        return str;
     }
     
     fun static ST_tableCap tableCap(int tab[]) {
-        return (new ST_tableCap).init(tab);
+        ST_tableCap str;
+        str.init(tab);
+        return str;
     }
     
     fun static ST_store wr (string name,Stream value) {
-        return (new ST_store).init(name,value);
+        ST_store str;
+        str.init(name,value);
+        return str;
     }
     
     fun static ST_recall rd (string name) {
-        return (new ST_recall).init(name);
+        ST_recall str;
+        str.init(name);
+        return str;
     } 
     
     fun static ST_define define(string name,float value) {
-        return (new ST_define).init(name,value);
+        ST_define str;
+        str.init(name,value);
+        return str;
     }
     
     fun static ST_divider divider(float dividend,float divisor) {
-        return (new ST_divider).dividend(dividend).divisor(divisor);
+        ST_divider str;
+        str.dividend(dividend);
+        str.divisor(divisor);
+        return str;
     }
     
     fun static ST_divider divider(Stream dividend,float divisor) {
-        return (new ST_divider).dividend(dividend).divisor(divisor);
+        ST_divider str;
+        str.dividend(dividend);
+        str.divisor(divisor);
+        return str;    
     }
     
     fun static ST_divider divider(Stream dividend,Stream divisor) {
-        return (new ST_divider).dividend(dividend).divisor(divisor);
+        ST_divider str;
+        str.dividend(dividend);
+        str.divisor(divisor);
+        return str;    
     }
     
+    
     fun static ST_divider divider(float dividend,Stream divisor) {
-        return (new ST_divider).dividend(dividend).divisor(divisor);
-    }  
+        ST_divider str;
+        str.dividend(dividend);
+        str.divisor(divisor);
+        return str;    
+    }
+    
     
     fun static ST_sum scale(Stream input,float range,float offset) {
         return sum( mup(input,range), offset );
@@ -1454,40 +1644,58 @@ public class st {
     */
     
     fun static ST_scale2 scaler(Stream input,float inMin,float inMax,Stream outMin,Stream outMax) {
-        return (new ST_scale2).init(input,inMin,inMax,outMin,outMax);
+        ST_scale2 str;
+        str.init(input,inMin,inMax,outMin,outMax);
+        return str;
     }
     
     fun static ST_scale2 scaler(Stream input,float inMin,float inMax,float outMin,float outMax) {
-        return (new ST_scale2).init(input,inMin,inMax,st(outMin),st(outMax));
+        ST_scale2 str;
+        str.init(input,inMin,inMax,st(outMin),st(outMax));
+        return str;
     }
     
     fun static ST_scale2 scaler(Stream input,float outMin,float outMax) {
-        return (new ST_scale2).init(input,outMin,outMax);
+        ST_scale2 str;
+        str.init(input,outMin,outMax);
+        return str;
     }
     
     // scales (not optimized(.
     fun static ST_scale linlin(Stream input,float minIn,float maxIn,Stream minOut,Stream maxOut) {
-        return (new ST_scale).init(input,st(minIn),st(maxIn),minOut,maxOut,st(1.0));
+        ST_scale str;
+        str.init(input,st(minIn),st(maxIn),minOut,maxOut,st(1.0));
+        return str;
     }
     
     fun static ST_scale linlin(Stream input,Stream minIn,Stream maxIn,Stream minOut,Stream maxOut) {
-        return (new ST_scale).init(input,minIn,maxIn,minOut,maxOut,st(1.0));
+        ST_scale str;
+        str.init(input,minIn,maxIn,minOut,maxOut,st(1.0));
+        return str;
     }
     
     fun static ST_scale linexp(Stream input,float minIn,float maxIn,Stream minOut,Stream maxOut,Stream expArg) {
-        return (new ST_scale).init(input,st(minIn),st(maxIn),minOut,maxOut,expArg);
+        ST_scale str;
+        str.init(input,st(minIn),st(maxIn),minOut,maxOut,expArg);
+        return str;
     }
     
     fun static ST_scale linexp(Stream input,Stream minIn,Stream maxIn,Stream minOut,Stream maxOut,float expArg) {
-        return (new ST_scale).init(input,minIn,maxIn,minOut,maxOut,st(expArg));
+        ST_scale str;
+        str.init(input,minIn,maxIn,minOut,maxOut,st(expArg));
+        return str;
     }
     
     fun static ST_scale linexp(Stream input,Stream minIn,Stream maxIn,Stream minOut,Stream maxOut,Stream expArg) {
-        return (new ST_scale).init(input,minIn,maxIn,minOut,maxOut,expArg);
+        ST_scale str;
+        str.init(input,minIn,maxIn,minOut,maxOut,expArg);
+        return str;
     }
     
     fun static ST_scale linexp(Stream input,float minIn,float maxIn,float minOut,float maxOut,float expArg) {
-        return (new ST_scale).init(input,st(minIn),st(maxIn),st(minOut),st(maxOut),st(expArg));
+        ST_scale str;
+        str.init(input,st(minIn),st(maxIn),st(minOut),st(maxOut),st(expArg));
+        return str;
     }
     /*    
     fun static ST_scale linlin(Stream input,float minIn,float maxIn,float minOut,float maxOut) {
@@ -1505,7 +1713,9 @@ public class st {
     }
         
     fun static ST_ugen ugen(UGen arg) {
-        return (new ST_ugen).init(arg);
+        ST_ugen str;
+        str.init(arg);
+        return str;
     }
     
     fun static ST_biquad biquad(Stream inArg, string typeArg, float freqArg, float QArg, float gainArg) {
@@ -1562,7 +1772,9 @@ public class st {
     
     
     fun static ST_slide slide(Stream inArg, Stream upArg, Stream downArg) {
-        return (new ST_slide).init(inArg,upArg,downArg);
+        ST_slide str;
+        str.init(inArg,upArg,downArg);
+        return str;
     }
     
     fun static ST_slide slide(Stream inArg, int upArg, int downArg) {
@@ -1578,29 +1790,44 @@ public class st {
     }
     
     fun static ST_clip clip(Stream inputArg,Stream minArg,Stream maxArg) {
-        return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
+        ST_clip str;
+        str.input(inputArg).min(minArg).max(maxArg);
+        return str;
     }
     fun static ST_clip clip(Stream inputArg,float minArg,float maxArg) {
-        return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
+        ST_clip str;
+        str.input(inputArg).min(minArg).max(maxArg);
+        return str;
     }
     fun static ST_clip clip(Stream inputArg,Stream minArg,float maxArg) {
-        return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
+        ST_clip str;
+        str.input(inputArg).min(minArg).max(maxArg);
+        return str;
     }
     fun static ST_clip clip(Stream inputArg,float minArg,Stream maxArg) {
-        return (new ST_clip).input(inputArg).min(minArg).max(maxArg);
+        ST_clip str;
+        str.input(inputArg).min(minArg).max(maxArg);
+        return str;
     }
     
     fun static ST_tanh tanh(Stream inputArg) {
-        return (new ST_tanh).input(inputArg);
+        ST_tanh str;
+        str.input(inputArg);
+        return str;
     }
 
     
     fun static ST_clip clip(Stream inputArg) {
-        return (new ST_clip).input(inputArg).min(-1).max(1);
+        ST_clip str;
+        str.input(inputArg).min(-1).max(1);
+        return str;
     }
     
     fun static ST_funkStream funkStream(Funk funkArg,Stream xArg) {
-        return (new ST_funkStream).funk(funkArg).x(xArg);
+        ST_funkStream str;
+        str.funk(funkArg);
+        str.x(xArg);
+        return str;
     }
     
     fun static ST_timed fractRandTimer() {
@@ -1663,19 +1890,27 @@ public class st {
     }
     
     fun static ST_replaceZero replaceZero( Stream in ) {
-        return (new ST_replaceZero).init(in);
+        ST_replaceZero str;
+        str.init(in);
+        return str;
     }
     
     fun static ST_zeroCount zeroCount(Stream input,Stream stFrame) {
-        return (new ST_zeroCount).init(input,stFrame);
+        ST_zeroCount str;
+        str.init(input,stFrame);
+        return str;
     }
     
     fun static ST_zeroCount zeroCount(Stream input, int framesize) {
-        return (new ST_zeroCount).init(input,framesize);
+        ST_zeroCount str;
+        str.init(input,framesize);
+        return str;
     }
     
     fun static ST_zeroCount zeroCount(Stream input) {
-        return (new ST_zeroCount).init(input, 4410);
+        ST_zeroCount str;
+        str.init(input, 4410);
+        return str;
     }
     
     fun static ST_mup freqCount(Stream input, int framesize) {
@@ -1774,17 +2009,23 @@ public class st {
     }
     
     fun static ST_readWrite readWrite( float tableArg[], Stream readIndexArg,Stream valueArg, Stream writeIndexArg, int overwriteArg) {
-        return (new ST_readWrite).init( tableArg, readIndexArg, valueArg , writeIndexArg, overwriteArg);
+        ST_readWrite str;
+        str.init( tableArg, readIndexArg, valueArg , writeIndexArg, overwriteArg);
+        return str;
     }
     
     fun static ST_readWrite readWrite( float tableArg[], Stream readIndexArg,Stream valueArg, Stream writeIndexArg) {
         // write and read synchronized.
-        return (new ST_readWrite).init( tableArg, readIndexArg, valueArg , writeIndexArg, 0);
+        ST_readWrite str;
+        str.init( tableArg, readIndexArg, valueArg , writeIndexArg, 0);
+        return str;
     }
     
     fun static ST_readWrite readWrite(float tableArg[],  Stream readIndexArg, Stream valueArg) {
         // write sequentially.
-        return (new ST_readWrite).init( tableArg, readIndexArg, valueArg, count( tableArg.cap() ),0);
+        ST_readWrite str;
+        str.init( tableArg, readIndexArg, valueArg, count( tableArg.cap() ),0);
+        return str;
     }
     
     fun static ST_writeHead writeHead(float tableArg[], Stream recordOn, Stream valueArg) {
@@ -1797,24 +2038,34 @@ public class st {
     fun static ST_writeover writeover(float tableArg[], Stream input, Stream index, Stream mix) {
         // this mixes the input signal over the existing value, so as to allow you to mix the values.
         // Mix is the amount of input added, 1.0 is all new signal, 0.0 is all old.
-        return (new ST_writeover).init(tableArg,input,index,mix,st(0.0));
+        ST_writeover str;
+        str.init(tableArg,input,index,mix,st(0.0));
+        return str;
     }
     
     fun static ST_writeover writeover(float tableArg[], Stream input, Stream index, Stream mix, Stream offset) {
-        return (new ST_writeover).init(tableArg,input,index,mix,offset);
+        ST_writeover str;
+        str.init(tableArg,input,index,mix,offset);
+        return str;
     }
     
     fun static ST_append append(float tabArg[],Stream valueArg) {
-        return (new ST_append).init(tabArg,valueArg);
+        ST_append str;
+        str.init(tabArg,valueArg);
+        return str;
     }
     
     fun static ST_onePole onepole(Stream arg,Stream fArg) {
-        return (new ST_onePole).init(arg,fArg);
+        ST_onePole str;
+        str.init(arg,fArg);
+        return str;
     }
     
     /* prints the output to the log */
     fun static ST_monitor monitor( Stream arg ) {
-        return (new ST_monitor).init(arg);
+        ST_monitor str;
+        str.init(arg);
+        return str;
     }
     
     /* stream gets repeated weightone in weighttwo times */
@@ -1823,7 +2074,9 @@ public class st {
     }
     
     fun static ST_normStream normStream (Stream arg[]) {
-        return (new ST_normStream).init(arg);
+        ST_normStream str;
+        str.init(arg);
+        return str;
     }
     
     fun static void test (Stream arg) {
@@ -1835,7 +2088,9 @@ public class st {
     }
     
     fun static Schedule schedule (Stream procArg,Stream timeArg) {
-        return (new Schedule).init(procArg,timeArg);
+        Schedule str;
+        str.init(procArg,timeArg);
+        return str;
     }
     
     
@@ -1850,19 +2105,27 @@ public class st {
     fun static ST_couple couple (Stream arg1, Stream arg2) {
         // sync a procedure with a stream, a is the stream, b is the procedure.
         // arg1.next() is returned
-        return (new ST_couple).init(arg1,arg2);
+        ST_couple str;
+        str.init(arg1,arg2);
+        return str;
     }
     
     fun static ST_midiCtrl midiCtrl(int deviceArg,int channelArg,int controllerArg) {
-        return (new ST_midiCtrl).init(deviceArg,channelArg,controllerArg);
+        ST_midiCtrl str;
+        str.init(deviceArg,channelArg,controllerArg);
+        return str;
     }
     
     fun static ST_midiCtrl midiCtrl(int channelArg,int controllerArg) {
-        return (new ST_midiCtrl).init(3,channelArg,controllerArg);
+        ST_midiCtrl str;
+        str.init(3,channelArg,controllerArg);
+        return str;
     }
     
     fun static ST_midiCtrl midiCtrl(int controllerArg) {
-        return (new ST_midiCtrl).init(3,1,controllerArg);
+        ST_midiCtrl str;
+        str.init(3,1,controllerArg);
+        return str;
     }
     
     fun static MidiStream midiStream(Stream timerArg, Stream pitchArg, Stream durArg, Stream veloArg) {
@@ -1895,11 +2158,15 @@ public class st {
     */
     
     fun static ST_key keyboard( int hidNum ) {
-        return (new ST_key).init(hidNum);
+        ST_key str;
+        str.init(hidNum);
+        return str;
     }
     
     fun static ST_singleKey singleKey( int hidNum, string key ) {
-        return (new ST_singleKey).init(hidNum,key);
+        ST_singleKey str;
+        str.init(hidNum,key);
+        return str;
     }
     
     
@@ -1926,11 +2193,15 @@ public class st {
     }
     
     fun static ST_oscin oscin(int port, string name) {
-        return (new ST_oscin).init(port,name);
+        ST_oscin str;
+        str.init(port,name);
+        return str;
     }
     
     fun static ST_delay delay(Stream inArg,int maxArg,Stream delArg) {
-        return (new ST_delay).init(inArg,maxArg,delArg);
+        ST_delay str;
+        str.init(inArg,maxArg,delArg);
+        return str;
     }
     
     fun static ST_delayi delayi(Stream inArg, int maxArg, Stream delArg) {
@@ -1942,19 +2213,27 @@ public class st {
     }
     
     fun static ST_adc audioIn(Stream channel) {
-        return (new ST_adc).init(channel);
+        ST_adc str;
+        str.init(channel);
+        return str;
     }
     
     fun static ST_dacin dacin(Stream channel) {
-        return (new ST_dacin).init(channel);
+        ST_dacin str;
+        str.init(channel);
+        return str;
     }
     
     fun static ST_dacin dacin(int channel) {
-        return (new ST_dacin).init(channel);
+        ST_dacin str;
+        str.init(channel);
+        return str;
     }
     
     fun static ST_adc audioIn(int channel) {
-        return (new ST_adc).init(channel);
+        ST_adc str;
+        str.init(channel);
+        return str;
     }
     
     fun static ST_adc audioIn() {
@@ -1962,11 +2241,15 @@ public class st {
     }
     
     fun static ST_avg avg(Stream in, int n) {
-        return (new ST_avg).init(in,n);
+        ST_avg str;
+        str.init(in,n);
+        return str;
     }
     
     fun static ST_avg avg(Stream in) {
-        return (new ST_avg).init(in,8);
+        ST_avg str;
+        str.init(in,8);
+        return str;
     }
     
     fun static Stream beat(Stream bpm,int divisor) {
@@ -1993,7 +2276,9 @@ public class st {
     }
     
     fun static NodeSynth node(int size,float amp, float pan,Stream outArg,Stream durArg,Stream topArg,Stream timerArg, Stream recordArg, Stream inputArg,Stream fundArg) {
-        return (new NodeSynth).init(size,amp,pan,outArg,durArg,topArg,timerArg,recordArg,inputArg,fundArg);
+        NodeSynth str;
+        str.init(size,amp,pan,outArg,durArg,topArg,timerArg,recordArg,inputArg,fundArg);
+        return str;
     }
     
     fun static void resetNode () {
