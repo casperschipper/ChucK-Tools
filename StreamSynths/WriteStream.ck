@@ -63,6 +63,7 @@ public class WriteStream {
     
     fun WriteStream stop() {
         0 => loop;
+        return this;
     }
     
 }
