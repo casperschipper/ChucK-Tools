@@ -27,7 +27,7 @@ public class MidiNoteChannelStream extends StreamSynth {
         } else {
             <<<"else okay">>>;
         }
-        
+        return this;
     }
     
     fun void channel(int arg) {

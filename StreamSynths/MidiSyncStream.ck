@@ -48,7 +48,7 @@ public class MidiSyncStream extends StreamSynth {
         } else {
             <<<"else okay">>>;
         }
-        
+        return this;
     }
     
     fun void channel(int arg) {

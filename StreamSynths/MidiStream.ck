@@ -25,11 +25,12 @@ public class MidiStream extends StreamSynth {
         } else {
             <<<"else okay">>>;
         }
-        
+        return this;   
     }
     
     fun MidiStream channel(int arg) {
         arg - 1 => _channel;
+        return this;
         
     }
     
