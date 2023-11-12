@@ -11,6 +11,7 @@ class PannerFour extends CustomPanner {
     PanFour p;
     fun float pan(float arg) {
         p.pan(arg);
+        return arg;
     }
     fun void connect(UGen arg) {
         p.connect(arg);
