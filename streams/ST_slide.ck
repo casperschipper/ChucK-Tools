@@ -9,6 +9,7 @@ public class ST_slide extends Stream {
         if (x == 0) {
             return 0.0000001;
         }
+        return x;
     }
    
     fun float next() {
@@ -33,6 +34,7 @@ public class ST_slide extends Stream {
         input @=> this.st_input;
         up @=> this.st_upslide;
         down @=> this.st_downslide;
+        return this;
     }
     
 }
