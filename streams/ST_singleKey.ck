@@ -46,6 +46,7 @@ public class ST_singleKey extends Stream {
         if (tmp >= 49 && tmp <= 57) { // 1..9
             return tmp - 19;
         }
+        return 0;
     }
     
     fun void spark () {

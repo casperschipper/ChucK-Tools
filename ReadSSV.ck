@@ -10,6 +10,7 @@ public class ReadSSV {   // space seperated value files !
             <= IO.newline();
             me.exit();
         }
+        return this;
     }
    
    
@@ -17,6 +18,7 @@ public class ReadSSV {   // space seperated value files !
        if (fio.more()) {
            return fio.readLine();          
        }
+       return "";
    }
    
    fun float [] nextLineSplitFloats() {
@@ -42,6 +44,7 @@ public class ReadSSV {   // space seperated value files !
            }
            return result;
        }
+       return [0.0];
    }
 }
  
