@@ -18,6 +18,7 @@ public class GuardControl extends Guard {
          if (control.next() >= 1) {
              return 1;
          }
+         return 0;
      }
      
      fun float apply(float in) {

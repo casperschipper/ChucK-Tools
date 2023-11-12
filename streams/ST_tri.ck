@@ -19,6 +19,7 @@ public class ST_tri extends Stream {
     fun ST_tri range(float low,float high) {
         Math.fabs(high - low) => _range;
         Math.min(low,high) => _offset;
+        return this;
     }
         
     

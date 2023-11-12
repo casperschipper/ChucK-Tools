@@ -70,6 +70,7 @@ public class Clist
     fun int setPos(int posi) 
     {
         posi => pos;
+        return pos;
     }
     
     fun float interp(int a,int b,float x) {

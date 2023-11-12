@@ -10,6 +10,7 @@ public class ST_bus extends Stream {
     fun ST_bus init (Stream stream,string name) {
     	name @=> _name;
     	stream @=> bus[_name];
+        return this;
     }
     
     fun ST_bus init(string name) {
@@ -39,6 +40,7 @@ public class ST_bus extends Stream {
         if (bus[_name] != null) {
             return bus[_name].more();
         }
+        return 0;
     }
 
     fun float next() {

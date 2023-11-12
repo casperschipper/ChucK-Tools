@@ -117,8 +117,11 @@ public class SeqUnit
             return grouprep2() => last;
         else if (state == "clusters") 
             return clusters() => last;
-        else
+        else {
+            return normal() => last;
             <<<"this seqtype does not exist :",state>>>;
+        }
+        return normal() => last;
     }
     
     fun void setStateNumber(int nr)
@@ -165,11 +168,10 @@ public class SeqUnit
             changeSerie(); 
             serie2.set(serie.toArray());
         }
-        else
-        { return limit(serie2.takeRand()); }        
+        return limit(serie2.takeRand());
     }
     
-    fun int prepareloops() 
+    fun void prepareloops() 
     {
         random.w_choice(innerweights) => innerloops;
         random.w_choice(outerweights) => outerloops;
@@ -283,8 +285,10 @@ public class SeqUnit
     }
     
     fun int sequence() {
-        if (idx >= selectArray.size()) {<<<"klaar">>>;me.exit;}
-        else return selectArray[idx++];
+        if (idx >= selectArray.size()) 
+            {<<<"klaar">>>;me.exit;
+        }
+        return selectArray[idx++];
     }
     
     fun int clusters() {

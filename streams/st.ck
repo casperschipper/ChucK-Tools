@@ -1290,15 +1290,21 @@ public class st {
     }
 
     fun static ST_wchoice wchoice(float valueWeights[][]) {
-        return (new ST_wchoice).init(valueWeights);
+        ST_wchoice str;
+        str.init(valueWeights);
+        return str;
     }
     
     fun static ST_wchoice wchoice(int valueWeights[][]) {
-        return (new ST_wchoice).init(valueWeights);
+        ST_wchoice str;
+        str.init(valueWeights);
+        return str;
     }
     
     fun static ST_wchoice weights(float valueWeights[][]) {
-        return wchoice(valueWeights);
+        ST_wchoice str;
+        str.init(valueWeights);
+        return str;
     }
     
     fun static Stream sometimes(float x, float y, int n) {
@@ -2282,8 +2288,9 @@ public class st {
     }
     
     fun static void resetNode () {
-        (new NodeSynth).reset();
-        return;
+       NodeSynth node;
+       node.reset();
+       return;
     }
     
             

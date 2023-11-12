@@ -58,6 +58,7 @@ public class ST_customLoop extends Stream {
                 return next();
             }
         }
+        return 0.0;
     }
 }
 

@@ -1055,17 +1055,17 @@ public class cs
             // Skip over small elements on left
             while ( array[left_index] < pivot && left_index <= end_pos )
                 left_index ++;
-            if ( left_index < right_index )          // Exchange if halves aren't complete
+            if ( left_index <= right_index )          // Exchange if halves aren't complete
             {
-                array[left_index] => float temp;
-                array[right_index] => array[left_index];
-                temp => array[right_index];
-                left_index++;                         // Skip over exchanged values
-                right_index--;
+                return right_index;
             }
-            else                                            // Otherwise, return location of pivot
-                return  right_index;
+            array[left_index] => float temp;
+            array[right_index] => array[left_index];
+            temp => array[right_index];
+            left_index++;                         // Skip over exchanged values
+            right_index--;
         }
+        return -1;
     }
     
     fun static int sort(int list[]) {
