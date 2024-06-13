@@ -20,6 +20,7 @@ add("Safe.ck");
 add("List.ck");
 add("CList.ck");
 add("SeqUnit.ck");
+add("ShredEvent.ck");
 add("ShredEventStack.ck");
 
 

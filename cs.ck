@@ -1075,6 +1075,23 @@ public class cs
     fun static int sortf(float list[]) {
         return quickSortF(list,list.cap());
     }
+    
+    fun static void removeIndexAt(float array[], int index) {
+        // Check if the index is within the valid range
+        if (index < 0 || index >= array.size()) {
+            <<< "Index out of range" >>>;
+            return;
+        }
+        
+        // Shift elements to the left to overwrite the element at the specified index
+        for (index => int i; i < array.size() - 1; i++) {
+            array[i + 1] => array[i];
+        }
+        
+        // Resize the array to remove the last element
+        array.size(array.size() - 1);
+    }
+
         
     
    fun static float[] removeDoublesf(float list[]) {

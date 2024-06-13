@@ -4,7 +4,7 @@ lot's of nice and juicy shortcuts, for example:
 
 class Foo extends st {
     index(
-        [rv(0,10),st(10)],
+        [rv(0,10),s(10)],
         hold(
            count(2),
            seq([rv(1,10),st(1)])
@@ -16,8 +16,7 @@ minute => now;
 
 
 */
-
-<<<"FIX NEW CALLS!!!!">>>;
+<<<"v 21/12/2023">>>;
 
 public class st {
     static Stream globals[];
@@ -26,13 +25,13 @@ public class st {
         return arg.collect( number );
     }
     
-    fun static Stream st(float value) {
+    fun static Stream s(float value) {
         ST_value stream;
         stream.init(value);
         return stream $ Stream;
     }
     
-    fun static Stream st(Stream arg) {
+    fun static Stream s(Stream arg) {
         return arg;
     }
     
@@ -399,23 +398,23 @@ public class st {
     }
     fun static ST_latch latch(float valueArg,float repeatArg) {
         ST_latch str;
-        str.init(st(valueArg),st(repeatArg));
+        str.init(s(valueArg),s(repeatArg));
         return str;
     }
     fun static ST_latch latch(Stream valueArg,int repeatArg) {
         ST_latch str;
-        str.init(valueArg,st(repeatArg));
+        str.init(valueArg,s(repeatArg));
         return str;
     }
     fun static ST_latch latch(int valueArg,Stream repeatArg) {
         ST_latch str;
-        str.init(st(valueArg),repeatArg);
+        str.init(s(valueArg),repeatArg);
         return str;
     }
     
     fun static ST_latch latch(Stream valueArg, float repeatArg) {
         ST_latch str;
-        str.init(valueArg,st(repeatArg));
+        str.init(valueArg,s(repeatArg));
         return str;
     }
 
@@ -445,7 +444,7 @@ public class st {
     }
     
     fun static ST_timed t(Stream str,float timing) {
-        return timed(str,st(timing));
+        return timed(str,s(timing));
     }
     
     fun static ST_timed timedSeq(Stream seqArg[],Stream timing) {
@@ -465,7 +464,7 @@ public class st {
         return timedSeq(seq,timing);
     }
     fun static ST_timed tSeq(Stream seq[],float timing) {
-        return timedSeq(seq,st(timing));
+        return timedSeq(seq,s(timing));
     }
     
     
@@ -482,11 +481,11 @@ public class st {
     }
     
     fun static ST_repeat hold(Stream value,int rep,int holdArg) {
-        return ST_repeat.make(value,st(rep)).holdMode(holdArg);
+        return ST_repeat.make(value,s(rep)).holdMode(holdArg);
     }
     
     fun static ST_repeat hold(Stream value,int rep) {
-        return ST_repeat.make(value,st(rep));
+        return ST_repeat.make(value,s(rep));
     }
     
     fun static ST_count count(int maxArg) {
@@ -553,10 +552,10 @@ public class st {
         return ST_choice.make([a,b]);
     }
     fun static ST_choice choice(float a,Stream b) {
-        return ST_choice.make([st(a),b]);
+        return ST_choice.make([s(a),b]);
     }
     fun static ST_choice choice(Stream a,float b) {
-        return ST_choice.make([a,st(b)]);
+        return ST_choice.make([a,s(b)]);
     }
     
     fun static ST_choice ch(float a,float b) {
@@ -632,7 +631,7 @@ public class st {
     
     fun static ST_line line(Stream value,float timing) {
         ST_line stream;
-        stream.init(value,st(timing));
+        stream.init(value,s(timing));
         return stream;
     }
     
@@ -710,7 +709,7 @@ public class st {
     }
     
     fun static ST_boundedMupWalk boundedMupWalk(float minArg,float maxArg,Stream stepArg) {
-        return boundedMupWalk(st(minArg),st(maxArg),stepArg);
+        return boundedMupWalk(s(minArg),s(maxArg),stepArg);
     }
     
     fun static ST_boundedMupWalk boundedMupWalk(Stream minArg,Stream maxArg,Stream stepArg,float start) {
@@ -723,7 +722,7 @@ public class st {
     }
     
     fun static ST_boundedMupWalk boundedMupWalk(float minArg,float maxArg,Stream stepArg, float start) {
-        return boundedMupWalk(st(minArg),st(maxArg),stepArg,start);
+        return boundedMupWalk(s(minArg),s(maxArg),stepArg,start);
     }
 
     
@@ -804,6 +803,9 @@ public class st {
         return index(values,boundedWalk(0,values.cap()-1,ch(-1.1)));
     }
    
+   fun static ST_index walkList(Stream values[],Stream step) {
+       return index(values,boundedWalk(0,values.cap()-1,step));
+   }
 
     fun static ST_smartWalkList smartWalkList(float values[],Stream step,Stream direction) {
         ST_smartWalkList str;
@@ -832,7 +834,7 @@ public class st {
     }
     
     fun static Stream bouncyListWalk(int minArg,int maxArg,Stream list[],Stream step) {
-        return index( list , bouncyWalk(st(minArg),st(maxArg),step) );
+        return index( list , bouncyWalk(s(minArg),s(maxArg),step) );
     }
     
     fun static Stream bouncyListWalk(Stream listArg[],Stream stepperArg) {
@@ -844,11 +846,11 @@ public class st {
     }
     
     fun static Stream bouncyListWalk(Stream list[])  {
-        return index( list, bouncyWalk( st(0), st(list.cap()), st(1) ));
+        return index( list, bouncyWalk( s(0), s(list.cap()), s(1) ));
     }
     
     fun static Stream bouncyListWalk(float list[]) {
-        return index( list, bouncyWalk(st(0),st(list.cap()), st(1) ));
+        return index( list, bouncyWalk(s(0),s(list.cap()), s(1) ));
     }
     
     fun static Stream boundedListWalk(Stream min,Stream max,float list[], Stream stepper) {
@@ -860,19 +862,19 @@ public class st {
     }
     
     fun static Stream boundedListWalk(float list[],Stream stepper) {
-        return boundedListWalk(st(0),st(list.cap()),list,stepper);
+        return boundedListWalk(s(0),s(list.cap()),list,stepper);
     }
     
     fun static Stream boundedListWalk(float list[]) {
-        return boundedListWalk(st(0),st(list.cap()),list,ch(-1,1));
+        return boundedListWalk(s(0),s(list.cap()),list,ch(-1,1));
     }
     
     fun static Stream boundedListWalk(Stream list[]) {
-        return boundedListWalk(st(0),st(list.cap()),list,ch(-1,1));
+        return boundedListWalk(s(0),s(list.cap()),list,ch(-1,1));
     }
     
     fun static Stream boundedListWalk(Stream list[],Stream stepArg) {
-        return boundedListWalk(st(0),st(list.cap()),list,stepArg);
+        return boundedListWalk(s(0),s(list.cap()),list,stepArg);
     }
     
     fun static Stream listWalkLin(Stream list[],Stream stepArg) {
@@ -1041,7 +1043,7 @@ public class st {
         arg.cap () => int n;
         
         if (n == 0) {
-            return sum(st(0),0);
+            return sum(s(0),0);
         } else if (n == 1) {
             return sum(arg[0],0);
         } else if (n == 2) {
@@ -1055,7 +1057,7 @@ public class st {
         arg.cap () => int n;
         
         if (n == 0) {
-            return div(st(0),1);
+            return div(s(0),1);
         } else if (n == 1) {
             return div(arg[0],1);
         } else if (n == 2) {
@@ -1069,7 +1071,7 @@ public class st {
         arg.cap () => int n;
         
         if (n == 0) {
-            return mup(st(0),1);
+            return mup(s(0),1);
         } else if (n == 1) {
             return mup(arg[0],1);
         } else if (n == 2) {
@@ -1083,7 +1085,7 @@ public class st {
         arg.cap () => int n;
         
         if (n == 0) {
-            return sub(st(0),1);
+            return sub(s(0),1);
         } else if (n == 1) {
             return sub(arg[0],1);
         } else if (n == 2) {
@@ -1444,7 +1446,7 @@ public class st {
     
     fun static ST_sineseg sineseg(float number) {
         ST_sineseg str;
-        str.init( st(number) );
+        str.init( s(number) );
         return str;
     }
     
@@ -1533,11 +1535,11 @@ public class st {
     
     
     fun static ST_line phasor(float wavelength) {
-        return line(seq(0,1),seq(wavelength,0.0002267573696));
+        return line(seq(0,1),seq(wavelength,0.0));
     }
     
     fun static ST_line phasor(Stream wavelength) {
-        return line(seq(0,1),seq(wavelength,st(0.002267573696)));
+        return line(seq(0,1),seq(wavelength,s(0.0)));
     }
     
     fun static ST_hzPhasor hzPhasor(Stream arg) {
@@ -1552,14 +1554,14 @@ public class st {
     }
     
     fun static ST_seq impulse(Stream interval) {
-        return seq( latch(st(1),st(1)) 
-                  , latch(st(0),interval) 
+        return seq( latch(s(1),s(1)) 
+                  , latch(s(0),interval) 
                   );
     }
     
     fun static ST_seq impulse(Stream interval,Stream source) {
         return seq ( source 
-                   , latch ( st(0), interval) 
+                   , latch ( s(0), interval) 
                    );
     }
     
@@ -1657,7 +1659,7 @@ public class st {
     
     fun static ST_scale2 scaler(Stream input,float inMin,float inMax,float outMin,float outMax) {
         ST_scale2 str;
-        str.init(input,inMin,inMax,st(outMin),st(outMax));
+        str.init(input,inMin,inMax,s(outMin),s(outMax));
         return str;
     }
     
@@ -1670,25 +1672,25 @@ public class st {
     // scales (not optimized(.
     fun static ST_scale linlin(Stream input,float minIn,float maxIn,Stream minOut,Stream maxOut) {
         ST_scale str;
-        str.init(input,st(minIn),st(maxIn),minOut,maxOut,st(1.0));
+        str.init(input,s(minIn),s(maxIn),minOut,maxOut,s(1.0));
         return str;
     }
     
     fun static ST_scale linlin(Stream input,Stream minIn,Stream maxIn,Stream minOut,Stream maxOut) {
         ST_scale str;
-        str.init(input,minIn,maxIn,minOut,maxOut,st(1.0));
+        str.init(input,minIn,maxIn,minOut,maxOut,s(1.0));
         return str;
     }
     
     fun static ST_scale linexp(Stream input,float minIn,float maxIn,Stream minOut,Stream maxOut,Stream expArg) {
         ST_scale str;
-        str.init(input,st(minIn),st(maxIn),minOut,maxOut,expArg);
+        str.init(input,s(minIn),s(maxIn),minOut,maxOut,expArg);
         return str;
     }
     
     fun static ST_scale linexp(Stream input,Stream minIn,Stream maxIn,Stream minOut,Stream maxOut,float expArg) {
         ST_scale str;
-        str.init(input,minIn,maxIn,minOut,maxOut,st(expArg));
+        str.init(input,minIn,maxIn,minOut,maxOut,s(expArg));
         return str;
     }
     
@@ -1700,12 +1702,12 @@ public class st {
     
     fun static ST_scale linexp(Stream input,float minIn,float maxIn,float minOut,float maxOut,float expArg) {
         ST_scale str;
-        str.init(input,st(minIn),st(maxIn),st(minOut),st(maxOut),st(expArg));
+        str.init(input,s(minIn),s(maxIn),s(minOut),s(maxOut),s(expArg));
         return str;
     }
     /*    
     fun static ST_scale linlin(Stream input,float minIn,float maxIn,float minOut,float maxOut) {
-        return (new ST_scale).init(input,st(minIn),st(maxIn),st(minOut),st(maxOut),st(1.0));
+        return (new ST_scale).init(input,s(minIn),s(maxIn),s(minOut),s(maxOut),s(1.0));
     } 
     */
     
@@ -1784,15 +1786,15 @@ public class st {
     }
     
     fun static ST_slide slide(Stream inArg, int upArg, int downArg) {
-        return slide(inArg,st(upArg),st(downArg));
+        return slide(inArg,s(upArg),s(downArg));
     }
     
     fun static ST_slide slide(Stream inArg, int upArg, Stream downArg) {
-        return slide(inArg,st(upArg),downArg);
+        return slide(inArg,s(upArg),downArg);
     }
     
     fun static ST_slide slide(Stream inArg, Stream upArg, int downArg) {
-        return slide(inArg,upArg,st(downArg));
+        return slide(inArg,upArg,s(downArg));
     }
     
     fun static ST_clip clip(Stream inputArg,Stream minArg,Stream maxArg) {
@@ -1884,15 +1886,13 @@ public class st {
     
     fun static ST_index waveOsc( float table[], Stream freqArg ) {
         table.cap() => int size;
-        mup( phasor(freqArg) , size ) @=> Stream @ idx;
-        return index( table, idx );
+        return index( table, mup( phasor(freqArg) , size ) );
     }
     
     /// linear
     fun static ST_indexLin waveOscL( float table[], Stream freqArg ) {
         table.cap() => int size;
-        mup( phasor(freqArg) , size ) @=> Stream @ idx;
-        return indexLin( table, idx );
+        return indexLin( table, mup( phasor(freqArg) , size ) );
     }
     
     fun static ST_replaceZero replaceZero( Stream in ) {
@@ -1933,8 +1933,7 @@ public class st {
     
     fun static ST_mup freqCount(Stream input, Stream frameSize) {
         second / samp => float samplerate;
-        div(samplerate,frameSize) @=> Stream mupper;
-        return mup(mupper,zeroCount(input,frameSize));
+        return mup(div(samplerate,frameSize),zeroCount(input,frameSize));
     }
 
     
@@ -1947,7 +1946,7 @@ public class st {
     // reads a table with a certain frequency
     fun static ST_wave wave(float tableArg[],float freqArg) {
         ST_wave x;
-        x.init(tableArg,st(freqArg));
+        x.init(tableArg,s(freqArg));
         return x;
     }
     
@@ -2001,7 +2000,7 @@ public class st {
         stream.value(valueArg);
         stream.indexer(indexArg);
         stream.table(tableArg);
-        spork ~ writerShred( stream, st(1) );
+        spork ~ writerShred( stream, s(1) );
         return stream;
     }
     
@@ -2045,7 +2044,7 @@ public class st {
         // this mixes the input signal over the existing value, so as to allow you to mix the values.
         // Mix is the amount of input added, 1.0 is all new signal, 0.0 is all old.
         ST_writeover str;
-        str.init(tableArg,input,index,mix,st(0.0));
+        str.init(tableArg,input,index,mix,s(0.0));
         return str;
     }
     
@@ -2268,7 +2267,7 @@ public class st {
     }
     
     fun static Stream beat(float bpm,float divisor) {
-        return st( 60.0 / bpm / divisor );
+        return s( 60.0 / bpm / divisor );
     }
     
     fun static float beati (float bpm,float divisor) {
@@ -2296,4 +2295,4 @@ public class st {
             
 }
 
-[st.st(1)] @=> st.globals;
+[st.s(1)] @=> st.globals;

@@ -6,8 +6,8 @@ public class ST_operator extends Stream
     float _v1;
     float _v2;
     
-    null @=> Stream @ st_v1;
-    null @=> Stream @ st_v2;
+    Stream st_v1;
+    Stream st_v2;
     
     false => int v1IsStream;
     false => int v2IsStream;
@@ -51,8 +51,8 @@ public class ST_operator extends Stream
     }
     
     fun ST_operator v1(int arg) {
+        false => v1IsStream;
         arg => _v1;
-        true => v1IsStream;
         null @=> st_v1;
         return this;
     }
@@ -91,6 +91,7 @@ public class ST_operator extends Stream
     }
     
     fun ST_operator init(Stream arg1,float arg2) {
+        <<<"init stream arg2, st operator">>>;
         v1(arg1);
         v2(arg2);
         return this;
@@ -128,11 +129,16 @@ public class ST_operator extends Stream
     }
     
     fun float next() {
+
         if (!v1IsStream && !v2IsStream) {
             return operator(_v1,_v2);
         }
 
+
         operator(_v1,_v2) => float result;
+        
+        false => v1More;
+        false => v2More;
         
         if (v1IsStream) st_v1.more() => v1More;
         if (v2IsStream) st_v2.more() => v2More;
@@ -141,8 +147,8 @@ public class ST_operator extends Stream
             if (v1More) st_v1.next() => _v1;
             if (v2More) st_v2.next() => _v2;
         } else {
-            if (v1IsStream) st_v1.next() => _v1;
-            if (v2IsStream) st_v2.next() => _v2;
+            if (v1IsStream) { st_v1.next() => _v1; }
+            if (v2IsStream) { st_v2.next() => _v2; }
         }
 
         return result;
