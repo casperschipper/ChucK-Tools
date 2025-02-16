@@ -1,6 +1,6 @@
 "/Users/casperschipper/devel/chuck/tools/" @=> string toolsPath;
 
-<<<"hi there, chuck here">>>;
+<<<"hi there, chuck here. July 2024">>>;
 
 fun void add(string filename) {
     Machine.add(toolsPath+filename);
@@ -20,6 +20,17 @@ add("Safe.ck");
 add("List.ck");
 add("CList.ck");
 add("SeqUnit.ck");
+add("MidiKiller.ck");
+
+add("JsonEncoders/JsonValue");
+add("JsonEncoders/JsonObject");
+add("JsonEncoders/JsonArray");
+add("JsonEncoders/JsonBool");
+add("JsonEncoders/JsonInt");
+add("JsonEncoders/JsonFloat");
+add("JsonEncoders/JsonString");
+add("JsonEncoders/Json");
+
 add("ShredEvent.ck");
 add("ShredEventStack.ck");
 
@@ -40,6 +51,7 @@ add("Streams/ST_indexLin");
 add("Streams/ST_modIndex");
 add("Streams/ST_mupModIndex");
 add("Streams/ST_repeat");
+add("Streams/ST_repeatPlay");
 add("Streams/ST_latch");
 //add("Streams/ST_forcedRepeat");
 add("Streams/ST_timedLatch");
@@ -154,6 +166,7 @@ add("Streams/ST_dacin");
 add("Streams/ST_biquad");
 add("Streams/ST_slide");
 add("Streams/ST_leakDC");
+add("Streams/ST_invert");
 
 // funkstreams
 add("Funk.ck");
@@ -202,6 +215,7 @@ add("StreamSynths/OSCStream");
 add("StreamSynths/MidiStream");
 add("StreamSynths/MidiNoteChannelSyncStream");
 add("StreamSynths/MidiNoteChannelSyncTriggerStream");
+add("StreamSynths/MidiNoteChannelTriggerMultiStream");
 add("StreamSynths/MidiNoteChannelStream");
 add("StreamSynths/MidiNoteCtrlStream");
 add("StreamSynths/MidiControlStream");
@@ -222,5 +236,6 @@ add("Streams/st");
 add("Buses2.ck");
 add("PanFourBus.ck");
 add("ReadSSV.ck");
+
 
 

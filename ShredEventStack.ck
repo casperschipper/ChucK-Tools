@@ -1,3 +1,42 @@
+class ShredEncoder extends JsonValue {
+    ShredEvent @ evt;
+    int idx;
+    
+    fun void init (ShredEvent arg, int idx_arg) {
+        arg @=> evt;
+        idx_arg => idx;
+    }
+    
+    fun string encode() {
+        JsonObject object;
+        object.add("name",new JsonString(evt.name));
+        object.add("id",new JsonInt(evt.id));
+        object.add("idx",new JsonInt(idx));
+        return object.encode();
+    }
+}
+        
+
+class StateEncoder extends JsonValue {
+    ShredEvent @ stack[];
+    
+    fun void init(ShredEvent arg[]) {
+        arg @=> stack;
+    }
+    
+    fun string encode() {
+        JsonArray arr;
+      
+        for (0 => int i;i<stack.size();i++) {
+            ShredEncoder s;
+            s.init(stack[i],i);
+            arr.add(s);
+        }
+        return arr.encode();
+    }
+}
+    
+
 public class ShredEventStack {
     // This is a stack, to handle removing the last event,without risking removing OSC stuff
     // you can also remove all.
@@ -19,24 +58,29 @@ public class ShredEventStack {
         while(true) {
             oin => now;
             while(oin.recv(msg)) {
+                <<<"received '/cisp/ls'">>>;
                 reportState();
             }
         }
     }
-    
     fun void OSC_stopIndex() {
         OscIn oin;
         inport => oin.port;
-        oin.addAddress("/cisp/stopIndex");
+        <<<"stopindex running at port: ",inport>>>;
+        oin.addAddress("/cisp/stopindex");
         OscMsg msg; 
         
         while(true) {
             oin => now;
+            <<<"oin => now">>>;
             while(oin.recv(msg)) {
-                if (msg.typetag == "i") {
-                    msg.getInt(0) => int idx;
-                    <<<"removing index: idx">>>;
+                <<<"oin.recv(msg)",msg.typetag>>>;
+                if (msg.typetag == "s") {
+                    msg.getString(0) => string str;
+                    str.toInt() => int idx;
+                    <<<"removing index: ",idx>>>;
                     popIndex(idx);
+                    reportState();
                 }
             }
         }
@@ -56,31 +100,29 @@ public class ShredEventStack {
         return "\"" + arg + "\"";
     }
     
+    fun string fromInt(int i) {
+        return "" + i;
+    }
+    
+    // 
+    
     fun void reportState() {
         OscOut xmit;
         xmit.dest("localhost",outport);
         xmit.start("/cisp/state");
-        "[\n" => string json_list;
-        for (0 => int i;i<eventStack.size();i++) {
-            "{\"name\" : " +  q(eventStack[i].name) +=> json_list;
-            ",\"id\" : " + i + "}" +=> json_list;
-            if (eventStack.size() > 1) {
-                "," +=> json_list;
-            }
-        } 
-        "]" +=> json_list;
-        <<<json_list>>>;
-        xmit.add(json_list);
+        StateEncoder stack;
+        stack.init(eventStack);
+        xmit.add(stack.encode());
         xmit.send();
         me.yield();
     }
             
-            
-    
     fun void push(ShredEvent arg) {
         <<<"push">>>;
-        reportAdded(arg.name,eventStack.size() + 1);
+        eventStack.size() => int id;
+        id => arg.id;
         eventStack << arg;
+        reportState();
     }
     
     fun static void pop() {

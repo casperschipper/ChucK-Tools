@@ -91,7 +91,6 @@ public class ST_operator extends Stream
     }
     
     fun ST_operator init(Stream arg1,float arg2) {
-        <<<"init stream arg2, st operator">>>;
         v1(arg1);
         v2(arg2);
         return this;

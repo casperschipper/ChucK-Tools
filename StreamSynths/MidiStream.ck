@@ -116,25 +116,17 @@ public class MidiStream extends StreamSynth {
     fun void killAll() {
         // https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message
         //0xd0 | _channel => msg.data1; // controller type, but 
-        0xb0 | _channel => msg.data1;
-        0x7b => msg.data2; // using 123
-        0 => msg.data3;
-        
-        mout.send(msg);
-        
-        <<<"Kill">>>;
-                
-        // only reset channel 1
-        for (0 => int midi_chan;midi_chan<16;midi_chan++) {
-            for (int note;note < 127;note++) {
-                _noteOff | midi_chan => msg.data1;
+        //0xb0 | _channel => msg.data1;
+        //0x7b => msg.data2; // using 123
+        //0 => msg.data3;
+        for (0 => int channel;channel<16;channel++) {
+            for (0 => int note;note<128;note++) {
+                0x80 + channel => msg.data1;
                 note => msg.data2;
                 0 => msg.data3;
                 mout.send(msg);
-                ms => now;
-            }
+            }                        
         }
-            
         
         /*** outdated note off ***
         for (int midi_chan;midi_chan<16;midi_chan++) {

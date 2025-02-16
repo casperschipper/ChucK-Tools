@@ -488,6 +488,10 @@ public class st {
         return ST_repeat.make(value,s(rep));
     }
     
+    fun static ST_repeatPlay holdPlay(Stream value,Stream rep) {
+        return ST_repeatPlay.make(value,rep);
+    }
+    
     fun static ST_count count(int maxArg) {
         if (maxArg < 1) {
             1 => maxArg;
@@ -2292,6 +2296,19 @@ public class st {
        return;
     }
     
+    fun static ST_invert invert(Stream arg) {
+       ST_invert str;
+       str.input(arg);
+       return str;
+   }
+    
+    fun static ST_mup flip(float tableArg[],int idxArg,Stream arg) {
+        return mup(arg,index(tableArg,s(idxArg)));
+    }
+    
+    fun static ST_mup flop(float tableArg[],int idxArg,Stream arg) {
+        return mup(arg,invert(index(tableArg,s(idxArg))));
+    }
             
 }
 

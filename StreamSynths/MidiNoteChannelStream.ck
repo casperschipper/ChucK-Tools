@@ -120,38 +120,14 @@ public class MidiNoteChannelStream extends StreamSynth {
     }
     
     
-    fun void killAll() {
-        // https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message
-        //0xd0 | _channel => msg.data1; // controller type, but 
-        //0xb0 | _channel => msg.data1;
-        //0x7b => msg.data2; // using 123
-        //0 => msg.data3;
-        
-        //mout.send(msg);
-        
-        //<<<"Kill">>>;
-                
+    fun void killAll() { 
         for (0 => int ch;ch<16;ch++) {
-            for (int note;note < 127;note++) {
-                _noteOff | ch => msg.data1;
-                note => msg.data2;
-                0 => msg.data3;
-                mout.send(msg);
-                samp => now;
-            }
+            0xb0 + ch => msg.data1;
+            123 => msg.data2;
+            0 => msg.data3;
+            mout.send(msg);
         }
-        
-        
-        /*** outdated note off ***
-        for (int midi_chan;midi_chan<16;midi_chan++) {
-            for (int note;note<127;note++) {
-                _noteOff + midi_chan => msg.data1;
-                note => msg.data2;
-                0 => msg.data3;
-                mout.send(msg);
-            }
-        }
-        ******/
+        <<<"kill">>>;
     }
     
     fun void playNote() {
