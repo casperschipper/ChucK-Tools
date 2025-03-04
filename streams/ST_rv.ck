@@ -10,4 +10,8 @@ public class ST_rv extends ST_operator
     fun float operator(float a,float b) {
         return Math.random2f(a,b);
     }
+    
+    fun int more() {
+        return false;
+    }
 }

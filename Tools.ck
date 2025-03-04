@@ -1,9 +1,13 @@
-"/Users/casperschipper/devel/chuck/tools/" @=> string toolsPath;
+me.path() @=> string fullPath;
+fullPath.length() - 8 => int location;
+fullPath.replace(location,8,"");
+<<<fullPath>>>;
+fullPath @=> string strippedPath;
 
 <<<"hi there, chuck here. July 2024">>>;
 
 fun void add(string filename) {
-    Machine.add(toolsPath+filename);
+    Machine.add(strippedPath+filename);
 }
 
 add("cs.ck");
