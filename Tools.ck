@@ -1,13 +1,9 @@
-me.path() @=> string fullPath;
-fullPath.length() - 8 => int location;
-fullPath.replace(location,8,"");
-<<<fullPath>>>;
-fullPath @=> string strippedPath;
+me.dir() => string path;
 
 <<<"hi there, chuck here. July 2024">>>;
 
 fun void add(string filename) {
-    Machine.add(strippedPath+filename);
+    Machine.add(path+filename);
 }
 
 add("cs.ck");
