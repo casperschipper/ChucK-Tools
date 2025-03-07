@@ -47,7 +47,7 @@ add("streams/ST_delay");
 add("streams/ST_delayi");
 add("streams/ST_float");
 add("streams/ST_index");
-add("streams/ST_indexLin");
+add("streams/ST_IndexLin");
 add("streams/ST_modIndex");
 add("streams/ST_mupModIndex");
 add("streams/ST_repeat");
