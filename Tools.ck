@@ -75,7 +75,7 @@ add("streams/ST_smartWalkList");
 add("streams/ST_latchWalk");
 add("streams/ST_mupWalk");
 add("streams/ST_maskedChoice");
-add("streams/ST_boundedMupWalk");
+add("streams/ST_BoundedMupWalk");
 add("streams/ST_boundedMupResetWalk");
 add("streams/ST_boundedWalk");
 add("streams/ST_bumpyWalk");
