@@ -18,7 +18,7 @@ add("OSC_Read.ck");
 add("FeedbackDelay.ck");
 add("Safe.ck");
 add("List.ck");
-add("CList.ck");
+add("Clist.ck");
 add("SeqUnit.ck");
 add("MidiKiller.ck");
 

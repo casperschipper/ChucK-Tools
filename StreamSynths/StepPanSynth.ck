@@ -7,6 +7,17 @@ class CustomPanner {
     }
 }
 
+class PannerTwo extends CustomPanner {
+    Pan2 p => dac;
+    fun float pan(float arg) {
+        p.pan(arg);
+        return arg;
+    }
+    fun void connect(UGen arg) {
+        arg => p;
+    }
+}
+
 class PannerFour extends CustomPanner {
     PanFour p;
     fun float pan(float arg) {
@@ -55,8 +66,10 @@ public class StepPanSynth extends Chugraph {
         (new PannerSixteen) @=> p;
     } else if (nChannels > 7) {
         (new PannerEight) @=> p;
-    } else {
+    } else if (nChannels > 2) {
         (new PannerFour) @=> p;
+    } else {
+        (new PannerTwo) @=> p;
     }
     // connect input
     p.connect(safe);
