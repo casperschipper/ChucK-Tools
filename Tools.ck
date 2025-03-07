@@ -155,7 +155,7 @@ add("streams/ST_tanh");
 add("streams/ST_wave");
 add("streams/ST_monitor");
 add("streams/ST_replaceZero");
-add("streams/ST_zeroCount");
+add("streams/ST_ZeroCount");
 add("streams/ST_avg");
 add("streams/ST_store");
 add("streams/ST_recall");
@@ -233,7 +233,7 @@ add("streams/ST_singleKey"); //
 add("streams/st");
 
 
-add("Buses2.ck");
+add("buses2.ck");
 add("PanFourBus.ck");
 add("ReadSSV.ck");
 
