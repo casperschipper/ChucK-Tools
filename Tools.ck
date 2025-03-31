@@ -1,6 +1,6 @@
 me.dir() => string path;
 
-<<<"hi there, chuck here. July 2024">>>;
+<<<"2025">>>;
 
 fun void add(string filename) {
     Machine.add(path+filename);
@@ -167,6 +167,7 @@ add("streams/ST_biquad");
 add("streams/ST_slide");
 add("streams/ST_leakDC");
 add("streams/ST_invert");
+add("streams/ST_abs");
 
 // funkstreams
 add("Funk.ck");

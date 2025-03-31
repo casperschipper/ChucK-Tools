@@ -25,11 +25,21 @@ public class OSC_Read {
     fun void makePar(string parName,string address) {
         if (port == 0)
             setPort();
-        spork ~OSC_ReadShred(address,parName);
+        // no default, so initialize with 0.0
+        spork ~OSC_ReadShred(address,parName,0.0);
+    }
+    
+    fun void makePar(string parName,string address,float default) {
+        // default is just so we can have an initial value, for example if 0 causes issues.
+        if (port == 0) {
+            setPort();
+        }
+        spork ~OSC_ReadShred(address,parName,default);
     }
     
     // The OSC listening shread
-    fun void OSC_ReadShred(string address,string parName) {
+    fun void OSC_ReadShred(string address,string parName,float default) {
+        default => values[parName];
         // create OscEvent
         address => oscrecv.event @=> OscEvent oe;
         while (true) {

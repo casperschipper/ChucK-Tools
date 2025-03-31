@@ -105,9 +105,10 @@ public class ST_biquad extends Stream {
     
     fun void calcBiquad() {
         float norm;
-        Math.pow(10,Math.fabs(peakGain) / 20.0) => float V;
+        //peakGain => float V;
         Math.tan(3.141596535 * Fc) => float K;
         if (ftype == 0) {
+            // lowpass
             1 / (1 + K / Q + K * K) => norm;
             K * K * norm => a0;
             2 * a0 => a1;
@@ -117,6 +118,7 @@ public class ST_biquad extends Stream {
             return;
         }
         if (ftype == 1) {
+            // highpass
             1 / (1 + K / Q + K * K) => norm;
             1 * norm => a0;
             -2 * a0 => a1;
@@ -126,6 +128,7 @@ public class ST_biquad extends Stream {
             return;
         }
         if (ftype == 2) { 
+            // bandpass
             1 / (1 + K / Q + K * K) => norm;
             K / Q * norm => a0;
             0 => a1;
@@ -142,7 +145,7 @@ public class ST_biquad extends Stream {
         if(st_peakGain != null) { st_peakGain.next() => peakGain; }
         if(containsStreams) { calcBiquad(); } // so we only update once the calc !
         
-        st_input.next() => float in;
+        st_input.next() * peakGain => float in;
         in * a0 + z1 => float out;
         in * a1 + z2 - b1 * out => z1;
         in * a2 - b2 * out => z2;

@@ -2201,9 +2201,15 @@ public class st {
         return sum( mup ( sum (acIn, 1) , r ) , m);
     }
     
-    fun static ST_oscin oscin(int port, string name) {
+    fun static ST_oscin oscin(string name) {
         ST_oscin str;
-        str.init(port,name);
+        str.init(name);
+        return str;
+    }
+    
+    fun static ST_oscin oscin(string name,float default) {
+        ST_oscin str;
+        str.init(name,default);
         return str;
     }
     
@@ -2308,6 +2314,12 @@ public class st {
     
     fun static ST_mup flop(float tableArg[],int idxArg,Stream arg) {
         return mup(arg,invert(index(tableArg,s(idxArg))));
+    }
+    
+    fun static ST_abs abs (Stream arg) {
+        ST_abs str;
+        str.init(arg);
+        return str;
     }
             
 }

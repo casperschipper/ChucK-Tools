@@ -1,5 +1,23 @@
+class LinsegChub extends Chugraph {
+    Step unit => Envelope env => outlet;
+    
+    1 => unit.next;
+    
+    fun float target(float arg) {
+        arg => env.target;
+        return arg;
+    }
+     
+    fun dur duration(dur arg) {
+        arg => env.duration;
+        return arg;
+    }
+}
+
+
+
 public class LineSynth extends Chugraph {
-    Linseg l => outlet;
+    LinsegChub l => outlet;
     
     null @=> Stream @ _value;
     null @=> Stream @ _dura;
