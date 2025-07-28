@@ -65,10 +65,10 @@ public class Stream
         3 => int numberOfTabs;
         while(now < then) {
             chout <= next();
-            chout <= "\t\t\t";
+            chout <= "\t";
             if (numberOfTabs-- > 0) {
                 chout <= next();
-                chout <= "\t\t\t";
+                chout <= "\t";
             } else {
                 chout <= IO.newline();
                 3 => numberOfTabs;

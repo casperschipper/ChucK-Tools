@@ -6,9 +6,9 @@ public class OSC_Read {
     static float values[];
     
     // Set OSC listening port
-    fun void setPort(int aport) {
-        aport => port;
-        oscrecv.port(aport);
+    fun void setPort(int arg) {
+        arg => port;
+        oscrecv.port(arg);
         oscrecv.listen();
     }
     
@@ -23,23 +23,24 @@ public class OSC_Read {
     // address should be the osc address for example:
     // "/1/fader1, f" gets you the first fader as a float on TouchOSC 
     fun void makePar(string parName,string address) {
-        if (port == 0)
-            setPort();
+        if (port == 0) {
+            setPort(5321);
+        }
         // no default, so initialize with 0.0
-        spork ~OSC_ReadShred(address,parName,0.0);
+        spork ~OSC_ReadShred(address,parName);
     }
     
     fun void makePar(string parName,string address,float default) {
+        default => values[parName];
         // default is just so we can have an initial value, for example if 0 causes issues.
         if (port == 0) {
             setPort();
         }
-        spork ~OSC_ReadShred(address,parName,default);
+        spork ~OSC_ReadShred(address,parName);
     }
     
     // The OSC listening shread
-    fun void OSC_ReadShred(string address,string parName,float default) {
-        default => values[parName];
+    fun void OSC_ReadShred(string address,string parName) {
         // create OscEvent
         address => oscrecv.event @=> OscEvent oe;
         while (true) {

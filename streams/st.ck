@@ -788,11 +788,11 @@ public class st {
     */
     
     fun static ST_index walkList(int values[], Stream step) {
-        return index(values,boundedWalk(0,values.cap()-1,step));
+        return index(values,boundedWalk(0,values.cap(),step));
     }
     
     fun static ST_index walkList(float values[], Stream step) {
-        return index(values,boundedWalk(0,values.cap()-1,step));
+        return index(values,boundedWalk(0,values.cap(),step));
     }
     
     fun static ST_index walkList(float values[]) {
@@ -1782,6 +1782,16 @@ public class st {
         return biquad;
     }
     
+    fun static ST_biquad highpass(Stream inArg, Stream freqArg, Stream QArg, Stream gainArg) {
+        ST_biquad biquad;
+        biquad.setInput(inArg);
+        biquad.setType("hp");
+        biquad.setFreq(freqArg);
+        biquad.setQ(QArg);
+        biquad.setPeakGain(gainArg);
+        return biquad;
+    }
+    
     
     fun static ST_slide slide(Stream inArg, Stream upArg, Stream downArg) {
         ST_slide str;
@@ -2071,9 +2081,15 @@ public class st {
     }
     
     /* prints the output to the log */
-    fun static ST_monitor monitor( Stream arg ) {
+    fun static ST_monitor monitor( int arg, Stream arg2 ) {
         ST_monitor str;
-        str.init(arg);
+        str.init(arg,arg2);
+        return str;
+    }
+    
+    fun static ST_monitor monitor( Stream arg2 ) {
+        ST_monitor str;
+        str.init(4410,arg2);
         return str;
     }
     
