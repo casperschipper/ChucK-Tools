@@ -1831,7 +1831,7 @@ public class st {
         str.input(inputArg).min(minArg).max(maxArg);
         return str;
     }
-    
+
     fun static ST_tanh tanh(Stream inputArg) {
         ST_tanh str;
         str.input(inputArg);

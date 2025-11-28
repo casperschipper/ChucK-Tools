@@ -42,6 +42,8 @@ public class ST_count extends Stream
     
     fun void reset() {
         0 => value;
-        st_max.reset();
+        if (st_max != null) {
+            st_max.reset();
+        }
     }
 }

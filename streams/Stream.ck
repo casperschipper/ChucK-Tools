@@ -64,12 +64,11 @@ public class Stream
         now + testLength => time then;
         3 => int numberOfTabs;
         while(now < then) {
-            chout <= next();
-            chout <= "\t";
             if (numberOfTabs-- > 0) {
                 chout <= next();
                 chout <= "\t";
             } else {
+                chout <= next();
                 chout <= IO.newline();
                 3 => numberOfTabs;
             }
